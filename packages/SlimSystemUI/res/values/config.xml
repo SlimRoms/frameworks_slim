@@ -24,7 +24,7 @@
     <!-- Default value how much apps show the app screenshot on recents view entry -->
     <integer name="expanded_items_default">2</integer>
 
-    <string name="quick_settings_tiles_slim" translatable="false">caffeine,ime,screenshot,sync,usb_tether</string>
+    <string name="quick_settings_tiles_slim" translatable="false">caffeine,ime,screenshot,nfc,sync,usb_tether</string>
 
 </resources>
 

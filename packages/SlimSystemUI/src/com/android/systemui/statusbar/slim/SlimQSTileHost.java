@@ -40,6 +40,7 @@ import com.android.systemui.statusbar.policy.ZenModeController;
 
 import com.android.systemui.qs.tiles.CaffeineTile;
 import com.android.systemui.qs.tiles.ImeTile;
+import com.android.systemui.qs.tiles.NfcTile;
 import com.android.systemui.qs.tiles.ScreenshotTile;
 import com.android.systemui.qs.tiles.SyncTile;
 import com.android.systemui.qs.tiles.UsbTetherTile;
@@ -69,6 +70,8 @@ public class SlimQSTileHost extends QSTileHost {
                 return new CaffeineTile(this);
             case "ime":
                 return new ImeTile(this);
+            case "nfc":
+                return new NfcTile(this);
             case "screenshot":
                 return new ScreenshotTile(this);
             case "sync":
