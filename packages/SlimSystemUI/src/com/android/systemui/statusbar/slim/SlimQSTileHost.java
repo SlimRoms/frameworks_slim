@@ -38,6 +38,8 @@ import com.android.systemui.statusbar.policy.UserInfoController;
 import com.android.systemui.statusbar.policy.UserSwitcherController;
 import com.android.systemui.statusbar.policy.ZenModeController;
 
+import com.android.systemui.qs.tiles.CaffeineTile;
+
 public class SlimQSTileHost extends QSTileHost {
 
     public SlimQSTileHost(Context context, PhoneStatusBar statusBar,
@@ -54,10 +56,13 @@ public class SlimQSTileHost extends QSTileHost {
                 iconController, nextAlarmController);
     }
 
+
     @Override
     public QSTile<?> createTile(String tileSpec) {
         // handle additional tiles here
         switch(tileSpec) {
+            case "caffeine":
+                return new CaffeineTile(this);
             default:
                 return super.createTile(tileSpec);
         }
