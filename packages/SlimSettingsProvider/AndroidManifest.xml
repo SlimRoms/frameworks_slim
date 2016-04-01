@@ -1,0 +1,21 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+        package="org.slim.providers.settings"
+        coreApp="true"
+        android:sharedUserId="android.uid.system">
+
+    <application android:allowClearUserData="false"
+                 android:label="@string/app_label"
+                 android:process="system"
+                 android:killAfterRestore="false"
+                 android:icon="@mipmap/ic_launcher_settings">
+                 
+    <!-- todo add: android:neverEncrypt="true" -->
+
+        <provider android:name="SlimSettingsProvider"
+                  android:authorities="slimsettings"
+                  android:multiprocess="false"
+                  android:exported="true"
+                  android:singleUser="true"
+                  android:initOrder="100" />
+    </application>
+</manifest>

@@ -16,6 +16,14 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
+    <!-- Labels for the WRITE_SETTINGS permission -->
+    <string name="permlab_writeSettings">modify Slim system settings</string>
+    <string name="permdesc_writeSettings">Allows an app to modify Slim system settings.</string>
+
+    <!-- Labels for the WRITE_SECURE_SETTINGS permission -->
+    <string name="permlab_writeSecureSettings">modify Slim secure system settings</string>
+    <string name="permdesc_writeSecureSettings">Allows an app to modify Slim secure system settings. Not for use by normal apps.</string>
+
     <!-- General Strings -->
     <string name="disabled">Disabled</string>
     <string name="help">Help</string>

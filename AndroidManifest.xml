@@ -15,5 +15,19 @@
 -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="org.slim.framework">
+
+    <!-- Allows an application to write to Slim system settings -->
+    <permission android:name="slim.permission.WRITE_SETTINGS"
+                android:label="@string/permlab_writeSettings"
+                android:description="@string/permdesc_writeSettings"
+                android:protectionLevel="normal" />
+
+    <!-- Allows an application to write to secure Slim system settings.
+        <p>Not for use by third-party applications. -->
+    <permission android:name="slim.permission.WRITE_SECURE_SETTINGS"
+                android:label="@string/permlab_writeSecureSettings"
+                android:description="@string/permdesc_writeSecureSettings"
+                android:protectionLevel="signature|privileged|development" />
+
     <application />
 </manifest>
