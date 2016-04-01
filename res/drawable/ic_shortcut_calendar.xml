@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Copyright (c) 2016 SlimRoms
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="144"
+    android:viewportHeight="144">
+
+    <path
+        android:fillAlpha="1"
+        android:fillColor="#FFFFFF"
+        android:pathData="m84.91,22.9c-1.76,0 -3.18,1.42 -3.18,3.18l0,9.28 -21.83,0 0,-9.02c0,-1.76 -1.42,-3.18 -3.18,-3.18l-9.02,0c-1.76,0 -3.18,1.42 -3.18,3.18l0,9.02 -18.38,0c-1.76,0 -3.18,1.42 -3.18,3.18l0,18.03c0,1.76 1.42,3.18 3.18,3.18l88.74,0c1.76,0 3.18,-1.42 3.18,-3.18l0,-18.03c0,-1.76 -1.42,-3.18 -3.18,-3.18l-17.77,0 0,-9.28c0,-1.76 -1.42,-3.18 -3.18,-3.18l-9.02,0zM30.6,62.41c-1.4,0 -2.53,1.13 -2.53,2.53l0,19.51c0,1.4 1.13,2.53 2.53,2.53l22.16,0c1.4,0 2.53,-1.13 2.53,-2.53l0,-19.51c0,-1.4 -1.13,-2.53 -2.53,-2.53l-22.16,0zM61.18,62.68c-1.4,0 -2.53,1.13 -2.53,2.53l0,19.51c0,1.4 1.13,2.53 2.53,2.53l13,0 0,-9.11 11.7,0 0,-12.93c0,-1.4 -1.13,-2.53 -2.53,-2.53l-22.17,0zM90.53,62.68c-1.4,0 -2.53,1.13 -2.53,2.53l0,12.93 27.22,0 0,-12.93c0,-1.4 -1.13,-2.53 -2.53,-2.53l-22.16,0zM118.53,79.56c-14.88,0.02 -30.14,0.01 -42.91,0.01l0,7.68 0.01,0 0,3.18 -0.01,0c-0.01,9.24 0.01,19.16 0.01,28.14 0,1.4 1.13,2.53 2.53,2.53l40.37,0c1.4,0 2.53,-1.13 2.53,-2.53l0,-36.48c0,-1.4 -1.13,-2.53 -2.53,-2.53zM84.52,86.57 L111.99,86.57c0.91,0 1.65,0.73 1.65,1.64l0,23.81c0,0.91 -0.73,1.65 -1.65,1.65l-27.47,0c-0.91,0 -1.65,-0.73 -1.65,-1.65l0,-23.81c0,-0.91 0.73,-1.64 1.65,-1.64zM30.42,90.43c-1.4,0 -2.53,1.13 -2.53,2.53l0,19.51c0,1.4 1.13,2.53 2.53,2.53l22.16,0c1.4,0 2.53,-1.13 2.53,-2.53l0,-19.51c0,-1.4 -1.13,-2.53 -2.53,-2.53l-22.16,0zM60.3,90.43c-1.4,0 -2.53,1.13 -2.53,2.53l0,19.51c0,1.4 1.13,2.53 2.53,2.53l13.88,0 0,-24.57 -13.88,0z"
+        android:strokeAlpha="1"
+        android:strokeColor="#00000000"/>
+</vector>
