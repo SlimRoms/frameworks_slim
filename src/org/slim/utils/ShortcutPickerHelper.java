@@ -28,7 +28,7 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.Log;
 
-import org.slim.framework.R;
+import org.slim.framework.internal.R;
 
 import org.slim.utils.AppHelper;
 

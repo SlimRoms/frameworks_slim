@@ -18,6 +18,8 @@
 package org.slim.preference.dslv;
 
 import android.content.Context;
+import android.content.pm.PackageManager;
+import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.database.DataSetObserver;
 import android.graphics.Canvas;
@@ -30,6 +32,7 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.util.SparseBooleanArray;
 import android.util.SparseIntArray;
+import android.view.ContextThemeWrapper;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
@@ -40,7 +43,7 @@ import android.widget.Checkable;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
-import org.slim.framework.R;
+import org.slim.framework.internal.R;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -435,6 +438,8 @@ public class DragSortListView extends ListView {
     private boolean mUseRemoveVelocity;
     private float mRemoveVelocityX = 0;
 
+    private Context mContext;
+
     public DragSortListView(Context context, AttributeSet attrs) {
         super(context, attrs);
 
@@ -442,8 +447,17 @@ public class DragSortListView extends ListView {
         int removeAnimDuration = defaultDuration; // ms
         int dropAnimDuration = defaultDuration; // ms
 
+        try {
+            mContext = getContext().createPackageContext("org.slim.framework", 0);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        if (mContext != null) {
+            mContext = new ContextThemeWrapper(mContext, getContext().getTheme());
+        }
+
         if (attrs != null) {
-            TypedArray a = getContext().obtainStyledAttributes(attrs,
+            TypedArray a = mContext.obtainStyledAttributes(attrs,
                     R.styleable.DragSortListView, 0, 0);
 
             mItemHeightCollapsed = Math.max(1, a.getDimensionPixelSize(
@@ -513,9 +527,14 @@ public class DragSortListView extends ListView {
                 int clickRemoveId = a.getResourceId(
                         R.styleable.DragSortListView_clickRemoveId,
                         0);
-                int bgColor = a.getColor(
+                int bgColor;
+                try {
+                    bgColor = a.getColor(
                         R.styleable.DragSortListView_floatBackgroundColor,
-                        Color.BLACK);
+                        Color.TRANSPARENT);
+                } catch (Resources.NotFoundException e) {
+                    bgColor = Color.TRANSPARENT;
+                }
 
                 DragSortController controller = new DragSortController(
                         this, dragHandleId, dragInitMode, removeMode,

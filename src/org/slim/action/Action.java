@@ -109,12 +109,6 @@ public class Action {
             } else if (action.equals(ActionConstants.ACTION_SEARCH)) {
                 triggerVirtualKeypress(KeyEvent.KEYCODE_SEARCH, isLongpress);
                 return;
-            } else if (action.equals(ActionConstants.ACTION_KILL)) {
-                if (isKeyguardShowing) return;
-                try {
-                    barService.toggleKillApp();
-                } catch (RemoteException e) {}
-                return;
             } else if (action.equals(ActionConstants.ACTION_NOTIFICATIONS)) {
                 if (isKeyguardShowing && isKeyguardSecure) {
                     return;
@@ -149,15 +143,6 @@ public class Action {
                         }
                     }
                 } catch (CameraAccessException e) {
-                }
-                return;
-            } else if (action.equals(ActionConstants.ACTION_LAST_APP)) {
-                if (isKeyguardShowing) {
-                    return;
-                }
-                try {
-                    barService.toggleLastApp();
-                } catch (RemoteException e) {
                 }
                 return;
             } else if (action.equals(ActionConstants.ACTION_POWER_MENU)) {
@@ -323,11 +308,6 @@ public class Action {
                 if (!powerManager.isScreenOn()) {
                     powerManager.wakeUp(SystemClock.uptimeMillis());
                 }
-                return;
-            } else if (action.equals(ActionConstants.ACTION_SCREENSHOT)) {
-                try {
-                    barService.toggleScreenshot();
-                } catch (RemoteException e) {}
                 return;
             } else {
                 // we must have a custom uri

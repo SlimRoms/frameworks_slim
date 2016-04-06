@@ -28,6 +28,7 @@ import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.content.SharedPreferences;
@@ -40,6 +41,7 @@ import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -64,7 +66,7 @@ import org.slim.utils.ImageHelper;
 import org.slim.utils.DeviceUtils;
 import org.slim.utils.DeviceUtils.FilteredDeviceFeaturesArray;
 
-import org.slim.framework.R;
+import org.slim.framework.internal.R;
 import org.slim.utils.ShortcutPickerHelper;
 
 import java.io.File;
@@ -101,6 +103,8 @@ public class ActionListViewSettings extends ListFragment implements
     private boolean mDisableLongpress;
     private boolean mDisableIconPicker;
     private boolean mDisableDeleteLastEntry;
+
+    private Context mContext;
 
     private TextView mDisableMessage;
 
@@ -167,9 +171,23 @@ public class ActionListViewSettings extends ListFragment implements
         };
 
     @Override
+    public void onCreate(Bundle savedState) {
+        super.onCreate(savedState);
+
+        try {
+            mContext = getActivity().createPackageContext("org.slim.framework", 0);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        if (mContext != null) {
+            mContext = new ContextThemeWrapper(mContext, getActivity().getTheme());
+        }
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.action_list_view_main, container, false);
+        return View.inflate(mContext, R.layout.action_list_view_main, null);
     }
 
     @Override
@@ -181,7 +199,7 @@ public class ActionListViewSettings extends ListFragment implements
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Resources res = getResources();
+        Resources res = mContext.getResources();
 
         mActionMode = getArguments().getInt("actionMode", NAV_BAR);
         mMaxAllowedActions = getArguments().getInt("maxAllowedActions", DEFAULT_MAX_ACTION_NUMBER);
@@ -199,9 +217,9 @@ public class ActionListViewSettings extends ListFragment implements
         FilteredDeviceFeaturesArray finalActionDialogArray = new FilteredDeviceFeaturesArray();
         finalActionDialogArray = DeviceUtils.filterUnsupportedDeviceFeatures(mActivity,
             res.getStringArray(res.getIdentifier(
-                    mActionValuesKey, "array", "com.android.settings")),
+                    mActionValuesKey, "array", "org.slim.framework")),
             res.getStringArray(res.getIdentifier(
-                    mActionEntriesKey, "array", "com.android.settings")));
+                    mActionEntriesKey, "array", "org.slim.framework")));
         mActionDialogValues = finalActionDialogArray.values;
         mActionDialogEntries = finalActionDialogArray.entries;
 
@@ -281,7 +299,7 @@ public class ActionListViewSettings extends ListFragment implements
         mActionConfigs = getConfig();
 
         if (mActionConfigs != null) {
-            mActionConfigsAdapter = new ActionConfigsAdapter(mActivity, mActionConfigs);
+            mActionConfigsAdapter = new ActionConfigsAdapter(mContext, mActionConfigs);
             setListAdapter(mActionConfigsAdapter);
             showDisableMessage(mActionConfigs.size() == 0);
         }
@@ -379,7 +397,7 @@ public class ActionListViewSettings extends ListFragment implements
                 if (mImageTmp.length() == 0 || !mImageTmp.exists()) {
                     mPendingIndex = -1;
                     Toast.makeText(mActivity,
-                            getResources().getString(R.string.shortcut_image_not_valid),
+                            mContext.getResources().getString(R.string.shortcut_image_not_valid),
                             Toast.LENGTH_LONG).show();
                     return;
                 }
@@ -446,7 +464,7 @@ public class ActionListViewSettings extends ListFragment implements
             actionConfig = mActionConfigsAdapter.getItem(i);
             if (actionConfig.getClickAction().equals(action)) {
                 Toast.makeText(mActivity,
-                        getResources().getString(R.string.shortcut_duplicate_entry),
+                        mContext.getResources().getString(R.string.shortcut_duplicate_entry),
                         Toast.LENGTH_LONG).show();
                 return true;
             }
@@ -482,7 +500,7 @@ public class ActionListViewSettings extends ListFragment implements
             case MENU_ADD:
                 if (mActionConfigs.size() == mMaxAllowedActions) {
                     Toast.makeText(mActivity,
-                            getResources().getString(R.string.shortcut_action_max),
+                            mContext.getResources().getString(R.string.shortcut_action_max),
                             Toast.LENGTH_LONG).show();
                     break;
                 }
@@ -516,12 +534,13 @@ public class ActionListViewSettings extends ListFragment implements
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        menu.add(0, MENU_HELP, 0, R.string.help)
+        menu.add(0, MENU_HELP, 0, mContext.getResources().getString(R.string.help))
                 .setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
-        menu.add(0, MENU_RESET, 0, R.string.shortcut_action_reset)
+        menu.add(0, MENU_RESET, 0,
+                mContext.getResources().getString(R.string.shortcut_action_reset))
                 .setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
-        menu.add(0, MENU_ADD, 0, R.string.shortcut_action_add)
-                .setIcon(R.drawable.ic_menu_add)
+        menu.add(0, MENU_ADD, 0, mContext.getResources().getString(R.string.shortcut_action_add))
+                .setIcon(mContext.getResources().getDrawable(R.drawable.ic_menu_add))
                 .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
 
     }
@@ -532,7 +551,8 @@ public class ActionListViewSettings extends ListFragment implements
         }
         ActionConfig actionConfig = new ActionConfig(
             action, description,
-            ActionConstants.ACTION_NULL, getResources().getString(R.string.shortcut_action_none),
+            ActionConstants.ACTION_NULL,
+            mContext.getResources().getString(R.string.shortcut_action_none),
             ActionConstants.ICON_EMPTY);
 
             mActionConfigsAdapter.add(actionConfig);
@@ -615,7 +635,7 @@ public class ActionListViewSettings extends ListFragment implements
 
                 TextView longpressActionDecription =
                     (TextView) v.findViewById(R.id.longpress_action_description);
-                ImageView icon = (ImageView) v.findViewById(R.id.icon);
+                ImageView icon = (ImageView) v.findViewById(R.id.list_item_icon);
 
                 if (mDisableLongpress) {
                     longpressActionDecription.setVisibility(View.GONE);
@@ -632,7 +652,7 @@ public class ActionListViewSettings extends ListFragment implements
 
             if (!mDisableLongpress) {
                 holder.longpressActionDescriptionView.setText(
-                    getResources().getString(R.string.shortcut_action_longpress)
+                    getContext().getResources().getString(R.string.shortcut_action_longpress)
                     + " " + getItem(position).getLongpressActionDescription());
             }
 
@@ -654,12 +674,12 @@ public class ActionListViewSettings extends ListFragment implements
                         && iconUri.startsWith(ActionConstants.SYSTEM_ICON_IDENTIFIER))) {
                     if (d != null) {
                         d = ImageHelper.getColoredDrawable(d,
-                                getResources().getColor(R.color.dslv_icon_dark));
+                                getContext().getResources().getColor(R.color.dslv_icon_dark));
                     }
                 }
             //}
             if (iconUri != null && iconUri.startsWith(ActionConstants.SYSTEM_ICON_IDENTIFIER)) {
-                d.setTint(getResources().getColor(R.color.dslv_icon_dark));
+                d.setTint(getContext().getResources().getColor(R.color.dslv_icon_dark));
             }
             holder.iconView.setImageBitmap(ImageHelper.drawableToBitmap(d));
 
@@ -748,7 +768,7 @@ public class ActionListViewSettings extends ListFragment implements
                     })
                     .create();
                 case DLG_SHOW_HELP_SCREEN:
-                    Resources res = getResources();
+                    Resources res = getOwner().mContext.getResources();
                     String finalHelpMessage;
                     String actionMode;
                     String icon = "";
@@ -831,7 +851,7 @@ public class ActionListViewSettings extends ListFragment implements
                         longpress ? getOwner().mActionDialogEntries : entries;
 
                     return new AlertDialog.Builder(getActivity())
-                    .setTitle(title)
+                    .setTitle(getOwner().mContext.getString(title))
                     .setNegativeButton(android.R.string.cancel, null)
                     .setItems(finalDialogEntries,
                         new DialogInterface.OnClickListener() {
@@ -872,7 +892,7 @@ public class ActionListViewSettings extends ListFragment implements
                                     break;
                                 case 1: // System defaults
                                     ListView list = new ListView(getActivity());
-                                    list.setAdapter(new IconAdapter());
+                                    list.setAdapter(new IconAdapter(getOwner().mContext));
                                     final Dialog holoDialog = new Dialog(getActivity());
                                     holoDialog.setTitle(
                                             R.string.shortcuts_icon_picker_choose_icon_title);
@@ -928,9 +948,9 @@ public class ActionListViewSettings extends ListFragment implements
                     } else {
                         msg = R.string.no_back_key;
                     }
-                    return new AlertDialog.Builder(getActivity())
-                    .setTitle(R.string.attention)
-                    .setMessage(msg)
+                    return new AlertDialog.Builder(getOwner().mContext)
+                    .setTitle(getOwner().mContext.getString(R.string.attention))
+                    .setMessage(getOwner().mContext.getString(msg))
                     .setPositiveButton(android.R.string.ok, null)
                     .create();
             }
@@ -948,10 +968,10 @@ public class ActionListViewSettings extends ListFragment implements
             String[] labels;
             int color;
 
-            public IconAdapter() {
-                labels = getResources().getStringArray(R.array.shortcut_icon_picker_labels);
-                icons = getResources().obtainTypedArray(R.array.shortcut_icon_picker_icons);
-                color = getResources().getColor(R.color.dslv_icon_dark);
+            public IconAdapter(Context context) {
+                labels = context.getResources().getStringArray(R.array.shortcut_icon_picker_labels);
+                icons = context.getResources().obtainTypedArray(R.array.shortcut_icon_picker_icons);
+                color = context.getResources().getColor(R.color.dslv_icon_dark);
             }
 
             @Override

@@ -14,16 +14,32 @@
 
 LOCAL_PATH := $(call my-dir)
 
-# Here is the final static library that apps can link against.
-# The R class is automatically excluded from the generated library.
-# Applications that use this library must specify LOCAL_RESOURCE_DIR
-# in their makefiles to include the resources in their package.
 include $(CLEAR_VARS)
 
 LOCAL_MODULE := org.slim.framework
-LOCAL_SRC_FILES := $(call all-java-files-under,src)
-LOCAL_RESOURCE_DIR := $(LOCAL_PATH)/res
-LOCAL_CERTIFICATE := platform
-LOCAL_PRIVILEGED_MODULE := true
 
-include $(BUILD_STATIC_JAVA_LIBRARY)
+LOCAL_SRC_FILES := $(call all-java-files-under,src)
+
+slim_platform_res := APPS/org.slim.framework-res_intermediates/src
+
+LOCAL_INTERMEDIATE_SOURCES := \
+    $(slim_platform_res)/org/slim/framework/R.java \
+    $(slim_platform_res)/org/slim/framework/internal/R.java \
+    $(slim_platform_res)/org/slim/framework/Manifest.java
+
+include $(BUILD_JAVA_LIBRARY)
+slim_framework_module := $(LOCAL_INSTALLED_MODULE)
+
+# Make sure that R.java and Manifest.java are built before we build
+# the source for this library.
+slim_framework_res_R_stamp := \
+    $(call intermediates-dir-for,APPS,org.slim.framework-res,,COMMON)/src/R.stamp
+$(full_classes_compiled_jar): $(slim_framework_res_R_stamp)
+$(built_dex_intermediate): $(slim_framework_res_R_stamp)
+
+$(slim_framework_module): | $(dir $(slim_framework_module))org.slim.framework-res.apk
+
+slim_framework_built := $(call java-lib-deps, org.slim.framework)
+
+include $(call all-makefiles-under,$(LOCAL_PATH))
+
