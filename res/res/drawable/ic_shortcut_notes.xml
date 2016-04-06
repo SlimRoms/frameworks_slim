@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Copyright (c) 2016 SlimRoms
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="144"
+    android:viewportHeight="144">
+
+    <path
+        android:fillAlpha="1"
+        android:fillColor="#FFFFFF"
+        android:pathData="m35.94,27.38 l0,89.25 72.13,-0.25 -0.25,-69.38 -62,0 0,-4 45.13,0.13 -0.25,-15.75 -54.75,0zM92.59,27.42 L107.88,43.11 107.88,27.51 92.59,27.42zM45.78,52.3 L84.32,52.3c0.02,0 0.04,0.02 0.04,0.04l0,3.71c0,0.02 -0.02,0.04 -0.04,0.04l-38.54,0c-0.02,0 -0.04,-0.02 -0.04,-0.04l0,-3.71c0,-0.02 0.02,-0.04 0.04,-0.04zM45.75,62.97 L96.92,62.97c0.02,0 0.04,0.02 0.04,0.04l0,3.71c0,0.02 -0.02,0.04 -0.04,0.04l-51.18,0c-0.02,0 -0.04,-0.02 -0.04,-0.04l0,-3.71c0,-0.02 0.02,-0.04 0.04,-0.04zM45.81,73.42 L84.35,73.42c0.02,0 0.04,0.02 0.04,0.04l0,3.71c0,0.02 -0.02,0.04 -0.04,0.04l-38.54,0c-0.02,0 -0.04,-0.02 -0.04,-0.04l0,-3.71c0,-0.02 0.02,-0.04 0.04,-0.04zM45.71,82.48 L93.26,82.48c0.02,0 0.04,0.02 0.04,0.04l0,3.71c0,0.02 -0.02,0.04 -0.04,0.04l-47.55,0c-0.02,0 -0.04,-0.02 -0.04,-0.04l0,-3.71c0,-0.02 0.02,-0.04 0.04,-0.04zM45.85,92.58 L77.22,92.58c0.02,0 0.04,0.02 0.04,0.04l0,3.71c0,0.02 -0.02,0.04 -0.04,0.04l-31.38,0c-0.02,0 -0.04,-0.02 -0.04,-0.04l0,-3.71c0,-0.02 0.02,-0.04 0.04,-0.04zM45.82,102.75 L98.5,102.75c0.02,0 0.04,0.02 0.04,0.04l0,3.71c0,0.02 -0.02,0.04 -0.04,0.04l-52.68,0c-0.02,0 -0.04,-0.02 -0.04,-0.04l0,-3.71c0,-0.02 0.02,-0.04 0.04,-0.04z"
+        android:strokeAlpha="1"
+        android:strokeColor="#00000000"
+        android:strokeLineCap="butt"
+        android:strokeLineJoin="miter"
+        android:strokeWidth="1"/>
+</vector>
