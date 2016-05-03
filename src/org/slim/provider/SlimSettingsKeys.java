@@ -19,6 +19,13 @@ package org.slim.provider;
 public final class SlimSettingsKeys {
 
     public interface System {
+
+        /**
+         * Custom navigation bar intent and action configuration
+         * @hide
+         */
+        public static final String NAVIGATION_BAR_CONFIG = "navigation_bar_config";
+
     }
 
     public interface Secure {

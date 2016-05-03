@@ -18,16 +18,17 @@ package org.slim.action;
 
 import android.content.Context;
 import android.os.UserHandle;
-import android.provider.Settings;
 
 import java.util.ArrayList;
+
+import org.slim.provider.SlimSettings;
 
 public class ActionChecker {
 
     private static final ArrayList<String> mConfigs = new ArrayList<String>();
 
     static {
-        mConfigs.add(Settings.System.NAVIGATION_BAR_CONFIG);
+        mConfigs.add(SlimSettings.System.NAVIGATION_BAR_CONFIG);
     }
 
     public static boolean actionConfigContainsAction(ActionConfig config, String action) {
@@ -41,7 +42,7 @@ public class ActionChecker {
         if (!actionConfigContainsAction(config, action)) return true;
 
         for (int i = 0; i < mConfigs.size(); i++) {
-            String configsString = Settings.System.getStringForUser(context.getContentResolver(),
+            String configsString = SlimSettings.System.getStringForUser(context.getContentResolver(),
                     mConfigs.get(i), UserHandle.USER_CURRENT);
 
             if (configsString.contains(ActionConstants.ACTION_BACK)) {

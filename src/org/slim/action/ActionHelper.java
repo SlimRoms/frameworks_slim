@@ -25,7 +25,6 @@ import android.content.res.Resources;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.provider.Settings;
 import android.os.UserHandle;
 import android.util.Log;
 
@@ -34,6 +33,7 @@ import java.io.FileNotFoundException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 
+import org.slim.provider.SlimSettings;
 import org.slim.utils.ConfigSplitHelper;
 import org.slim.utils.DeviceUtils;
 import org.slim.utils.DeviceUtils.FilteredDeviceFeaturesArray;
@@ -61,9 +61,9 @@ public class ActionHelper {
     }
 
     private static String getNavBarProvider(Context context) {
-        String config = Settings.System.getStringForUser(
+        String config = SlimSettings.System.getStringForUser(
                     context.getContentResolver(),
-                    Settings.System.NAVIGATION_BAR_CONFIG,
+                    SlimSettings.System.NAVIGATION_BAR_CONFIG,
                     UserHandle.USER_CURRENT);
         if (config == null) {
             config = ActionConstants.NAVIGATION_CONFIG_DEFAULT;
@@ -79,8 +79,8 @@ public class ActionHelper {
         } else {
             config = ConfigSplitHelper.setActionConfig(actionConfig, false);
         }
-        Settings.System.putString(context.getContentResolver(),
-                    Settings.System.NAVIGATION_BAR_CONFIG,
+        SlimSettings.System.putString(context.getContentResolver(),
+                    SlimSettings.System.NAVIGATION_BAR_CONFIG,
                     config);
     }
 
