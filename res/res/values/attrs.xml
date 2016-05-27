@@ -42,4 +42,9 @@
         <attr name="useDefaultController" format="boolean" />
     </declare-styleable>
 
+    <!-- Base attributes available to SlimSeekBarPreference. -->
+    <declare-styleable name="SlimSeekBarPreference">
+        <!-- No added attributes at this time -->
+    </declare-styleable>
+
 </resources>
