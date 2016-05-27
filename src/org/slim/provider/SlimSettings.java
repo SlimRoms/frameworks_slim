@@ -788,6 +788,20 @@ public final class SlimSettings {
             return putStringForUser(cr, name, Float.toString(value), userHandle);
         }
 
+        /** @hide */
+        public static final Validator DOZE_TIMEOUT_VALIDATOR = sNonNegativeIntegerValidator;
+        /** @hide */
+        public static final Validator DOZE_TRIGGER_PICKUP_VALIDATOR = sBooleanValidator;
+        /** @hide */
+        public static final Validator DOZE_TRIGGER_SIGMOTION_VALIDATOR = sBooleanValidator;
+        /** @hide */
+        public static final Validator DOZE_TRIGGER_NOTIFICATION_VALIDATOR = sBooleanValidator;
+        /** @hide */
+        public static final Validator DOZE_SCHEDULE_VALIDATOR = sBooleanValidator;
+        /** @hide */
+        public static final Validator DOZE_BRIGHTNESS_VALIDATOR =
+                new InclusiveFloatRangeValidator(0, 1);
+
         /**
          * These are all public system settings
          *
@@ -807,13 +821,24 @@ public final class SlimSettings {
         }
 
         /**
-         * These are all public system settings
+         * Mapping of validators for all system settings.  This map is used to validate both valid
+         * keys as well as validating the values for those keys.
+         *
+         * Note: Make sure if you add a new System setting you create a Validator for it and add
+         *       it to this map.
          *
          * @hide
          */
-        public static final Map<String, Validator> VALIDATORS = new ArrayMap<>();
+        public static final Map<String, Validator> VALIDATORS =
+                new ArrayMap<String, Validator>();
         static {
-        }
+            VALIDATORS.put(DOZE_TIMEOUT, DOZE_TIMEOUT_VALIDATOR);
+            VALIDATORS.put(DOZE_TRIGGER_PICKUP, DOZE_TRIGGER_PICKUP_VALIDATOR);
+            VALIDATORS.put(DOZE_TRIGGER_SIGMOTION, DOZE_TRIGGER_SIGMOTION_VALIDATOR);
+            VALIDATORS.put(DOZE_TRIGGER_NOTIFICATION, DOZE_TRIGGER_NOTIFICATION_VALIDATOR);
+            VALIDATORS.put(DOZE_SCHEDULE, DOZE_SCHEDULE_VALIDATOR);
+            VALIDATORS.put(DOZE_BRIGHTNESS, DOZE_BRIGHTNESS_VALIDATOR);
+        };
     }
 
     /**
@@ -1208,7 +1233,11 @@ public final class SlimSettings {
         }
 
         /**
-         * These are all public system settings
+         * Mapping of validators for all secure settings.  This map is used to validate both valid
+         * keys as well as validating the values for those keys.
+         *
+         * Note: Make sure if you add a new Secure setting you create a Validator for it and add
+         *       it to this map.
          *
          * @hide
          */
