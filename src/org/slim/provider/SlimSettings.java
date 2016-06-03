@@ -410,7 +410,7 @@ public final class SlimSettings {
     public static final class System extends Settings.NameValueTable
             implements SlimSettingsKeys.System {
         public static final String SYS_PROP_SLIM_SETTING_VERSION
-                = "sys.slim_settings_system_version";
+                = "sys.slim_setting_system_version";
 
         /**
          * The content:// style URL for this table
