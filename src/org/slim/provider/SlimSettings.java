@@ -801,6 +801,8 @@ public final class SlimSettings {
         /** @hide */
         public static final Validator DOZE_BRIGHTNESS_VALIDATOR =
                 new InclusiveFloatRangeValidator(0, 1);
+        /** @hide */
+        public static final Validator PROXIMITY_ON_WAKE_VALIDATOR = sBooleanValidator;
 
         /**
          * These are all public system settings
@@ -838,6 +840,7 @@ public final class SlimSettings {
             VALIDATORS.put(DOZE_TRIGGER_NOTIFICATION, DOZE_TRIGGER_NOTIFICATION_VALIDATOR);
             VALIDATORS.put(DOZE_SCHEDULE, DOZE_SCHEDULE_VALIDATOR);
             VALIDATORS.put(DOZE_BRIGHTNESS, DOZE_BRIGHTNESS_VALIDATOR);
+            VALIDATORS.put(PROXIMITY_ON_WAKE, PROXIMITY_ON_WAKE_VALIDATOR);
         };
     }
 

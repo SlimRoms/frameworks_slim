@@ -62,6 +62,12 @@ public final class SlimSettingsKeys {
          */
         public static final String DOZE_BRIGHTNESS = "doze_brightness";
 
+        /**
+         * Check the proximity sensor during wakeup
+         * @hide
+         */
+        public static final String PROXIMITY_ON_WAKE = "proximity_on_wake";
+
     }
 
     public interface Secure {
