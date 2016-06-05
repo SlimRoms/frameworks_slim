@@ -68,6 +68,13 @@ public final class SlimSettingsKeys {
          */
         public static final String PROXIMITY_ON_WAKE = "proximity_on_wake";
 
+        /**
+         * wake up when plugged or unplugged
+         *
+         * @hide
+         */
+        public static final String WAKEUP_WHEN_PLUGGED_UNPLUGGED = "wakeup_when_plugged_unplugged";
+
     }
 
     public interface Secure {
