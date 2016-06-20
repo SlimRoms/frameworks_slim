@@ -31,6 +31,7 @@
     <java-symbol type="string" name="help" />
     <java-symbol type="string" name="attention" />
     <java-symbol type="string" name="reset_message" />
+    <java-symbol type="string" name="reset" />
 
     <!-- DSLV -->
     <java-symbol type="string" name="help_label" />
