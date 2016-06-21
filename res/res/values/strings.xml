@@ -25,6 +25,7 @@
     <string name="permdesc_writeSecureSettings">Allows an app to modify Slim secure system settings. Not for use by normal apps.</string>
 
     <!-- General Strings -->
+    <string name="reset">Reset</string>
     <string name="disabled">Disabled</string>
     <string name="help">Help</string>
     <string name="attention">Attention</string>
@@ -158,5 +159,15 @@
 
     <!-- Slimseekbar -->
     <string name="default_string">Default</string>
+
+    <!-- Color Picker -->
+    <string name="dialog_color_picker">Color Picker</string>
+    <string name="press_color_to_apply">Press on color below to apply</string>
+    <string name="arrow_right">→</string>
+    <string name="arrow_down">↓</string>
+    <string name="hex">Hex:</string>
+    <string name="hex_hint">#ff000000</string>
+    <string name="set">Set</string>
+    <string name="color_default">Default</string>
 
 </resources>

@@ -18,4 +18,16 @@
     <item type="id" name="monitor_box" />
     <!-- @hide -->
     <item type="id" name="seek_bar" />
+
+    <item type="id" name="color_picker_view" />
+    <item type="id" name="old_color_panel" />
+    <item type="id" name="new_color_panel" />
+    <item type="id" name="white_panel" />
+    <item type="id" name="black_panel" />
+    <item type="id" name="cyan_panel" />
+    <item type="id" name="red_panel" />
+    <item type="id" name="green_panel" />
+    <item type="id" name="yellow_panel" />
+    <item type="id" name="hex" />
+    <item type="id" name="enter" />
 </resources>

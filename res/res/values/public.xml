@@ -32,23 +32,48 @@
   <public type="id" name="monitor_box" id="0x02020000" />
   <public type="id" name="seek_bar" id="0x02020001" />
 
+  <!-- ColodPickerDialog ids -->
+  <public type="id" name="color_picker_view" id="0x02020002" />
+  <public type="id" name="old_color_panel" id="0x02020003" />
+  <public type="id" name="new_color_panel" id="0x02020004" />
+  <public type="id" name="white_panel" id="0x02020005" />
+  <public type="id" name="black_panel" id="0x02020006" />
+  <public type="id" name="cyan_panel" id="0x02020007" />
+  <public type="id" name="red_panel" id="0x02020008" />
+  <public type="id" name="green_panel" id="0x02020009" />
+  <public type="id" name="yellow_panel" id="0x02020010" />
+  <public type="id" name="hex" id="0x02020011" />
+  <public type="id" name="enter" id="0x02020012" />
+
   <!-- style (start with 0x02030000) -->
 
   <!-- string (start with 0x02040000) -->
   <!-- Slimseekbar @hide -->
   <public type="string" name="default_string" id="0x02040000" />
 
+  <!-- ColorPickerDialog @hide -->
+  <public type="string" name="dialog_color_picker" id="0x02040001" />
+
+  <public type="string" name="reset" id="0x02040002" />
+
   <!-- dimen (start with 0x02050000) -->
 
   <!-- color (start with 0x02060000) -->
 
   <!-- array (start with 0x02070000) -->
+  <public type="array" name="icon_color_mode_entries" id="0x02070000" />
+  <public type="array" name="icon_color_mode_values" id="0x02070001" />
 
   <!-- drawable (start with 0x02080000) -->
+  <public type="drawable" name="ic_settings_reset" id="0x02080000" />
 
   <!-- layout (start with 0x02090000) -->
+
   <!--Slim Slider layout @hide -->
   <public type="layout" name="slider_preference" id="0x02090000" />
+
+  <!-- ColorPickerDialog @hide -->
+  <public type="layout" name="dialog_color_picker" id="0x02090001" />
 
   <!-- anim (start with 0x020a0000) -->
 
