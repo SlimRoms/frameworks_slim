@@ -22,14 +22,19 @@ public class ActionConfig {
     private String mClickActionDescription;
     private String mLongpressAction;
     private String mLongpressActionDescription;
+    private String mDoubleTapAction;
+    private String mDoubleTapActionDescription;
     private String mIconUri;
 
     public ActionConfig(String clickAction, String clickActionDescription,
-                    String longpressAction, String longpressActionDescription, String iconUri) {
+                    String longpressAction, String longpressActionDescription,
+                    String doubleTapAction, String doubleTapActionDescription, String iconUri) {
         mClickAction = clickAction;
         mClickActionDescription = clickActionDescription;
         mLongpressAction = longpressAction;
         mLongpressActionDescription = longpressActionDescription;
+        mDoubleTapAction = doubleTapAction;
+        mDoubleTapActionDescription = doubleTapActionDescription;
         mIconUri = iconUri;
     }
 
@@ -54,6 +59,14 @@ public class ActionConfig {
         return mLongpressActionDescription;
     }
 
+    public String getDoubleTapAction() {
+        return mDoubleTapAction;
+    }
+
+    public String getDoubleTapActionDescription() {
+        return mDoubleTapActionDescription;
+    }
+
     public String getIcon() {
         return mIconUri;
     }
@@ -72,6 +85,14 @@ public class ActionConfig {
 
     public void setLongpressActionDescription(String description) {
         mLongpressActionDescription = description;
+    }
+
+    public void setDoubleTapAction(String action) {
+        mDoubleTapAction = action;
+    }
+
+    public void setDoubleTapActionDescription(String description) {
+        mDoubleTapActionDescription = description;
     }
 
     public void setIcon(String iconUri) {

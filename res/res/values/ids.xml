@@ -30,4 +30,12 @@
     <item type="id" name="yellow_panel" />
     <item type="id" name="hex" />
     <item type="id" name="enter" />
+
+    <!-- DSLV -->
+    <item type="id" name="fragment_container" />
+    <item type="id" name="divider" />
+    <item type="id" name="disable_message" />
+    <item type="id" name="click_action_description" />
+    <item type="id" name="longpress_action_description" />
+    <item type="id" name="doubletap_action_description" />
 </resources>

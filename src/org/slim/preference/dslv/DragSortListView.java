@@ -532,7 +532,7 @@ public class DragSortListView extends ListView {
                     bgColor = a.getColor(
                         R.styleable.DragSortListView_floatBackgroundColor,
                         Color.TRANSPARENT);
-                } catch (Resources.NotFoundException e) {
+                } catch (Exception e) {
                     bgColor = Color.TRANSPARENT;
                 }
 
@@ -595,6 +595,17 @@ public class DragSortListView extends ListView {
 
     public float getFloatAlpha() {
         return mCurrFloatAlpha;
+    }
+
+
+    public void setOnItemTouchedCallback(DragSortController.OnItemTouchedCallback callback) {
+        if (!(mFloatViewManager instanceof DragSortController)) {
+            return;
+        }
+        DragSortController controller = (DragSortController) mFloatViewManager;
+        if (controller != null) {
+            controller.setOnItemTouchedCallback(callback);
+        }
     }
 
     /**

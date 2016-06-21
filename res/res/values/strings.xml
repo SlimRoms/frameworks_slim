@@ -52,7 +52,9 @@
     <string name="shortcut_action_notifications">Notifications</string>
     <string name="shortcut_action_qs">Quicksettings panel</string>
     <string name="shortcut_action_longpress">Longpress:</string>
+    <string name="shortcut_action_doubletap">Double-Tap:</string>
     <string name="shortcut_action_select_action_longpress">Choose longpress action:</string>
+    <string name="shortcut_action_select_action_doubletap">Choose Double-Tap action:</string>
     <string name="shortcut_action_select_action">Choose action:</string>
     <string name="shortcut_action_select_action_newaction">Choose new action:</string>
     <string name="shortcut_action_reset">Reset</string>

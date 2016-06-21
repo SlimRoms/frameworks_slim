@@ -62,11 +62,13 @@
     <java-symbol type="string" name="shortcuts_select_custom_app_title" />
 
     <!-- View IDs -->
+    <java-symbol type="id" name="drag_handle" />
     <java-symbol type="id" name="disable_message" />
     <java-symbol type="id" name="divider" />
     <java-symbol type="id" name="fragment_container" />
     <java-symbol type="id" name="click_action_description" />
     <java-symbol type="id" name="longpress_action_description" />
+    <java-symbol type="id" name="doubletap_action_description" />
     <java-symbol type="id" name="list_item_icon" />
 
 </resources>

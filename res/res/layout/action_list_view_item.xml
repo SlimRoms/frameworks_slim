@@ -15,6 +15,7 @@
 -->
 
 <GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:theme="@android:style/Theme.Material.Light"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:minHeight="?android:attr/listPreferredItemHeight"
@@ -23,7 +24,7 @@
     android:paddingTop="8dip"
     android:paddingBottom="8dip" >
     <ImageView
-        android:id="@org.slim.framework:id/drag_handle"
+        android:id="@id/drag_handle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@*org.slim.framework:drawable/ic_grabber"
@@ -38,7 +39,7 @@
         android:orientation="vertical"
         android:paddingRight="5dp">
         <TextView
-            android:id="@+id/click_action_description"
+            android:id="@id/click_action_description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="fill_horizontal"
@@ -47,7 +48,17 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textAlignment="viewStart" />
         <TextView
-            android:id="@+id/longpress_action_description"
+            android:id="@id/longpress_action_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="fill_horizontal"
+            android:layout_marginTop="2dip"
+            android:singleLine="true"
+            android:ellipsize="marquee"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textAlignment="viewStart" />
+        <TextView
+            android:id="@id/doubletap_action_description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="fill_horizontal"

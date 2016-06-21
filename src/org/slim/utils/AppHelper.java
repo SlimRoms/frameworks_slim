@@ -27,12 +27,12 @@ import java.net.URISyntaxException;
 
 public class AppHelper {
 
-    private static final String SETTINGS_METADATA_NAME = "com.android.settings";
+    private static final String SLIM_METADATA_NAME = "org.slim.framework";
 
     public static String getProperSummary(Context context, PackageManager pm,
-            Resources settingsResources, String action, String values, String entries) {
+            Resources slimResources, String action, String values, String entries) {
 
-        if (pm == null || settingsResources == null || action == null) {
+        if (pm == null || slimResources == null || action == null) {
             return context.getResources().getString(
                 com.android.internal.R.string.error_message_title);
         }
@@ -41,16 +41,16 @@ public class AppHelper {
             int resIdEntries = -1;
             int resIdValues = -1;
 
-            resIdEntries = settingsResources.getIdentifier(
-                        SETTINGS_METADATA_NAME + ":array/" + entries, null, null);
+            resIdEntries = slimResources.getIdentifier(
+                        SLIM_METADATA_NAME + ":array/" + entries, null, null);
 
-            resIdValues = settingsResources.getIdentifier(
-                        SETTINGS_METADATA_NAME + ":array/" + values, null, null);
+            resIdValues = slimResources.getIdentifier(
+                        SLIM_METADATA_NAME + ":array/" + values, null, null);
 
             if (resIdEntries > 0 && resIdValues > 0) {
                 try {
-                    String[] entriesArray = settingsResources.getStringArray(resIdEntries);
-                    String[] valuesArray = settingsResources.getStringArray(resIdValues);
+                    String[] entriesArray = slimResources.getStringArray(resIdEntries);
+                    String[] valuesArray = slimResources.getStringArray(resIdValues);
                     for (int i = 0; i < valuesArray.length; i++) {
                         if (action.equals(valuesArray[i])) {
                             return entriesArray[i];

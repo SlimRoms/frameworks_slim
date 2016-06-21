@@ -871,7 +871,7 @@ public final class SlimSettings {
     public static final class Secure extends Settings.NameValueTable
             implements SlimSettingsKeys.Secure {
         public static final String SYS_PROP_SLIM_SETTING_VERSION
-                = "sys.slim_settings_secure_version";
+                = "sys.slim_setting_secure_version";
 
         /**
          * The content:// style URL for this table
@@ -1276,7 +1276,7 @@ public final class SlimSettings {
     public static final class Global extends Settings.NameValueTable
             implements SlimSettingsKeys.Global {
         public static final String SYS_PROP_SLIM_SETTING_VERSION
-                = "sys.slim_settings_global_version";
+                = "sys.slim_setting_global_version";
 
         /**
          * The content:// style URL for global secure settings items.  Not public.
