@@ -63,6 +63,12 @@ public final class SlimSettingsKeys {
         public static final String DOZE_BRIGHTNESS = "doze_brightness";
 
         /**
+         * Require double tap instead of simple tap to wake from Doze pulse screen
+         * @hide
+         */
+        public static final String DOZE_WAKEUP_DOUBLETAP = "doze_wakeup_doubletap";
+
+        /**
          * Check the proximity sensor during wakeup
          * @hide
          */
