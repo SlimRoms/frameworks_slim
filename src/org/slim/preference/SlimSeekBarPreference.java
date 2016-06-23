@@ -22,6 +22,7 @@ import android.content.pm.PackageManager;
 import android.content.res.TypedArray;
 import android.preference.Preference;
 import android.util.AttributeSet;
+import android.view.ContextThemeWrapper;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SeekBar;
@@ -61,6 +62,10 @@ public class SlimSeekBarPreference extends Preference
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
+        if (mContext != null) {
+            mContext = new ContextThemeWrapper(mContext, getContext().getTheme());
+        }
+
     }
 
     @Override
