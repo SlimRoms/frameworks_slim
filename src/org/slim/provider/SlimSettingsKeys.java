@@ -104,6 +104,11 @@ public final class SlimSettingsKeys {
     }
 
     public interface Secure {
+        /**
+         * Whether to include options in power menu for rebooting into recovery and bootloader
+         * @hide
+         */
+        public static final String ADVANCED_REBOOT = "advanced_reboot";
     }
 
     public interface Global {
