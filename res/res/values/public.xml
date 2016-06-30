@@ -77,6 +77,8 @@
 
   <public type="drawable" name="ic_grabber" id="0x02080001" />
 
+  <public type="drawable" name="ic_sysbar_screenshot" id="0x02080002" />
+
   <!-- layout (start with 0x02090000) -->
 
   <!--Slim Slider layout @hide -->
