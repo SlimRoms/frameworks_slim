@@ -206,6 +206,51 @@
         <item>**null**</item>
     </string-array>
 
+    <!-- Slim Actions For Shortcuts -->
+    <string-array name="shortcut_action_launcher_entries">
+        <item>@string/shortcut_action_home</item>
+        <item>@string/shortcut_action_back</item>
+        <item>@string/shortcut_action_search</item>
+        <item>@string/shortcut_action_voice_search</item>
+        <item>@string/shortcut_action_menu</item>
+        <item>@string/shortcut_action_power</item>
+        <item>@string/shortcut_action_notifications</item>
+        <item>@string/shortcut_action_smart</item>
+        <item>@string/shortcut_action_screenshot</item>
+        <item>@string/shortcut_action_ime</item>
+        <item>@string/shortcut_action_lastapp</item>
+        <item>@string/shortcut_action_kill</item>
+        <item>@string/shortcut_action_assist</item>
+        <item>@string/shortcut_action_ring_vib</item>
+        <item>@string/shortcut_action_ring_silent</item>
+        <item>@string/shortcut_action_ring_vib_silent</item>
+        <item>@string/shortcut_action_power_menu</item>
+        <item>@string/shortcut_action_torch</item>
+        <item>@string/shortcut_action_camera</item>
+    </string-array>
+
+    <string-array name="shortcut_action_launcher_values" translatable="false">
+        <item>**home**</item>
+        <item>**back**</item>
+        <item>**search**</item>
+        <item>**voice_search**</item>
+        <item>**menu_big**</item>
+        <item>**power**</item>
+        <item>**notifications**</item>
+        <item>**smart_pulldown**</item>
+        <item>**screenshot**</item>
+        <item>**ime**</item>
+        <item>**lastapp**</item>
+        <item>**kill**</item>
+        <item>**assist**</item>
+        <item>**ring_vib**</item>
+        <item>**ring_silent**</item>
+        <item>**ring_vib_silent**</item>
+        <item>**power_menu**</item>
+        <item>**torch**</item>
+        <item>**camera**</item>
+    </string-array>
+
     <!-- Icon color options -->
     <string-array name="icon_color_mode_entries">
         <item>@string/icon_color_mode_all_icons</item>

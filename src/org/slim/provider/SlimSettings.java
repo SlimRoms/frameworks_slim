@@ -1253,6 +1253,10 @@ public final class SlimSettings {
             return putStringForUser(cr, name, Float.toString(value), userHandle);
         }
 
+        /** @hide */
+        public static final Validator CHAMBER_OF_SECRETS_VALIDATOR =
+                sBooleanValidator;
+
         /**
          * Mapping of validators for all secure settings.  This map is used to validate both valid
          * keys as well as validating the values for those keys.
@@ -1264,6 +1268,7 @@ public final class SlimSettings {
          */
         public static final Map<String, Validator> VALIDATORS = new ArrayMap<>();
         static {
+            VALIDATORS.put(CHAMBER_OF_SECRETS, CHAMBER_OF_SECRETS_VALIDATOR);
         }
     }
 
