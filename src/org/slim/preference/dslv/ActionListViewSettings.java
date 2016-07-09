@@ -880,7 +880,7 @@ public class ActionListViewSettings extends ListFragment implements
                     // on normal press action
                     String[] values = null;
                     String[] entries = null;
-                    if (!longpress) {
+                    if (!longpress && !doubletap) {
                         List<String> finalEntriesList = new ArrayList<String>();
                         List<String> finalValuesList = new ArrayList<String>();
 
@@ -897,9 +897,9 @@ public class ActionListViewSettings extends ListFragment implements
                     }
 
                     final String[] finalDialogValues =
-                        longpress ? getOwner().mActionDialogValues : values;
+                        (longpress || doubletap) ? getOwner().mActionDialogValues : values;
                     final String[] finalDialogEntries =
-                        longpress ? getOwner().mActionDialogEntries : entries;
+                        (longpress || doubletap) ? getOwner().mActionDialogEntries : entries;
 
                     return new AlertDialog.Builder(getActivity())
                     .setTitle(getOwner().getContext().getString(title))
