@@ -215,7 +215,6 @@
         <item>@string/shortcut_action_menu</item>
         <item>@string/shortcut_action_power</item>
         <item>@string/shortcut_action_notifications</item>
-        <item>@string/shortcut_action_smart</item>
         <item>@string/shortcut_action_screenshot</item>
         <item>@string/shortcut_action_ime</item>
         <item>@string/shortcut_action_lastapp</item>
@@ -237,7 +236,6 @@
         <item>**menu_big**</item>
         <item>**power**</item>
         <item>**notifications**</item>
-        <item>**smart_pulldown**</item>
         <item>**screenshot**</item>
         <item>**ime**</item>
         <item>**lastapp**</item>
