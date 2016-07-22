@@ -45,7 +45,7 @@ import org.slim.provider.SlimSettings;
  */
 public class SlimDatabaseHelper extends SQLiteOpenHelper{
     private static final String TAG = "SlimDatabaseHelper";
-    private static final boolean DEBUG = true;
+    private static final boolean DEBUG = false;
 
     private static final String DATABASE_NAME = "slim_settings.db";
     private static final int DATABASE_VERSION = 1;

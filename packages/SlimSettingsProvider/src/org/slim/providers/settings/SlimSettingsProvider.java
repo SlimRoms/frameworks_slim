@@ -58,7 +58,7 @@ import java.util.Set;
  */
 public class SlimSettingsProvider extends ContentProvider {
     public static final String TAG = "SlimSettingsProvider";
-    private static final boolean LOCAL_LOGV = true;
+    private static final boolean LOCAL_LOGV = false;
 
     private static final boolean USER_CHECK_THROWS = true;
 
