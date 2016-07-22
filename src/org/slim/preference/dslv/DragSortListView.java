@@ -44,11 +44,14 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import org.slim.framework.internal.R;
+import org.slim.utils.AttributeHelper;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * ListView subclass that mediates drag and drop resorting of items.
@@ -438,8 +441,6 @@ public class DragSortListView extends ListView {
     private boolean mUseRemoveVelocity;
     private float mRemoveVelocityX = 0;
 
-    private Context mContext;
-
     public DragSortListView(Context context, AttributeSet attrs) {
         super(context, attrs);
 
@@ -447,18 +448,9 @@ public class DragSortListView extends ListView {
         int removeAnimDuration = defaultDuration; // ms
         int dropAnimDuration = defaultDuration; // ms
 
-        try {
-            mContext = getContext().createPackageContext("org.slim.framework", 0);
-        } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
-        }
-        if (mContext != null) {
-            mContext = new ContextThemeWrapper(mContext, getContext().getTheme());
-        }
-
         if (attrs != null) {
-            TypedArray a = mContext.obtainStyledAttributes(attrs,
-                    R.styleable.DragSortListView, 0, 0);
+            // Use our simpler AttributeHelper
+            AttributeHelper a = new AttributeHelper(context, attrs, R.styleable.DragSortListView);
 
             mItemHeightCollapsed = Math.max(1, a.getDimensionPixelSize(
                     R.styleable.DragSortListView_collapsedHeight, 1));
@@ -546,8 +538,6 @@ public class DragSortListView extends ListView {
                 mFloatViewManager = controller;
                 setOnTouchListener(controller);
             }
-
-            a.recycle();
         }
 
         mDragScroller = new DragScroller();

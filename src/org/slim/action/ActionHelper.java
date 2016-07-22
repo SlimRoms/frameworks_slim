@@ -153,8 +153,6 @@ public class ActionHelper {
         } else if (clickAction.startsWith("**")) {
             resId = getActionSystemIcon(resources, clickAction);
 
-            Log.d("TEST", "resId== " + resId);
-
             if (resId > 0) {
                 return resources.getDrawable(resId);
             }

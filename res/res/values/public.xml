@@ -72,6 +72,9 @@
   <public type="array" name="icon_color_mode_entries" id="0x02070000" />
   <public type="array" name="icon_color_mode_values" id="0x02070001" />
 
+  <public type="array" name="shortcut_action_values" id="0x02070002" />
+  <public type="array" name="shortcut_action_entries" id="0x02070003" />
+
   <!-- drawable (start with 0x02080000) -->
   <public type="drawable" name="ic_settings_reset" id="0x02080000" />
 

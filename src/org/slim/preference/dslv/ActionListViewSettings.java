@@ -107,8 +107,6 @@ public class ActionListViewSettings extends ListFragment implements
     private boolean mDisableIconPicker;
     private boolean mDisableDeleteLastEntry;
 
-    private Context mContext;
-
     private TextView mDisableMessage;
 
     private ActionConfigsAdapter mActionConfigsAdapter;
@@ -177,21 +175,13 @@ public class ActionListViewSettings extends ListFragment implements
     @Override
     public void onCreate(Bundle savedState) {
         super.onCreate(savedState);
-
-        try {
-            mContext = getActivity().createPackageContext("org.slim.framework", 0);
-        } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
-        }
-        if (mContext != null) {
-            mContext = new ContextThemeWrapper(mContext, getActivity().getTheme());
-        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
-        return View.inflate(mContext, org.slim.framework.R.layout.action_list_view_main, null);
+        return inflater.inflate(
+                org.slim.framework.R.layout.action_list_view_main, container, false);
     }
 
     @Override
@@ -203,7 +193,7 @@ public class ActionListViewSettings extends ListFragment implements
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Resources res = mContext.getResources();
+        Resources res = mActivity.getResources();
 
         mActionMode = getArguments().getInt("actionMode", NAV_BAR);
         mMaxAllowedActions = getArguments().getInt("maxAllowedActions", DEFAULT_MAX_ACTION_NUMBER);
@@ -233,7 +223,9 @@ public class ActionListViewSettings extends ListFragment implements
         File folder = new File(Environment.getExternalStorageDirectory() + File.separator +
                 ".slim" + File.separator + "icons");
 
-        folder.mkdirs();
+        if (!folder.exists()) {
+            folder.mkdirs();
+        }
 
         mImageTmp = new File(folder.toString()
                 + File.separator + "shortcut.tmp");
@@ -246,7 +238,7 @@ public class ActionListViewSettings extends ListFragment implements
         mActionConfigs = getConfig();
 
         if (mActionConfigs != null) {
-            mActionConfigsAdapter = new ActionConfigsAdapter(mContext, mActionConfigs);
+            mActionConfigsAdapter = new ActionConfigsAdapter(getContext(), mActionConfigs);
             setListAdapter(mActionConfigsAdapter);
             showDisableMessage(mActionConfigs.size() == 0);
         }
@@ -424,9 +416,8 @@ public class ActionListViewSettings extends ListFragment implements
             } else if (requestCode == REQUEST_PICK_CUSTOM_ICON && mPendingIndex != -1) {
                 if (mImageTmp.length() == 0 || !mImageTmp.exists()) {
                     mPendingIndex = -1;
-                    Toast.makeText(mActivity,
-                            mContext.getResources().getString(R.string.shortcut_image_not_valid),
-                            Toast.LENGTH_LONG).show();
+                    Toast.makeText(mActivity, getContext().getResources().getString(
+                            R.string.shortcut_image_not_valid), Toast.LENGTH_LONG).show();
                     return;
                 }
                 if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
@@ -495,7 +486,7 @@ public class ActionListViewSettings extends ListFragment implements
             actionConfig = mActionConfigsAdapter.getItem(i);
             if (actionConfig.getClickAction().equals(action)) {
                 Toast.makeText(mActivity,
-                        mContext.getResources().getString(R.string.shortcut_duplicate_entry),
+                        getContext().getResources().getString(R.string.shortcut_duplicate_entry),
                         Toast.LENGTH_LONG).show();
                 return true;
             }
@@ -531,7 +522,7 @@ public class ActionListViewSettings extends ListFragment implements
             case MENU_ADD:
                 if (mActionConfigs.size() == mMaxAllowedActions) {
                     Toast.makeText(mActivity,
-                            mContext.getResources().getString(R.string.shortcut_action_max),
+                            getContext().getResources().getString(R.string.shortcut_action_max),
                             Toast.LENGTH_LONG).show();
                     break;
                 }
@@ -565,13 +556,13 @@ public class ActionListViewSettings extends ListFragment implements
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        menu.add(0, MENU_HELP, 0, mContext.getResources().getString(R.string.help))
+        menu.add(0, MENU_HELP, 0, getContext().getResources().getString(R.string.help))
                 .setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
         menu.add(0, MENU_RESET, 0,
-                mContext.getResources().getString(R.string.shortcut_action_reset))
+                getContext().getResources().getString(R.string.shortcut_action_reset))
                 .setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
-        menu.add(0, MENU_ADD, 0, mContext.getResources().getString(R.string.shortcut_action_add))
-                .setIcon(mContext.getResources().getDrawable(R.drawable.ic_menu_add))
+        menu.add(0, MENU_ADD, 0, getContext().getResources().getString(R.string.shortcut_action_add))
+                .setIcon(getContext().getResources().getDrawable(R.drawable.ic_menu_add))
                 .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
 
     }
@@ -583,9 +574,9 @@ public class ActionListViewSettings extends ListFragment implements
         ActionConfig actionConfig = new ActionConfig(
             action, description,
             ActionConstants.ACTION_NULL,
-            mContext.getResources().getString(R.string.shortcut_action_none),
+            getContext().getResources().getString(R.string.shortcut_action_none),
             ActionConstants.ACTION_NULL,
-            mContext.getResources().getString(R.string.shortcut_action_none),
+            getContext().getResources().getString(R.string.shortcut_action_none),
             ActionConstants.ICON_EMPTY);
 
             mActionConfigsAdapter.add(actionConfig);
@@ -597,7 +588,7 @@ public class ActionListViewSettings extends ListFragment implements
         switch (mActionMode) {
             case NAV_BAR:
                 return ActionHelper.getNavBarConfigWithDescription(
-                    mContext, mActionValuesKey, mActionEntriesKey);
+                    mActivity, mActionValuesKey, mActionEntriesKey);
 /* Disabled for now till all features are back. Enable it step per step!!!!!!
             case POWER_MENU_SHORTCUT:
                 return ActionHelper.getPowerMenuConfigWithDescription(
@@ -663,7 +654,7 @@ public class ActionListViewSettings extends ListFragment implements
         }
 
         public View getView(final int position, View convertView, ViewGroup parent) {
-            View v = View.inflate(mContext, R.layout.action_list_view_item, null);
+            View v = super.getView(position, convertView, parent);
 
             if (v != convertView && v != null) {
                 ViewHolder holder = new ViewHolder();
@@ -826,7 +817,7 @@ public class ActionListViewSettings extends ListFragment implements
                     })
                     .create();
                 case DLG_SHOW_HELP_SCREEN:
-                    Resources res = getOwner().mContext.getResources();
+                    Resources res = getOwner().getContext().getResources();
                     String finalHelpMessage;
                     String actionMode;
                     String icon = "";
@@ -911,7 +902,7 @@ public class ActionListViewSettings extends ListFragment implements
                         longpress ? getOwner().mActionDialogEntries : entries;
 
                     return new AlertDialog.Builder(getActivity())
-                    .setTitle(getOwner().mContext.getString(title))
+                    .setTitle(getOwner().getContext().getString(title))
                     .setNegativeButton(android.R.string.cancel, null)
                     .setItems(finalDialogEntries,
                         new DialogInterface.OnClickListener() {
@@ -953,7 +944,7 @@ public class ActionListViewSettings extends ListFragment implements
                                     break;
                                 case 1: // System defaults
                                     ListView list = new ListView(getActivity());
-                                    list.setAdapter(new IconAdapter(getOwner().mContext));
+                                    list.setAdapter(new IconAdapter(getOwner().getContext()));
                                     final Dialog holoDialog = new Dialog(getActivity());
                                     holoDialog.setTitle(
                                             R.string.shortcuts_icon_picker_choose_icon_title);
@@ -1009,9 +1000,9 @@ public class ActionListViewSettings extends ListFragment implements
                     } else {
                         msg = R.string.no_back_key;
                     }
-                    return new AlertDialog.Builder(getOwner().mContext)
-                    .setTitle(getOwner().mContext.getString(R.string.attention))
-                    .setMessage(getOwner().mContext.getString(msg))
+                    return new AlertDialog.Builder(getOwner().getContext())
+                    .setTitle(getOwner().getContext().getString(R.string.attention))
+                    .setMessage(getOwner().getContext().getString(msg))
                     .setPositiveButton(android.R.string.ok, null)
                     .create();
             }
