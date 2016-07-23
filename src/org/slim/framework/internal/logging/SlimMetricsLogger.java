@@ -32,4 +32,5 @@ public class SlimMetricsLogger extends MetricsLogger {
     public static final int NAV_BAR_STYLE_SETTINGS = BASE + 6;
     public static final int NAV_BAR_SETTINGS = BASE + 7;
     public static final int NAV_BAR_DIMEN_SETTINGS = BASE + 8;
+    public static final int RECENT_PANEL_SETTINGS = BASE + 9;
 }

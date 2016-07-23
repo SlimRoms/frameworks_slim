@@ -55,11 +55,12 @@
   <public type="string" name="dialog_color_picker" id="0x02040001" />
 
   <public type="string" name="reset" id="0x02040002" />
+  <public type="string" name="reset_message" id="0x02040003"  />
 
   <!-- DSLV -->
-  <public type="string" name="shortcut_action_disable_message" id="0x02040003" />
-  <public type="string" name="shortcut_action_doubletap" id="0x02040004" />
-  <public type="string" name="shortcut_action_select_action_doubletap" id="0x02040005" />
+  <public type="string" name="shortcut_action_disable_message" id="0x02040004" />
+  <public type="string" name="shortcut_action_doubletap" id="0x02040005" />
+  <public type="string" name="shortcut_action_select_action_doubletap" id="0x02040006" />
 
   <!-- dimen (start with 0x02050000) -->
 
