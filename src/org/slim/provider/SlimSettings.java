@@ -135,6 +135,9 @@ public final class SlimSettings {
     private static final Validator sBooleanValidator =
             new DiscreteValueValidator(new String[] {"0", "1"});
 
+    private static final Validator sThreewayValidator =
+            new DiscreteValueValidator(new String[] {"0", "1", "2"});
+
     private static final Validator sNonNegativeIntegerValidator = new Validator() {
         @Override
         public boolean validate(String value) {
@@ -816,6 +819,20 @@ public final class SlimSettings {
         /** @hide */
         public static final Validator PROXIMITY_AUTO_SPEAKER_INCALL_ONLY_VALIDATOR =
                 sBooleanValidator;
+        /** @hide */
+        public static final Validator STATUS_BAR_CLOCK_VALIDATOR = sBooleanValidator;
+        /** @hide */
+        public static final Validator STATUSBAR_CLOCK_AM_PM_STYLE_VALIDATOR = sThreewayValidator;
+        /** @hide */
+        public static final Validator STATUSBAR_CLOCK_STYLE_VALIDATOR = sThreewayValidator;
+        /** @hide */
+        public static final Validator STATUSBAR_CLOCK_COLOR_OVERRIDE_VALIDATOR = sBooleanValidator;
+        /** @hide */
+        public static final Validator STATUSBAR_CLOCK_DATE_DISPLAY_VALIDATOR = sThreewayValidator;
+        /** @hide */
+        public static final Validator STATUSBAR_CLOCK_DATE_STYLE_VALIDATOR = sThreewayValidator;
+        /** @hide */
+        public static final Validator STATUSBAR_CLOCK_DATE_POSITION_VALIDATOR = sBooleanValidator;
 
         /**
          * These are all public system settings
@@ -860,6 +877,14 @@ public final class SlimSettings {
             VALIDATORS.put(PROXIMITY_AUTO_SPEAKER_DELAY, PROXIMITY_AUTO_SPEAKER_DELAY_VALIDATOR);
             VALIDATORS.put(PROXIMITY_AUTO_SPEAKER_INCALL_ONLY,
                     PROXIMITY_AUTO_SPEAKER_INCALL_ONLY_VALIDATOR);
+            VALIDATORS.put(STATUS_BAR_CLOCK, STATUS_BAR_CLOCK_VALIDATOR);
+            VALIDATORS.put(STATUSBAR_CLOCK_AM_PM_STYLE, STATUSBAR_CLOCK_AM_PM_STYLE_VALIDATOR);
+            VALIDATORS.put(STATUSBAR_CLOCK_STYLE, STATUSBAR_CLOCK_STYLE_VALIDATOR);
+            VALIDATORS.put(STATUSBAR_CLOCK_COLOR_OVERRIDE,
+                    STATUSBAR_CLOCK_COLOR_OVERRIDE_VALIDATOR);
+            VALIDATORS.put(STATUSBAR_CLOCK_DATE_DISPLAY, STATUSBAR_CLOCK_DATE_DISPLAY_VALIDATOR);
+            VALIDATORS.put(STATUSBAR_CLOCK_DATE_STYLE, STATUSBAR_CLOCK_DATE_STYLE_VALIDATOR);
+            VALIDATORS.put(STATUSBAR_CLOCK_DATE_POSITION, STATUSBAR_CLOCK_DATE_POSITION_VALIDATOR);
         };
     }
 

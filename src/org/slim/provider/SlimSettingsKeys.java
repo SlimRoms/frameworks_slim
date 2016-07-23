@@ -372,6 +372,89 @@ public final class SlimSettingsKeys {
          */
         public static final String RECENT_CARD_TEXT_COLOR = "recent_card_text_color";
 
+        /**
+         * Status bar battery %
+         * 0: Hide the battery percentage
+         * 1: Display the battery percentage inside the icon
+         * 2: Display the battery percentage next to the icon
+         * @hide
+         */
+        public static final String STATUS_BAR_BATTERY_PERCENT = "status_bar_battery_percent";
+
+        /**
+         * Show or hide clock
+         * 0 - hide
+         * 1 - show (default)
+         * @hide
+         */
+        public static final String STATUS_BAR_CLOCK = "status_bar_clock";
+
+        /**
+         * AM/PM Style for clock options
+         * 0 - Normal AM/PM
+         * 1 - Small AM/PM
+         * 2 - No AM/PM
+         * @hide
+         */
+        public static final String STATUSBAR_CLOCK_AM_PM_STYLE = "statusbar_clock_am_pm_style";
+
+        /**
+         * Style of clock
+         * 0 - Right Clock
+         * 1 - Center Clock
+         * 2 - Left Clock
+         * @hide
+         */
+        public static final String STATUSBAR_CLOCK_STYLE = "statusbar_clock_style";
+
+        /**
+         * Enable setting clock color
+         * 0 - Do not override
+         * 1 - Override (force use of custom color at all times)
+         * @hide
+         */
+        public static final String STATUSBAR_CLOCK_COLOR_OVERRIDE =
+                "statusbar_clock_color_override";
+
+        /**
+         * Setting for clock color
+         * @hide
+         */
+        public static final String STATUSBAR_CLOCK_COLOR = "statusbar_clock_color";
+
+        /**
+         * Shows custom date before clock time
+         * 0 - No Date
+         * 1 - Small Date
+         * 2 - Normal Date
+         * @hide
+         */
+        public static final String STATUSBAR_CLOCK_DATE_DISPLAY =
+                "statusbar_clock_date_display";
+
+        /**
+         * Sets the date string style
+         * 0 - Regular style
+         * 1 - Lowercase
+         * 2 - Uppercase
+         * @hide
+         */
+        public static final String STATUSBAR_CLOCK_DATE_STYLE = "statusbar_clock_date_style";
+
+        /**
+         * Stores the java DateFormat string for the date
+         * @hide
+         */
+        public static final String STATUSBAR_CLOCK_DATE_FORMAT = "statusbar_clock_date_format";
+
+        /**
+         * Position of date
+         * 0 - Left of clock
+         * 1 - Right of clock
+         * @hide
+         */
+        public static final String STATUSBAR_CLOCK_DATE_POSITION = "statusbar_clock_date_position";
+
     }
 
     public interface Secure {
