@@ -314,7 +314,8 @@ public final class SlimSettings {
         }
 
         public String getStringForUser(ContentResolver cr, String name, final int userHandle) {
-            final boolean isSelf = (userHandle == UserHandle.myUserId());
+            final boolean isSelf = (userHandle == UserHandle.myUserId()) ||
+                    (userHandle == UserHandle.USER_CURRENT);
             if (isSelf) {
                 long newValuesVersion = SystemProperties.getLong(mVersionSystemProperty, 0);
 
