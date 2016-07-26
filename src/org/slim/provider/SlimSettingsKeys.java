@@ -492,6 +492,13 @@ public final class SlimSettingsKeys {
          */
         public static final String STATUS_BAR_BATTERY_PERCENT = "status_bar_battery_percent";
 
+        /**
+         * Number of columns to display on the quick settings panel
+         * Default is 3
+         * @hide
+         */
+        public static final String QS_NUM_TILE_COLUMNS = "qs_num_tile_columns";
+
     }
 
     public interface Global {
