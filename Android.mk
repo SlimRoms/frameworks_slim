@@ -43,4 +43,3 @@ slim_framework_built := $(call java-lib-deps, org.slim.framework)
 
 include $(call all-makefiles-under,$(LOCAL_PATH))
 
-include $(LOCAL_PATH)/../packages/SlimSettingsProvider/Android.mk

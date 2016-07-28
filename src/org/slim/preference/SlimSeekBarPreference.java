@@ -52,26 +52,16 @@ public class SlimSeekBarPreference extends Preference
     boolean mIsMilliSeconds = false;
 
     private OnPreferenceChangeListener mChanger;
-    private Context mContext;
 
     public SlimSeekBarPreference(Context context, AttributeSet attrs) {
         super(context, attrs);
-
-        try {
-            mContext = getContext().createPackageContext("org.slim.framework", 0);
-        } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
-        }
-        if (mContext != null) {
-            mContext = new ContextThemeWrapper(mContext, getContext().getTheme());
-        }
 
     }
 
     @Override
     protected View onCreateView(ViewGroup parent) {
 
-        View layout = View.inflate(mContext,
+        View layout = View.inflate(getContext(),
                 R.layout.slider_preference, null);
 
         monitorBox = (TextView)
