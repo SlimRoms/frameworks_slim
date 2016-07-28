@@ -26,6 +26,9 @@
     <string name="interface_settings_title">Interface</string>
     <string name="advanced_settings">Advanced</string>
 
+    <string name="quick_settings">Quick Settings</string>
+    <string name="status_bar_icons">Status bar icons</string>
+
     <!-- Navigation settings -->
     <string name="navigation_settings_options_title">Navigation options</string>
 
