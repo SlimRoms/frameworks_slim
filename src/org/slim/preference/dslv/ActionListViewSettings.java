@@ -1016,6 +1016,7 @@ public class ActionListViewSettings extends ListFragment implements
                         public void onClick(DialogInterface dialog, int which) {
                             getOwner().mTempActionConfig = null;
                             getOwner().mTempActionIndex = -1;
+                            getOwner().setConfig(getOwner().mActionConfigs, false);
                             dialog.cancel();
                         }
                     })
