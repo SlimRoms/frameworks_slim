@@ -18,7 +18,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
         <PreferenceCategory
-                android:key="keys_cat"
+                android:key="button_keys"
                 android:title="@string/keys_bindings_title" >
 
             <SwitchPreference
@@ -26,7 +26,14 @@
                 android:title="@string/enable_hw_keys_title"
                 android:defaultValue="true" />
 
+            <com.android.settings.slim.ButtonBacklightBrightness
+                android:dependency="enable_hw_keys"
+                android:key="button_backlight"
+                android:title="@string/hardware_keys_lights_enable_title"
+                android:persistent="false" />
+
             <SwitchPreference
+                android:dependency="enable_hw_keys"
                 android:key="enable_hardware_rebind"
                 android:title="@string/keys_enable_custom_title"
                 android:summary="@string/keys_enable_custom_summary" />
