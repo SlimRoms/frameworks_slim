@@ -461,4 +461,8 @@
     <string name="clock_date_format_custom">Custom java format</string>
     <string name="status_bar_clock_style_reset_message">Reset clock color?</string>
 
+    <!-- Advanced, Device specific (DeviceParts) settings  -->
+    <string name="advanced_options_settings_title">Advanced</string>
+    <string name="device_settings_title">Device Specific Settings</string>
+
 </resources>

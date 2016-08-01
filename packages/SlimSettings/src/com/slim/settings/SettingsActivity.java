@@ -23,6 +23,7 @@ import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.view.MenuItem;
 
+import com.android.settings.slim.AdvancedSettings;
 import com.android.settings.slim.InterfaceSettings;
 import com.android.settings.Utils;
 

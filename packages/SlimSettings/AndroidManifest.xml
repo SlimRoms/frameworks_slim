@@ -42,6 +42,22 @@
         </activity>
 
         <activity
+            android:name="com.slim.settings.activities.AdvancedSettingsActivity"
+            android:label="@string/advanced_settings"
+            android:icon="@drawable/ic_settings_advanced"
+            android:theme="@android:style/Theme.Material.Settings" >
+
+            <intent-filter>
+                <action android:name="com.android.settings.action.EXTRA_SETTINGS" />
+            </intent-filter>
+
+            <meta-data
+                android:name="com.android.settings.category"
+                android:value="com.android.settings.category.personalization" />
+
+        </activity>
+
+        <activity
             android:name="com.slim.settings.activities.DozeSettingsAcitivity"
             android:label="@string/doze_settings_title"
             android:theme="@android:style/Theme.Material.Settings" >
