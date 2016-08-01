@@ -165,7 +165,7 @@ public class HardwareKeysSettings extends SettingsPreferenceFragment implements
         prefs = getPreferenceScreen();
 
         int deviceKeys = getResources().getInteger(
-                com.android.internal.R.integer.config_deviceHardwareKeys);
+                org.slim.framework.internal.R.integer.config_deviceHardwareKeys);
 
         boolean hasBackKey = (deviceKeys & KEY_MASK_BACK) != 0;
         boolean hasHomeKey = (deviceKeys & KEY_MASK_HOME) != 0;

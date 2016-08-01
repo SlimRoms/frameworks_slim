@@ -49,7 +49,7 @@ public class NavigationSettings extends SettingsPreferenceFragment {
         // Hide Hardware Keys menu if device doesn't have any
         PreferenceScreen hardwareKeys = (PreferenceScreen) findPreference(KEY_HARDWARE_KEYS);
         int deviceKeys = getResources().getInteger(
-                com.android.internal.R.integer.config_deviceHardwareKeys);
+                org.slim.framework.internal.R.integer.config_deviceHardwareKeys);
         if (deviceKeys == 0 && hardwareKeys != null) {
             getPreferenceScreen().removePreference(hardwareKeys);
         }
