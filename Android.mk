@@ -20,6 +20,8 @@ LOCAL_MODULE := org.slim.framework
 
 LOCAL_SRC_FILES := $(call all-java-files-under,src)
 
+LOCAL_SRC_FILES += $(call all-Iaidl-files-under,src)
+
 slim_platform_res := APPS/org.slim.framework-res_intermediates/src
 
 LOCAL_INTERMEDIATE_SOURCES := \

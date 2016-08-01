@@ -34,12 +34,11 @@ import android.view.KeyEvent;
 import android.view.ViewConfiguration;
 import android.view.WindowManagerPolicy.WindowState;
 
-import com.android.internal.statusbar.IStatusBarService;
-
 import java.util.Arrays;
 
 import org.slim.action.Action;
 import org.slim.action.ActionConstants;
+import org.slim.action.SlimActionsManager;
 import org.slim.provider.SlimSettings;
 import org.slim.utils.HwKeyHelper;
 
@@ -94,9 +93,7 @@ public class HardwareKeyHandler {
 
     private Context mContext;
     private Handler mHandler;
-    private final Object mServiceAquireLock = new Object();
     private DreamManagerInternal mDreamManagerInternal;
-    private IStatusBarService mStatusBarService;
     private Vibrator mVibrator;
 
     private long[] mLongPressVibePattern;
@@ -798,42 +795,20 @@ public class HardwareKeyHandler {
         return false;
     }
 
-    IStatusBarService getStatusBarService() {
-        synchronized (mServiceAquireLock) {
-            if (mStatusBarService == null) {
-                mStatusBarService = IStatusBarService.Stub.asInterface(
-                        ServiceManager.getService("statusbar"));
-            }
-            return mStatusBarService;
-        }
-    }
-
     private void preloadRecentApps() {
         mPreloadedRecentApps = true;
-        try {
-            IStatusBarService statusbar = getStatusBarService();
-            if (statusbar != null) {
-                statusbar.preloadRecentApps();
-            }
-        } catch (RemoteException e) {
-            Slog.e(TAG, "RemoteException when preloading recent apps", e);
-            // re-acquire status bar service next time it is needed.
-            mStatusBarService = null;
+        SlimActionsManager actionsManager = SlimActionsManager.getInstance(mContext);
+        if (actionsManager != null) {
+            actionsManager.preloadRecentApps();
         }
     }
 
     private void cancelPreloadRecentApps() {
         if (mPreloadedRecentApps) {
             mPreloadedRecentApps = false;
-            try {
-                IStatusBarService statusbar = getStatusBarService();
-                if (statusbar != null) {
-                    statusbar.cancelPreloadRecentApps();
-                }
-            } catch (RemoteException e) {
-                Slog.e(TAG, "RemoteException when cancelling recent apps preload", e);
-                // re-acquire status bar service next time it is needed.
-                mStatusBarService = null;
+            SlimActionsManager actionsManager = SlimActionsManager.getInstance(mContext);
+            if (actionsManager != null) {
+                actionsManager.cancelPreloadRecentApps();
             }
         }
     }

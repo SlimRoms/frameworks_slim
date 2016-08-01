@@ -51,8 +51,6 @@ import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.ImageView;
 
-import com.android.internal.statusbar.IStatusBarService;
-
 import com.android.systemui.R;
 import com.android.systemui.statusbar.phone.SlimNavigationBarView;
 import com.android.systemui.statusbar.policy.KeyButtonView;
@@ -61,6 +59,7 @@ import java.util.ArrayList;
 
 import org.slim.action.ActionConstants;
 import org.slim.action.Action;
+import org.slim.action.SlimActionsManager;
 
 import static android.view.accessibility.AccessibilityNodeInfo.ACTION_CLICK;
 import static android.view.accessibility.AccessibilityNodeInfo.ACTION_LONG_CLICK;
@@ -84,7 +83,7 @@ public class SlimKeyButtonView extends KeyButtonView {
 
     private final Handler mHandler = new Handler();
 
-    private IStatusBarService mStatusBar;
+    private SlimActionsManager mActionsManager;
 
     private final Runnable mCheckLongPress = new Runnable() {
         public void run() {
@@ -130,8 +129,7 @@ public class SlimKeyButtonView extends KeyButtonView {
 
         a.recycle();
 
-        mStatusBar = IStatusBarService.Stub.asInterface(
-                ServiceManager.getService(Context.STATUS_BAR_SERVICE));
+        mActionsManager = SlimActionsManager.getInstance(context);
 
         setClickable(true);
         mTouchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
@@ -194,9 +192,7 @@ public class SlimKeyButtonView extends KeyButtonView {
                 setPressed(true);
                 performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
                 if (mClickAction.equals(ActionConstants.ACTION_RECENTS)) {
-                    try {
-                        mStatusBar.preloadRecentApps();
-                    } catch (RemoteException e) {}
+                    mActionsManager.preloadRecentApps();
                 }
                 if (mDoubleTapPending) {
                     mDoubleTapPending = false;
@@ -219,9 +215,7 @@ public class SlimKeyButtonView extends KeyButtonView {
             case MotionEvent.ACTION_CANCEL:
                 setPressed(false);
                 if (mClickAction.equals(ActionConstants.ACTION_RECENTS)) {
-                    try {
-                        mStatusBar.cancelPreloadRecentApps();
-                    } catch (RemoteException e) {}
+                    mActionsManager.cancelPreloadRecentApps();
                 }
                 // hack to fix ripple getting stuck. exitHardware() starts an animation,
                 // but sometimes does not finish it.
@@ -232,9 +226,7 @@ public class SlimKeyButtonView extends KeyButtonView {
                 final boolean doIt = isPressed();
                 setPressed(false);
                 if (!doIt && mClickAction.equals(ActionConstants.ACTION_RECENTS)) {
-                    try {
-                        mStatusBar.cancelPreloadRecentApps();
-                    } catch (RemoteException e) {}
+                    mActionsManager.cancelPreloadRecentApps();
                 }
                 if (!mIsLongpressed) {
                     if (hasDoubleTapAction()) {

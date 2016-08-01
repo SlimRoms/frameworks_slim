@@ -12,12 +12,17 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-PRODUCT_PACKAGES += \
-    org.slim.framework \
-    org.slim.framework-res \
-    services.slim \
-    SlimSettingsProvider \
-    SlimSettings
+LOCAL_PATH := $(call my-dir)
 
-PRODUCT_BOOT_JARS += \
-    org.slim.framework
+include $(CLEAR_VARS)
+
+LOCAL_MODULE := services.slim
+LOCAL_SRC_FILES := $(call all-java-files-under,src)
+
+LOCAL_PROGUARD_ENABLED:= disabled
+
+LOCAL_JAVA_LIBRARIES := \
+    org.slim.framework \
+    services
+
+include $(BUILD_JAVA_LIBRARY)

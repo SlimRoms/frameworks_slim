@@ -87,6 +87,8 @@ public class Action {
                 return; // ouch
             }
 
+            SlimActionsManager actionsManager = SlimActionsManager.getInstance(context);
+
             final IWindowManager windowManagerService = IWindowManager.Stub.asInterface(
                     ServiceManager.getService(Context.WINDOW_SERVICE));
            if (windowManagerService == null) {
@@ -123,12 +125,10 @@ public class Action {
                     return;
                 }
                 try {
-                    barService.expandSettingsPanel();
+                    barService.expandSettingsPanel(null);
                 } catch (RemoteException e) {}
             } else if (action.equals(ActionConstants.ACTION_NOWONTAP)) {
-                try {
-                    barService.startAssist(new Bundle());
-                } catch (RemoteException e) {}
+                actionsManager.startAssist(new Bundle());
             } else if (action.equals(ActionConstants.ACTION_TORCH)) {
                 try {
                     CameraManager cameraManager = (CameraManager)
@@ -146,10 +146,7 @@ public class Action {
                 }
                 return;
             } else if (action.equals(ActionConstants.ACTION_POWER_MENU)) {
-                try {
-                    windowManagerService.toggleGlobalMenu();
-                } catch (RemoteException e) {
-                }
+                actionsManager.toggleGlobalMenu();
                 return;
             } else if (action.equals(ActionConstants.ACTION_MENU)) {
                 triggerVirtualKeypress(KeyEvent.KEYCODE_MENU, isLongpress);
@@ -182,34 +179,22 @@ public class Action {
                 if (isKeyguardShowing) {
                     return;
                 }
-                try {
-                    barService.toggleKillApp();
-                } catch (RemoteException e) {
-                }
+                actionsManager.toggleKillApp();
                 return;
             } else if (action.equals(ActionConstants.ACTION_LAST_APP)) {
                 if (isKeyguardShowing) {
                     return;
                 }
-                try {
-                    barService.toggleLastApp();
-                } catch (RemoteException e) {
-                }
+                actionsManager.toggleLastApp();
                 return;
             } else if (action.equals(ActionConstants.ACTION_SCREENSHOT)) {
-                try {
-                    barService.toggleScreenshot();
-                } catch (RemoteException e) {
-                }
+                    actionsManager.toggleScreenshot();
                 return;
             } else if (action.equals(ActionConstants.ACTION_RECENTS)) {
                 if (isKeyguardShowing) {
                     return;
                 }
-                try {
-                    barService.toggleRecentApps();
-                } catch (RemoteException e) {
-                }
+                actionsManager.toggleRecentApps();
                 return;
             } else if (action.equals(ActionConstants.ACTION_VOICE_SEARCH)) {
                 // launch the search activity
@@ -223,7 +208,7 @@ public class Action {
                     if (searchManager != null) {
                         searchManager.stopSearch();
                     }
-                    startActivity(context, intent, barService, isKeyguardShowing);
+                    startActivity(context, intent, actionsManager, isKeyguardShowing);
                 } catch (ActivityNotFoundException e) {
                     Log.e("Action:", "No activity to handle assist long press action.", e);
                 }
@@ -290,7 +275,7 @@ public class Action {
                 // ToDo: Send for secure keyguard secure camera intent.
                 // We need to add support for it first.
                 Intent intent = new Intent(MediaStore.INTENT_ACTION_STILL_IMAGE_CAMERA, null);
-                startActivity(context, intent, barService, isKeyguardShowing);
+                startActivity(context, intent, actionsManager, isKeyguardShowing);
                 return;
             } else if (action.equals(ActionConstants.ACTION_MEDIA_PREVIOUS)) {
                 dispatchMediaKeyWithWakeLock(KeyEvent.KEYCODE_MEDIA_PREVIOUS, context);
@@ -317,7 +302,7 @@ public class Action {
                     Log.e("Action:", "URISyntaxException: [" + action + "]");
                     return;
                 }
-                startActivity(context, intent, barService, isKeyguardShowing);
+                startActivity(context, intent, actionsManager, isKeyguardShowing);
                 return;
             }
 
@@ -335,17 +320,13 @@ public class Action {
     }
 
     private static void startActivity(Context context, Intent intent,
-            IStatusBarService barService, boolean isKeyguardShowing) {
+            SlimActionsManager actionsManager, boolean isKeyguardShowing) {
         if (intent == null) {
             return;
         }
         if (isKeyguardShowing) {
             // Have keyguard show the bouncer and launch the activity if the user succeeds.
-            try {
-                barService.showCustomIntentAfterKeyguard(intent);
-            } catch (RemoteException e) {
-                Log.w("Action", "Error starting custom intent on keyguard", e);
-            }
+            actionsManager.showCustomIntentAfterKeyguard(intent);
         } else {
             // otherwise let us do it here
             try {

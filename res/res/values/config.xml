@@ -28,11 +28,11 @@
         For example, a device with Home, Back and Menu keys would set this
         config to 7. -->
     <integer name="config_deviceHardwareKeys">0</integer>
-  
-   <string name="config_externalSystemServer">org.slim.service.SlimSystemServer</string>
+
+    <string name="config_externalSystemServer">org.slim.service.SlimSystemServer</string>
 
     <string-array name="config_externalSlimServices">
-        <item>org.slim.service.SlimStatusBarService</item>
+        <item>org.slim.service.SlimActionsService</item>
     </string-array>
 
     <!-- The duration (in milliseconds) of recent app screen animation. -->

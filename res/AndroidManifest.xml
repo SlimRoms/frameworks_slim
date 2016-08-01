@@ -30,5 +30,10 @@
                 android:description="@string/permdesc_writeSecureSettings"
                 android:protectionLevel="signature|privileged|development" />
 
+    <!-- Allows an application to register as slim status bar Only used by SystemUI.apk
+    @hide -->
+    <permission android:name="slim.permission.SLIM_ACTIONS_SERVICE"
+                android:protectionLevel="signature" />
+
     <application />
 </manifest>

@@ -1,7 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
-/*
- * Copyright (c) 2016 The SlimRoms Project.
+/**
+ * Copyright (c) 2016, The SlimRoms Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,13 +13,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
--->
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-        package="com.android.systemui">
 
-    <!-- Kill app permission -->
-    <uses-permission android:name="android.permission.FORCE_STOP_PACKAGES" />
+package org.slim.framework.internal.statusbar;
 
-    <uses-permission android:name="slim.permission.SLIM_ACTIONS_SERVICE" />
+import android.content.Intent;
+import android.os.Bundle;
 
-</manifest>
+/** @hide */
+oneway interface ISlimStatusBar {
+
+    void showCustomIntentAfterKeyguard(in Intent intent);
+    void toggleScreenshot();
+    void toggleLastApp();
+    void toggleKillApp();
+
+    void startAssist(in Bundle bundle);
+    void toggleRecentApps();
+    void preloadRecentApps();
+    void cancelPreloadRecentApps();
+}

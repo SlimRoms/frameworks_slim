@@ -57,7 +57,6 @@ public class NavbarButtonFragment extends SettingsPreferenceFragment implements
 
     @Override
     protected int getMetricsCategory() {
-        // todo add a constant in MetricsLogger.java
         return MetricsLogger.INPUTMETHOD_LANGUAGE;
     }
 

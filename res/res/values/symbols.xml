@@ -29,6 +29,9 @@
     <java-symbol type="string" name="reset_message" />
     <java-symbol type="string" name="reset" />
 
+    <java-symbol type="string" name="config_externalSystemServer" />
+    <java-symbol type="array" name="config_externalSlimServices" />
+
     <!-- DSLV -->
     <java-symbol type="string" name="help_label" />
     <java-symbol type="string" name="no_home_key" />
