@@ -24,4 +24,47 @@
         <item name="android:layout_marginTop">5dp</item>
     </style>
 
+    <style name="Animations" />
+    <!-- PopUpMenu -->
+    <style name="Animations.PopUpMenu" />
+
+    <style name="Animations.PopUpMenu.Center">
+        <item name="@android:windowEnterAnimation">@anim/grow_from_bottom</item>
+        <item name="@android:windowExitAnimation">@anim/shrink_from_top</item>
+    </style>
+
+    <style name="Animations.PopUpMenu.Left">
+        <item name="@android:windowEnterAnimation">@anim/grow_from_bottomleft_to_topright</item>
+        <item name="@android:windowExitAnimation">@anim/shrink_from_topright_to_bottomleft</item>
+    </style>
+
+    <style name="Animations.PopUpMenu.Right">
+        <item name="@android:windowEnterAnimation">@anim/grow_from_bottomright_to_topleft</item>
+        <item name="@android:windowExitAnimation">@anim/shrink_from_topleft_to_bottomright</item>
+    </style>
+
+    <style name="Animations.PopUpMenu.Reflect">
+        <item name="@android:windowEnterAnimation">@anim/pump_bottom</item>
+        <item name="@android:windowExitAnimation">@anim/disappear</item>
+    </style>
+
+    <style name="Icon" />
+
+    <style name="Icon.DeepShortcut">
+        <item name="android:gravity">start|center_vertical</item>
+        <item name="android:textAlignment">viewStart</item>
+        <item name="android:elevation">@dimen/deep_shortcuts_elevation</item>
+        <item name="android:paddingStart">@dimen/bg_pill_height</item>
+        <item name="android:paddingEnd">@dimen/deep_shortcut_padding_end</item>
+        <item name="android:drawableEnd">@drawable/deep_shortcuts_drag_handle</item>
+        <item name="android:drawablePadding">@dimen/deep_shortcut_drawable_padding</item>
+        <item name="android:textColor">#FF212121</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:shadowRadius">0</item>
+        <!--<item name="customShadows">false</item>
+        <item name="layoutHorizontal">true</item>
+        <item name="iconSizeOverride">@dimen/deep_shortcut_icon_size</item>-->
+    </style>
+
 </resources>

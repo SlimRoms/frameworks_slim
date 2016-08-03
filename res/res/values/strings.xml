@@ -39,6 +39,7 @@
     <string name="settings_header_category_personalization">Personalization</string>
 
     <!-- Shortcut actions -->
+    <string name="shortcut_action_space">Space</string>
     <string name="shortcut_action_none">None</string>
     <string name="shortcut_action_menu">Menu</string>
     <string name="shortcut_action_ring_vib">Ring/Vib</string>

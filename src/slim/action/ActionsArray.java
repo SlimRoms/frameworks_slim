@@ -26,8 +26,8 @@ import slim.utils.DeviceUtils;
 
 public class ActionsArray {
 
-    private String[] values;
-    private String[] entries;
+    private ArrayList<String> values = new ArrayList<>();
+    private ArrayList<String> entries = new ArrayList<>();
 
     public ActionsArray(Context context) {
         this(context, true, false, null);
@@ -64,24 +64,35 @@ public class ActionsArray {
             }
         }
 
-        entries = finalEntries.toArray(new String[0]);
-        values = finalValues.toArray(new String[0]);
+        entries.addAll(finalEntries);
+        values.addAll(finalValues);
+    }
+
+    public void addEntry(String value, String entry) {
+        for (int i = 0; i < values.size(); i++) {
+            String v = values.get(i);
+            if (v.equals(ActionConstants.ACTION_NULL)) {
+                values.add(i, value);
+                entries.add(i, entry);
+                break;
+            }
+        }
     }
 
     public String getEntry(int index) {
-        return entries[index];
+        return entries.get(index);
     }
 
     public String[] getEntries() {
-        return entries;
+        return entries.toArray(new String[0]);
     }
 
     public String getValue(int index) {
-        return values[index];
+        return values.get(index);
     }
 
     public String[] getValues() {
-        return values;
+        return values.toArray(new String[0]);
     }
 
     private static boolean isSupported(Context context, String action) {

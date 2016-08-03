@@ -19,8 +19,11 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.UserHandle;
 import android.support.v7.preference.Preference;
+import android.support.v7.preference.Preference.OnPreferenceClickListener;
 import android.support.v7.preference.PreferenceScreen;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -29,6 +32,8 @@ import android.view.View;
 
 import com.slim.settings.SettingsActivity;
 import com.slim.settings.SettingsPreferenceFragment;
+
+import slim.provider.SlimSettings;
 
 import slim.preference.colorpicker.ColorPickerPreference;
 
@@ -40,6 +45,8 @@ public class SlimPreferenceFragment extends SettingsPreferenceFragment {
 
     private static final int MENU_RESET = Menu.FIRST;
     private static final int DLG_RESET = 0;
+
+    private boolean mEdit = false;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -53,6 +60,19 @@ public class SlimPreferenceFragment extends SettingsPreferenceFragment {
             if (id > 0) {
                 addPreferencesFromResource(id);
             }
+        }
+
+        // temp
+        Preference navbarEdit = findPreference("navbar_editor");
+        if (navbarEdit != null) {
+            navbarEdit.setOnPreferenceClickListener(new OnPreferenceClickListener() {
+                @Override
+                public boolean onPreferenceClick(Preference p) {
+                    mEdit = !mEdit;
+                    SlimSettings.System.putIntForUser(getContentResolver(), "navbar_edit", mEdit ? 1 : 0, UserHandle.USER_CURRENT);
+                    return true;
+                }
+            });
         }
 
         PreferenceScreen prefScreen = getPreferenceScreen();

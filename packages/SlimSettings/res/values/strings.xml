@@ -510,4 +510,11 @@
     <string name="increasing_ring_volume_option_title">Increasing ring volume</string>
     <string name="increasing_ring_min_volume_title">Start volume</string>
     <string name="increasing_ring_ramp_up_time_title">Ramp-up time</string>
+
+    <!-- Icon Pack  -->
+    <string name="dialog_pick_iconpack_title">Pick icon pack</string>
+    <string name="no_iconpacks_summary">No icon packs installed</string>
+    <string name="invalid_icon_from_uri">Unable to load image from content provider</string>
+    <string name="loading">Loading, please wait…</string>
+
 </resources>

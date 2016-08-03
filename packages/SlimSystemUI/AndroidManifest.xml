@@ -29,4 +29,24 @@
     <uses-permission android:name="android.permission.READ_SYNC_SETTINGS" />
     <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS" />
 
+    <application>
+
+        <!-- Icon picker proxy for icon packs -->
+        <activity android:name="com.android.systemui.editor.IconPickerActivity"
+            android:theme="@android:style/Theme.Material.Settings"
+            android:label="@string/dialog_pick_iconpack_title"
+            android:excludeFromRecents="true" />
+
+        <activity android:name="com.android.systemui.editor.IconPickerGallery"
+            android:theme="@android:style/Theme.Material.Settings"
+            android:label="@string/dialog_pick_iconpack_title"
+            android:excludeFromRecents="true" />
+
+        <activity android:name="com.android.systemui.editor.IconPackActivity"
+            android:theme="@android:style/Theme.Material.Settings"
+            android:label="@string/dialog_pick_iconpack_title"
+            android:excludeFromRecents="true" />
+
+    </application>
+
 </manifest>

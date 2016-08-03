@@ -29,6 +29,8 @@
         config to 7. -->
     <integer name="config_deviceHardwareKeys">0</integer>
 
+    <integer name="config_maxNavigationBarButtons">7</integer>
+
     <string name="config_externalSystemServer">org.slim.service.SlimSystemServer</string>
 
     <string-array name="config_externalSlimServices">

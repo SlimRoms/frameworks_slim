@@ -28,4 +28,16 @@
     <dimen name="recent_text_size">20dp</dimen>
     <dimen name="recent_thumbnail_bottom_padding">3dp</dimen>
 
+    <dimen name="deep_shortcuts_elevation">9dp</dimen>
+    <dimen name="deep_shortcut_icon_size">36dp</dimen>
+    <dimen name="deep_shortcut_padding_start">6dp</dimen>
+    <dimen name="deep_shortcut_padding_end">16dp</dimen>
+    <dimen name="bg_pill_width">208dp</dimen>
+    <dimen name="bg_pill_height">48dp</dimen>
+    <dimen name="bg_pill_radius">24dp</dimen>
+    <dimen name="deep_shortcuts_spacing">4dp</dimen>
+    <dimen name="deep_shortcut_drag_handle_size">16dp</dimen>
+    <dimen name="deep_shortcut_drawable_padding">8dp</dimen>
+
+
 </resources>

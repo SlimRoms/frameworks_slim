@@ -34,4 +34,8 @@
     <!-- Navigation bar -->
     <color name="navigationbar_button_default_color">#FFFFFFFF</color>
 
+    <!-- PopupWindows -->
+    <color name="deep_shortcut_background">@android:color/background_dark</color>
+    <color name="deep_shortcut_text">@android:color/white</color>
+
 </resources>

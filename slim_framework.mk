@@ -18,7 +18,8 @@ PRODUCT_PACKAGES += \
     services.slim \
     SlimSettingsProvider \
     SlimSettings \
-    slimsettings
+    slimsettings \
+    SlimSystemIcons
 
 PRODUCT_BOOT_JARS += \
     org.slim.framework

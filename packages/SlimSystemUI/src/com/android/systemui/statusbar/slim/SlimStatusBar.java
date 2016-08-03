@@ -157,14 +157,17 @@ public class SlimStatusBar extends PhoneStatusBar implements
                     SlimSettings.System.NAVIGATION_BAR_CAN_MOVE),
                     false, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(SlimSettings.System.getUriFor(
-                    SlimSettings.System.MENU_LOCATION),
+                    SlimSettings.System.MENU_VISIBILITY_LEFT),
                     false, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(SlimSettings.System.getUriFor(
-                    SlimSettings.System.MENU_VISIBILITY),
+                    SlimSettings.System.MENU_VISIBILITY_RIGHT),
                     false, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(SlimSettings.System.getUriFor(
                     SlimSettings.System.DIM_NAV_BUTTONS),
                     false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(SlimSettings.System.getUriFor(
+                    SlimSettings.System.IME_BUTTON_VISIBILITY), false, this,
+                    UserHandle.USER_ALL);
             resolver.registerContentObserver(SlimSettings.System.getUriFor(
                     SlimSettings.System.DIM_NAV_BUTTONS_TIMEOUT),
                     false, this, UserHandle.USER_ALL);
@@ -180,6 +183,8 @@ public class SlimStatusBar extends PhoneStatusBar implements
             resolver.registerContentObserver(SlimSettings.System.getUriFor(
                     SlimSettings.System.DIM_NAV_BUTTONS_TOUCH_ANYWHERE),
                     false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(SlimSettings.System.getUriFor(
+                    "navbar_edit"), false, this, UserHandle.USER_ALL);
         }
 
         @Override
@@ -201,13 +206,9 @@ public class SlimStatusBar extends PhoneStatusBar implements
                 || uri.equals(SlimSettings.System.getUriFor(
                     SlimSettings.System.NAVIGATION_BAR_CONFIG))
                 || uri.equals(SlimSettings.System.getUriFor(
-                    SlimSettings.System.NAVIGATION_BAR_GLOW_TINT))
-                || uri.equals(SlimSettings.System.getUriFor(
-                    SlimSettings.System.MENU_LOCATION))
-                || uri.equals(SlimSettings.System.getUriFor(
-                    SlimSettings.System.MENU_VISIBILITY))) {
+                    SlimSettings.System.NAVIGATION_BAR_GLOW_TINT))) {
                 if (mSlimNavigationBarView != null) {
-                    mSlimNavigationBarView.recreateNavigationBar();
+                    mSlimNavigationBarView.updateNavigationBarSettings();
                     prepareNavigationBarView();
                 }
             } else if (uri.equals(SlimSettings.System.getUriFor(
@@ -232,6 +233,8 @@ public class SlimStatusBar extends PhoneStatusBar implements
             } else if (uri.equals(SlimSettings.System.getUriFor(
                     SlimSettings.System.NAVIGATION_BAR_SHOW))) {
                 updateNavigationBarVisibility();
+            } else if (uri.equals(SlimSettings.System.getUriFor("navbar_edit"))) {
+                mSlimNavigationBarView.setEditing();
             }
         }
     }
@@ -576,6 +579,12 @@ public class SlimStatusBar extends PhoneStatusBar implements
             mRecents = getComponent(Recents.class);
             mSlimRecents = null;
         }
+    }
+
+    @Override
+    public boolean shouldDisableNavbarGestures() {
+        return super.shouldDisableNavbarGestures()
+                || (mSlimNavigationBarView != null && mSlimNavigationBarView.isEditing());
     }
 
     private static void sendCloseSystemWindows(Context context, String reason) {

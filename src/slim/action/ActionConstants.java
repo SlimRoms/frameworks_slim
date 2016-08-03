@@ -62,6 +62,7 @@ public class ActionConstants {
     public static final String ACTION_NOWONTAP             = "**nowontap**";
     public static final String ACTION_SPLIT_SCREEN         = "**split_screen**";
     public static final String ACTION_DOZE_PULSE           = "**doze_pulse**";
+    public static final String ACTION_SPACE                = "**space**";
 
     // no action
     public static final String ACTION_NULL                 = "**null**";

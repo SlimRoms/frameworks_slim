@@ -20,6 +20,7 @@ package com.android.systemui.statusbar.slim;
 import android.app.ActivityManager;
 import android.app.ActivityManagerNative;
 import android.app.IActivityManager;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
@@ -37,6 +38,7 @@ import android.os.SystemClock;
 import android.os.UserHandle;
 import android.provider.Settings;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.HapticFeedbackConstants;
 import android.view.InputDevice;
@@ -50,6 +52,7 @@ import android.view.ViewParent;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.ImageView;
+import android.widget.LinearLayout.LayoutParams;
 
 import com.android.systemui.R;
 import com.android.systemui.statusbar.phone.SlimNavigationBarView;
@@ -57,9 +60,13 @@ import com.android.systemui.statusbar.policy.KeyButtonView;
 
 import java.util.ArrayList;
 
+import slim.action.ActionConfig;
 import slim.action.ActionConstants;
+import slim.action.ActionHelper;
 import slim.action.Action;
 import slim.action.SlimActionsManager;
+import slim.provider.SlimSettings;
+import slim.utils.ImageHelper;
 
 import static android.view.accessibility.AccessibilityNodeInfo.ACTION_CLICK;
 import static android.view.accessibility.AccessibilityNodeInfo.ACTION_LONG_CLICK;
@@ -80,6 +87,11 @@ public class SlimKeyButtonView extends KeyButtonView {
     private boolean mGestureAborted;
     private SlimKeyButtonRipple mRipple;
     private LongClickCallback mCallback;
+    private boolean mEditing;
+    private ActionConfig mConfig;
+    private int mColorMode;
+    private int mButtonColor;
+    private boolean mLandscape = false;
 
     private final Handler mHandler = new Handler();
 
@@ -135,6 +147,41 @@ public class SlimKeyButtonView extends KeyButtonView {
         mTouchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
         mAudioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
         setBackground(mRipple = new SlimKeyButtonRipple(context, this));
+        updateButton();
+    }
+
+    public void updateButton() {
+        ContentResolver resolver = mContext.getContentResolver();
+        mButtonColor = SlimSettings.System.getIntForUser(resolver,
+                SlimSettings.System.NAVIGATION_BAR_BUTTON_TINT, -2, UserHandle.USER_CURRENT);
+
+        if (mButtonColor == -2) {
+            mButtonColor = mContext.getResources()
+                    .getColor(R.color.navigationbar_button_default_color);
+        }
+
+        mColorMode = SlimSettings.System.getIntForUser(resolver,
+                SlimSettings.System.NAVIGATION_BAR_BUTTON_TINT_MODE, 0, UserHandle.USER_CURRENT);
+
+        setButtonIcon(mLandscape);
+        setLayoutParams(getLayoutParams(mLandscape));
+    }
+
+    public void setLandscape(boolean landscape) {
+        mLandscape = landscape;
+    }
+
+    public void setEditing(boolean edit) {
+        mEditing = edit;
+    }
+
+    public void setConfig(ActionConfig config) {
+        mConfig = config;
+        updateFromConfig();
+    }
+
+    public ActionConfig getConfig() {
+        return mConfig;
     }
 
     @Override
@@ -171,11 +218,120 @@ public class SlimKeyButtonView extends KeyButtonView {
         mDoubleTapAction = action;
     }
 
+    public void updateFromConfig() {
+        if (mConfig == null) return;
+        if (mConfig.getClickAction().equals(ActionConstants.ACTION_SPACE)) {
+            setClickable(false);
+            setClickAction(ActionConstants.ACTION_NULL);
+            setLongpressAction(ActionConstants.ACTION_NULL);
+            setDoubleTapAction(ActionConstants.ACTION_NULL);
+        } else {
+            setClickable(true);
+            setClickAction(mConfig.getClickAction());
+            setLongpressAction(mConfig.getLongpressAction());
+            setDoubleTapAction(mConfig.getDoubleTapAction());
+            if (mConfig.getClickAction().startsWith("**")) {
+                setScaleType(ScaleType.CENTER_INSIDE);
+            } else {
+                setScaleType(ScaleType.CENTER);
+            }
+            setButtonIcon(mLandscape);
+        }
+        setLayoutParams(getLayoutParams(mLandscape));
+    }
+
+    private LayoutParams getLayoutParams(boolean landscape) {
+        int dp = mContext.getResources().getDimensionPixelSize(R.dimen.navigation_key_width);
+        float px = dp * getResources().getDisplayMetrics().density;
+        return landscape ?
+                new LayoutParams(LayoutParams.MATCH_PARENT, dp, 1f) :
+                new LayoutParams(dp, LayoutParams.MATCH_PARENT, 1f);
+    }
+
+    public void setColorMode(int mode) {
+        mColorMode = mode;
+        setButtonIcon(mLandscape);
+    }
+
+    public void setButtonColor(int color) {
+        mButtonColor = color;
+        setButtonIcon(mLandscape);
+    }
+
+    public void setButtonIcon(boolean landscape) {
+        if (mConfig == null) return;
+        if (mConfig.getClickAction().equals(ActionConstants.ACTION_SPACE)) return;
+        boolean colorize = true;
+        String iconUri = mConfig.getIcon();
+        String clickAction = mConfig.getClickAction();
+        if (iconUri != null && !iconUri.equals(ActionConstants.ICON_EMPTY)
+                && !iconUri.startsWith(ActionConstants.SYSTEM_ICON_IDENTIFIER)
+                && mColorMode == 1) {
+            colorize = false;
+        } else if (!clickAction.startsWith("**")) {
+            final int[] appIconPadding = getAppIconPadding();
+            if (landscape) {
+                setPaddingRelative(appIconPadding[1], appIconPadding[0],
+                        appIconPadding[3], appIconPadding[2]);
+            } else {
+                setPaddingRelative(appIconPadding[0], appIconPadding[1],
+                        appIconPadding[2], appIconPadding[3]);
+            }
+            if (mColorMode != 0) {
+                colorize = false;
+            }
+        }
+
+        Drawable d = null;
+        Log.d("TEST", "clickAction=" + clickAction);
+        Log.d("TEST", "iconUri=" + iconUri);
+        if (clickAction.startsWith("**") && (iconUri == null ||
+                iconUri.equals(ActionConstants.ICON_EMPTY))) {
+            if (clickAction.equals(ActionConstants.ACTION_HOME)) {
+                d = getResources().getDrawable(R.drawable.ic_sysbar_home);
+            } else if (clickAction.equals(ActionConstants.ACTION_BACK)) {
+                d = getResources().getDrawable(R.drawable.ic_sysbar_back);
+            } else if (clickAction.equals(ActionConstants.ACTION_RECENTS)) {
+                d = getResources().getDrawable(R.drawable.ic_sysbar_recent);
+            }
+        }
+        if (d == null) {
+            d = ActionHelper.getActionIconImage(mContext, clickAction, iconUri);
+        }
+
+        if (d != null) {
+            d.mutate();
+            if (colorize && mColorMode != 3) {
+                d = ImageHelper.getColoredDrawable(d, mButtonColor);
+            }
+            setImageBitmap(ImageHelper.drawableToBitmap(d));
+        }
+    }
+
+    private int[] getAppIconPadding() {
+        int[] padding = new int[4];
+        // left
+        padding[0] = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 2, getResources()
+                .getDisplayMetrics());
+        // top
+        padding[1] = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 4, getResources()
+                .getDisplayMetrics());
+        // right
+        padding[2] = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 2, getResources()
+                .getDisplayMetrics());
+        // bottom
+        padding[3] = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 5,
+                getResources()
+                        .getDisplayMetrics());
+        return padding;
+    }
+
     public void setRippleColor(int color) {
         mRipple.setColor(color);
     }
 
     public boolean onTouchEvent(MotionEvent ev) {
+        if (mEditing) return false;
         final int action = ev.getAction();
         int x, y;
         if (action == MotionEvent.ACTION_DOWN) {

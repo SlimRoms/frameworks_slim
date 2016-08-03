@@ -284,16 +284,22 @@ public final class SlimSettingsKeys {
         public static final String NAVIGATION_BAR_WIDTH = "navigation_bar_width";
 
         /**
-         * Wether the navbar menu button is on the left/right/both
+         * Wether the navbar right menu button should show or not
          * @hide
          */
-        public static final String MENU_LOCATION = "menu_location";
+        public static final String MENU_VISIBILITY_RIGHT = "menu_visibility_right";
 
         /**
-         * Wether the navbar menu button should show or not
+         * Whether the navbar left menu button should show or not
          * @hide
          */
-        public static final String MENU_VISIBILITY = "menu_visibility";
+        public static final String MENU_VISIBILITY_LEFT = "menu_visibility_left";
+
+        /**
+         * Whether navbar ime button should show or not
+         * @hide
+         */
+        public static final String IME_BUTTON_VISIBILITY = "ime_button_visibility";
 
         /**
          * Whether to use slim recents

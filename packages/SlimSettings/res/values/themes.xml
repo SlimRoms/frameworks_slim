@@ -53,4 +53,16 @@
         <item name="android:contentInsetStart">@dimen/actionbar_contentInsetStart</item>
     </style>
 
+    <style name="Theme.Translucent" parent="@android:style/Theme.Material.NoActionBar">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowActivityTransitions">false</item>
+        <item name="android:windowAnimationStyle">@null</item>
+    </style>
+
+    <style name="Theme.IconPickerDialog" parent="@style/Theme.AppCompat.Dialog">
+        <item name="windowActionBar">true</item>
+    </style>
+
 </resources>

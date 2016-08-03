@@ -26,6 +26,8 @@
     <java-symbol type="string" name="reset_message" />
     <java-symbol type="string" name="reset" />
 
+    <java-symbol type="string" name="shortcut_action_space" />
+
     <java-symbol type="string" name="config_externalSystemServer" />
     <java-symbol type="array" name="config_externalSlimServices" />
 
@@ -190,4 +192,6 @@
     <java-symbol type="string" name="increasing_ring_volume_option_title" />
     <java-symbol type="string" name="increasing_ring_min_volume_title" />
     <java-symbol type="string" name="increasing_ring_ramp_up_time_title" />
+
+    <java-symbol type="integer" name="config_maxNavigationBarButtons" />
 </resources>
