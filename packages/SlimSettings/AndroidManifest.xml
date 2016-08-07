@@ -58,7 +58,7 @@
         </activity>
 
         <activity
-            android:name="com.slim.settings.activities.DozeSettingsAcitivity"
+            android:name="com.slim.settings.activities.DozeSettingsActivity"
             android:label="@string/doze_settings_title"
             android:theme="@android:style/Theme.Material.Settings" >
 
