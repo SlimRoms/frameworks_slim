@@ -90,7 +90,7 @@ public class NavbarSettings extends SettingsPreferenceFragment implements
                 SlimSettings.System.NAVIGATION_BAR_SHOW, showByDefault) == 1;
         mEnableNavigationBar = (SwitchPreference) findPreference(ENABLE_NAVIGATION_BAR);
         // disable switch until we have other navigation options
-        if (showByDefault == 1) {
+        if (false) {
             prefs.removePreference(mEnableNavigationBar);
         } else {
             mEnableNavigationBar.setOnPreferenceChangeListener(this);
