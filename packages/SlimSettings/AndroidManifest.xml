@@ -96,5 +96,12 @@
             </intent-filter>
         </activity>
 
+        <receiver android:name="com.slim.settings.SlimReceiver" android:enabled="true">
+            <intent-filter android:priority="2147483647">
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.USER_SWITCHED" />
+            </intent-filter>
+        </receiver>
+
     </application>
 </manifest>

@@ -16,14 +16,45 @@
 package com.slim.settings.activities;
 
 import android.app.Fragment;
+import android.content.ComponentName;
+import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
+import android.preference.PreferenceManager;
 
 import com.android.settings.slim.AdvancedSettings;
 import com.slim.settings.SettingsActivity;
+
+import java.util.List;
 
 public class AdvancedSettingsActivity extends SettingsActivity {
 
     @Override
     public Fragment getFragment() {
         return new AdvancedSettings();
+    }
+
+    public static void checkSettings(Context context) {
+        boolean checked = PreferenceManager.getDefaultSharedPreferences(context)
+                .getBoolean("checked_device_settings", false);
+
+        if (checked) return;
+
+        Intent intent = new Intent("com.cyanogenmod.action.LAUNCH_DEVICE_SETTINGS");
+
+        PackageManager pm = context.getPackageManager();
+        List<ResolveInfo> list = pm.queryIntentActivities(intent, PackageManager.GET_META_DATA);
+        int listSize = list.size();
+
+        if (listSize < 1) {
+            ComponentName cmp = new ComponentName(context, AdvancedSettingsActivity.class.getName());
+            pm.setComponentEnabledSetting(cmp,
+                    PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
+                    PackageManager.DONT_KILL_APP);
+
+            PreferenceManager.getDefaultSharedPreferences(context).edit()
+                    .putBoolean("checked_device_settings", true).apply();
+        }
     }
 }
