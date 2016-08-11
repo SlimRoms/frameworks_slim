@@ -52,7 +52,7 @@ public class HwKeyHelper {
                 com.android.internal.R.integer.config_longPressOnHomeBehavior);
         if (longPressOnHome == LONG_PRESS_HOME_RECENT_SYSTEM_UI) {
             defaultValue = ActionConstants.ACTION_RECENTS;
-        } else if (longPressOnHome == LONG_PRESS_HOME_ASSIST){
+        } else if (longPressOnHome == LONG_PRESS_HOME_ASSIST) {
             defaultValue = ActionConstants.ACTION_SEARCH;
         } else {
             defaultValue = ActionConstants.ACTION_NULL;
@@ -87,7 +87,7 @@ public class HwKeyHelper {
     }
 
     public static String getPressOnMenuBehavior(Context context, boolean getDefault) {
-        String defaultValue = ActionConstants.ACTION_MENU_BIG;
+        String defaultValue = ActionConstants.ACTION_MENU;
         if (getDefault) {
             return defaultValue;
         }

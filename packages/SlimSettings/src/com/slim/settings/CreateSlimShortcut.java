@@ -23,9 +23,8 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
+import org.slim.action.ActionsArray;
 import org.slim.action.ActionHelper;
-import org.slim.utils.DeviceUtils;
-import org.slim.utils.DeviceUtils.FilteredDeviceFeaturesArray;
 import org.slim.utils.ImageHelper;
 import com.android.settings.slim.SlimActionShortcut;
 
@@ -41,16 +40,9 @@ public class CreateSlimShortcut extends Activity {
     @Override
     public void onResume() {
         super.onResume();
-        FilteredDeviceFeaturesArray
-                finalActionDialogArray = new FilteredDeviceFeaturesArray();
-        finalActionDialogArray =
-            DeviceUtils.filterUnsupportedDeviceFeatures(this,
-            getResources().getStringArray(getResources().getIdentifier(
-            "shortcut_action_launcher_values", "array", "org.slim.framework")),
-            getResources().getStringArray(getResources().getIdentifier(
-            "shortcut_action_launcher_entries", "array", "org.slim.framework")));
-        final String[] dialogValues = finalActionDialogArray.values;
-        final String[] dialogEntries = finalActionDialogArray.entries;
+        ActionsArray actionsArray = new ActionsArray(this, false, false);
+        final String[] dialogValues = actionsArray.getValues();
+        final String[] dialogEntries = actionsArray.getEntries();
         AlertDialog.Builder action = new AlertDialog.Builder(this);
         action.setTitle(R.string.shortcut_action_select_action)
         .setNegativeButton(android.R.string.cancel,

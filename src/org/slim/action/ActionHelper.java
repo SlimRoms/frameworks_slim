@@ -36,7 +36,6 @@ import java.util.ArrayList;
 import org.slim.provider.SlimSettings;
 import org.slim.utils.ConfigSplitHelper;
 import org.slim.utils.DeviceUtils;
-import org.slim.utils.DeviceUtils.FilteredDeviceFeaturesArray;
 import org.slim.utils.ImageHelper;
 
 public class ActionHelper {
@@ -163,7 +162,6 @@ public class ActionHelper {
     private static int getActionSystemIcon(Resources resources, String clickAction) {
         int resId = -1;
 
-        // ToDo: Add the resources to SystemUI.
         if (clickAction.equals(ActionConstants.ACTION_HOME)) {
             resId = resources.getIdentifier(
                         SLIM_FRAMEWORK_METADATA_NAME + ":drawable/ic_sysbar_home", null, null);
@@ -181,9 +179,6 @@ public class ActionHelper {
             resId = resources.getIdentifier(
                         SLIM_FRAMEWORK_METADATA_NAME + ":drawable/ic_sysbar_search", null, null);
         } else if (clickAction.equals(ActionConstants.ACTION_MENU)) {
-            resId = resources.getIdentifier(
-                        SLIM_FRAMEWORK_METADATA_NAME + ":drawable/ic_sysbar_menu", null, null);
-        } else if (clickAction.equals(ActionConstants.ACTION_MENU_BIG)) {
             resId = resources.getIdentifier(
                         SLIM_FRAMEWORK_METADATA_NAME + ":drawable/ic_sysbar_menu_big", null, null);
         } else if (clickAction.equals(ActionConstants.ACTION_IME)) {
@@ -248,7 +243,7 @@ public class ActionHelper {
         Drawable d = getActionIconImage(context, clickAction, customIcon);
         if (d != null) {
             d.mutate();
-            d = ImageHelper.getColoredDrawable(d, 
+            d = ImageHelper.getColoredDrawable(d,
                     context.getResources().getColor(
                             org.slim.framework.internal.R.color.dslv_icon_dark));
         }
@@ -257,19 +252,12 @@ public class ActionHelper {
 
     public static String getActionDescription(Context context, String action) {
         Resources resources = getResources(context);
-        FilteredDeviceFeaturesArray actionsArray
-                = DeviceUtils.filterUnsupportedDeviceFeatures(context,
-                resources.getStringArray(
-                        resources.getIdentifier(SLIM_FRAMEWORK_METADATA_NAME
-                        + ":array/shortcut_action_values", null, null)),
-                resources.getStringArray(
-                        resources.getIdentifier(SLIM_FRAMEWORK_METADATA_NAME
-                        + ":array/shortcut_action_entries", null, null)));
+        ActionsArray actionsArray = new ActionsArray(context);
 
         int index = -1;
-        for (int i = 0; i < actionsArray.entries.length; i++) {
-            if (action.equals(actionsArray.values[i])) {
-                return actionsArray.entries[i];
+        for (int i = 0; i < actionsArray.getEntries().length; i++) {
+            if (action.equals(actionsArray.getValues()[i])) {
+                return actionsArray.getEntries()[i];
             }
         }
         return resources.getString(

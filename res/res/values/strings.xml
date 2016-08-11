@@ -38,7 +38,6 @@
     <!-- Shortcut actions -->
     <string name="shortcut_action_none">None</string>
     <string name="shortcut_action_menu">Menu</string>
-    <string name="shortcut_action_menu_big">Menu Big</string>
     <string name="shortcut_action_ring_vib">Ring/Vib</string>
     <string name="shortcut_action_ring_silent">Ring/Silent</string>
     <string name="shortcut_action_ring_vib_silent">Ring/Vib/Silent</string>

@@ -17,8 +17,6 @@
 
     <java-symbol type="array" name="shortcut_icon_picker_labels" />
     <java-symbol type="array" name="shortcut_icon_picker_icons" />
-    <java-symbol type="array" name="shortcut_action_launcher_entries" />
-    <java-symbol type="array" name="shortcut_action_launcher_values" />
     <java-symbol type="array" name="icon_types" />
 
     <java-symbol type="color" name="dslv_icon_dark" />
@@ -61,7 +59,6 @@
     <java-symbol type="drawable" name="ic_action_set" />
     <java-symbol type="drawable" name="ic_grabber" />
     <java-symbol type="drawable" name="ic_menu_add" />
-    <java-symbol type="drawable" name="ic_settings_reset" />
     <java-symbol type="drawable" name="ic_shortcut_action_auto_rotate" />
     <java-symbol type="drawable" name="ic_shortcut_action_back" />
     <java-symbol type="drawable" name="ic_shortcut_action_back_ime" />

@@ -60,13 +60,13 @@ import android.widget.TextView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import org.slim.action.ActionsArray;
 import org.slim.action.ActionChecker;
 import org.slim.action.ActionConfig;
 import org.slim.action.ActionConstants;
 import org.slim.action.ActionHelper;
 import org.slim.utils.ImageHelper;
 import org.slim.utils.DeviceUtils;
-import org.slim.utils.DeviceUtils.FilteredDeviceFeaturesArray;
 
 import org.slim.framework.internal.R;
 import org.slim.utils.ShortcutPickerHelper;
@@ -215,14 +215,9 @@ public class ActionListViewSettings extends ListFragment implements
 
         mDisableMessage = (TextView) view.findViewById(R.id.disable_message);
 
-        FilteredDeviceFeaturesArray finalActionDialogArray = new FilteredDeviceFeaturesArray();
-        finalActionDialogArray = DeviceUtils.filterUnsupportedDeviceFeatures(mActivity,
-            res.getStringArray(res.getIdentifier(
-                    mActionValuesKey, "array", "org.slim.framework")),
-            res.getStringArray(res.getIdentifier(
-                    mActionEntriesKey, "array", "org.slim.framework")));
-        mActionDialogValues = finalActionDialogArray.values;
-        mActionDialogEntries = finalActionDialogArray.entries;
+        ActionsArray actionsArray = new ActionsArray(mActivity);
+        mActionDialogValues = actionsArray.getValues();
+        mActionDialogEntries = actionsArray.getEntries();
 
         mPicker = new ShortcutPickerHelper(mActivity, this);
 

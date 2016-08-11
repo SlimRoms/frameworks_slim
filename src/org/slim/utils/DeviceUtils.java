@@ -21,6 +21,9 @@ import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
+import android.hardware.camera2.CameraAccessException;
+import android.hardware.camera2.CameraCharacteristics;
+import android.hardware.camera2.CameraManager;
 import android.hardware.display.DisplayManager;
 import android.hardware.display.WifiDisplayStatus;
 import android.net.ConnectivityManager;
@@ -96,48 +99,24 @@ public class DeviceUtils {
     }
 
     public static boolean deviceSupportsTorch(Context context) {
-        // Need to be adapted to new torch API
-        return true;
-    }
-
-    public static FilteredDeviceFeaturesArray filterUnsupportedDeviceFeatures(Context context,
-            String[] valuesArray, String[] entriesArray) {
-        if (valuesArray == null || entriesArray == null || context == null) {
-            return null;
-        }
-        List<String> finalEntries = new ArrayList<String>();
-        List<String> finalValues = new ArrayList<String>();
-        FilteredDeviceFeaturesArray filteredDeviceFeaturesArray =
-            new FilteredDeviceFeaturesArray();
-
-        for (int i = 0; i < valuesArray.length; i++) {
-            if (isSupportedFeature(context, valuesArray[i])) {
-                finalEntries.add(entriesArray[i]);
-                finalValues.add(valuesArray[i]);
+        CameraManager camMan = (CameraManager) context.getSystemService(Context.CAMERA_SERVICE);
+        try {
+            String[] ids = camMan.getCameraIdList();
+            for (String id : ids) {
+                CameraCharacteristics c = camMan.getCameraCharacteristics(id);
+                Boolean flashAvailable = c.get(CameraCharacteristics.FLASH_INFO_AVAILABLE);
+                Integer lensFacing = c.get(CameraCharacteristics.LENS_FACING);
+                if (flashAvailable != null
+                        && flashAvailable
+                        && lensFacing != null
+                        && lensFacing == CameraCharacteristics.LENS_FACING_BACK) {
+                    return true;
+                }
             }
+        } catch (CameraAccessException | AssertionError e) {
+            // Ignore
         }
-        filteredDeviceFeaturesArray.entries =
-            finalEntries.toArray(new String[finalEntries.size()]);
-        filteredDeviceFeaturesArray.values =
-            finalValues.toArray(new String[finalValues.size()]);
-        return filteredDeviceFeaturesArray;
-    }
-
-    private static boolean isSupportedFeature(Context context, String action) {
-        if (action.equals(ActionConstants.ACTION_TORCH)
-                        && !deviceSupportsTorch(context)
-                || action.equals(ActionConstants.ACTION_VIB)
-                        && !deviceSupportsVibrator(context)
-                || action.equals(ActionConstants.ACTION_VIB_SILENT)
-                        && !deviceSupportsVibrator(context)) {
-            return false;
-        }
-        return true;
-    }
-
-    public static class FilteredDeviceFeaturesArray {
-        public String[] entries;
-        public String[] values;
+        return false;
     }
 
     private static int getScreenType(Context con) {

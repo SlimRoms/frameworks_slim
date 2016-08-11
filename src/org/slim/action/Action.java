@@ -151,8 +151,7 @@ public class Action {
                 } catch (RemoteException e) {
                 }
                 return;
-            } else if (action.equals(ActionConstants.ACTION_MENU)
-                    || action.equals(ActionConstants.ACTION_MENU_BIG)) {
+            } else if (action.equals(ActionConstants.ACTION_MENU)) {
                 triggerVirtualKeypress(KeyEvent.KEYCODE_MENU, isLongpress);
                 return;
             } else if (action.equals(ActionConstants.ACTION_IME_NAVIGATION_LEFT)) {
@@ -329,7 +328,6 @@ public class Action {
                 || action.equals(ActionConstants.ACTION_BACK)
                 || action.equals(ActionConstants.ACTION_SEARCH)
                 || action.equals(ActionConstants.ACTION_MENU)
-                || action.equals(ActionConstants.ACTION_MENU_BIG)
                 || action.equals(ActionConstants.ACTION_NULL)) {
             return true;
         }
