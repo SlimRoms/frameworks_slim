@@ -29,6 +29,7 @@ import android.text.TextUtils;
 
 import com.android.internal.telephony.PhoneConstants;
 
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -38,6 +39,7 @@ public class QSUtil {
 
     public static List<String> getAvailableTiles(Context context) {
         filterTiles(context);
+        Collections.sort(QSConstants.TILES_AVAILABLE, null);
         return (List<String>) QSConstants.TILES_AVAILABLE.clone();
     }
 

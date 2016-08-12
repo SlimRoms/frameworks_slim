@@ -41,8 +41,8 @@ public class QSConstants {
     public static final String TILE_LOCKSCREEN = "lockscreen";
     public static final String TILE_LTE = "lte";
     public static final String TILE_VISUALIZER = "visualizer";
-    public static final String TILE_VOLUME = "volume_panel";
-    public static final String TILE_SCREEN_TIMEOUT = "screen_timeout";
+    public static final String TILE_VOLUME = "volume";
+    public static final String TILE_SCREEN_TIMEOUT = "timeout";
     public static final String TILE_USB_TETHER = "usb_tether";
     public static final String TILE_HEADS_UP = "heads_up";
     public static final String TILE_AMBIENT_DISPLAY = "ambient_display";
@@ -50,6 +50,13 @@ public class QSConstants {
     public static final String TILE_BATTERY_SAVER = "battery_saver";
     public static final String TILE_CAFFEINE = "caffeine";
     public static final String TILE_DND = "dnd";
+    public static final String TILE_SCREENSHOT = "screenshot";
+    public static final String TILE_SCREENOFF = "screenoff";
+    public static final String TILE_BRIGHTNESS = "brightness";
+    public static final String TILE_MUSIC = "music";
+    public static final String TILE_REBOOT = "reboot";
+    public static final String TILE_IME = "ime";
+    public static final String TILE_SOUND = "sound";
 
     public static final String DYNAMIC_TILE_NEXT_ALARM = "next_alarm";
     public static final String DYNAMIC_TILE_IME_SELECTOR = "ime_selector";
@@ -79,5 +86,12 @@ public class QSConstants {
         TILES_AVAILABLE.add(TILE_SYNC);
         TILES_AVAILABLE.add(TILE_BATTERY_SAVER);
         TILES_AVAILABLE.add(TILE_CAFFEINE);
+        TILES_AVAILABLE.add(TILE_SCREENSHOT);
+        TILES_AVAILABLE.add(TILE_SCREENOFF);
+        TILES_AVAILABLE.add(TILE_BRIGHTNESS);
+        TILES_AVAILABLE.add(TILE_MUSIC);
+        TILES_AVAILABLE.add(TILE_REBOOT);
+        TILES_AVAILABLE.add(TILE_IME);
+        TILES_AVAILABLE.add(TILE_SOUND);
     }
 }
