@@ -385,7 +385,7 @@ public class Action {
             || keyCode == KeyEvent.KEYCODE_DPAD_DOWN) {
             downflags = upflags = KeyEvent.FLAG_SOFT_KEYBOARD | KeyEvent.FLAG_KEEP_TOUCH_MODE;
         } else {
-            downflags = upflags = KeyEvent.FLAG_FROM_SYSTEM | KeyEvent.FLAG_VIRTUAL_HARD_KEY;
+            downflags = upflags = KeyEvent.FLAG_FROM_SYSTEM;
         }
         if (longpress) {
             downflags |= KeyEvent.FLAG_LONG_PRESS;
