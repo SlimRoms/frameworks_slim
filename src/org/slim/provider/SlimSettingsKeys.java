@@ -102,6 +102,12 @@ public final class SlimSettingsKeys {
                 "proximity_auto_speaker_incall_only";
 
         /**
+         * Disables the hardware key actions
+         * @hide
+         */
+        public static final String DISABLE_HW_KEYS = "disable_hw_keys";
+
+        /**
          * Whether custom hardware key rebinding is enabled
          * @hide
          */

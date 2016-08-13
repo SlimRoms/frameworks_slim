@@ -284,6 +284,7 @@
     <string name="advanced_reboot_show_always">Show always</string>
 
     <!-- Hardware keys -->
+    <string name="enable_hw_keys_title">Enable Hardware Buttons</string>
     <string name="button_keys_title">Hardware Buttons</string>
     <string name="keys_bindings_title">Key actions</string>
     <string name="keys_enable_custom_title">Enable custom actions</string>

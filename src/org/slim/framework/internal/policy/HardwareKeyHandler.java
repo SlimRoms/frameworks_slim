@@ -36,6 +36,8 @@ import android.view.WindowManagerPolicy.WindowState;
 
 import com.android.internal.statusbar.IStatusBarService;
 
+import java.util.Arrays;
+
 import org.slim.action.Action;
 import org.slim.action.ActionConstants;
 import org.slim.provider.SlimSettings;
@@ -55,6 +57,10 @@ public class HardwareKeyHandler {
     private static final int KEY_MASK_ASSIST = 0x08;
     private static final int KEY_MASK_APP_SWITCH = 0x10;
     private static final int KEY_MASK_CAMERA = 0x20;
+
+    private static final int[] SUPPORTED_KEYS = {
+            KeyEvent.KEYCODE_HOME, KeyEvent.KEYCODE_MENU, KeyEvent.KEYCODE_BACK,
+            KeyEvent.KEYCODE_ASSIST, KeyEvent.KEYCODE_CAMERA, KeyEvent.KEYCODE_APP_SWITCH };
 
     private static final AudioAttributes VIBRATION_ATTRIBUTES = new AudioAttributes.Builder()
             .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
@@ -82,6 +88,7 @@ public class HardwareKeyHandler {
 
     // Custom hardware key rebinding
     private int mDeviceHardwareKeys;
+    private boolean mKeysDisabled;
     private boolean mDisableVibration;
     private boolean mPreloadedRecentApps;
 
@@ -179,6 +186,9 @@ public class HardwareKeyHandler {
         void observe() {
             // Observe all hw key users' changes
             ContentResolver resolver = mContext.getContentResolver();
+            resolver.registerContentObserver(SlimSettings.System.getUriFor(
+                    SlimSettings.System.DISABLE_HW_KEYS), false, this,
+                    UserHandle.USER_ALL);
             resolver.registerContentObserver(SlimSettings.System.getUriFor(
                     SlimSettings.System.KEY_HOME_ACTION), false, this,
                     UserHandle.USER_ALL);
@@ -283,6 +293,11 @@ public class HardwareKeyHandler {
         final boolean noAppSwitch = (mDeviceHardwareKeys & KEY_MASK_APP_SWITCH) == 0;
         final boolean noCamera = (mDeviceHardwareKeys & KEY_MASK_CAMERA) == 0;
 
+        mKeysDisabled = SlimSettings.System.getIntForUser(
+                mContext.getContentResolver(),
+                SlimSettings.System.DISABLE_HW_KEYS, 0,
+                UserHandle.USER_CURRENT) == 1;
+
         // Setup hardware keys
         boolean keyRebindingDisabled = SlimSettings.System.getIntForUser(
                 mContext.getContentResolver(),
@@ -356,8 +371,28 @@ public class HardwareKeyHandler {
                         mContext, noCamera || keyRebindingDisabled);
     }
 
+    public boolean isHwKeysDisabled() {
+        return mKeysDisabled;
+    }
+
+    private boolean isKeyDisabled(int keyCode) {
+        if (mKeysDisabled) {
+            for (int i = 0; i < SUPPORTED_KEYS.length; i++) {
+                if (SUPPORTED_KEYS[i] == keyCode) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
     public boolean handleKeyEvent(int keyCode, int repeatCount, boolean down,
             boolean canceled, boolean longpress, boolean keyguardOn) {
+
+        if (isKeyDisabled(keyCode)) {
+            return true;
+        }
+
         if (keyCode == KeyEvent.KEYCODE_HOME) {
             if (!down && mHomePressed) {
                 mHomePressed = false;

@@ -89,6 +89,8 @@ public class HardwareKeysSettings extends SettingsPreferenceFragment implements
     private static final String KEYS_APP_SWITCH_LONG_PRESS = "keys_app_switch_long_press";
     private static final String KEYS_APP_SWITCH_DOUBLE_TAP = "keys_app_switch_double_tap";
 
+    private static final String KEY_ENABLE_HWKEYS = "enable_hw_keys";
+
     private static final int DLG_SHOW_WARNING_DIALOG = 0;
     private static final int DLG_SHOW_ACTION_DIALOG  = 1;
     private static final int DLG_RESET_TO_DEFAULT    = 2;
@@ -104,6 +106,7 @@ public class HardwareKeysSettings extends SettingsPreferenceFragment implements
     private static final int KEY_MASK_APP_SWITCH = 0x10;
     private static final int KEY_MASK_CAMERA     = 0x20;
 
+    private SwitchPreference mEnableHwKeys;
     private SwitchPreference mEnableCustomBindings;
     private Preference mBackPressAction;
     private Preference mBackLongPressAction;
@@ -188,6 +191,10 @@ public class HardwareKeysSettings extends SettingsPreferenceFragment implements
                 (PreferenceCategory) prefs.findPreference(CATEGORY_ASSIST);
         PreferenceCategory keysAppSwitchCategory =
                 (PreferenceCategory) prefs.findPreference(CATEGORY_APPSWITCH);
+
+        mEnableHwKeys = (SwitchPreference) prefs.findPreference(
+                KEY_ENABLE_HWKEYS);
+        mEnableHwKeys.setOnPreferenceChangeListener(this);
 
         mEnableCustomBindings = (SwitchPreference) prefs.findPreference(
                 KEYS_ENABLE_CUSTOM);
@@ -471,6 +478,11 @@ public class HardwareKeysSettings extends SettingsPreferenceFragment implements
             boolean value = (Boolean) newValue;
             SlimSettings.System.putInt(getContentResolver(),
                                        SlimSettings.System.HARDWARE_KEY_REBINDING, value ? 1 : 0);
+            return true;
+        } else if (preference == mEnableHwKeys) {
+            boolean value = (Boolean) newValue;
+            SlimSettings.System.putInt(getContentResolver(),
+                    SlimSettings.System.DISABLE_HW_KEYS, value ? 0 : 1);
             return true;
         }
         return false;

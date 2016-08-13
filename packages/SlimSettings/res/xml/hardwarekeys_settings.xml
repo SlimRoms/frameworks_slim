@@ -22,6 +22,11 @@
                 android:title="@string/keys_bindings_title" >
 
             <SwitchPreference
+                android:key="enable_hw_keys"
+                android:title="@string/enable_hw_keys_title"
+                android:defaultValue="true" />
+
+            <SwitchPreference
                 android:key="enable_hardware_rebind"
                 android:title="@string/keys_enable_custom_title"
                 android:summary="@string/keys_enable_custom_summary" />
