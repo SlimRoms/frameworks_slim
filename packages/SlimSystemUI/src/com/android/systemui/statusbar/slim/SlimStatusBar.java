@@ -107,6 +107,24 @@ public class SlimStatusBar extends PhoneStatusBar {
             resolver.registerContentObserver(SlimSettings.System.getUriFor(
                     SlimSettings.System.MENU_VISIBILITY),
                     false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(SlimSettings.System.getUriFor(
+                    SlimSettings.System.DIM_NAV_BUTTONS),
+                    false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(SlimSettings.System.getUriFor(
+                    SlimSettings.System.DIM_NAV_BUTTONS_TIMEOUT),
+                    false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(SlimSettings.System.getUriFor(
+                    SlimSettings.System.DIM_NAV_BUTTONS_ALPHA),
+                    false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(SlimSettings.System.getUriFor(
+                    SlimSettings.System.DIM_NAV_BUTTONS_ANIMATE),
+                    false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(SlimSettings.System.getUriFor(
+                    SlimSettings.System.DIM_NAV_BUTTONS_ANIMATE_DURATION),
+                    false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(SlimSettings.System.getUriFor(
+                    SlimSettings.System.DIM_NAV_BUTTONS_TOUCH_ANYWHERE),
+                    false, this, UserHandle.USER_ALL);
         }
 
         @Override
@@ -140,6 +158,22 @@ public class SlimStatusBar extends PhoneStatusBar {
             } else if (uri.equals(SlimSettings.System.getUriFor(
                     SlimSettings.System.NAVIGATION_BAR_CAN_MOVE))) {
                 prepareNavigationBarView();
+            } else if (uri.equals(SlimSettings.System.getUriFor(
+                    SlimSettings.System.DIM_NAV_BUTTONS))
+                || uri.equals(SlimSettings.System.getUriFor(
+                    SlimSettings.System.DIM_NAV_BUTTONS_TIMEOUT))
+                || uri.equals(SlimSettings.System.getUriFor(
+                    SlimSettings.System.DIM_NAV_BUTTONS_ALPHA))
+                || uri.equals(SlimSettings.System.getUriFor(
+                    SlimSettings.System.DIM_NAV_BUTTONS_ANIMATE))
+                || uri.equals(SlimSettings.System.getUriFor(
+                    SlimSettings.System.DIM_NAV_BUTTONS_ANIMATE_DURATION))
+                || uri.equals(SlimSettings.System.getUriFor(
+                    SlimSettings.System.DIM_NAV_BUTTONS_TOUCH_ANYWHERE))) {
+                if (mSlimNavigationBarView != null) {
+                    mSlimNavigationBarView.updateNavigationBarSettings();
+                    mSlimNavigationBarView.onNavButtonTouched();
+                }
             } else if (uri.equals(SlimSettings.System.getUriFor(
                     SlimSettings.System.NAVIGATION_BAR_SHOW))) {
                 updateNavigationBarVisibility();

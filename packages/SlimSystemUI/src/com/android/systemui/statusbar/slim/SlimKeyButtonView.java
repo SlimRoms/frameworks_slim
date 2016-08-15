@@ -30,6 +30,7 @@ import android.graphics.drawable.Drawable;
 import android.hardware.input.InputManager;
 import android.media.AudioManager;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.RemoteException;
 import android.os.ServiceManager;
 import android.os.SystemClock;
@@ -45,6 +46,7 @@ import android.view.MotionEvent;
 import android.view.SoundEffectConstants;
 import android.view.View;
 import android.view.ViewConfiguration;
+import android.view.ViewParent;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.ImageView;
@@ -52,6 +54,7 @@ import android.widget.ImageView;
 import com.android.internal.statusbar.IStatusBarService;
 
 import com.android.systemui.R;
+import com.android.systemui.statusbar.phone.SlimNavigationBarView;
 import com.android.systemui.statusbar.policy.KeyButtonView;
 
 import java.util.ArrayList;
@@ -78,6 +81,8 @@ public class SlimKeyButtonView extends KeyButtonView {
     private boolean mGestureAborted;
     private SlimKeyButtonRipple mRipple;
     private LongClickCallback mCallback;
+
+    private final Handler mHandler = new Handler();
 
     private IStatusBarService mStatusBar;
 
@@ -250,8 +255,23 @@ public class SlimKeyButtonView extends KeyButtonView {
                 break;
         }
 
+        mHandler.post(mNavButtonDimActivator);
+
         return true;
     }
+
+    private final Runnable mNavButtonDimActivator = new Runnable() {
+        @Override
+        public void run() {
+            ViewParent parent = getParent();
+            while (parent != null && !(parent instanceof SlimNavigationBarView)) {
+                parent = parent.getParent();
+            }
+            if (parent != null) {
+                ((SlimNavigationBarView) parent).onNavButtonTouched();
+            }
+        }
+    };
 
     private boolean hasDoubleTapAction() {
         return !mDoubleTapAction.equals(ActionConstants.ACTION_NULL);
