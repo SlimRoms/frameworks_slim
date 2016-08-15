@@ -176,6 +176,9 @@ public class SlimBatteryContainer extends LinearLayout implements
         public void onChange(boolean selfChange, Uri uri) {
             updateSettings();
         }
+    }
 
+    public void setDarkIntensity(float darkIntensity) {
+        mBattery.setDarkIntensity(darkIntensity);
     }
 }
