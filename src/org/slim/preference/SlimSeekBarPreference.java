@@ -22,6 +22,7 @@ import android.content.pm.PackageManager;
 import android.content.res.TypedArray;
 import android.preference.Preference;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.ContextThemeWrapper;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,6 +41,7 @@ public class SlimSeekBarPreference extends Preference
     public static int maximum = 100;
     public int interval = 5;
 
+    private View mView = null;
     private TextView monitorBox;
     private SeekBar bar;
 
@@ -60,17 +62,15 @@ public class SlimSeekBarPreference extends Preference
 
     @Override
     protected View onCreateView(ViewGroup parent) {
+        if (mView == null) {
+            mView = View.inflate(getContext(), R.layout.slider_preference, null);
 
-        View layout = View.inflate(getContext(),
-                R.layout.slider_preference, null);
-
-        monitorBox = (TextView)
-                layout.findViewById(R.id.monitor_box);
-        bar = (SeekBar) layout.findViewById(R.id.seek_bar);
-        bar.setOnSeekBarChangeListener(this);
-        bar.setProgress(defaultValue);
-
-        return layout;
+            monitorBox = (TextView) mView.findViewById(R.id.monitor_box);
+            bar = (SeekBar) mView.findViewById(R.id.seek_bar);
+            bar.setOnSeekBarChangeListener(this);
+            bar.setProgress(defaultValue);
+        }
+        return mView;
     }
 
     public void setInitValue(int progress) {
@@ -95,7 +95,6 @@ public class SlimSeekBarPreference extends Preference
 
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-
         progress = Math.round(((float) progress) / interval) * interval;
         seekBar.setProgress(progress);
 
