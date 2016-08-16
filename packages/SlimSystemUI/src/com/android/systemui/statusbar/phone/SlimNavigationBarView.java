@@ -585,7 +585,8 @@ public class SlimNavigationBarView extends NavigationBarView {
         addMe.setImageResource(empty ? R.drawable.ic_sysbar_lights_out_dot_large
                 : R.drawable.ic_sysbar_lights_out_dot_small);
         addMe.setScaleType(ImageView.ScaleType.CENTER);
-        addMe.setVisibility(empty ? View.INVISIBLE : View.VISIBLE);
+        addMe.setVisibility(empty ?
+                (v.getId() == R.id.ime_switcher ? View.GONE : View.INVISIBLE) : View.VISIBLE);
 
         if (landscape) {
             root.addView(addMe, 0);
