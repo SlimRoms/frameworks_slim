@@ -87,7 +87,7 @@
         </activity>
 
         <activity
-            android:name=".slim.SlimActionShortcut"
+            android:name="com.android.settings.slim.SlimActionShortcut"
             android:theme="@android:style/Theme.NoDisplay"
             android:excludeFromRecents="true"
             android:launchMode="singleInstance" >
