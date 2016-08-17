@@ -47,4 +47,12 @@
         <!-- No added attributes at this time -->
     </declare-styleable>
 
+    <declare-styleable name="SlimPreference">
+        <attr name="slimSettingType">
+            <flag name="system" value="0" />
+            <flag name="global" value="1" />
+            <flag name="secure" value="2" />
+        </attr>
+    </declare-styleable>
+
 </resources>

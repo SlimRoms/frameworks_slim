@@ -26,6 +26,7 @@
   <eat-comment />
 
   <!-- attr (start with 0x02010000) -->
+  <public type="attr" name="slimSettingType" id="0x02010000" />
 
   <!-- id (start with 0x02020000)-->
   <!--SlimSeekBar ids -->
