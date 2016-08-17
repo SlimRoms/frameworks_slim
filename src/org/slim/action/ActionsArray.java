@@ -53,7 +53,7 @@ public class ActionsArray {
 
         for (int i = 0; i < initialValues.length; i++) {
             if (!showNone && ActionConstants.ACTION_NULL.equals(initialValues[i])
-                    || !showWake && ActionConstants.ACTION_NULL.equals(initialValues[i])) {
+                    || !showWake && ActionConstants.ACTION_WAKE_DEVICE.equals(initialValues[i])) {
                 continue;
             } else if (actionsToExclude != null && actionsToExclude.contains(initialValues[i])) {
                 continue;
