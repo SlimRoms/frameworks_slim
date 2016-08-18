@@ -525,7 +525,7 @@ public class HardwareKeysSettings extends SettingsPreferenceFragment implements
     private void resetToDefault() {
         for (String settingsKey : mKeySettings.keySet()) {
             if (settingsKey != null) {
-                Settings.System.putString(getActivity().getContentResolver(),
+                SlimSettings.System.putString(getActivity().getContentResolver(),
                 settingsKey, null);
             }
         }
