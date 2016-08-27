@@ -44,7 +44,7 @@ public class RecentCard extends Card {
                 R.color.recents_task_bar_default_background_color);
     private int cardColor = SlimSettings.System.getIntForUser(
                 mContext.getContentResolver(), SlimSettings.System.RECENT_CARD_BG_COLOR,
-                defaultCardBg, UserHandle.USER_CURRENT);
+                0x00ffffff, UserHandle.USER_CURRENT);
 
     public RecentCard(Context context, TaskDescription td, float scaleFactor) {
         this(context, R.layout.inner_base_main, td, scaleFactor);
