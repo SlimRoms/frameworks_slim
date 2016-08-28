@@ -127,7 +127,7 @@ public class RecentHeader extends CardHeader {
                 R.color.card_text_color_header);
         int textColor = SlimSettings.System.getIntForUser(mContext.getContentResolver(),
                 SlimSettings.System.RECENT_CARD_TEXT_COLOR,
-                defaultCardText, UserHandle.USER_CURRENT);
+                0x00ffffff, UserHandle.USER_CURRENT);
         holder.textView.setText(mLabel);
         if (textColor != 0x00ffffff) {
             holder.textView.setTextColor(textColor);
