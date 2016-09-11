@@ -13,8 +13,6 @@
 -->
 <resources>
 
-    <private-symbols package="org.slim.framework.internal" />
-
     <java-symbol type="array" name="shortcut_icon_picker_labels" />
     <java-symbol type="array" name="shortcut_icon_picker_icons" />
     <java-symbol type="array" name="icon_types" />

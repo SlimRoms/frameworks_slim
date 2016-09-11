@@ -5,6 +5,7 @@ include $(CLEAR_VARS)
 LOCAL_PACKAGE_NAME := org.slim.framework-res
 LOCAL_CERTIFICATE := platform
 LOCAL_AAPT_FLAGS := --auto-add-overlay
+LOCAL_AAPT_FLAGS += --private-symbols org.slim.framework.internal
 LOCAL_RESOURCE_DIR := $(addprefix $(LOCAL_PATH)/, res)
 
 # 0x3f/one less than app id
