@@ -87,8 +87,6 @@ public class RecentController implements RecentPanelView.OnExitListener,
 
     public static float DEFAULT_SCALE_FACTOR = 1.0f;
 
-    public RecentsComponent.Callbacks mRecentsComponentCallbacks;
-
     private Context mContext;
     private WindowManager mWindowManager;
     private IWindowManager mWindowManagerService;
@@ -216,10 +214,6 @@ public class RecentController implements RecentPanelView.OnExitListener,
         // Settings observer
         SettingsObserver observer = new SettingsObserver(mHandler);
         observer.observe();
-    }
-
-    public void setCallback(RecentsComponent.Callbacks cb) {
-        mRecentsComponentCallbacks = cb;
     }
 
     /**
@@ -380,7 +374,7 @@ public class RecentController implements RecentPanelView.OnExitListener,
         final WindowManager.LayoutParams params = new WindowManager.LayoutParams(
                 width,
                 WindowManager.LayoutParams.MATCH_PARENT,
-                WindowManager.LayoutParams.TYPE_RECENTS_OVERLAY,
+                WindowManager.LayoutParams.TYPE_SYSTEM_DIALOG,
                 WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM
                         | WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL
                         | WindowManager.LayoutParams.FLAG_SPLIT_TOUCH
@@ -415,10 +409,10 @@ public class RecentController implements RecentPanelView.OnExitListener,
      */
     private void setSystemUiVisibilityFlags() {
         int vis = 0;
-        try {
+        /*try {
             vis = mWindowManagerService.getSystemUIVisibility();
         } catch (RemoteException ex) {
-        }
+        }*/
         boolean layoutBehindNavigation = true;
         int newVis = View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
         if ((vis & View.STATUS_BAR_TRANSLUCENT) != 0) {
@@ -506,9 +500,6 @@ public class RecentController implements RecentPanelView.OnExitListener,
     // Listener callback.
     @Override
     public void onExit() {
-        if (mRecentsComponentCallbacks != null) {
-            mRecentsComponentCallbacks.onVisibilityChanged(false);
-        }
         hideRecents(false);
     }
 

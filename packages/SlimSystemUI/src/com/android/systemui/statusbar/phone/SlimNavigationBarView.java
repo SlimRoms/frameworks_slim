@@ -353,7 +353,7 @@ public class SlimNavigationBarView extends NavigationBarView {
         mBackLandIcon = backIconLand;
     }
 
-    @Override
+    //@Override
     public void updateResources() {
         getIcons(getContext().getResources());
     }
@@ -618,9 +618,11 @@ public class SlimNavigationBarView extends NavigationBarView {
 
         mNavigationIconHints = hints;
 
-        if (getBackButton() != null ) {
-            ((ImageView) getBackButton()).setImageDrawable(null);
-            ((ImageView) getBackButton()).setImageDrawable(mVertical ? mBackLandIcon : mBackIcon);
+        ImageView backButton = (ImageView) getCurrentView().findViewById(R.id.back);
+
+        if (backButton != null) {
+            backButton.setImageDrawable(null);
+            backButton.setImageDrawable(mVertical ? mBackLandIcon : mBackIcon);
         }
 
         final boolean showImeButton = ((hints & StatusBarManager.NAVIGATION_HINT_IME_SHOWN) != 0);
@@ -698,9 +700,9 @@ public class SlimNavigationBarView extends NavigationBarView {
         if (mDimNavButtonsTouchAnywhere) {
             onNavButtonTouched();
         }
-        if (mTaskSwitchHelper.onTouchEvent(event)) {
-            return true;
-        }
+        //if (mTaskSwitchHelper.onTouchEvent(event)) {
+          //  return true;
+        //}
         if (mDeadZone != null && event.getAction() == MotionEvent.ACTION_OUTSIDE) {
             mDeadZone.poke(event);
         }
@@ -779,7 +781,7 @@ public class SlimNavigationBarView extends NavigationBarView {
         if (navButtons != null)
             navButtons.setOnTouchListener(mNavButtonsTouchListener);
 
-        updateRTLOrder();
+        //updateRTLOrder();
     }
 
     public void reorient() {
@@ -808,7 +810,7 @@ public class SlimNavigationBarView extends NavigationBarView {
         mDeadZone = (DeadZone) mCurrentView.findViewById(R.id.deadzone);
 
         // force the low profile & disabled states into compliance
-        mBarTransitions.init();
+        //getBarTransitions().init();
         setDisabledFlags(mDisabledFlags, true /* force */);
         setMenuVisibility(mShowMenu, true /* force */);
 
@@ -825,16 +827,16 @@ public class SlimNavigationBarView extends NavigationBarView {
 
     private void updateTaskSwitchHelper() {
         boolean isRtl = (getLayoutDirection() == View.LAYOUT_DIRECTION_RTL);
-        mTaskSwitchHelper.setBarState(mVertical, isRtl);
+        //mTaskSwitchHelper.setBarState(mVertical, isRtl);
     }
 
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
         super.onLayout(changed, l, t, r, b);
         List<View> views = new ArrayList<View>();
-        final View back = getBackButton();
-        final View home = getHomeButton();
-        final View recent = getRecentsButton();
+        final View back = getBackButton().getCurrentView();
+        final View home = getHomeButton().getCurrentView();
+        final View recent = getRecentsButton().getCurrentView();
         if (back != null) {
             views.add(back);
         }
@@ -884,7 +886,7 @@ public class SlimNavigationBarView extends NavigationBarView {
         }
     }
 
-    @Override
+    //@Override
     protected void adjustExtraKeyGravity(View navBar, boolean isLayoutRtl) {
         View menu = navBar.findViewById(R.id.menu);
         View imeSwitcher = navBar.findViewById(R.id.ime_switcher);

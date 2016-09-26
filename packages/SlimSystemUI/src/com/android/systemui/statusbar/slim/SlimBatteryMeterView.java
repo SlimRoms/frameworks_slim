@@ -295,7 +295,7 @@ public class SlimBatteryMeterView extends View implements DemoMode,
     }
 
     @Override
-    public void onPowerSaveChanged() {
+    public void onPowerSaveChanged(boolean enabled) {
         mPowerSaveEnabled = mBatteryController.isPowerSave();
         invalidate();
     }

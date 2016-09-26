@@ -37,10 +37,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
-import com.android.internal.logging.MetricsLogger;
 import com.slim.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
 
+import org.slim.framework.internal.logging.SlimMetricsLogger;
 import org.slim.preference.SlimSeekBarPreference;
 import org.slim.provider.SlimSettings;
 
@@ -70,7 +70,7 @@ public class DozeSettingsFragment extends SettingsPreferenceFragment implements
 
     @Override
     protected int getMetricsCategory() {
-        return MetricsLogger.DISPLAY;
+        return SlimMetricsLogger.DOZE_SETTINGS;
     }
 
     @Override

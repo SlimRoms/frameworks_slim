@@ -30,6 +30,7 @@ import android.content.pm.ResolveInfo;
 import android.content.ServiceConnection;
 import android.database.ContentObserver;
 import android.graphics.PixelFormat;
+import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.IBinder;
@@ -226,12 +227,27 @@ public class SlimStatusBar extends PhoneStatusBar implements
     protected PhoneStatusBarView makeStatusBarView() {
         mStatusBarView = super.makeStatusBarView();
 
+        SlimBatteryContainer container =(SlimBatteryContainer) mStatusBarView.findViewById(
+                R.id.slim_battery_container);
+        if (mBatteryController != null && container != null) {
+            container.setBatteryController(mBatteryController);
+        }
+
+        mSlimIconController = new SlimStatusBarIconController(mContext, mStatusBarView, this);
+
+        mStatusBarView.findViewById(R.id.battery).setVisibility(View.GONE);
+
+        return mStatusBarView;
+    }
+
+    @Override
+    protected void createNavigationBarView(Context context) {
         if (mSlimNavigationBarView == null) {
             mSlimNavigationBarView = (SlimNavigationBarView)
                     View.inflate(mContext, R.layout.slim_navigation_bar, null);
         }
         mSlimNavigationBarView.setDisabledFlags(mDisabled1);
-        mSlimNavigationBarView.setBar(this);
+        //mSlimNavigationBarView.setBar(this);
         mSlimNavigationBarView.setOnVerticalChangedListener(
                 new NavigationBarView.OnVerticalChangedListener() {
             @Override
@@ -250,27 +266,9 @@ public class SlimStatusBar extends PhoneStatusBar implements
             }
         });
 
-        if (!(mNavigationBarView instanceof SlimNavigationBarView) && mNavigationBarView != null) {
-            if (mNavigationBarView.isAttachedToWindow()) {
-                try {
-                    mWindowManager.removeView(mNavigationBarView);
-                } catch (Exception e) {}
-            }
-        }
-
         if (mNavigationBarView != mSlimNavigationBarView) {
             mNavigationBarView = mSlimNavigationBarView;
         }
-
-        SlimBatteryContainer container =(SlimBatteryContainer) mStatusBarView.findViewById(
-                R.id.slim_battery_container);
-        if (mBatteryController != null) {
-            container.setBatteryController(mBatteryController);
-        }
-
-        mSlimIconController = new SlimStatusBarIconController(mContext, mStatusBarView, this);
-
-        return mStatusBarView;
     }
 
     private void updateNavigationBarVisibility() {
@@ -294,8 +292,8 @@ public class SlimStatusBar extends PhoneStatusBar implements
     protected void prepareNavigationBarView() {
         mSlimNavigationBarView.reorient();
 
-        View home = mSlimNavigationBarView.getHomeButton();
-        View recents = mSlimNavigationBarView.getRecentsButton();
+        //View home = mSlimNavigationBarView.getHomeButton().getCurrentView();
+        //View recents = mSlimNavigationBarView.getRecentsButton();
 
         mSlimNavigationBarView.setPinningCallback(mLongClickCallback);
 
@@ -313,7 +311,9 @@ public class SlimStatusBar extends PhoneStatusBar implements
     @Override
     protected void addNavigationBar() {
         if (DEBUG) Log.v(TAG, "addNavigationBar: about to add " + mSlimNavigationBarView);
-        if (mSlimNavigationBarView == null) return;
+        if (mSlimNavigationBarView == null) {
+            createNavigationBarView(mContext);
+        }
 
         prepareNavigationBarView();
 
@@ -357,14 +357,16 @@ public class SlimStatusBar extends PhoneStatusBar implements
     }
 
     @Override
-    public void setSystemUiVisibility(int vis, int mask) {
+    public void setSystemUiVisibility(int vis, int fullscreenStackVis, int dockedStackVis,
+            int mask, Rect fullscreenStackBounds, Rect dockedStackBounds) {
         final int oldVal = mSystemUiVisibility;
         final int newVal = (oldVal&~mask | vis&mask);
         final int diff = newVal ^ oldVal;
 
         if (diff != 0) {
             final int sbMode = computeBarMode(oldVal, newVal, mStatusBarView.getBarTransitions(),
-                    View.STATUS_BAR_TRANSIENT, View.STATUS_BAR_TRANSLUCENT);
+                    View.STATUS_BAR_TRANSIENT, View.STATUS_BAR_TRANSLUCENT,
+                    View.STATUS_BAR_TRANSPARENT);
             final boolean sbModeChanged = sbMode != -1;
             if ((diff & View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR) != 0 || sbModeChanged) {
                 boolean isTransparentBar = (mStatusBarMode == MODE_TRANSPARENT
@@ -381,7 +383,8 @@ public class SlimStatusBar extends PhoneStatusBar implements
             }
         }
 
-        super.setSystemUiVisibility(vis, mask);
+        super.setSystemUiVisibility(vis, fullscreenStackVis, dockedStackVis, mask,
+                fullscreenStackBounds, dockedStackBounds);
     }
 
     private long mLastLockToAppLongPress;
@@ -403,7 +406,7 @@ public class SlimStatusBar extends PhoneStatusBar implements
                 // long-pressed 'together'
                 if (mSlimNavigationBarView.getRightMenuButton().isPressed()
                         && mSlimNavigationBarView.getLeftMenuButton().isPressed()) {
-                    activityManager.stopLockTaskModeOnCurrent();
+                    //activityManager.stopLockTaskModeOnCurrent();
                     // When exiting refresh disabled flags.
                     mSlimNavigationBarView.setDisabledFlags(mDisabled1, true);
                     mSlimNavigationBarView.setOverrideMenuKeys(false);
@@ -424,7 +427,7 @@ public class SlimStatusBar extends PhoneStatusBar implements
                 } else if (isAccessiblityEnabled && activityManager.isInLockTaskMode()) {
                     // When in accessibility mode a long press that is recents (not back)
                     // should stop lock task.
-                    activityManager.stopLockTaskModeOnCurrent();
+                    //activityManager.stopLockTaskModeOnCurrent();
                     // When exiting refresh disabled flags.
                     mSlimNavigationBarView.setDisabledFlags(mDisabled1, true);
                     mSlimNavigationBarView.setOverrideMenuKeys(false);
@@ -487,7 +490,7 @@ public class SlimStatusBar extends PhoneStatusBar implements
 
         if (slimRecents) {
             mSlimRecents = new RecentController(mContext, mLayoutDirection);
-            mSlimRecents.setCallback(this);
+            //mSlimRecents.setCallback(this);
             rebuildRecentsScreen();
         } else {
             mSlimRecents = null;

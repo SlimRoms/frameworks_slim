@@ -95,7 +95,7 @@ public class SlimBatteryContainer extends LinearLayout implements
     }
 
     @Override
-    public void onPowerSaveChanged() {
+    public void onPowerSaveChanged(boolean enabled) {
         // could not care less
     }
 

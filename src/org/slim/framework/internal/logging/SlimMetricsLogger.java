@@ -35,4 +35,6 @@ public class SlimMetricsLogger extends MetricsLogger {
     public static final int RECENT_PANEL_SETTINGS = BASE + 9;
     public static final int CLOCK_SETTINGS = BASE + 10;
     public static final int ADVANCED_SETTINGS = BASE + 11;
+    public static final int NAVBAR_BUTTON_SETTINGS = BASE + 12;
+    public static final int DOZE_SETTINGS = BASE + 13;
 }
