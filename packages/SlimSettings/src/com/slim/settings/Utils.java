@@ -14,7 +14,7 @@
  * under the License.
  */
 
-package com.android.settings;
+package com.slim.settings;
 
 import android.app.Fragment;
 import android.content.Context;
@@ -23,8 +23,8 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.os.Bundle;
-import android.preference.Preference;
-import android.preference.PreferenceGroup;
+import android.support.v7.preference.Preference;
+import android.support.v7.preference.PreferenceGroup;
 
 import java.util.List;
 
@@ -103,57 +103,18 @@ public final class Utils {
      * @param resultTo Option fragment that should receive the result of the activity launch.
      * @param resultRequestCode If resultTo is non-null, this is the request code in which
      *                          to report the result.
-     * @param titleResId resource id for the String to display for the title of this set
-     *                   of preferences.
      * @param title String to display for the title of this set of preferences.
      */
     public static void startWithFragment(Context context, String fragmentName, Bundle args,
-            Fragment resultTo, int resultRequestCode, int titleResId,
-            CharSequence title) {
+            Fragment resultTo, int resultRequestCode, CharSequence title) {
         startWithFragment(context, fragmentName, args, resultTo, resultRequestCode,
-                null /* titleResPackageName */, titleResId, title, false /* not a shortcut */);
-    }
-
-    /**
-     * Start a new instance of the activity, showing only the given fragment.
-     * When launched in this mode, the given preference fragment will be instantiated and fill the
-     * entire activity.
-     *
-     * @param context The context.
-     * @param fragmentName The name of the fragment to display.
-     * @param args Optional arguments to supply to the fragment.
-     * @param resultTo Option fragment that should receive the result of the activity launch.
-     * @param resultRequestCode If resultTo is non-null, this is the request code in which
-     *                          to report the result.
-     * @param titleResPackageName Optional package name for the resource id of the title.
-     * @param titleResId resource id for the String to display for the title of this set
-     *                   of preferences.
-     * @param title String to display for the title of this set of preferences.
-     */
-    public static void startWithFragment(Context context, String fragmentName, Bundle args,
-            Fragment resultTo, int resultRequestCode, String titleResPackageName, int titleResId,
-            CharSequence title) {
-        startWithFragment(context, fragmentName, args, resultTo, resultRequestCode,
-                titleResPackageName, titleResId, title, false /* not a shortcut */);
+                title, false /* not a shortcut */);
     }
 
     public static void startWithFragment(Context context, String fragmentName, Bundle args,
-            Fragment resultTo, int resultRequestCode, int titleResId,
+            Fragment resultTo, int resultRequestCode,
             CharSequence title, boolean isShortcut) {
-        Intent intent = onBuildStartFragmentIntent(context, fragmentName, args,
-                null /* titleResPackageName */, titleResId, title, isShortcut);
-        if (resultTo == null) {
-            context.startActivity(intent);
-        } else {
-            resultTo.startActivityForResult(intent, resultRequestCode);
-        }
-    }
-
-    public static void startWithFragment(Context context, String fragmentName, Bundle args,
-            Fragment resultTo, int resultRequestCode, String titleResPackageName, int titleResId,
-            CharSequence title, boolean isShortcut) {
-        Intent intent = onBuildStartFragmentIntent(context, fragmentName, args, titleResPackageName,
-                titleResId, title, isShortcut);
+        Intent intent = onBuildStartFragmentIntent(context, fragmentName, args, title, isShortcut);
         if (resultTo == null) {
             context.startActivity(intent);
         } else {
@@ -170,23 +131,17 @@ public final class Utils {
      * @param context The Context.
      * @param fragmentName The name of the fragment to display.
      * @param args Optional arguments to supply to the fragment.
-     * @param titleResPackageName Optional package name for the resource id of the title.
-     * @param titleResId Optional title resource id to show for this item.
      * @param title Optional title to show for this item.
      * @param isShortcut  tell if this is a Launcher Shortcut or not
      * @return Returns an Intent that can be launched to display the given
      * fragment.
      */
-    public static Intent onBuildStartFragmentIntent(Context context, String fragmentName,
-            Bundle args, String titleResPackageName, int titleResId, CharSequence title,
-            boolean isShortcut) {
+    public static Intent onBuildStartFragmentIntent(Context context,
+            String fragmentName, Bundle args, CharSequence title, boolean isShortcut) {
         Intent intent = new Intent(Intent.ACTION_MAIN);
         intent.setClass(context, SubSettings.class);
         intent.putExtra(SubSettings.EXTRA_SHOW_FRAGMENT, fragmentName);
         intent.putExtra(SubSettings.EXTRA_SHOW_FRAGMENT_ARGUMENTS, args);
-        intent.putExtra(SubSettings.EXTRA_SHOW_FRAGMENT_TITLE_RES_PACKAGE_NAME,
-                titleResPackageName);
-        intent.putExtra(SubSettings.EXTRA_SHOW_FRAGMENT_TITLE_RESID, titleResId);
         intent.putExtra(SubSettings.EXTRA_SHOW_FRAGMENT_TITLE, title);
         intent.putExtra(SubSettings.EXTRA_SHOW_FRAGMENT_AS_SHORTCUT, isShortcut);
         return intent;

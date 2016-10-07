@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.settings.slim;
+package com.slim.settings.fragments;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -24,13 +24,13 @@ import android.content.DialogInterface.OnCancelListener;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.os.Bundle;
-import android.preference.EditTextPreference;
-import android.preference.ListPreference;
-import android.preference.Preference;
-import android.preference.Preference.OnPreferenceChangeListener;
-import android.preference.PreferenceFragment;
-import android.preference.PreferenceScreen;
-import android.preference.SwitchPreference;
+import android.support.v7.preference.EditTextPreference;
+import android.support.v7.preference.ListPreference;
+import android.support.v7.preference.Preference;
+import android.support.v7.preference.Preference.OnPreferenceChangeListener;
+import android.support.v14.preference.PreferenceFragment;
+import android.support.v7.preference.PreferenceScreen;
+import android.support.v14.preference.SwitchPreference;
 import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.Menu;
@@ -40,8 +40,8 @@ import android.widget.EditText;
 
 import com.android.internal.logging.MetricsLogger;
 import com.slim.settings.R;
-import com.android.settings.SettingsPreferenceFragment;
-import com.android.settings.Utils;
+import com.slim.settings.SettingsPreferenceFragment;
+import com.slim.settings.Utils;
 
 import java.util.Date;
 

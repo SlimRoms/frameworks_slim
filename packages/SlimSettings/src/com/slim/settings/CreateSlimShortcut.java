@@ -26,7 +26,7 @@ import android.os.Bundle;
 import org.slim.action.ActionsArray;
 import org.slim.action.ActionHelper;
 import org.slim.utils.ImageHelper;
-import com.android.settings.slim.SlimActionShortcut;
+import com.slim.settings.SlimActionShortcut;
 
 import com.slim.settings.R;
 

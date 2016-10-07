@@ -39,10 +39,6 @@ public class SubSettings extends SettingsActivity {
 
     public static final String EXTRA_SHOW_FRAGMENT = ":slim:settings:show_fragment";
     public static final String EXTRA_SHOW_FRAGMENT_ARGUMENTS = ":slim:settings:show_fragment_args";
-    public static final String EXTRA_SHOW_FRAGMENT_TITLE_RES_PACKAGE_NAME =
-            ":slim:settings:show_fragment_title_res_package_name";
-    public static final String EXTRA_SHOW_FRAGMENT_TITLE_RESID =
-            ":slim:settings:show_fragment_title_resid";
     public static final String EXTRA_SHOW_FRAGMENT_TITLE = ":slim:settings:show_fragment_title";
     public static final String EXTRA_SHOW_FRAGMENT_AS_SHORTCUT =
             ":slim:settings:show_fragment_as_shortcut";
@@ -63,44 +59,18 @@ public class SubSettings extends SettingsActivity {
 
         final String initialFragmentName = intent.getStringExtra(EXTRA_SHOW_FRAGMENT);
         Bundle initialArguments = intent.getBundleExtra(EXTRA_SHOW_FRAGMENT_ARGUMENTS);
-        CharSequence initialTitle;
+        CharSequence initialTitle = intent.getStringExtra(EXTRA_SHOW_FRAGMENT_TITLE);
+        initialTitle = (initialTitle != null) ? initialTitle : getTitle();
+        setTitle(initialTitle);
 
-        int initialTitleResId = intent.getIntExtra(EXTRA_SHOW_FRAGMENT_TITLE_RESID, -1);
-        if (initialTitleResId > 0) {
-            initialTitle = null;
-
-            final String initialTitleResPackageName = intent.getStringExtra(
-                    EXTRA_SHOW_FRAGMENT_TITLE_RES_PACKAGE_NAME);
-            if (initialTitleResPackageName != null) {
-                try {
-                    Context authContext = createPackageContextAsUser(initialTitleResPackageName,
-                            0, new UserHandle(UserHandle.myUserId()));
-                    initialTitle = authContext.getResources().getString(initialTitleResId);
-                    setTitle(initialTitle);
-                    initialTitleResId = -1;
-                    return;
-                } catch (NameNotFoundException e) {
-                    Log.w("SubSettings", "Could not find package" + initialTitleResPackageName);
-                }
-            } else {
-                setTitle(initialTitleResId);
-            }
-        } else {
-            initialTitleResId = -1;
-            initialTitle = intent.getStringExtra(EXTRA_SHOW_FRAGMENT_TITLE);
-            initialTitle = (initialTitle != null) ? initialTitle : getTitle();
-            setTitle(initialTitle);
-        }
-
-        switchToFragment(initialFragmentName, initialArguments, true, false,
-            initialTitleResId, initialTitle, false);
+        switchToFragment(initialFragmentName, initialArguments, true, false, initialTitle, false);
     }
 
     /**
      * Switch to a specific Fragment with taking care of validation, Title and BackStack
      */
     private Fragment switchToFragment(String fragmentName, Bundle args, boolean validate,
-            boolean addToBackStack, int titleResId, CharSequence title, boolean withTransition) {
+            boolean addToBackStack, CharSequence title, boolean withTransition) {
         /*if (validate && !isValidFragment(fragmentName)) {
             throw new IllegalArgumentException("Invalid fragment for this activity: "
                     + fragmentName);
@@ -114,9 +84,7 @@ public class SubSettings extends SettingsActivity {
         if (addToBackStack) {
             transaction.addToBackStack(BACK_STACK_PREFS);
         }
-        if (titleResId > 0) {
-            transaction.setBreadCrumbTitle(titleResId);
-        } else if (title != null) {
+        if (title != null) {
             transaction.setBreadCrumbTitle(title);
         }
         transaction.commitAllowingStateLoss();

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.settings.slim;
+package com.slim.settings.fragments;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -29,13 +29,13 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.PowerManager;
-import android.preference.SwitchPreference;
-import android.preference.Preference;
-import android.preference.Preference.OnPreferenceChangeListener;
-import android.preference.Preference.OnPreferenceClickListener;
-import android.preference.PreferenceCategory;
-import android.preference.PreferenceManager;
-import android.preference.PreferenceScreen;
+import android.support.v14.preference.SwitchPreference;
+import android.support.v7.preference.Preference;
+import android.support.v7.preference.Preference.OnPreferenceChangeListener;
+import android.support.v7.preference.Preference.OnPreferenceClickListener;
+import android.support.v7.preference.PreferenceCategory;
+import android.support.v7.preference.PreferenceManager;
+import android.support.v7.preference.PreferenceScreen;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.Menu;
@@ -43,7 +43,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.android.settings.SettingsPreferenceFragment;
+import com.slim.settings.SettingsPreferenceFragment;
+import com.slim.settings.preference.ButtonBacklightBrightness;
 import com.slim.settings.R;
 
 import org.slim.framework.internal.logging.SlimMetricsLogger;
@@ -118,12 +119,12 @@ public class HardwareKeysSettings extends SettingsPreferenceFragment implements
 
     // Masks for checking presence of hardware keys.
     // Must match values in frameworks/base/core/res/res/values/config.xml
-    private static final int KEY_MASK_HOME       = 0x01;
-    private static final int KEY_MASK_BACK       = 0x02;
-    private static final int KEY_MASK_MENU       = 0x04;
-    private static final int KEY_MASK_ASSIST     = 0x08;
-    private static final int KEY_MASK_APP_SWITCH = 0x10;
-    private static final int KEY_MASK_CAMERA     = 0x20;
+    public static final int KEY_MASK_HOME       = 0x01;
+    public static final int KEY_MASK_BACK       = 0x02;
+    public static final int KEY_MASK_MENU       = 0x04;
+    public static final int KEY_MASK_ASSIST     = 0x08;
+    public static final int KEY_MASK_APP_SWITCH = 0x10;
+    public static final int KEY_MASK_CAMERA     = 0x20;
 
     private SwitchPreference mEnableHwKeys;
     private SwitchPreference mEnableCustomBindings;

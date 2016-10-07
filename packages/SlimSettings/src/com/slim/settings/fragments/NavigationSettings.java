@@ -14,21 +14,21 @@
  * limitations under the License.
  */
 
-package com.android.settings.slim;
+package com.slim.settings.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
 import android.os.ServiceManager;
-import android.preference.Preference;
-import android.preference.PreferenceScreen;
+import android.support.v7.preference.Preference;
+import android.support.v7.preference.PreferenceScreen;
 import android.view.IWindowManager;
 
 import org.slim.framework.internal.logging.SlimMetricsLogger;
 import org.slim.provider.SlimSettings;
 
 import com.slim.settings.R;
-import com.android.settings.SettingsPreferenceFragment;
-import com.android.settings.Utils;
+import com.slim.settings.SettingsPreferenceFragment;
+import com.slim.settings.Utils;
 
 public class NavigationSettings extends SettingsPreferenceFragment {
 

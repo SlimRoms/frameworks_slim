@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.settings;
+package com.slim.settings;
 
 import android.app.Dialog;
 

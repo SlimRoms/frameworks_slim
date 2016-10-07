@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.settings.slim;
+package com.slim.settings.widget;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;

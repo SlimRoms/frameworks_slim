@@ -7,13 +7,14 @@
 
     <application
         android:icon="@android:drawable/sym_def_app_icon"
+        android:theme="@style/SettingsTheme"
         android:label="SlimSettings" >
 
         <activity
             android:name="com.slim.settings.activities.InterfaceSettingsActivity"
             android:label="@string/interface_settings_title"
             android:icon="@drawable/ic_settings_interface"
-            android:theme="@android:style/Theme.Material.Settings" >
+            android:theme="@style/SettingsTheme" >
 
             <intent-filter>
                 <action android:name="com.android.settings.action.EXTRA_SETTINGS" />
@@ -29,7 +30,7 @@
             android:name="com.slim.settings.activities.NavigationSettingsActivity"
             android:label="@string/navigation_settings_title"
             android:icon="@drawable/ic_settings_navigation"
-            android:theme="@android:style/Theme.Material.Settings" >
+            android:theme="@style/SettingsTheme" >
 
             <intent-filter>
                 <action android:name="com.android.settings.action.EXTRA_SETTINGS" />
@@ -45,7 +46,7 @@
             android:name="com.slim.settings.activities.AdvancedSettingsActivity"
             android:label="@string/advanced_settings"
             android:icon="@drawable/ic_settings_advanced"
-            android:theme="@android:style/Theme.Material.Settings" >
+            android:theme="@style/SettingsTheme" >
 
             <intent-filter>
                 <action android:name="com.android.settings.action.EXTRA_SETTINGS" />
@@ -60,7 +61,7 @@
         <activity
             android:name="com.slim.settings.activities.DozeSettingsActivity"
             android:label="@string/doze_settings_title"
-            android:theme="@android:style/Theme.Material.Settings" >
+            android:theme="@style/SettingsTheme" >
 
             <intent-filter>
                 <action android:name="com.slim.settings.action.DOZE_SETTINGS" />
@@ -69,7 +70,7 @@
         </activity>
 
         <activity android:name=".SubSettings"
-                android:theme="@android:style/Theme.Material.Settings"
+                android:theme="@style/SettingsTheme"
                 android:taskAffinity="com.slim.settings">
         </activity>
 
@@ -87,7 +88,7 @@
         </activity>
 
         <activity
-            android:name="com.android.settings.slim.SlimActionShortcut"
+            android:name=".SlimActionShortcut"
             android:theme="@android:style/Theme.NoDisplay"
             android:excludeFromRecents="true"
             android:launchMode="singleInstance" >

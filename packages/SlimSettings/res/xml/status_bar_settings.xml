@@ -19,20 +19,22 @@
     xmlns:settings="http://schemas.android.com/apk/res/com.android.settings"
     android:title="@string/status_bar_title">
 
-    <!--<PreferenceScreen
+    <PreferenceScreen
         android:key="status_bar_icons"
         android:title="@string/status_bar_icons">
         <intent
             android:action="android.intent.action.MAIN"
             android:targetPackage="com.android.systemui"
-            android:targetClass="com.android.systemui.tuner.TunerActivity$StatusBarIcons" />
+            android:targetClass="com.android.systemui.tuner.TunerActivity">
+            <extra android:name="tuner" android:value="status_bar" />
+        </intent>
     </PreferenceScreen>
 
-    <PreferenceCategory
+    <!--<PreferenceCategory
             android:title="@string/status_bar_style_title">
 
         <PreferenceScreen
-            android:fragment="com.android.settings.slim.StatusBarClockStyle"
+            android:fragment="com.slim.settings.fragments.StatusBarClockStyle"
             android:key="clock_style_pref"
             android:title="@string/status_bar_clock" />
 

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.settings;
+package com.slim.settings;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -27,9 +27,10 @@ import android.content.pm.PackageManager;
 import android.database.DataSetObserver;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.preference.Preference;
-import android.preference.PreferenceActivity;
-import android.preference.PreferenceGroupAdapter;
+import android.support.v7.preference.Preference;
+import android.support.v7.preference.PreferenceGroupAdapter;
+import android.support.v7.preference.PreferenceScreen;
+import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -44,7 +45,7 @@ import android.widget.ListView;
 
 import com.slim.settings.R;
 
-import com.android.settings.widget.FloatingActionButton;
+import com.slim.settings.widget.FloatingActionButton;
 
 /**
  * Base class for Settings fragments, with some helper functions and dialog management.
@@ -72,6 +73,10 @@ public abstract class SettingsPreferenceFragment extends InstrumentedPreferenceF
      */
     public final void finishFragment() {
         getActivity().onBackPressed();
+    }
+
+    @Override
+    public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
     }
 
     /**
@@ -272,9 +277,9 @@ public abstract class SettingsPreferenceFragment extends InstrumentedPreferenceF
     public boolean startFragment(Fragment caller, String fragmentClass, int titleRes,
             int requestCode, Bundle extras) {
         final Activity activity = getActivity();
-        if (activity instanceof PreferenceActivity) {
-            PreferenceActivity sa = (PreferenceActivity) activity;
-            sa.startPreferencePanel(fragmentClass, extras, titleRes, null, caller, requestCode);
+        if (activity instanceof SettingsActivity) {
+            SettingsActivity sa = (SettingsActivity) activity;
+            sa.startPreferencePanel(fragmentClass, extras, null, caller, requestCode);
             return true;
         } else {
             Log.w(TAG,

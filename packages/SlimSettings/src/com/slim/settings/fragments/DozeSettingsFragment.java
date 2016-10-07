@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.settings.slim.fragments;
+package com.slim.settings.fragments;
 
 import android.app.Activity;
 import android.content.ContentResolver;
@@ -26,10 +26,10 @@ import android.database.ContentObserver;
 import android.hardware.Sensor;
 import android.hardware.SensorManager;
 import android.os.Bundle;
-import android.preference.Preference;
-import android.preference.PreferenceScreen;
-import android.preference.Preference.OnPreferenceChangeListener;
-import android.preference.SwitchPreference;
+import android.support.v7.preference.Preference;
+import android.support.v7.preference.PreferenceScreen;
+import android.support.v7.preference.Preference.OnPreferenceChangeListener;
+import android.support.v14.preference.SwitchPreference;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -38,7 +38,7 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import com.slim.settings.R;
-import com.android.settings.SettingsPreferenceFragment;
+import com.slim.settings.SettingsPreferenceFragment;
 
 import org.slim.framework.internal.logging.SlimMetricsLogger;
 import org.slim.preference.SlimSeekBarPreference;

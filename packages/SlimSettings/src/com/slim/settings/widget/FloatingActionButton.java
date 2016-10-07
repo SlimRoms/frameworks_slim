@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.settings.widget;
+package com.slim.settings.widget;
 
 import android.animation.AnimatorInflater;
 import android.content.Context;

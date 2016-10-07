@@ -20,7 +20,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.TypedArray;
-import android.preference.Preference;
+import android.support.v7.preference.Preference;
+import android.support.v7.preference.PreferenceViewHolder;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.ContextThemeWrapper;
@@ -57,20 +58,18 @@ public class SlimSeekBarPreference extends Preference
 
     public SlimSeekBarPreference(Context context, AttributeSet attrs) {
         super(context, attrs);
-
+        setLayoutResource(R.layout.slider_preference);
     }
 
     @Override
-    protected View onCreateView(ViewGroup parent) {
-        if (mView == null) {
-            mView = View.inflate(getContext(), R.layout.slider_preference, null);
+    public void onBindViewHolder(PreferenceViewHolder holder) {
+        super.onBindViewHolder(holder);
 
-            monitorBox = (TextView) mView.findViewById(R.id.monitor_box);
-            bar = (SeekBar) mView.findViewById(R.id.seek_bar);
-            bar.setOnSeekBarChangeListener(this);
-            bar.setProgress(defaultValue);
-        }
-        return mView;
+        mView = holder.itemView;
+        monitorBox = (TextView) holder.findViewById(R.id.monitor_box);
+        bar = (SeekBar) holder.findViewById(R.id.seek_bar);
+        bar.setOnSeekBarChangeListener(this);
+        bar.setProgress(defaultValue);
     }
 
     public void setInitValue(int progress) {

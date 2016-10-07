@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-package com.android.settings;
+package com.slim.settings;
 
-import android.preference.PreferenceFragment;
+import android.support.v14.preference.PreferenceFragment;
 import com.android.internal.logging.MetricsLogger;
 
 /**

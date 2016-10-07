@@ -14,18 +14,18 @@
  * limitations under the License.
  */
 
-package com.android.settings.slim.fragments;
+package com.slim.settings.fragments;
 
 import android.os.Bundle;
-import android.preference.Preference;
-import android.preference.Preference.OnPreferenceChangeListener;
+import android.support.v7.preference.Preference;
+import android.support.v7.preference.Preference.OnPreferenceChangeListener;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
 import com.slim.settings.R;
-import com.android.settings.SettingsPreferenceFragment;
+import com.slim.settings.SettingsPreferenceFragment;
 
 import org.slim.framework.internal.logging.SlimMetricsLogger;
 

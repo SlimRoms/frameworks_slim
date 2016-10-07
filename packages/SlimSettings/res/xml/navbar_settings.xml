@@ -38,14 +38,14 @@
             </PreferenceScreen>
 
             <PreferenceScreen
-                android:fragment="com.android.settings.slim.NavBarButtonStyle"
+                android:fragment="com.slim.settings.fragments.NavBarButtonStyle"
                 android:key="nav_bar_button_style"
                 android:title="@string/nav_bar_button_style"
                 android:summary="@string/nav_bar_button_style_summary" />
 
             <PreferenceScreen
                 android:key="navbar_style_dimen_settings"
-                android:fragment="com.android.settings.slim.NavbarStyleDimenSettings"
+                android:fragment="com.slim.settings.fragments.NavbarStyleDimenSettings"
                 android:title="@string/navbar_style_dimen_title"
                 android:summary="@string/navbar_style_dimen_summary" />
 

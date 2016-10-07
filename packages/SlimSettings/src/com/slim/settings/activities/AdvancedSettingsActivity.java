@@ -21,9 +21,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
-import android.preference.PreferenceManager;
+import android.support.v7.preference.PreferenceManager;
 
-import com.android.settings.slim.AdvancedSettings;
+import com.slim.settings.fragments.AdvancedSettings;
 import com.slim.settings.SettingsActivity;
 
 import java.util.List;

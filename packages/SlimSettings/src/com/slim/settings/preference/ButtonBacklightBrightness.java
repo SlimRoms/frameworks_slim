@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.settings.slim;
+package com.slim.settings.preference;
 
 import android.app.AlertDialog;
 import android.content.ContentResolver;
@@ -24,8 +24,7 @@ import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.preference.DialogPreference;
-import android.preference.PreferenceManager;
+import android.support.v7.preference.PreferenceManager;
 import android.provider.Settings;
 import android.util.AttributeSet;
 import android.view.View;
@@ -40,7 +39,14 @@ import android.widget.TextView;
 
 import com.slim.settings.R;
 
-public class ButtonBacklightBrightness extends DialogPreference implements
+import static com.slim.settings.fragments.HardwareKeysSettings.KEY_MASK_HOME;
+import static com.slim.settings.fragments.HardwareKeysSettings.KEY_MASK_BACK;
+import static com.slim.settings.fragments.HardwareKeysSettings.KEY_MASK_MENU;
+import static com.slim.settings.fragments.HardwareKeysSettings.KEY_MASK_ASSIST;
+import static com.slim.settings.fragments.HardwareKeysSettings.KEY_MASK_APP_SWITCH;
+import static com.slim.settings.fragments.HardwareKeysSettings.KEY_MASK_CAMERA;
+
+public class ButtonBacklightBrightness extends CustomDialogPreference<AlertDialog> implements
         SeekBar.OnSeekBarChangeListener {
     private static final int DEFAULT_BUTTON_TIMEOUT = 5;
 
@@ -86,13 +92,39 @@ public class ButtonBacklightBrightness extends DialogPreference implements
     }
 
     @Override
-    protected void onPrepareDialogBuilder(AlertDialog.Builder builder) {
+    protected void onClick(AlertDialog d, int which) {
+        super.onClick(d, which);
+
+        if (getDialog() != null) {
+            mWindow = getDialog().getWindow();
+        }
+        updateBrightnessPreview();
+    }
+
+    @Override
+    protected void onPrepareDialogBuilder(AlertDialog.Builder builder,
+            DialogInterface.OnClickListener listener) {
         builder.setNeutralButton(R.string.settings_reset_button,
                 new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
             }
         });
+    }
+
+    @Override
+    protected boolean onDismissDialog(AlertDialog dialog, int which) {
+        if (which == DialogInterface.BUTTON_NEUTRAL) {
+            mTimeoutBar.setProgress(DEFAULT_BUTTON_TIMEOUT);
+            if (mButtonBrightness != null) {
+                mButtonBrightness.reset();
+            }
+            if (mKeyboardBrightness != null) {
+                mKeyboardBrightness.reset();
+            }
+            return false;
+        }
+        return true;
     }
 
     @Override
@@ -125,33 +157,6 @@ public class ButtonBacklightBrightness extends DialogPreference implements
         if (mButtonBrightness == null || mKeyboardBrightness == null) {
             view.findViewById(R.id.button_keyboard_divider).setVisibility(View.GONE);
         }
-    }
-
-    @Override
-    protected void showDialog(Bundle state) {
-        super.showDialog(state);
-
-        // Can't use onPrepareDialogBuilder for this as we want the dialog
-        // to be kept open on click
-        AlertDialog d = (AlertDialog) getDialog();
-        Button defaultsButton = d.getButton(DialogInterface.BUTTON_NEUTRAL);
-        defaultsButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mTimeoutBar.setProgress(DEFAULT_BUTTON_TIMEOUT);
-                if (mButtonBrightness != null) {
-                    mButtonBrightness.reset();
-                }
-                if (mKeyboardBrightness != null) {
-                    mKeyboardBrightness.reset();
-                }
-            }
-        });
-
-        if (getDialog() != null) {
-            mWindow = getDialog().getWindow();
-        }
-        updateBrightnessPreview();
     }
 
     @Override
@@ -222,12 +227,18 @@ public class ButtonBacklightBrightness extends DialogPreference implements
 
     public boolean isButtonSupported() {
         final Resources res = getContext().getResources();
-        boolean hasAnyKey = res.getInteger(
-                org.slim.framework.internal.R.integer.config_deviceHardwareKeys) != 0;
+        final int deviceKeys = res.getInteger(
+                org.slim.framework.internal.R.integer.config_deviceHardwareKeys);
+        // All hardware keys besides volume and camera can possibly have a backlight
+        boolean hasBacklightKey = (deviceKeys & KEY_MASK_HOME) != 0
+                || (deviceKeys & KEY_MASK_BACK) != 0
+                || (deviceKeys & KEY_MASK_MENU) != 0
+                || (deviceKeys & KEY_MASK_ASSIST) != 0
+                || (deviceKeys & KEY_MASK_APP_SWITCH) != 0;
         boolean hasBacklight = res.getInteger(
                 com.android.internal.R.integer.config_buttonBrightnessSettingDefault) > 0;
 
-        return hasAnyKey && hasBacklight;
+        return hasBacklightKey && hasBacklight;
     }
 
     public boolean isKeyboardSupported() {

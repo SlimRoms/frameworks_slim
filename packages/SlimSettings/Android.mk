@@ -21,9 +21,31 @@ include $(CLEAR_VARS)
 ## Slim framework
 LOCAL_JAVA_LIBRARIES := org.slim.framework
 
+LOCAL_STATIC_JAVA_LIBRARIES := \
+    android-support-v4 \
+    android-support-v13 \
+    android-support-v7-preference \
+    android-support-v7-appcompat \
+    android-support-v14-preference \
+    android-support-v7-recyclerview \
+    jsr305
+
 LOCAL_SRC_FILES := $(call all-java-files-under, src)
+
+LOCAL_RESOURCE_DIR := \
+    $(LOCAL_PATH)/res \
+    frameworks/support/v7/preference/res \
+    frameworks/support/v14/preference/res \
+    frameworks/support/v7/appcompat/res \
+    frameworks/support/v7/recyclerview/res
+
+LOCAL_AAPT_FLAGS := --auto-add-overlay \
+    --extra-packages android.support.v7.preference:android.support.v14.preference:android.support.v7.appcompat:android.support.v7.recyclerview
+
 LOCAL_CERTIFICATE := platform
 LOCAL_PACKAGE_NAME := SlimSettings
 LOCAL_PROGUARD_ENABLED:= disabled
+
+include frameworks/base/packages/SettingsLib/common.mk
 
 include $(BUILD_PACKAGE)
