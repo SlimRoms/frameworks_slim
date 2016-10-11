@@ -35,6 +35,9 @@
     <string name="no_home_key">You have no button assigned any more to the \"Home\" action!\n\nThis can make your device unusable!</string>
     <string name="no_back_key">You have no button assigned any more to the \"Back\" action!\n\nThis can make your device unusable!</string>
 
+    <!-- Settings categories -->
+    <string name="settings_header_category_personalization">Personalization</string>
+
     <!-- Shortcut actions -->
     <string name="shortcut_action_none">None</string>
     <string name="shortcut_action_menu">Menu</string>
