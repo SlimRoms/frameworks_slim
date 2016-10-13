@@ -17,7 +17,7 @@
 package org.slim.preference;
 
 import android.content.Context;
-import android.preference.SwitchPreference;
+import android.support.v14.preference.SwitchPreference;
 import android.util.AttributeSet;
 
 import org.slim.provider.SlimSettings;

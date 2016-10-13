@@ -18,14 +18,14 @@ package org.slim.preference;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.support.v7.preference.SwitchPreferenceCompat;
+import android.support.v14.preference.SwitchPreference;
 import android.util.AttributeSet;
 
 import static org.slim.preference.SlimPreference.SLIM_GLOBAL_SETTING;
 import static org.slim.preference.SlimPreference.SLIM_SECURE_SETTING;
 import static org.slim.preference.SlimPreference.SLIM_SYSTEM_SETTING;
 
-public class SlimSwitchPreference extends SwitchPreferenceCompat {
+public class SlimSwitchPreference extends SwitchPreference {
 
     private int mSettingType;
 
