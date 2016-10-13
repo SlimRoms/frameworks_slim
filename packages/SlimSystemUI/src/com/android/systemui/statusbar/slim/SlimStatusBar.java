@@ -50,6 +50,7 @@ import android.widget.Toast;
 
 import com.android.systemui.R;
 import com.android.systemui.slimrecent.RecentController;
+import com.android.systemui.slimrecent.SlimScreenPinningRequest;
 import com.android.systemui.statusbar.phone.SlimNavigationBarView;
 import com.android.systemui.statusbar.phone.NavigationBarView;
 import com.android.systemui.statusbar.phone.PhoneStatusBar;
@@ -85,6 +86,7 @@ public class SlimStatusBar extends PhoneStatusBar implements
     private Handler mHandler = new H();
 
     private SlimStatusBarIconController mSlimIconController;
+    private SlimScreenPinningRequest mSlimScreenPinningRequest;
 
     private boolean mHasNavigationBar = false;
     private boolean mNavigationBarAttached = false;
@@ -237,7 +239,15 @@ public class SlimStatusBar extends PhoneStatusBar implements
 
         mStatusBarView.findViewById(R.id.battery).setVisibility(View.GONE);
 
+        mSlimScreenPinningRequest = new SlimScreenPinningRequest(mContext);
+
         return mStatusBarView;
+    }
+
+    @Override
+    public void showScreenPinningRequest(int taskId, boolean allowCancel) {
+        hideRecents(false, false);
+        mSlimScreenPinningRequest.showPrompt(taskId, allowCancel);
     }
 
     @Override
@@ -280,10 +290,12 @@ public class SlimStatusBar extends PhoneStatusBar implements
 
         if (mHasNavigationBar) {
             addNavigationBar();
+            mSlimScreenPinningRequest.setSlimNavigationBarView(mSlimNavigationBarView);
         } else {
             if (mNavigationBarAttached) {
                 mNavigationBarAttached = false;
                 mWindowManager.removeView(mSlimNavigationBarView);
+                mSlimScreenPinningRequest.setSlimNavigationBarView(null);
             }
         }
     }
@@ -392,53 +404,25 @@ public class SlimStatusBar extends PhoneStatusBar implements
             new SlimKeyButtonView.LongClickCallback() {
         @Override
         public boolean onLongClick(View v) {
-            return handleLongPressBackRecents(v);
+            return handleLongPress(v);
         }
     };
 
-    private boolean handleLongPressBackRecents(View v) {
+    private boolean handleLongPress(View v) {
+        Log.d("TEST", "handleLongPress(v)");
         try {
             boolean sendBackLongPress = false;
             IActivityManager activityManager = ActivityManagerNative.getDefault();
-            boolean isAccessiblityEnabled = mAccessibilityManager.isEnabled();
-            if (activityManager.isInLockTaskMode() && !isAccessiblityEnabled) {
-                // If we recently long-pressed the other button then they were
-                // long-pressed 'together'
-                if (mSlimNavigationBarView.getRightMenuButton().isPressed()
-                        && mSlimNavigationBarView.getLeftMenuButton().isPressed()) {
-                    //activityManager.stopLockTaskModeOnCurrent();
-                    // When exiting refresh disabled flags.
-                    mSlimNavigationBarView.setDisabledFlags(mDisabled1, true);
-                    mSlimNavigationBarView.setOverrideMenuKeys(false);
-                } else if ((v.getId() == mSlimNavigationBarView.getLeftMenuButton().getId())
-                        && !mSlimNavigationBarView.getRightMenuButton().isPressed()) {
-                    // If we aren't pressing recents right now then they presses
-                    // won't be together, so send the standard long-press action.
-                    sendBackLongPress = true;
-                }
-            } else {
-                // If this is back still need to handle sending the long-press event.
-                long time = System.currentTimeMillis();
-                if (( time - mLastLockToAppLongPress) < 2000) {
-                    if (v.getId() == mSlimNavigationBarView.getLeftMenuButton().getId()
-                        || v.getId() == mSlimNavigationBarView.getRightMenuButton().getId()) {
-                        sendBackLongPress = true;
-                    }
-                } else if (isAccessiblityEnabled && activityManager.isInLockTaskMode()) {
-                    // When in accessibility mode a long press that is recents (not back)
-                    // should stop lock task.
-                    //activityManager.stopLockTaskModeOnCurrent();
-                    // When exiting refresh disabled flags.
-                    mSlimNavigationBarView.setDisabledFlags(mDisabled1, true);
-                    mSlimNavigationBarView.setOverrideMenuKeys(false);
-                }
-                mLastLockToAppLongPress = time;
+            if (activityManager.isInLockTaskMode()) {
+                activityManager.stopSystemLockTaskMode();
+                // When exiting refresh disabled flags.
+                mSlimNavigationBarView.setDisabledFlags(mDisabled1, true);
+                return true;
             }
-            return sendBackLongPress;
         } catch (RemoteException e) {
             Log.d(TAG, "Unable to reach activity manager", e);
-            return false;
         }
+        return false;
     }
 
     @Override

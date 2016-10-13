@@ -412,6 +412,7 @@ public class SlimNavigationBarView extends NavigationBarView {
 
         if (clickAction.equals(ActionConstants.ACTION_BACK)) {
             v.setId(R.id.back);
+            v.setLongClickCallback(mCallback);
         } else if (clickAction.equals(ActionConstants.ACTION_HOME)) {
             v.setId(R.id.home);
         } else if (clickAction.equals(ActionConstants.ACTION_RECENTS)) {
@@ -457,6 +458,11 @@ public class SlimNavigationBarView extends NavigationBarView {
         }
         v.setRippleColor(mRippleColor);
         return v;
+    }
+
+    public void pressBackButton(boolean pressed) {
+        View back = getCurrentView().findViewById(R.id.back);
+        if (back != null) back.setPressed(pressed);
     }
 
     private SlimKeyButtonView generateMenuKey(boolean landscape, int keyId) {

@@ -34,7 +34,7 @@
         android:orientation="vertical"
         android:gravity="center" >
 
-        <com.android.cards.view.CardListView
+        <com.android.cards.recyclerview.view.CardRecyclerView
             android:id="@+id/recent_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

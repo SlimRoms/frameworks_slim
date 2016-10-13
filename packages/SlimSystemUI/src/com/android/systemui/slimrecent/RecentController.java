@@ -36,6 +36,7 @@ import android.graphics.PixelFormat;
 import android.os.Handler;
 import android.os.RemoteException;
 import android.os.UserHandle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.view.Display;
 import android.view.Gravity;
@@ -53,7 +54,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
-import com.android.cards.view.CardListView;
+import com.android.cards.recyclerview.view.CardRecyclerView;
 
 import com.android.systemui.R;
 import com.android.systemui.RecentsComponent;
@@ -164,8 +165,12 @@ public class RecentController implements RecentPanelView.OnExitListener,
         mRecentWarningContent =
                 (LinearLayout) mRecentContainer.findViewById(R.id.recent_warning_content);
 
-        final CardListView cardListView =
-                (CardListView) mRecentContainer.findViewById(R.id.recent_list);
+        final CardRecyclerView cardRecyclerView =
+                (CardRecyclerView) mRecentContainer.findViewById(R.id.recent_list);
+
+        LinearLayoutManager llm = new LinearLayoutManager(context);
+        llm.setReverseLayout(true);
+        cardRecyclerView.setLayoutManager(llm);
 
         mEmptyRecentView =
                 (ImageView) mRecentContainer.findViewById(R.id.empty_recent);
@@ -173,12 +178,19 @@ public class RecentController implements RecentPanelView.OnExitListener,
         // Prepare gesture detector.
         final ScaleGestureDetector recentListGestureDetector =
                 new ScaleGestureDetector(mContext,
-                        new RecentListOnScaleGestureListener(mRecentWarningContent, cardListView));
+                        new RecentListOnScaleGestureListener(
+                                mRecentWarningContent, cardRecyclerView));
 
         // Prepare recents panel view and set the listeners
-        cardListView.setGestureDetector(recentListGestureDetector);
+        cardRecyclerView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                recentListGestureDetector.onTouchEvent(event);
+                return false;
+            }
+        });
 
-        mRecentPanelView = new RecentPanelView(mContext, this, cardListView, mEmptyRecentView);
+        mRecentPanelView = new RecentPanelView(mContext, this, cardRecyclerView, mEmptyRecentView);
         mRecentPanelView.setOnExitListener(this);
         mRecentPanelView.setOnTasksLoadedListener(this);
 
@@ -409,10 +421,6 @@ public class RecentController implements RecentPanelView.OnExitListener,
      */
     private void setSystemUiVisibilityFlags() {
         int vis = 0;
-        /*try {
-            vis = mWindowManagerService.getSystemUIVisibility();
-        } catch (RemoteException ex) {
-        }*/
         boolean layoutBehindNavigation = true;
         int newVis = View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
         if ((vis & View.STATUS_BAR_TRANSLUCENT) != 0) {
@@ -638,12 +646,12 @@ public class RecentController implements RecentPanelView.OnExitListener,
 
         // Views we need and are passed trough the constructor.
         private LinearLayout mRecentWarningContent;
-        private CardListView mCardListView;
+        private CardRecyclerView mCardRecyclerView;
 
         RecentListOnScaleGestureListener(
-                LinearLayout recentWarningContent, CardListView cardListView) {
+                LinearLayout recentWarningContent, CardRecyclerView cardRecyclerView) {
             mRecentWarningContent = recentWarningContent;
-            mCardListView = cardListView;
+            mCardRecyclerView = cardRecyclerView;
         }
 
         @Override
@@ -674,10 +682,7 @@ public class RecentController implements RecentPanelView.OnExitListener,
 
         @Override
         public boolean onScaleBegin(ScaleGestureDetector detector) {
-            if (!mRecentPanelView.hasClearableTasks()) {
-                return false;
-            }
-            return true;
+            return mRecentPanelView.hasClearableTasks();
         }
 
         @Override
@@ -708,7 +713,7 @@ public class RecentController implements RecentPanelView.OnExitListener,
                 animation2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public void onAnimationUpdate(ValueAnimator animation) {
-                        mCardListView.setAlpha((Float) animation.getAnimatedValue());
+                        mCardRecyclerView.setAlpha((Float) animation.getAnimatedValue());
                     }
                 });
 
@@ -753,8 +758,8 @@ public class RecentController implements RecentPanelView.OnExitListener,
                         // Remove all tasks now.
                         if (mRecentPanelView.removeAllApplications()) {
                             // Prepare listview for next recent call.
-                            mCardListView.setVisibility(View.GONE);
-                            mCardListView.setAlpha(1.0f);
+                            mCardRecyclerView.setVisibility(View.GONE);
+                            mCardRecyclerView.setAlpha(1.0f);
                             // Finally hide our recents screen.
                             hideRecents(false);
                         }

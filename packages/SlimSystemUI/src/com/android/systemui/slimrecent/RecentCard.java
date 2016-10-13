@@ -24,8 +24,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.android.cards.internal.Card;
+import com.android.cards.internal.CardHeader;
 
 import com.android.systemui.R;
+import com.android.systemui.SystemUIApplication;
+import com.android.systemui.statusbar.phone.PhoneStatusBar;
 
 import org.slim.provider.SlimSettings;
 
@@ -39,6 +42,8 @@ public class RecentCard extends Card {
     private RecentExpandedCard mExpandedCard;
 
     private int mPersistentTaskId;
+
+    private TaskDescription mTaskDescription;
 
     private int defaultCardBg = mContext.getResources().getColor(
                 R.color.recents_task_bar_default_background_color);
@@ -59,6 +64,8 @@ public class RecentCard extends Card {
     // Construct our card.
     private void constructBaseCard(Context context,
             final TaskDescription td, float scaleFactor) {
+
+        mTaskDescription = td;
 
         // Construct card header view.
         mHeader = new RecentHeader(mContext, td, scaleFactor);
@@ -142,6 +149,22 @@ public class RecentCard extends Card {
         if (mHeader != null) {
             // Set visible the expand/collapse button.
             mHeader.setButtonExpandVisible(!isTopTask);
+            mHeader.setOtherButtonDrawable(R.drawable.recents_lock_to_app_pin);
+            mHeader.setOtherButtonClickListener(new CardHeader.OnClickCardHeaderOtherButtonListener() {
+                @Override
+                public void onButtonItemClick(Card card, View view) {
+                    Context appContext = mContext.getApplicationContext();
+                    if (appContext == null) appContext = mContext;
+                    if (appContext instanceof SystemUIApplication) {
+                        SystemUIApplication app = (SystemUIApplication) appContext;
+                        PhoneStatusBar statusBar = app.getComponent(PhoneStatusBar.class);
+                        if (statusBar != null) {
+                            statusBar.showScreenPinningRequest(mPersistentTaskId, false);
+                        }
+                    }
+                }
+            });
+            mHeader.setOtherButtonVisible(isTopTask);
         }
 
         setExpanded(isExpanded);
@@ -151,6 +174,10 @@ public class RecentCard extends Card {
     public void setupInnerViewElements(ViewGroup parent, View view) {
         // Nothing to do here.
         return;
+    }
+
+    public TaskDescription getTaskDescription() {
+        return mTaskDescription;
     }
 
     public int getPersistentTaskId() {
