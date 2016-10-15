@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2016 SlimRoms Project
+* Copyright (C) 2016-2017 SlimRoms Project
 * Copyright (C) 2013-14 The Android Open Source Project
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
@@ -23,6 +23,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.android.systemui.R;
+import com.android.systemui.statusbar.phone.ActivityStarter;
 import com.android.systemui.statusbar.phone.QuickStatusBarHeader;
 import com.android.systemui.statusbar.policy.BatteryController;
 
@@ -32,18 +33,8 @@ public class SlimQuickStatusBarHeader extends QuickStatusBarHeader {
         super(context, attrs);
     }
 
-    @Override
-    protected void onFinishInflate() {
-        super.onFinishInflate();
-
-        View batteryLevel = findViewById(R.id.battery_level);
-        ((ViewGroup) batteryLevel.getParent()).removeView(batteryLevel);
+    public ActivityStarter getActivityStarter() {
+        return mActivityStarter;
     }
 
-    @Override
-    public void setBatteryController(BatteryController controller) {
-        super.setBatteryController(controller);
-        ((SlimBatteryContainer) findViewById(R.id.slim_battery_container))
-                .setBatteryController(controller);
-    }
 }
