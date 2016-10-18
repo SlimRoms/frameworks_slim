@@ -43,11 +43,10 @@ import android.util.Log;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.ContextThemeWrapper;
 import android.view.Gravity;
-import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.PopupMenu;
 
 import com.android.cards.recyclerview.internal.BaseRecyclerViewAdapter.CardViewHolder;
 import com.android.cards.recyclerview.internal.CardArrayRecyclerViewAdapter;
@@ -73,7 +72,7 @@ import org.slim.provider.SlimSettings;
 public class RecentPanelView {
 
     private static final String TAG = "RecentPanelView";
-    private static final boolean DEBUG = false;
+    public static final boolean DEBUG = false;
 
     public static final String TASK_PACKAGE_IDENTIFIER = "#ident:";
 
@@ -91,11 +90,11 @@ public class RecentPanelView {
     private static final int MENU_APP_PLAYSTORE_ID = 1;
     private static final int MENU_APP_AMAZON_ID    = 2;
 
-    private static final String PLAYSTORE_REFERENCE = "com.android.vending";
-    private static final String AMAZON_REFERENCE    = "com.amazon.venezia";
+    public static final String PLAYSTORE_REFERENCE = "com.android.vending";
+    public static final String AMAZON_REFERENCE    = "com.amazon.venezia";
 
-    private static final String PLAYSTORE_APP_URI_QUERY = "market://details?id=";
-    private static final String AMAZON_APP_URI_QUERY    = "amzn://apps/android?p=";
+    public static final String PLAYSTORE_APP_URI_QUERY = "market://details?id=";
+    public static final String AMAZON_APP_URI_QUERY    = "amzn://apps/android?p=";
 
     private final Context mContext;
     private final ImageView mEmptyRecentView;
@@ -122,8 +121,6 @@ public class RecentPanelView {
     private int mExpandedMode = EXPANDED_MODE_AUTO;
     private boolean mShowTopTask;
     private boolean mOnlyShowRunningTasks;
-
-    private PopupMenu mPopup;
 
     public interface OnExitListener {
         void onExit();
@@ -209,17 +206,6 @@ public class RecentPanelView {
             }
         });
 
-        // Listen for onLongClick to open popup menu
-        card.setOnLongClickListener(new Card.OnLongCardClickListener() {
-            @Override
-            public boolean onLongClick(Card card, View view) {
-                constructMenu(
-                        (ImageButton) view.findViewById(R.id.card_header_button_expand),
-                        td.packageName);
-                return true;
-            }
-        });
-
         // App icon has own onLongClick action. Listen for it and
         // process the favorite action for it.
         card.addPartialOnLongClickListener(Card.CLICK_LISTENER_THUMBNAIL_VIEW,
@@ -299,92 +285,6 @@ public class RecentPanelView {
                 resolver, SlimSettings.System.RECENT_PANEL_FAVORITES,
                 entryToSave,
                 UserHandle.USER_CURRENT);
-    }
-
-    /**
-     * Construct popup menu for longpress.
-     */
-    private void constructMenu(final View selectedView, final String packageName) {
-        if (selectedView == null) {
-            return;
-        }
-        // Force theme change to choose custom defined menu layout.
-        final Context layoutContext = new ContextThemeWrapper(mContext, R.style.RecentBaseStyle);
-
-        final PopupMenu popup = new PopupMenu(layoutContext, selectedView, Gravity.RIGHT);
-        mPopup = popup;
-
-        // If recent panel is drawn on the right edge we allow the menu
-        // if needed to draw over the left container edge.
-        //popup.setAllowLeftOverdraw(mMainGravity == Gravity.RIGHT);
-
-        // Add app detail menu entry.
-        popup.getMenu().add(0, MENU_APP_DETAILS_ID, 0,
-                mContext.getResources().getString(R.string.status_bar_recent_inspect_item_title));
-
-        // Add playstore or amazon entry if it is provided by the application.
-        if (checkAppInstaller(packageName, PLAYSTORE_REFERENCE)) {
-            popup.getMenu().add(0, MENU_APP_PLAYSTORE_ID, 0,
-                    getApplicationLabel(PLAYSTORE_REFERENCE));
-        } else if (checkAppInstaller(packageName, AMAZON_REFERENCE)) {
-            popup.getMenu().add(0, MENU_APP_AMAZON_ID, 0,
-                    getApplicationLabel(AMAZON_REFERENCE));
-        }
-
-        // Actually peform the actions onClick.
-        popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-            public boolean onMenuItemClick(MenuItem item) {
-                if (item.getItemId() == MENU_APP_DETAILS_ID) {
-                    startApplicationDetailsActivity(packageName, null, null);
-                } else if (item.getItemId() == MENU_APP_PLAYSTORE_ID) {
-                    startApplicationDetailsActivity(null,
-                            PLAYSTORE_APP_URI_QUERY + packageName, PLAYSTORE_REFERENCE);
-                } else if (item.getItemId() == MENU_APP_AMAZON_ID) {
-                    startApplicationDetailsActivity(null,
-                            AMAZON_APP_URI_QUERY + packageName, AMAZON_REFERENCE);
-                }
-                return true;
-            }
-        });
-        popup.setOnDismissListener(new PopupMenu.OnDismissListener() {
-            public void onDismiss(PopupMenu menu) {
-                mPopup = null;
-            }
-        });
-        popup.show();
-    }
-
-    /**
-     * Check if the requested app was installed by the reference store.
-     */
-    private boolean checkAppInstaller(String packageName, String reference) {
-        if (packageName == null) {
-            return false;
-        }
-        PackageManager pm = mContext.getPackageManager();
-        if (!isReferenceInstalled(reference, pm)) {
-            return false;
-        }
-
-        String installer = pm.getInstallerPackageName(packageName);
-        if (DEBUG) Log.d(TAG, "Package was installed by: " + installer);
-        if (reference.equals(installer)) {
-            return true;
-        }
-        return false;
-    }
-
-    /**
-     * Check is store reference is installed.
-     */
-    private boolean isReferenceInstalled(String packagename, PackageManager pm) {
-        try {
-            pm.getPackageInfo(packagename, PackageManager.GET_ACTIVITIES);
-            return true;
-        } catch (NameNotFoundException e) {
-            if (DEBUG) Log.e(TAG, "Store is not installed: " + packagename, e);
-            return false;
-        }
     }
 
     /**
@@ -487,7 +387,8 @@ public class RecentPanelView {
                 mContext.getSystemService(Context.ACTIVITY_SERVICE);
         if (td.taskId >= 0) {
             // This is an active task; it should just go to the foreground.
-            am.moveTaskToFront(td.taskId, ActivityManager.MOVE_TASK_WITH_HOME, getAnimation());
+            am.moveTaskToFront(td.taskId, ActivityManager.MOVE_TASK_WITH_HOME,
+                    getAnimation(mContext, mMainGravity));
         } else {
             final Intent intent = td.intent;
             intent.addFlags(Intent.FLAG_ACTIVITY_LAUNCHED_FROM_HISTORY
@@ -495,7 +396,7 @@ public class RecentPanelView {
                     | Intent.FLAG_ACTIVITY_NEW_TASK);
             if (DEBUG) Log.v(TAG, "Starting activity " + intent);
             try {
-                mContext.startActivityAsUser(intent, getAnimation(),
+                mContext.startActivityAsUser(intent, getAnimation(mContext, mMainGravity),
                         new UserHandle(UserHandle.USER_CURRENT));
             } catch (SecurityException e) {
                 Log.e(TAG, "Recents does not have the permission to launch " + intent, e);
@@ -507,42 +408,12 @@ public class RecentPanelView {
     }
 
     /**
-     * Start application details screen or play/amazon store details.
-     */
-    private void startApplicationDetailsActivity(
-            String packageName, String uri, String uriReference) {
-        // Starting app details screen is requested by the user.
-        // Start it with custom animation.
-        Intent intent = null;
-        if (packageName != null) {
-            // App detail screen is requested. Prepare the intent.
-            intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
-                    Uri.fromParts("package", packageName, null));
-        } else if (uri != null && uriReference != null) {
-            // Store app detail is requested. Prepare the intent.
-            intent = new Intent(Intent.ACTION_VIEW);
-            intent.setData(Uri.parse(uri));
-            // Exclude from recents if the store is not in our task list.
-            if (!storeIsInTaskList(uriReference)) {
-                intent.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
-            }
-        }
-        if (intent == null) {
-            return;
-        }
-        intent.setComponent(intent.resolveActivity(mContext.getPackageManager()));
-        TaskStackBuilder.create(mContext)
-                .addNextIntentWithParentStack(intent).startActivities(getAnimation());
-        exit();
-    }
-
-    /**
      * Get custom animation for app starting.
      * @return Bundle
      */
-    private Bundle getAnimation() {
-        return ActivityOptions.makeCustomAnimation(mContext,
-                mMainGravity == Gravity.RIGHT ?
+    public static Bundle getAnimation(Context context, int gravity) {
+        return ActivityOptions.makeCustomAnimation(context,
+                gravity == Gravity.RIGHT ?
                 org.slim.framework.internal.R.anim.recent_screen_enter
                 : org.slim.framework.internal.R.anim.recent_screen_enter_left,
                 org.slim.framework.internal.R.anim.recent_screen_fade_out).toBundle();
@@ -730,9 +601,8 @@ public class RecentPanelView {
     }
 
     protected void dismissPopup() {
-        if (mPopup != null) {
-            mPopup.dismiss();
-            mPopup = null;
+        for (Card card : mCards) {
+            card.hideOptions(-1, -1);
         }
     }
 
@@ -907,6 +777,7 @@ public class RecentPanelView {
 
                 // Never load the current home activity.
                 if (isCurrentHomeActivity(intent.getComponent(), homeInfo)) {
+                    newSize--;
                     continue;
                 }
 

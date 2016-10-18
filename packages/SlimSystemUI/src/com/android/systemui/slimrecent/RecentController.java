@@ -488,18 +488,17 @@ public class RecentController implements RecentPanelView.OnExitListener,
     private void showRecents() {
         if (DEBUG) Log.d(TAG, "in animation starting");
         mIsShowing = true;
-        sendCloseSystemWindows();
+        sendCloseSystemWindows(BaseStatusBar.SYSTEM_DIALOG_REASON_RECENT_APPS);
         mAnimationState = ANIMATION_STATE_NONE;
         mHandler.removeCallbacks(mRecentRunnable);
         CacheController.getInstance(mContext).setRecentScreenShowing(true);
         mWindowManager.addView(mParentView, generateLayoutParameter());
     }
 
-    private static void sendCloseSystemWindows() {
+    public static void sendCloseSystemWindows(String reason) {
         if (ActivityManagerNative.isSystemReady()) {
             try {
-                ActivityManagerNative.getDefault()
-                        .closeSystemDialogs(BaseStatusBar.SYSTEM_DIALOG_REASON_RECENT_APPS);
+                ActivityManagerNative.getDefault().closeSystemDialogs(reason);
             } catch (RemoteException e) {
             }
         }
