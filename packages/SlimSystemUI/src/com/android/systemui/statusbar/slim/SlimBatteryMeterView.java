@@ -395,7 +395,7 @@ public class SlimBatteryMeterView extends View implements DemoMode,
                 darkIntensity, mLightModeBackgroundColor, mDarkModeBackgroundColor);
     }
 
-    private int getFillColor(float darkIntensity) {
+    public int getFillColor(float darkIntensity) {
         return getColorForDarkIntensity(
                 darkIntensity, mLightModeFillColor, mDarkModeFillColor);
     }

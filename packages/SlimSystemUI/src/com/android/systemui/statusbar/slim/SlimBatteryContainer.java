@@ -180,5 +180,6 @@ public class SlimBatteryContainer extends LinearLayout implements
 
     public void setDarkIntensity(float darkIntensity) {
         mBattery.setDarkIntensity(darkIntensity);
+        mBatteryLevel.setTextColor(mBattery.getFillColor(darkIntensity));
     }
 }
