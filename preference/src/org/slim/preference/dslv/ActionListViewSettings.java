@@ -128,7 +128,6 @@ public class ActionListViewSettings extends ListFragment implements
     private String mActionValuesKey;
     private String mActionEntriesKey;
 
-    private int mTempActionIndex = -1;
     private ActionConfig mTempActionConfig;
 
     private Activity mActivity;
@@ -161,13 +160,11 @@ public class ActionListViewSettings extends ListFragment implements
                 } else if (!ActionChecker.containsAction(
                             mActivity, item, ActionConstants.ACTION_BACK)) {
                     mTempActionConfig = item;
-                    mTempActionIndex = which;
-                    showDialogInner(DLG_BACK_WARNING_DIALOG, 0, false, false, false);
+                    showDialogInner(DLG_BACK_WARNING_DIALOG, which, false, false, false);
                 } else if (!ActionChecker.containsAction(
                             mActivity, item, ActionConstants.ACTION_HOME)) {
                     mTempActionConfig = item;
-                    mTempActionIndex = which;
-                    showDialogInner(DLG_HOME_WARNING_DIALOG, 0, false, false, false);
+                    showDialogInner(DLG_HOME_WARNING_DIALOG, which, false, false, false);
                 } else {
                     setConfig(mActionConfigs, false);
                     deleteIconFileIfPresent(item, true);
@@ -283,10 +280,10 @@ public class ActionListViewSettings extends ListFragment implements
                         ActionConfig actionConfig = mActionConfigsAdapter.getItem(position);
                         if (ActionConstants.ACTION_BACK.equals(
                                 actionConfig.getClickAction())) {
-                            showDialogInner(DLG_BACK_WARNING_DIALOG, 0, false, false, false);
+                            showDialogInner(DLG_BACK_WARNING_DIALOG, position, false, false, true);
                         } else if (ActionConstants.ACTION_HOME.equals(
                                 actionConfig.getClickAction())) {
-                            showDialogInner(DLG_HOME_WARNING_DIALOG, 0, false, false, false);
+                            showDialogInner(DLG_HOME_WARNING_DIALOG, position, false, false, true);
                         } else {
                             showDialogInner(DLG_SHOW_ACTION_DIALOG, position, false, false, false);
                         }
@@ -1008,20 +1005,26 @@ public class ActionListViewSettings extends ListFragment implements
                     .setMessage(getOwner().getContext().getString(msg))
                     .setPositiveButton(android.R.string.ok,
                             new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            getOwner().mTempActionConfig = null;
-                            getOwner().mTempActionIndex = -1;
-                            getOwner().setConfig(getOwner().mActionConfigs, false);
+                        public void onClick(DialogInterface dialog, int i) {
+                            if (!newAction) {
+                                getOwner().mTempActionConfig = null;
+                                getOwner().setConfig(getOwner().mActionConfigs, false);
+                            }
                             dialog.cancel();
+                            if (newAction) {
+                                getOwner().showDialogInner(
+                                        DLG_SHOW_ACTION_DIALOG, which, false, false, false);
+                            }
                         }
                     })
                     .setNegativeButton(android.R.string.cancel,
                             new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            getOwner().mActionConfigsAdapter.insert(
-                                    getOwner().mTempActionConfig, getOwner().mTempActionIndex);
-                            getOwner().mTempActionConfig = null;
-                            getOwner().mTempActionIndex = -1;
+                        public void onClick(DialogInterface dialog, int i) {
+                            if (!newAction) {
+                                getOwner().mActionConfigsAdapter.insert(
+                                        getOwner().mTempActionConfig, which);
+                                getOwner().mTempActionConfig = null;
+                            }
                             dialog.cancel();
                         }
                     })
