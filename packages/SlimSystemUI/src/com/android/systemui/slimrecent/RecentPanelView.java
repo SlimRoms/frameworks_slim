@@ -19,6 +19,7 @@ package com.android.systemui.slimrecent;
 
 import android.app.Activity;
 import android.app.ActivityManager;
+import android.app.ActivityManagerNative;
 import android.app.ActivityOptions;
 import android.app.TaskStackBuilder;
 import android.content.ActivityNotFoundException;
@@ -34,6 +35,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Process;
+import android.os.RemoteException;
 import android.os.UserHandle;
 import android.provider.Settings;
 import android.support.v7.widget.RecyclerView;
@@ -72,7 +74,7 @@ import org.slim.provider.SlimSettings;
 public class RecentPanelView {
 
     private static final String TAG = "RecentPanelView";
-    public static final boolean DEBUG = false;
+    public static final boolean DEBUG = true;
 
     public static final String TASK_PACKAGE_IDENTIFIER = "#ident:";
 
@@ -107,7 +109,7 @@ public class RecentPanelView {
     // Array list of all current cards
     private ArrayList<Card> mCards;
     // Our first task which is not displayed but needed for internal references.
-    private TaskDescription mFirstTask;
+    protected TaskDescription mFirstTask;
     // Array list of all expanded states of apps accessed during the session
     private final ArrayList<TaskExpandedStates> mExpandedTaskStates =
             new ArrayList<TaskExpandedStates>();
@@ -380,7 +382,7 @@ public class RecentPanelView {
     /**
      * Start application or move to forground if still active.
      */
-    private void startApplication(TaskDescription td) {
+    protected void startApplication(TaskDescription td) {
         // Starting app is requested by the user.
         // Move it to foreground or start it with custom animation.
         final ActivityManager am = (ActivityManager)
@@ -500,13 +502,33 @@ public class RecentPanelView {
         cardLoader.executeOnExecutor(AsyncTask.SERIAL_EXECUTOR);
     }
 
-    private boolean isCurrentHomeActivity(ActivityManager.RunningTaskInfo task) {
+    public void startLastTask() {
+        ActivityManager.StackInfo stackInfo = null;
+        try {
+            stackInfo = ActivityManagerNative.getDefault()
+                    .getStackInfo(ActivityManager.StackId.HOME_STACK_ID);
+        } catch (RemoteException e) {}
+        if (stackInfo == null) return;
+        ComponentName topActivity = stackInfo.topActivity;
+        TaskDescription launch = null;
+        if (mShowTopTask) {
+            launch = ((RecentCard) mCards.get(0)).getTaskDescription();
+        } else {
+            launch = ((RecentCard) mCards.get(0)).getTaskDescription();
+        }
+        if (launch != null) {
+            Log.d("TEST", "packageName=" + launch.packageName);
+            startApplication(launch);
+        }
+    }
+
+    private boolean isCurrentHomeActivity(ActivityManager.RecentTaskInfo task) {
         Intent intent = new Intent(Intent.ACTION_MAIN);
         intent.addCategory(Intent.CATEGORY_HOME);
         ResolveInfo resolveInfo =
             mContext.getPackageManager().resolveActivity(intent, PackageManager.MATCH_DEFAULT_ONLY);
         String currentHomePackage = resolveInfo.activityInfo.packageName;
-        return task.baseActivity.getPackageName().equals(currentHomePackage);
+        return task.baseIntent.getComponent().getPackageName().equals(currentHomePackage);
     }
 
     /**
@@ -704,6 +726,7 @@ public class RecentPanelView {
             Process.setThreadPriority(Process.THREAD_PRIORITY_BACKGROUND);
 
             final int oldSize = mCards.size();
+            mCards.clear();
             mCounter = 0;
 
             // Check and get user favorites.
@@ -744,16 +767,19 @@ public class RecentPanelView {
             final int firstExpandedItems =
                     mContext.getResources().getInteger(R.integer.expanded_items_default);
 
+            int topTaskIndex = 0;
+
             // Get current task list. We do not need to do it in background. We only load MAX_TASKS.
-            for (int i = 0, index = 0; i < numTasks && (index < numTasks); ++i) {
+            for (int i = 0; i < numTasks; i++) {
                 if (isCancelled() || mCancelledByUser) {
                     if (DEBUG) Log.v(TAG, "loading tasks cancelled");
                     mIsLoading = false;
                     return false;
                 }
-                boolean topTask = i == 0;
+                boolean topTask = i == topTaskIndex;
                 final ActivityManager.RecentTaskInfo recentInfo = recentTasks.get(i);
-                if (i == 0 && isCurrentHomeActivity(runningTasks.get(0))) {
+                if (i == topTaskIndex && isCurrentHomeActivity(recentTasks.get(topTaskIndex))) {
+                    topTaskIndex++;
                     topTask = false;
                 }
                 if (mOnlyShowRunningTasks) {
@@ -802,7 +828,7 @@ public class RecentPanelView {
                                 oldState |= EXPANDED_STATE_TOPTASK;
                             }
                             item.setExpandedState(oldState);
-                            addCard(item, oldSize, true);
+                            addCard(item, true);
                             mFirstTask = item;
                         } else {
                             // Skip the first task for our list but save it for later use.
@@ -828,7 +854,7 @@ public class RecentPanelView {
                             }
                             item.setExpandedState(oldState);
                             // The first tasks are always added to the task list.
-                            addCard(item, oldSize, false);
+                            addCard(item, false);
                         } else {
                             if (mExpandedMode == EXPANDED_MODE_ALWAYS) {
                                 oldState |= EXPANDED_STATE_BY_SYSTEM;
@@ -837,7 +863,7 @@ public class RecentPanelView {
                             // Favorite tasks are added next. Non favorite
                             // we hold for a short time in an extra list.
                             if (item.getIsFavorite()) {
-                                addCard(item, oldSize, false);
+                                addCard(item, false);
                             } else {
                                 nonFavoriteTasks.add(item);
                             }
@@ -850,36 +876,15 @@ public class RecentPanelView {
 
             // Add now the non favorite tasks to the final task list.
             for (TaskDescription item : nonFavoriteTasks) {
-                addCard(item, oldSize, false);
+                addCard(item, false);
             }
 
-            // We may have unused cards left. Eg app was uninstalled but present
-            // in the old task list. Let us remove them as well.
-            if (newSize < oldSize) {
-                for (int i = oldSize - 1; i >= newSize; i--) {
-                    if (DEBUG) Log.v(TAG,
-                            "loading tasks - remove not needed old card - position=" + i);
-                    mCards.remove(i);
-                }
-            }
             return true;
         }
 
-        private void addCard(TaskDescription task, int oldSize, boolean topTask) {
+        private void addCard(TaskDescription task, boolean topTask) {
             RecentCard card = null;
 
-            // We may have allready constructed and inflated card.
-            // Let us reuse them and just update the content.
-            if (mCounter < oldSize) {
-                card = (RecentCard) mCards.get(mCounter);
-                if (card != null) {
-                    if (DEBUG) Log.v(TAG, "loading tasks - update old card");
-                    card.updateCardContent(task, mScaleFactor);
-                    card = assignListeners(card, task);
-                }
-            }
-
-            // No old card was present to update....so add a new one.
             if (card == null) {
                 if (DEBUG) Log.v(TAG, "loading tasks - create new card");
                 card = new RecentCard(mContext, task, mScaleFactor);
