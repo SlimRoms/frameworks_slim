@@ -101,10 +101,6 @@ public class ActionHelper {
             return null;
         }
 
-        if (resources == null) {
-            Log.d("TEST", "resources is null");
-        }
-
         if (!clickAction.startsWith("**")) {
             try {
                 String extraIconPath = clickAction.replaceAll(".*?hasExtraIcon=", "");
@@ -123,7 +119,6 @@ public class ActionHelper {
                     SLIM_FRAMEWORK_METADATA_NAME + ":drawable/ic_sysbar_null", null, null);
                 if (resId > 0) {
                     d = resources.getDrawable(resId);
-                    if (d == null) Log.d("TEST", "sysbar_null is null");
                     return d;
                 }
             } catch (URISyntaxException e) {

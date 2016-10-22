@@ -52,8 +52,6 @@ public class SlimSwitchPreference extends SwitchPreference {
     }
 
     private void init(Context context, AttributeSet attrs) {
-        android.util.Log.d("TEST", "SlimSwitchPreference");
-
         AttributeHelper a = new AttributeHelper(context, attrs,
             org.slim.framework.R.styleable.SlimPreference);
 
@@ -71,8 +69,6 @@ public class SlimSwitchPreference extends SwitchPreference {
                 mSettingType = SLIM_SYSTEM_SETTING;
                 break;
         }
-
-        android.util.Log.d("TEST", "finished constructor");
     }
 
     @Override

@@ -59,7 +59,6 @@ class SlimPreference {
 
     static String getStringFromSlimSettings(Context context,
             int settingType, String key, String def) {
-        Log.d("TEST", "settingType=" + settingType);
         if (!settingExists(context, settingType, key)) return def;
         switch (settingType) {
             case SLIM_GLOBAL_SETTING:
@@ -90,7 +89,6 @@ class SlimPreference {
     }
 
     static boolean settingExists(Context context, int settingType, String key) {
-        Log.d("TEST", "settingType=" + settingType);
         switch (settingType) {
             case SLIM_GLOBAL_SETTING:
                 return SlimSettings.Global.getString(context.getContentResolver(), key) != null;

@@ -56,8 +56,6 @@ public class SlimListPreference extends ListPreference {
             int s = a.getInt(org.slim.framework.R.styleable.SlimPreference_slimSettingType,
                     SLIM_SYSTEM_SETTING);
 
-            android.util.Log.d("TEST", "settingType=" + s);
-
             switch (s) {
                 case SLIM_GLOBAL_SETTING:
                     mSettingType = SLIM_GLOBAL_SETTING;

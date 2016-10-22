@@ -409,7 +409,6 @@ public class SlimStatusBar extends PhoneStatusBar implements
     };
 
     private boolean handleLongPress(View v) {
-        Log.d("TEST", "handleLongPress(v)");
         try {
             boolean sendBackLongPress = false;
             IActivityManager activityManager = ActivityManagerNative.getDefault();

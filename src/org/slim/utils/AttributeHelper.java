@@ -117,6 +117,7 @@ public class AttributeHelper {
 
     public int getInt(int index, int defValue) {
         AttributeInfo info = mMap.get(getIdForIndex(index));
+        if (info == null) return defValue;
         try {
             return Integer.parseInt(info.value);
         } catch (Exception e) {
@@ -139,7 +140,6 @@ public class AttributeHelper {
             String name = attrs.getAttributeName(i);
             String value = attrs.getAttributeValue(i);
             int resId = attrs.getAttributeNameResource(i);
-            Log.d("TEST", "name=" + name + " : value=" + value);
             mMap.put(resId, new AttributeInfo(resId, name, value));
         }
     }

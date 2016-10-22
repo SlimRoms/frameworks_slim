@@ -137,6 +137,8 @@ public class RecentCard extends Card {
 
     // Update content of our card.
     public void updateCardContent(final TaskDescription td, float scaleFactor) {
+        mTaskDescription = td;
+
         if (mHeader != null) {
             // Set or update the header title.
             mHeader.updateHeader(td, scaleFactor);
