@@ -54,17 +54,11 @@ public class RecentPanel extends SettingsPreferenceFragment implements DialogCre
     private static final String TAG = "RecentPanelSettings";
 
     // Preferences
-    private static final String USE_SLIM_RECENTS = "use_slim_recents";
-    private static final String ONLY_SHOW_RUNNING_TASKS = "only_show_running_tasks";
     private static final String RECENTS_MAX_APPS = "max_apps";
-    private static final String RECENT_PANEL_SHOW_TOPMOST =
-            "recent_panel_show_topmost";
     private static final String RECENT_PANEL_LEFTY_MODE =
             "recent_panel_lefty_mode";
     private static final String RECENT_PANEL_SCALE =
             "recent_panel_scale";
-    private static final String RECENT_PANEL_EXPANDED_MODE =
-            "recent_panel_expanded_mode";
     private static final String RECENT_PANEL_BG_COLOR =
             "recent_panel_bg_color";
     private static final String RECENT_CARD_BG_COLOR =
@@ -72,13 +66,9 @@ public class RecentPanel extends SettingsPreferenceFragment implements DialogCre
     private static final String RECENT_CARD_TEXT_COLOR =
             "recent_card_text_color";
 
-    private SwitchPreference mUseSlimRecents;
-    private SwitchPreference mShowRunningTasks;
     private SlimSeekBarPreference mMaxApps;
-    private SwitchPreference mRecentsShowTopmost;
     private SwitchPreference mRecentPanelLeftyMode;
     private SlimSeekBarPreference mRecentPanelScale;
-    private ListPreference mRecentPanelExpandedMode;
     private ColorPickerPreference mRecentPanelBgColor;
     private ColorPickerPreference mRecentCardBgColor;
     private ColorPickerPreference mRecentCardTextColor;
@@ -99,24 +89,10 @@ public class RecentPanel extends SettingsPreferenceFragment implements DialogCre
     }
 
     public boolean onPreferenceChange(Preference preference, Object newValue) {
-        if (preference == mUseSlimRecents) {
-            SlimSettings.System.putInt(getContentResolver(), SlimSettings.System.USE_SLIM_RECENTS,
-                    ((Boolean) newValue) ? 1 : 0);
-            return true;
-        } else if (preference == mShowRunningTasks) {
-            SlimSettings.System.putInt(getContentResolver(),
-                    SlimSettings.System.RECENT_SHOW_RUNNING_TASKS,
-                    ((Boolean) newValue) ? 1 : 0);
-            return true;
-        } else if (preference == mRecentPanelScale) {
+        if (preference == mRecentPanelScale) {
             int value = Integer.parseInt((String) newValue);
             SlimSettings.System.putInt(getContentResolver(),
                     SlimSettings.System.RECENT_PANEL_SCALE_FACTOR, value);
-            return true;
-        } else if (preference == mRecentPanelExpandedMode) {
-            int value = Integer.parseInt((String) newValue);
-            SlimSettings.System.putInt(getContentResolver(),
-                    SlimSettings.System.RECENT_PANEL_EXPANDED_MODE, value);
             return true;
         } else if (preference == mRecentPanelBgColor) {
             String hex = ColorPickerPreference.convertToARGB(
@@ -161,11 +137,6 @@ public class RecentPanel extends SettingsPreferenceFragment implements DialogCre
             SlimSettings.System.putInt(getContentResolver(),
                     SlimSettings.System.RECENT_PANEL_GRAVITY,
                     ((Boolean) newValue) ? Gravity.LEFT : Gravity.RIGHT);
-            return true;
-        } else if (preference == mRecentsShowTopmost) {
-            SlimSettings.System.putInt(getContentResolver(),
-                    SlimSettings.System.RECENT_PANEL_SHOW_TOPMOST,
-                    ((Boolean) newValue) ? 1 : 0);
             return true;
         } else if (preference == mMaxApps) {
             int value = Integer.parseInt((String) newValue);
@@ -236,19 +207,9 @@ public class RecentPanel extends SettingsPreferenceFragment implements DialogCre
         final int recentScale = SlimSettings.System.getInt(getContentResolver(),
                 SlimSettings.System.RECENT_PANEL_SCALE_FACTOR, 100);
         mRecentPanelScale.setInitValue(recentScale - 60);
-
-        final int recentExpandedMode = SlimSettings.System.getInt(getContentResolver(),
-                SlimSettings.System.RECENT_PANEL_EXPANDED_MODE, 0);
-        mRecentPanelExpandedMode.setValue(recentExpandedMode + "");
     }
 
     private void initializeAllPreferences() {
-        mUseSlimRecents = (SwitchPreference) findPreference(USE_SLIM_RECENTS);
-        mUseSlimRecents.setOnPreferenceChangeListener(this);
-
-        mShowRunningTasks = (SwitchPreference) findPreference(ONLY_SHOW_RUNNING_TASKS);
-        mShowRunningTasks.setOnPreferenceChangeListener(this);
-
         mMaxApps = (SlimSeekBarPreference) findPreference(RECENTS_MAX_APPS);
         mMaxApps.setOnPreferenceChangeListener(this);
         mMaxApps.minimumValue(5);
@@ -302,12 +263,6 @@ public class RecentPanel extends SettingsPreferenceFragment implements DialogCre
         // Enable options menu for color reset
         setHasOptionsMenu(true);
 
-        boolean enableRecentsShowTopmost = SlimSettings.System.getInt(getContentResolver(),
-                SlimSettings.System.RECENT_PANEL_SHOW_TOPMOST, 0) == 1;
-        mRecentsShowTopmost = (SwitchPreference) findPreference(RECENT_PANEL_SHOW_TOPMOST);
-        mRecentsShowTopmost.setChecked(enableRecentsShowTopmost);
-        mRecentsShowTopmost.setOnPreferenceChangeListener(this);
-
         mRecentPanelLeftyMode =
                 (SwitchPreference) findPreference(RECENT_PANEL_LEFTY_MODE);
         mRecentPanelLeftyMode.setOnPreferenceChangeListener(this);
@@ -320,10 +275,5 @@ public class RecentPanel extends SettingsPreferenceFragment implements DialogCre
         mRecentPanelScale.setOnPreferenceChangeListener(this);
         mRecentPanelScale.setInitValue(SlimSettings.System.getInt(getContentResolver(),
                 SlimSettings.System.RECENT_PANEL_SCALE_FACTOR, 100) - 60);
-
-        mRecentPanelExpandedMode =
-                (ListPreference) findPreference(RECENT_PANEL_EXPANDED_MODE);
-        mRecentPanelExpandedMode.setOnPreferenceChangeListener(this);
     }
-
 }

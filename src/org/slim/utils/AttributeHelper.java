@@ -24,6 +24,8 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.TypedValue;
 
+import com.android.internal.util.XmlUtils;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -118,7 +120,7 @@ public class AttributeHelper {
         try {
             return Integer.parseInt(info.value);
         } catch (Exception e) {
-            return defValue;
+            return XmlUtils.convertValueToInt(info.value, defValue);
         }
     }
 
@@ -137,6 +139,7 @@ public class AttributeHelper {
             String name = attrs.getAttributeName(i);
             String value = attrs.getAttributeValue(i);
             int resId = attrs.getAttributeNameResource(i);
+            Log.d("TEST", "name=" + name + " : value=" + value);
             mMap.put(resId, new AttributeInfo(resId, name, value));
         }
     }

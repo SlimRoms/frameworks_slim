@@ -21,19 +21,41 @@ import android.content.res.TypedArray;
 import android.support.v14.preference.SwitchPreference;
 import android.util.AttributeSet;
 
+import org.slim.utils.AttributeHelper;
+
 import static org.slim.preference.SlimPreference.SLIM_GLOBAL_SETTING;
 import static org.slim.preference.SlimPreference.SLIM_SECURE_SETTING;
 import static org.slim.preference.SlimPreference.SLIM_SYSTEM_SETTING;
 
 public class SlimSwitchPreference extends SwitchPreference {
 
-    private int mSettingType;
+    private int mSettingType = SLIM_SYSTEM_SETTING;
 
-    public SlimSwitchPreference(Context context, AttributeSet attrs, int defStyle) {
-        super(context, attrs, defStyle);
+    public SlimSwitchPreference(Context context, AttributeSet attrs, int defStyleAttr,
+            int defStyleRes) {
+        super(context, attrs, defStyleAttr, defStyleRes);
+        init(context, attrs);
+    }
 
-        TypedArray a = context.obtainStyledAttributes(attrs,
-            org.slim.framework.R.styleable.SlimPreference, -1, defStyle);
+    public SlimSwitchPreference(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+        init(context, attrs);
+    }
+
+    public SlimSwitchPreference(Context context, AttributeSet attrs) {
+        super(context, attrs);
+        init(context, attrs);
+    }
+
+    public SlimSwitchPreference(Context context) {
+        this(context, null);
+    }
+
+    private void init(Context context, AttributeSet attrs) {
+        android.util.Log.d("TEST", "SlimSwitchPreference");
+
+        AttributeHelper a = new AttributeHelper(context, attrs,
+            org.slim.framework.R.styleable.SlimPreference);
 
         int s = a.getInt(org.slim.framework.R.styleable.SlimPreference_slimSettingType,
                 SLIM_SYSTEM_SETTING);
@@ -49,14 +71,8 @@ public class SlimSwitchPreference extends SwitchPreference {
                 mSettingType = SLIM_SYSTEM_SETTING;
                 break;
         }
-    }
 
-    public SlimSwitchPreference(Context context, AttributeSet attrs) {
-        this(context, attrs, 0);
-    }
-
-    public SlimSwitchPreference(Context context) {
-        this(context, null);
+        android.util.Log.d("TEST", "finished constructor");
     }
 
     @Override

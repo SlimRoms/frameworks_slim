@@ -22,6 +22,8 @@ import android.support.v7.preference.ListPreference;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 
+import org.slim.utils.AttributeHelper;
+
 import static org.slim.preference.SlimPreference.SLIM_GLOBAL_SETTING;
 import static org.slim.preference.SlimPreference.SLIM_SECURE_SETTING;
 import static org.slim.preference.SlimPreference.SLIM_SYSTEM_SETTING;
@@ -48,11 +50,13 @@ public class SlimListPreference extends ListPreference {
     private void init(Context context, AttributeSet attrs) {
         if (attrs != null) {
 
-            TypedArray a = context.obtainStyledAttributes(attrs,
+            AttributeHelper a = new AttributeHelper(context, attrs,
                     org.slim.framework.R.styleable.SlimPreference);
 
             int s = a.getInt(org.slim.framework.R.styleable.SlimPreference_slimSettingType,
                     SLIM_SYSTEM_SETTING);
+
+            android.util.Log.d("TEST", "settingType=" + s);
 
             switch (s) {
                 case SLIM_GLOBAL_SETTING:

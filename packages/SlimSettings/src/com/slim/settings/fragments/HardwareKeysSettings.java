@@ -127,7 +127,6 @@ public class HardwareKeysSettings extends SettingsPreferenceFragment implements
     public static final int KEY_MASK_CAMERA     = 0x20;
 
     private SwitchPreference mEnableHwKeys;
-    private SwitchPreference mEnableCustomBindings;
     private Preference mBackPressAction;
     private Preference mBackLongPressAction;
     private Preference mBackDoubleTapAction;
@@ -213,8 +212,6 @@ public class HardwareKeysSettings extends SettingsPreferenceFragment implements
                 KEY_ENABLE_HWKEYS);
         mEnableHwKeys.setOnPreferenceChangeListener(this);
 
-        mEnableCustomBindings = (SwitchPreference) prefs.findPreference(
-                KEYS_ENABLE_CUSTOM);
         mBackPressAction = (Preference) prefs.findPreference(
                 KEYS_BACK_PRESS);
         mBackLongPressAction = (Preference) prefs.findPreference(
@@ -370,12 +367,6 @@ public class HardwareKeysSettings extends SettingsPreferenceFragment implements
             prefs.removePreference(keysAppSwitchCategory);
         }
 
-        boolean enableHardwareRebind = SlimSettings.System.getInt(getContentResolver(),
-                SlimSettings.System.HARDWARE_KEY_REBINDING, 0) == 1;
-        mEnableCustomBindings = (SwitchPreference) findPreference(KEYS_ENABLE_CUSTOM);
-        mEnableCustomBindings.setChecked(enableHardwareRebind);
-        mEnableCustomBindings.setOnPreferenceChangeListener(this);
-
         // Handle warning dialog.
         SharedPreferences preferences =
                 getActivity().getSharedPreferences("hw_key_settings", Activity.MODE_PRIVATE);
@@ -482,12 +473,7 @@ public class HardwareKeysSettings extends SettingsPreferenceFragment implements
             return false;
         }
 
-        if (preference == mEnableCustomBindings) {
-            boolean value = (Boolean) newValue;
-            SlimSettings.System.putInt(getContentResolver(),
-                    SlimSettings.System.HARDWARE_KEY_REBINDING, value ? 1 : 0);
-            return true;
-        } else if (preference == mEnableHwKeys) {
+        if (preference == mEnableHwKeys) {
             boolean value = (Boolean) newValue;
             SlimSettings.System.putInt(getContentResolver(),
                     SlimSettings.System.DISABLE_HW_KEYS, value ? 0 : 1);
@@ -502,11 +488,6 @@ public class HardwareKeysSettings extends SettingsPreferenceFragment implements
                 Settings.System.putInt(getContentResolver(),
                         Settings.System.BUTTON_BRIGHTNESS, oldBright);
             }
-            return true;
-        } else if (preference == mEnableHwKeys) {
-            boolean value = (Boolean) newValue;
-            SlimSettings.System.putInt(getContentResolver(),
-                    SlimSettings.System.DISABLE_HW_KEYS, value ? 0 : 1);
             return true;
         }
         return false;

@@ -31,4 +31,12 @@
 
     <dimen name="fab_press_translation_z">9dp</dimen>
 
+    <dimen name="settings_side_margin">0dip</dimen>
+
+    <!-- ActionBar height -->
+    <dimen name="actionbar_size">56dip</dimen>
+
+    <!-- ActionBar contentInsetStart -->
+    <dimen name="actionbar_contentInsetStart">16dp</dimen>
+
 </resources>

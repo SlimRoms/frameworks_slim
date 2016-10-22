@@ -18,12 +18,12 @@
         xmlns:settings="http://schemas.android.com/apk/res/com.android.settings"
         android:title="@string/recent_panel_category">
 
-        <SwitchPreference
+        <org.slim.preference.SlimSwitchPreference
             android:key="use_slim_recents"
             android:title="@string/use_slim_recents_title"
             android:defaultValue="true" />
 
-        <SwitchPreference
+        <org.slim.preference.SlimSwitchPreference
             android:key="only_show_running_tasks"
             android:title="@string/show_running_tasks_title"
             android:defaultValue="false" />
@@ -32,14 +32,13 @@
             android:key="max_apps"
             android:title="@string/recents_max_apps_title" />
 
-        <ListPreference
+        <org.slim.preference.SlimListPreference
             android:dependency="use_slim_recents"
             android:key="recent_panel_expanded_mode"
             android:entries="@array/recent_panel_expanded_mode_entries"
             android:entryValues="@array/recent_panel_expanded_mode_values"
             android:title="@string/recent_panel_expanded_mode_title"
-            android:summary="@string/recent_panel_expanded_mode_summary"
-            android:persistent="false" />
+            android:summary="@string/recent_panel_expanded_mode_summary" />
 
         <SwitchPreference
             android:dependency="use_slim_recents"
@@ -48,12 +47,11 @@
             android:summary="@string/recent_panel_lefty_mode_summary"
             android:persistent="false" />
 
-        <SwitchPreference
+        <org.slim.preference.SlimSwitchPreference
             android:dependency="use_slim_recents"
             android:key="recent_panel_show_topmost"
             android:title="@string/recent_panel_show_topmost_title"
-            android:summary="@string/recent_panel_show_topmost_summary"
-            android:persistent="false" />
+            android:summary="@string/recent_panel_show_topmost_summary" />
 
         <org.slim.preference.SlimSeekBarPreference
             android:key="recent_panel_scale"
