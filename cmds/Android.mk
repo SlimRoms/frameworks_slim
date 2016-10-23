@@ -12,13 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-PRODUCT_PACKAGES += \
-    org.slim.framework \
-    org.slim.framework-res \
-    services.slim \
-    SlimSettingsProvider \
-    SlimSettings \
-    slimsettings
+LOCAL_PATH := $(call my-dir)
 
-PRODUCT_BOOT_JARS += \
-    org.slim.framework
+include $(call all-makefiles-under,$(LOCAL_PATH))

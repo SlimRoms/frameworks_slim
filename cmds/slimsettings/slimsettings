@@ -1,0 +1,5 @@
+# Script to start "slimsettings" on the device
+#
+base=/system
+export CLASSPATH=$base/framework/slimsettings.jar
+exec app_process $base/bin org.slim.commands.slimsettings.SlimSettingsCmd "$@"
