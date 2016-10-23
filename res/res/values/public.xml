@@ -27,6 +27,13 @@
 
   <!-- attr (start with 0x02010000) -->
   <public type="attr" name="slimSettingType" id="0x02010000" />
+  <public type="attr" name="defaultValue" id="0x02010001" />
+  <public type="attr" name="useMilliSeconds" id="0x02010002" />
+  <public type="attr" name="usePercentage" id="0x02010003" />
+  <public type="attr" name="disableText" id="0x02010004" />
+  <public type="attr" name="interval" id="0x02010005" />
+  <public type="attr" name="minValue" id="0x02010006" />
+  <public type="attr" name="multiplyValue" id="0x02010007" />
 
   <!-- id (start with 0x02020000)-->
   <!--SlimSeekBar ids -->

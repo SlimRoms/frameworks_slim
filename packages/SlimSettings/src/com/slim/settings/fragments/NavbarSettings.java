@@ -18,7 +18,6 @@ package com.slim.settings.fragments;
 
 import android.os.Bundle;
 import android.os.UserHandle;
-import android.support.v14.preference.SwitchPreference;
 import android.support.v7.preference.ListPreference;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.Preference.OnPreferenceChangeListener;
@@ -29,7 +28,6 @@ import com.slim.settings.SettingsPreferenceFragment;
 import com.slim.settings.R;
 
 import org.slim.framework.internal.logging.SlimMetricsLogger;
-import org.slim.preference.SlimSeekBarPreference;
 import org.slim.provider.SlimSettings;
 import org.slim.utils.DeviceUtils;
 
@@ -43,9 +41,6 @@ public class NavbarSettings extends SettingsPreferenceFragment implements
     private static final String PREF_BUTTON = "navbar_button_settings";
     private static final String PREF_BUTTON_STYLE = "nav_bar_button_style";
     private static final String PREF_STYLE_DIMEN = "navbar_style_dimen_settings";
-    private static final String DIM_NAV_BUTTONS_TIMEOUT = "dim_nav_buttons_timeout";
-    private static final String DIM_NAV_BUTTONS_ALPHA = "dim_nav_buttons_alpha";
-    private static final String DIM_NAV_BUTTONS_ANIMATE_DURATION = "dim_nav_buttons_animate_duration";
 
     private int mNavBarMenuDisplayValue;
 
@@ -54,9 +49,6 @@ public class NavbarSettings extends SettingsPreferenceFragment implements
     PreferenceScreen mButtonPreference;
     PreferenceScreen mButtonStylePreference;
     PreferenceScreen mStyleDimenPreference;
-    SlimSeekBarPreference mDimNavButtonsTimeout;
-    SlimSeekBarPreference mDimNavButtonsAlpha;
-    SlimSeekBarPreference mDimNavButtonsAnimateDuration;
 
     @Override
     protected int getMetricsCategory() {
@@ -97,48 +89,6 @@ public class NavbarSettings extends SettingsPreferenceFragment implements
         if (showByDefault == 1) {
             prefs.removePreference(findPreference(ENABLE_NAVIGATION_BAR));
         }
-
-        mDimNavButtonsTimeout = (SlimSeekBarPreference) findPreference(DIM_NAV_BUTTONS_TIMEOUT);
-        mDimNavButtonsTimeout.setDefault(3000);
-        mDimNavButtonsTimeout.isMilliseconds(true);
-        mDimNavButtonsTimeout.setInterval(1);
-        mDimNavButtonsTimeout.minimumValue(100);
-        mDimNavButtonsTimeout.multiplyValue(100);
-        mDimNavButtonsTimeout.setOnPreferenceChangeListener(this);
-
-        mDimNavButtonsAlpha = (SlimSeekBarPreference) findPreference(DIM_NAV_BUTTONS_ALPHA);
-        mDimNavButtonsAlpha.setDefault(50);
-        mDimNavButtonsAlpha.setInterval(1);
-        mDimNavButtonsAlpha.setOnPreferenceChangeListener(this);
-
-        mDimNavButtonsAnimateDuration =
-                (SlimSeekBarPreference) findPreference(DIM_NAV_BUTTONS_ANIMATE_DURATION);
-        mDimNavButtonsAnimateDuration.setDefault(2000);
-        mDimNavButtonsAnimateDuration.isMilliseconds(true);
-        mDimNavButtonsAnimateDuration.setInterval(1);
-        mDimNavButtonsAnimateDuration.minimumValue(100);
-        mDimNavButtonsAnimateDuration.multiplyValue(100);
-        mDimNavButtonsAnimateDuration.setOnPreferenceChangeListener(this);
-
-        if (mDimNavButtonsTimeout != null) {
-            final int dimTimeout = SlimSettings.System.getInt(getContentResolver(),
-                    SlimSettings.System.DIM_NAV_BUTTONS_TIMEOUT, 3000);
-            // minimum 100 is 1 interval of the 100 multiplier
-            mDimNavButtonsTimeout.setInitValue((dimTimeout / 100) - 1);
-        }
-
-        if (mDimNavButtonsAlpha != null) {
-            int alphaScale = SlimSettings.System.getInt(getContentResolver(),
-                    SlimSettings.System.DIM_NAV_BUTTONS_ALPHA, 50);
-            mDimNavButtonsAlpha.setInitValue(alphaScale);
-        }
-
-        if (mDimNavButtonsAnimateDuration != null) {
-            final int animateDuration = SlimSettings.System.getInt(getContentResolver(),
-                    SlimSettings.System.DIM_NAV_BUTTONS_ANIMATE_DURATION, 2000);
-            // minimum 100 is 1 interval of the 100 multiplier
-            mDimNavButtonsAnimateDuration.setInitValue((animateDuration / 100) - 1);
-        }
     }
 
     @Override
@@ -152,19 +102,6 @@ public class NavbarSettings extends SettingsPreferenceFragment implements
             SlimSettings.System.putInt(getActivity().getContentResolver(),
                     SlimSettings.System.MENU_VISIBILITY, mNavBarMenuDisplayValue);
             mMenuDisplayLocation.setEnabled(mNavBarMenuDisplayValue != 1);
-            return true;
-        } else if (preference == mDimNavButtonsTimeout) {
-            SlimSettings.System.putInt(getActivity().getContentResolver(),
-                SlimSettings.System.DIM_NAV_BUTTONS_TIMEOUT, Integer.parseInt((String) newValue));
-            return true;
-        } else if (preference == mDimNavButtonsAlpha) {
-            SlimSettings.System.putInt(getActivity().getContentResolver(),
-                SlimSettings.System.DIM_NAV_BUTTONS_ALPHA, Integer.parseInt((String) newValue));
-            return true;
-        } else if (preference == mDimNavButtonsAnimateDuration) {
-            SlimSettings.System.putInt(getActivity().getContentResolver(),
-                SlimSettings.System.DIM_NAV_BUTTONS_ANIMATE_DURATION,
-                Integer.parseInt((String) newValue));
             return true;
         }
         return false;

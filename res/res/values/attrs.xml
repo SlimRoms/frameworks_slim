@@ -44,7 +44,14 @@
 
     <!-- Base attributes available to SlimSeekBarPreference. -->
     <declare-styleable name="SlimSeekBarPreference">
-        <!-- No added attributes at this time -->
+        <attr name="defaultValue" format="integer" />
+        <attr name="useMilliSeconds" format="boolean" />
+        <attr name="usePercentage" format="boolean" />
+        <attr name="disableText" format="boolean" />
+        <attr name="interval" format="integer" />
+        <attr name="minValue" format="integer" />
+        <attr name="multiplyValue" format="integer" />
+
     </declare-styleable>
 
     <declare-styleable name="SlimPreference">

@@ -44,7 +44,6 @@ import com.slim.settings.SettingsPreferenceFragment;
 import org.slim.framework.R;
 import org.slim.framework.internal.logging.SlimMetricsLogger;
 import org.slim.utils.DeviceUtils;
-import org.slim.preference.SlimSeekBarPreference;
 import org.slim.preference.colorpicker.ColorPickerPreference;
 import org.slim.provider.SlimSettings;
 
@@ -66,9 +65,7 @@ public class RecentPanel extends SettingsPreferenceFragment implements DialogCre
     private static final String RECENT_CARD_TEXT_COLOR =
             "recent_card_text_color";
 
-    private SlimSeekBarPreference mMaxApps;
     private SwitchPreference mRecentPanelLeftyMode;
-    private SlimSeekBarPreference mRecentPanelScale;
     private ColorPickerPreference mRecentPanelBgColor;
     private ColorPickerPreference mRecentCardBgColor;
     private ColorPickerPreference mRecentCardTextColor;
@@ -89,12 +86,7 @@ public class RecentPanel extends SettingsPreferenceFragment implements DialogCre
     }
 
     public boolean onPreferenceChange(Preference preference, Object newValue) {
-        if (preference == mRecentPanelScale) {
-            int value = Integer.parseInt((String) newValue);
-            SlimSettings.System.putInt(getContentResolver(),
-                    SlimSettings.System.RECENT_PANEL_SCALE_FACTOR, value);
-            return true;
-        } else if (preference == mRecentPanelBgColor) {
+        if (preference == mRecentPanelBgColor) {
             String hex = ColorPickerPreference.convertToARGB(
                     Integer.valueOf(String.valueOf(newValue)));
             if (hex.equals("#00ffffff")) {
@@ -137,11 +129,6 @@ public class RecentPanel extends SettingsPreferenceFragment implements DialogCre
             SlimSettings.System.putInt(getContentResolver(),
                     SlimSettings.System.RECENT_PANEL_GRAVITY,
                     ((Boolean) newValue) ? Gravity.LEFT : Gravity.RIGHT);
-            return true;
-        } else if (preference == mMaxApps) {
-            int value = Integer.parseInt((String) newValue);
-            SlimSettings.System.putInt(getContentResolver(),
-                    SlimSettings.System.RECENTS_MAX_APPS, value);
             return true;
         }
         return false;
@@ -203,21 +190,9 @@ public class RecentPanel extends SettingsPreferenceFragment implements DialogCre
         final boolean recentLeftyMode = SlimSettings.System.getInt(getContentResolver(),
                 SlimSettings.System.RECENT_PANEL_GRAVITY, Gravity.RIGHT) == Gravity.LEFT;
         mRecentPanelLeftyMode.setChecked(recentLeftyMode);
-
-        final int recentScale = SlimSettings.System.getInt(getContentResolver(),
-                SlimSettings.System.RECENT_PANEL_SCALE_FACTOR, 100);
-        mRecentPanelScale.setInitValue(recentScale - 60);
     }
 
     private void initializeAllPreferences() {
-        mMaxApps = (SlimSeekBarPreference) findPreference(RECENTS_MAX_APPS);
-        mMaxApps.setOnPreferenceChangeListener(this);
-        mMaxApps.minimumValue(5);
-        mMaxApps.setInitValue(SlimSettings.System.getIntForUser(getContentResolver(),
-                SlimSettings.System.RECENTS_MAX_APPS, ActivityManager.getMaxRecentTasksStatic(),
-                UserHandle.USER_CURRENT) - 5);
-        mMaxApps.disablePercentageValue(true);
-
         // Recent panel background color
         mRecentPanelBgColor =
                 (ColorPickerPreference) findPreference(RECENT_PANEL_BG_COLOR);
@@ -266,14 +241,5 @@ public class RecentPanel extends SettingsPreferenceFragment implements DialogCre
         mRecentPanelLeftyMode =
                 (SwitchPreference) findPreference(RECENT_PANEL_LEFTY_MODE);
         mRecentPanelLeftyMode.setOnPreferenceChangeListener(this);
-
-        mRecentPanelScale =
-                (SlimSeekBarPreference) findPreference(RECENT_PANEL_SCALE);
-        mRecentPanelScale.setInterval(5);
-        mRecentPanelScale.setDefault(100);
-        mRecentPanelScale.minimumValue(60);
-        mRecentPanelScale.setOnPreferenceChangeListener(this);
-        mRecentPanelScale.setInitValue(SlimSettings.System.getInt(getContentResolver(),
-                SlimSettings.System.RECENT_PANEL_SCALE_FACTOR, 100) - 60);
     }
 }

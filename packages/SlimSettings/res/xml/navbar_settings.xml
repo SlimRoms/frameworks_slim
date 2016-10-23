@@ -15,7 +15,8 @@
 -->
 
 <PreferenceScreen
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:slim="http://schemas.android.com/apk/res/org.slim.framework">
 
         <org.slim.preference.SlimSwitchPreference
                 android:key="navigation_bar_show"
@@ -99,13 +100,20 @@
                     android:key="dim_nav_buttons_timeout"
                     android:dependency="dim_nav_buttons"
                     android:title="@string/dim_nav_buttons_timeout_title"
-                    android:summary="@string/dim_nav_buttons_timeout_summary" />
+                    android:summary="@string/dim_nav_buttons_timeout_summary"
+                    slim:defaultValue="3000"
+                    slim:useMilliSeconds="true"
+                    slim:interval="1"
+                    slim:minValue="100"
+                    slim:multiplyValue="100" />
 
             <org.slim.preference.SlimSeekBarPreference
                     android:key="dim_nav_buttons_alpha"
                     android:dependency="dim_nav_buttons"
                     android:title="@string/dim_nav_buttons_alpha_title"
-                    android:summary="@string/dim_nav_buttons_alpha_summary" />
+                    android:summary="@string/dim_nav_buttons_alpha_summary"
+                    slim:defaultValue="50"
+                    slim:interval="1" />
 
             <org.slim.preference.SlimSwitchPreference
                     android:key="dim_nav_buttons_animate"
@@ -117,7 +125,12 @@
                     android:key="dim_nav_buttons_animate_duration"
                     android:dependency="dim_nav_buttons_animate"
                     android:title="@string/dim_nav_buttons_animate_duration_title"
-                    android:summary="@string/dim_nav_buttons_animate_duration_summary" />
+                    android:summary="@string/dim_nav_buttons_animate_duration_summary"
+                    slim:defaultValue="2000"
+                    slim:useMilliSeconds="true"
+                    slim:interval="1"
+                    slim:minValue="100"
+                    slim:multiplyValue="100" />
 
         </PreferenceCategory>
 

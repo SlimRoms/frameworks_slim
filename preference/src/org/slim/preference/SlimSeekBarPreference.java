@@ -31,7 +31,12 @@ import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 
-import org.slim.framework.internal.R;
+import org.slim.framework.R;
+import org.slim.utils.AttributeHelper;
+
+import static org.slim.preference.SlimPreference.SLIM_GLOBAL_SETTING;
+import static org.slim.preference.SlimPreference.SLIM_SECURE_SETTING;
+import static org.slim.preference.SlimPreference.SLIM_SYSTEM_SETTING;
 
 /**
  * @hide
@@ -39,14 +44,13 @@ import org.slim.framework.internal.R;
 public class SlimSeekBarPreference extends Preference
         implements OnSeekBarChangeListener {
 
-    public static int maximum = 100;
-    public int interval = 5;
+    public int mInterval = 5;
 
     private View mView = null;
-    private TextView monitorBox;
-    private SeekBar bar;
+    private TextView mMonitorBox;
+    private SeekBar mBar;
 
-    int defaultValue = 60;
+    int mDefaultValue = 60;
     int mSetDefault = -1;
     int mMultiply = -1;
     int mMinimum = -1;
@@ -54,11 +58,45 @@ public class SlimSeekBarPreference extends Preference
     boolean mDisablePercentageValue = false;
     boolean mIsMilliSeconds = false;
 
+    private int mSettingType;
+
     private OnPreferenceChangeListener mChanger;
 
     public SlimSeekBarPreference(Context context, AttributeSet attrs) {
         super(context, attrs);
-        setLayoutResource(R.layout.slider_preference);
+        init(context, attrs);
+    }
+
+    private void init(Context context, AttributeSet attrs) {
+        setLayoutResource(org.slim.framework.internal.R.layout.slider_preference);
+
+        AttributeHelper a = new AttributeHelper(context, attrs, R.styleable.SlimSeekBarPreference);
+
+        mSetDefault = a.getInt(R.styleable.SlimSeekBarPreference_defaultValue, mSetDefault);
+        mDefaultValue = mSetDefault;
+        mIsMilliSeconds = a.getBoolean(R.styleable.SlimSeekBarPreference_useMilliSeconds,
+                mIsMilliSeconds);
+        mDisablePercentageValue = !a.getBoolean(R.styleable.SlimSeekBarPreference_usePercentage,
+                !mDisablePercentageValue);
+        mDisableText = a.getBoolean(R.styleable.SlimSeekBarPreference_disableText, mDisableText);
+        mInterval = a.getInt(R.styleable.SlimSeekBarPreference_interval, mInterval);
+        mMinimum = a.getInt(R.styleable.SlimSeekBarPreference_minValue, mMinimum);
+        mMultiply = a.getInt(R.styleable.SlimSeekBarPreference_multiplyValue, mMultiply);
+
+        int s = a.getInt(org.slim.framework.R.styleable.SlimPreference_slimSettingType,
+                SLIM_SYSTEM_SETTING);
+
+        switch (s) {
+            case SLIM_GLOBAL_SETTING:
+                mSettingType = SLIM_GLOBAL_SETTING;
+                break;
+            case SLIM_SECURE_SETTING:
+                mSettingType = SLIM_SECURE_SETTING;
+                break;
+            default:
+                mSettingType = SLIM_SYSTEM_SETTING;
+                break;
+        }
     }
 
     @Override
@@ -66,23 +104,24 @@ public class SlimSeekBarPreference extends Preference
         super.onBindViewHolder(holder);
 
         mView = holder.itemView;
-        monitorBox = (TextView) holder.findViewById(R.id.monitor_box);
-        bar = (SeekBar) holder.findViewById(R.id.seek_bar);
-        bar.setOnSeekBarChangeListener(this);
-        bar.setProgress(defaultValue);
+        mMonitorBox = (TextView) holder.findViewById(R.id.monitor_box);
+        mBar = (SeekBar) holder.findViewById(R.id.seek_bar);
+        mBar.setOnSeekBarChangeListener(this);
+        int progress = getPersistedInt(mSetDefault);
+        if (mMultiply != -1) {
+            progress = progress / mMultiply;
+        }
+        if (mMinimum != -1) {
+            progress -= mMinimum;
+        }
+        mBar.setProgress(progress);
     }
 
     public void setInitValue(int progress) {
-        defaultValue = progress;
-        if (bar != null) {
-            bar.setProgress(defaultValue);
+        mDefaultValue = progress;
+        if (mBar != null) {
+            mBar.setProgress(mDefaultValue);
         }
-    }
-
-    @Override
-    protected Object onGetDefaultValue(TypedArray a, int index) {
-        // TODO Auto-generated method stub
-        return super.onGetDefaultValue(a, index);
     }
 
     @Override
@@ -94,7 +133,7 @@ public class SlimSeekBarPreference extends Preference
 
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-        progress = Math.round(((float) progress) / interval) * interval;
+        progress = Math.round(((float) progress) / mInterval) * mInterval;
         seekBar.setProgress(progress);
 
         if (mMultiply != -1) {
@@ -106,19 +145,20 @@ public class SlimSeekBarPreference extends Preference
         }
 
         if (progress == mSetDefault) {
-            monitorBox.setText(R.string.default_string);
+            mMonitorBox.setText(R.string.default_string);
         } else if (!mDisableText) {
             if (mIsMilliSeconds) {
-                monitorBox.setText(progress + " ms");
+                mMonitorBox.setText(progress + " ms");
             } else if (!mDisablePercentageValue) {
-                monitorBox.setText(progress + "%");
+                mMonitorBox.setText(progress + "%");
             } else {
-                monitorBox.setText(Integer.toString(progress));
+                mMonitorBox.setText(Integer.toString(progress));
             }
         }
         if (mChanger != null) {
             mChanger.onPreferenceChange(this, Integer.toString(progress));
         }
+        persistInt(progress);
     }
 
     public void disablePercentageValue(boolean disable) {
@@ -130,7 +170,7 @@ public class SlimSeekBarPreference extends Preference
     }
 
     public void setInterval(int inter) {
-        interval = inter;
+        mInterval = inter;
     }
 
     public void setDefault(int defaultVal) {
@@ -151,12 +191,36 @@ public class SlimSeekBarPreference extends Preference
 
     @Override
     public void onStartTrackingTouch(SeekBar seekBar) {
-
     }
 
     @Override
     public void onStopTrackingTouch(SeekBar seekBar) {
-
     }
 
+    @Override
+    protected boolean persistInt(int value) {
+        if (shouldPersist()) {
+            if (value == getPersistedInt(-1)) {
+                return true;
+            }
+            SlimPreference.putIntInSlimSettings(getContext(),
+                    mSettingType, getKey(), value);
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    protected int getPersistedInt(int defaultReturnValue) {
+        if (!shouldPersist()) {
+            return defaultReturnValue;
+        }
+        return SlimPreference.getIntFromSlimSettings(getContext(), mSettingType,
+                getKey(), defaultReturnValue);
+    }
+
+    @Override
+    protected boolean isPersisted() {
+        return SlimPreference.settingExists(getContext(), mSettingType, getKey());
+    }
 }
