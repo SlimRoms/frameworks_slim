@@ -23,12 +23,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.android.systemui.R;
-import com.android.systemui.statusbar.phone.StatusBarHeaderView;
+import com.android.systemui.statusbar.phone.QuickStatusBarHeader;
 import com.android.systemui.statusbar.policy.BatteryController;
 
-public class SlimStatusBarHeaderView extends StatusBarHeaderView {
+public class SlimQuickStatusBarHeader extends QuickStatusBarHeader {
 
-    public SlimStatusBarHeaderView(Context context, AttributeSet attrs) {
+    public SlimQuickStatusBarHeader(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
