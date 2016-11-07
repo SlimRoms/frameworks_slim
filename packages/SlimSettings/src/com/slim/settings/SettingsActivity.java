@@ -46,15 +46,6 @@ public class SettingsActivity extends SettingsDrawerActivity implements
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
-            finish();
-            return true;
-        }
-        return false;
-    }
-
-    @Override
     public boolean onPreferenceStartFragment(PreferenceFragment caller, Preference pref) {
         // Override the fragment title for Wallpaper settings
         startPreferencePanel(pref.getFragment(), pref.getExtras(), pref.getTitle(),
