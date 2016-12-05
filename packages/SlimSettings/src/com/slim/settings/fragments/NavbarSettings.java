@@ -86,7 +86,7 @@ public class NavbarSettings extends SettingsPreferenceFragment implements
         final int showByDefault = getContext().getResources().getBoolean(
                 com.android.internal.R.bool.config_showNavigationBar) ? 1 : 0;
         // disable switch until we have other navigation options
-        if (showByDefault == 1) {
+        if (showByDefault == 1 && findPreference(ENABLE_NAVIGATION_BAR) != null) {
             prefs.removePreference(findPreference(ENABLE_NAVIGATION_BAR));
         }
     }
