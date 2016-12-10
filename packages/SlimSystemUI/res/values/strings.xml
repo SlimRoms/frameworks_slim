@@ -44,6 +44,9 @@
     <!-- IME selector Tile -->
     <string name="quick_settings_ime_label">Input method</string>
 
+    <!-- Screenshot QS tile -->
+    <string name="quick_settings_screenshot_label">Screenshot</string>
+
     <!-- Sync QS tile -->
     <string name="quick_settings_sync_label">Sync</string>
     <string name="accessibility_quick_settings_sync_off">Sync off</string>
