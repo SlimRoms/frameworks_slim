@@ -85,13 +85,13 @@ public final class SlimSettingsKeys {
          * Whether the proximity sensor will adjust call to speaker
          * @hide
          */
-        public static final String PROXIMITY_AUTO_SPEAKER = "proximity_auto_speaker";
+        public static final String PROXIMITY_AUTO_SPEAKER = "prox_auto_speaker";
 
         /**
          * Time delay to activate speaker after proximity sensor triggered
          * @hide
          */
-        public static final String PROXIMITY_AUTO_SPEAKER_DELAY = "proximity_auto_speaker_delay";
+        public static final String PROXIMITY_AUTO_SPEAKER_DELAY = "prox_auto_speaker_delay";
 
         /**
          * Whether the proximity sensor will adjust call to speaker,
@@ -99,7 +99,7 @@ public final class SlimSettingsKeys {
          * @hide
          */
         public static final String PROXIMITY_AUTO_SPEAKER_INCALL_ONLY =
-                "proximity_auto_speaker_incall_only";
+                "prox_auto_speaker_incall_only";
 
         /**
          * Disables the hardware key actions

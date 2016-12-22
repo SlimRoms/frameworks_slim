@@ -186,4 +186,6 @@
     <!-- Hardware key rebinding -->
     <java-symbol type="integer" name="config_deviceHardwareKeys" />
 
+    <!-- Proximity auto speaker -->
+    <java-symbol type="bool" name="config_enabled_speakerprox" />
 </resources>

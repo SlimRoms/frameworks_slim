@@ -70,6 +70,17 @@
   <public type="string" name="shortcut_action_doubletap" id="0x02040005" />
   <public type="string" name="shortcut_action_select_action_doubletap" id="0x02040006" />
 
+  <!-- Proximity speaker -->
+  <public type="string" name="display_category_prox_auto_speaker_title" id="0x02040007" />
+  <public type="string" name="prox_auto_speaker_options" id="0x02040008" />
+  <public type="string" name="prox_auto_speaker_title" id="0x02040009" />
+  <public type="string" name="prox_auto_speaker_summary" id="0x02040010" />
+  <public type="string" name="prox_auto_speaker_delay_title" id="0x02040011" />
+  <public type="string" name="prox_auto_speaker_delay_summary" id="0x02040012" />
+  <public type="string" name="prox_auto_speaker_incall_only_title" id="0x02040013" />
+  <public type="string" name="prox_auto_speaker_incall_only_summary_on" id="0x02040014" />
+  <public type="string" name="prox_auto_speaker_incall_only_summary_off" id="0x02040015" />
+
   <!-- dimen (start with 0x02050000) -->
 
   <!-- color (start with 0x02060000) -->
