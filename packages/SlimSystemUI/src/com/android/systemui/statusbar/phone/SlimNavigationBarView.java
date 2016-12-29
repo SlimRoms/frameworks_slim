@@ -93,7 +93,6 @@ public class SlimNavigationBarView extends NavigationBarView {
     private int mMenuVisibility;
     private int mMenuSetting;
     private boolean mOverrideMenuKeys;
-    private boolean mIsImeButtonVisible = false;
     private boolean mWakeAndUnlocking;
     private boolean mLayoutTransitionsEnabled = true;
 
@@ -586,7 +585,6 @@ public class SlimNavigationBarView extends NavigationBarView {
         final boolean showImeButton = ((hints & StatusBarManager.NAVIGATION_HINT_IME_SHOWN) != 0);
         if (getImeSwitchButton() != null) {
             getImeSwitchButton().setVisibility(showImeButton ? View.VISIBLE : View.GONE);
-            mIsImeButtonVisible = showImeButton;
         }
 
         // Update menu button in case the IME state has changed.
@@ -710,8 +708,7 @@ public class SlimNavigationBarView extends NavigationBarView {
                 || mOverrideMenuKeys;
 
         leftMenuKeyView.setVisibility(showLeftMenuButton ? View.VISIBLE : View.INVISIBLE);
-        rightMenuKeyView.setVisibility(showRightMenuButton ? View.VISIBLE
-                : (mIsImeButtonVisible ? View.GONE : View.INVISIBLE));
+        rightMenuKeyView.setVisibility(showRightMenuButton ? View.VISIBLE : View.INVISIBLE);
         mShowMenu = show;
     }
 
