@@ -117,54 +117,6 @@
 
         </LinearLayout>
 
-        <!-- lights out layout to match exactly -->
-        <LinearLayout
-            android:layout_height="match_parent"
-            android:layout_width="match_parent"
-            android:orientation="horizontal"
-            android:id="@+id/lights_out"
-            android:visibility="gone"
-            >
-            <ImageView
-                android:layout_width="@dimen/navigation_key_width"
-                android:layout_height="match_parent"
-                android:layout_marginStart="@dimen/navigation_side_padding"
-                android:src="@drawable/ic_sysbar_lights_out_dot_small"
-                android:scaleType="center"
-                android:layout_weight="0"
-                android:contentDescription="@string/accessibility_back"
-                />
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:visibility="invisible"
-                />
-            <ImageView
-                android:layout_width="@dimen/navigation_key_width"
-                android:layout_height="match_parent"
-                android:src="@drawable/ic_sysbar_lights_out_dot_large"
-                android:scaleType="center"
-                android:layout_weight="0"
-                android:contentDescription="@string/accessibility_home"
-                />
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:visibility="invisible"
-                />
-            <ImageView
-                android:layout_width="@dimen/navigation_key_width"
-                android:layout_marginEnd="@dimen/navigation_side_padding"
-                android:layout_height="match_parent"
-                android:src="@drawable/ic_sysbar_lights_out_dot_small"
-                android:scaleType="center"
-                android:layout_weight="0"
-                android:contentDescription="@string/accessibility_recent"
-                />
-        </LinearLayout>
-
         <com.android.systemui.statusbar.policy.DeadZone
             android:id="@+id/deadzone"
             android:layout_height="match_parent"
@@ -266,54 +218,6 @@
                 android:layout_width="match_parent"
                 android:layout_weight="0"
                 android:visibility="invisible"
-                />
-        </LinearLayout>
-
-        <!-- lights out layout to match exactly -->
-        <LinearLayout
-            android:layout_height="match_parent"
-            android:layout_width="match_parent"
-            android:orientation="vertical"
-            android:id="@+id/lights_out"
-            android:visibility="gone"
-            >
-            <ImageView
-                android:layout_height="@dimen/navigation_key_width"
-                android:layout_marginTop="@dimen/navigation_side_padding"
-                android:layout_width="match_parent"
-                android:src="@drawable/ic_sysbar_lights_out_dot_small"
-                android:scaleType="center"
-                android:layout_weight="0"
-                android:contentDescription="@string/accessibility_recent"
-                />
-            <View
-                android:layout_height="match_parent"
-                android:layout_width="match_parent"
-                android:layout_weight="1"
-                android:visibility="invisible"
-                />
-            <ImageView
-                android:layout_height="@dimen/navigation_key_width"
-                android:layout_width="match_parent"
-                android:src="@drawable/ic_sysbar_lights_out_dot_large"
-                android:scaleType="center"
-                android:layout_weight="0"
-                android:contentDescription="@string/accessibility_home"
-                />
-            <View
-                android:layout_height="match_parent"
-                android:layout_width="match_parent"
-                android:layout_weight="1"
-                android:visibility="invisible"
-                />
-            <ImageView
-                android:layout_height="@dimen/navigation_key_width"
-                android:layout_marginBottom="@dimen/navigation_side_padding"
-                android:layout_width="match_parent"
-                android:src="@drawable/ic_sysbar_lights_out_dot_small"
-                android:scaleType="center"
-                android:layout_weight="0"
-                android:contentDescription="@string/accessibility_back"
                 />
         </LinearLayout>
 

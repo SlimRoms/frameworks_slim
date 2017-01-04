@@ -64,6 +64,7 @@ import com.android.systemui.R;
 import com.android.systemui.statusbar.phone.NavigationBarView;
 import com.android.systemui.statusbar.policy.DeadZone;
 import com.android.systemui.statusbar.slim.SlimKeyButtonView;
+import com.android.systemui.statusbar.phone.SlimNavigationBarTransitions;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -97,6 +98,7 @@ public class SlimNavigationBarView extends NavigationBarView {
     private boolean mLayoutTransitionsEnabled = true;
 
     private DeadZone mDeadZone;
+    private final SlimNavigationBarTransitions mBarTransitions;
 
     private int mRippleColor;
 
@@ -233,7 +235,7 @@ public class SlimNavigationBarView extends NavigationBarView {
                 mFadeOut.cancel();
             }
             mIsDim = false;
-            if (getCurrentView().findViewById(R.id.lights_out).getAlpha() == 0f) {
+            if (!getBarTransitions().getLightsOut()) {
                 navButtons.setAlpha(mOriginalAlpha);
             }
         }
@@ -270,6 +272,13 @@ public class SlimNavigationBarView extends NavigationBarView {
 
         mKgm = (KeyguardManager)
                 mContext.getSystemService(Context.KEYGUARD_SERVICE);
+
+        mBarTransitions = new SlimNavigationBarTransitions(this);
+    }
+
+    @Override
+    public SlimNavigationBarTransitions getBarTransitions() {
+        return mBarTransitions;
     }
 
     @Override
@@ -290,19 +299,19 @@ public class SlimNavigationBarView extends NavigationBarView {
     }
 
     public View getLeftMenuButton() {
-        return mCurrentView.findViewById(R.id.menu_left);
+        return getCurrentView().findViewById(R.id.menu_left);
     }
 
     public View getRightMenuButton() {
-        return mCurrentView.findViewById(R.id.menu);
+        return getCurrentView().findViewById(R.id.menu);
     }
 
     public View getCustomButton(int buttonId) {
-        return mCurrentView.findViewById(buttonId);
+        return getCurrentView().findViewById(buttonId);
     }
 
     public ViewGroup getNavButtons() {
-        return (ViewGroup) mCurrentView.findViewById(R.id.nav_buttons);
+        return (ViewGroup) getCurrentView().findViewById(R.id.nav_buttons);
     }
 
     public void setOverrideMenuKeys(boolean b) {
@@ -331,9 +340,7 @@ public class SlimNavigationBarView extends NavigationBarView {
                 SlimSettings.System.NAVIGATION_BAR_GLOW_TINT, -2, UserHandle.USER_CURRENT);
 
         ((LinearLayout) mRot0.findViewById(R.id.nav_buttons)).removeAllViews();
-        ((LinearLayout) mRot0.findViewById(R.id.lights_out)).removeAllViews();
         ((LinearLayout) mRot90.findViewById(R.id.nav_buttons)).removeAllViews();
-        ((LinearLayout) mRot90.findViewById(R.id.lights_out)).removeAllViews();
 
         for (int i = 0; i <= 1; i++) {
             boolean landscape = (i == 1);
@@ -342,15 +349,10 @@ public class SlimNavigationBarView extends NavigationBarView {
                     .findViewById(R.id.nav_buttons) : mRot0
                     .findViewById(R.id.nav_buttons));
 
-            LinearLayout lightsOut = (LinearLayout) (landscape ? mRot90
-                    .findViewById(R.id.lights_out) : mRot0
-                    .findViewById(R.id.lights_out));
-
             // add left menu
             SlimKeyButtonView leftMenuKeyView = generateMenuKey(landscape, KEY_MENU_LEFT);
             leftMenuKeyView.setLongClickCallback(mCallback);
             addButton(navButtonLayout, leftMenuKeyView, landscape);
-            addLightsOutButton(lightsOut, leftMenuKeyView, landscape, true);
 
             mAppIsBinded = false;
             ActionConfig actionConfig;
@@ -365,7 +367,6 @@ public class SlimNavigationBarView extends NavigationBarView {
                 v.setTag((landscape ? "key_land_" : "key_") + j);
 
                 addButton(navButtonLayout, v, landscape);
-                addLightsOutButton(lightsOut, v, landscape, false);
 
                 if (mButtonsConfig.size() == 3
                         && j != (mButtonsConfig.size() - 1)) {
@@ -373,7 +374,6 @@ public class SlimNavigationBarView extends NavigationBarView {
                     View separator = new View(mContext);
                     separator.setLayoutParams(getSeparatorLayoutParams(landscape));
                     addButton(navButtonLayout, separator, landscape);
-                    addLightsOutButton(lightsOut, separator, landscape, true);
                 }
 
             }
@@ -381,11 +381,9 @@ public class SlimNavigationBarView extends NavigationBarView {
             SlimKeyButtonView rightMenuKeyView = generateMenuKey(landscape, KEY_MENU_RIGHT);
             rightMenuKeyView.setLongClickCallback(mCallback);
             addButton(navButtonLayout, rightMenuKeyView, landscape);
-            addLightsOutButton(lightsOut, rightMenuKeyView, landscape, true);
 
             View imeSwitcher = generateMenuKey(landscape, KEY_IME_SWITCHER);
             addButton(navButtonLayout, imeSwitcher, landscape);
-            addLightsOutButton(lightsOut, imeSwitcher, landscape, true);
         }
         setMenuVisibility(mShowMenu, true);
     }
@@ -535,22 +533,6 @@ public class SlimNavigationBarView extends NavigationBarView {
         return landscape ?
                 new LayoutParams(LayoutParams.MATCH_PARENT, (int) px) :
                 new LayoutParams((int) px, LayoutParams.MATCH_PARENT);
-    }
-
-    private void addLightsOutButton(LinearLayout root, View v, boolean landscape, boolean empty) {
-        ImageView addMe = new ImageView(mContext);
-        addMe.setLayoutParams(v.getLayoutParams());
-        addMe.setImageResource(empty ? R.drawable.ic_sysbar_lights_out_dot_large
-                : R.drawable.ic_sysbar_lights_out_dot_small);
-        addMe.setScaleType(ImageView.ScaleType.CENTER);
-        addMe.setVisibility(empty ?
-                (v.getId() == R.id.ime_switcher ? View.GONE : View.INVISIBLE) : View.VISIBLE);
-
-        if (landscape) {
-            root.addView(addMe, 0);
-        } else {
-            root.addView(addMe);
-        }
     }
 
     private void addButton(ViewGroup root, View addMe, boolean landscape) {
@@ -749,7 +731,7 @@ public class SlimNavigationBarView extends NavigationBarView {
         } else {
             mCurrentView = mRotatedViews[rot];
         }
-        mCurrentView.setVisibility(View.VISIBLE);
+        getCurrentView().setVisibility(View.VISIBLE);
         updateLayoutTransitionsEnabled();
 
         if (getImeSwitchButton() != null)
@@ -759,10 +741,10 @@ public class SlimNavigationBarView extends NavigationBarView {
         if (navButtons != null)
             navButtons.setOnTouchListener(mNavButtonsTouchListener);
 
-        mDeadZone = (DeadZone) mCurrentView.findViewById(R.id.deadzone);
+        mDeadZone = (DeadZone) getCurrentView().findViewById(R.id.deadzone);
 
         // force the low profile & disabled states into compliance
-        //getBarTransitions().init();
+        mBarTransitions.init();
         setDisabledFlags(mDisabledFlags, true /* force */);
         setMenuVisibility(mShowMenu, true /* force */);
 
@@ -821,7 +803,7 @@ public class SlimNavigationBarView extends NavigationBarView {
 
     private void updateLayoutTransitionsEnabled() {
         boolean enabled = !mWakeAndUnlocking && mLayoutTransitionsEnabled;
-        ViewGroup navButtons = (ViewGroup) mCurrentView.findViewById(R.id.nav_buttons);
+        ViewGroup navButtons = (ViewGroup) getCurrentView().findViewById(R.id.nav_buttons);
         LayoutTransition lt = navButtons.getLayoutTransition();
         if (lt != null) {
             if (enabled) {
@@ -937,7 +919,7 @@ public class SlimNavigationBarView extends NavigationBarView {
     private Runnable mNavButtonDimmer = new Runnable() {
         @Override
         public void run() {
-            if (getCurrentView().findViewById(R.id.lights_out).getAlpha() == 1f) return;
+            if (getBarTransitions().getLightsOut()) return;
             mIsHandlerCallbackActive = false;
             final ViewGroup navButtons = getNavButtons();
             if (navButtons != null && !mIsDim) {
