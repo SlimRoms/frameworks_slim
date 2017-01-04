@@ -88,7 +88,6 @@ public class HardwareKeysSettings extends SettingsPreferenceFragment implements
     private static final String CATEGORY_APPSWITCH = "button_keys_appSwitch";
 
     private static final String KEYS_CATEGORY_BINDINGS = "keys_bindings";
-    private static final String KEYS_ENABLE_CUSTOM = "enable_hardware_rebind";
     private static final String KEYS_BACK_PRESS = "keys_back_press";
     private static final String KEYS_BACK_LONG_PRESS = "keys_back_long_press";
     private static final String KEYS_BACK_DOUBLE_TAP = "keys_back_double_tap";
@@ -513,8 +512,6 @@ public class HardwareKeysSettings extends SettingsPreferenceFragment implements
         }
         SlimSettings.System.putInt(getContentResolver(),
                 SlimSettings.System.DISABLE_HW_KEYS, 0);
-        SlimSettings.System.putInt(getContentResolver(),
-                SlimSettings.System.HARDWARE_KEY_REBINDING, 1);
         reloadSettings();
     }
 

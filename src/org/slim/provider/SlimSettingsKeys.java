@@ -108,12 +108,6 @@ public final class SlimSettingsKeys {
         public static final String DISABLE_HW_KEYS = "disable_hw_keys";
 
         /**
-         * Whether custom hardware key rebinding is enabled
-         * @hide
-         */
-        public static final String HARDWARE_KEY_REBINDING = "hardware_key_rebinding";
-
-        /**
          * Action to perform when the back key is pressed (default: ACTION_BACK)
          * (See ButtonsConstants.java for valid values)
          * @hide

@@ -32,12 +32,6 @@
                 android:title="@string/hardware_keys_lights_enable_title"
                 android:persistent="false" />
 
-            <SwitchPreference
-                android:dependency="enable_hw_keys"
-                android:key="enable_hardware_rebind"
-                android:title="@string/keys_enable_custom_title"
-                android:summary="@string/keys_enable_custom_summary" />
-
         </PreferenceCategory>
 
         <PreferenceCategory
@@ -47,17 +41,17 @@
             <Preference
                 android:key="keys_back_press"
                 android:title="@string/keys_action_normal"
-                android:dependency="enable_hardware_rebind" />
+                android:dependency="enable_hw_keys" />
 
             <Preference
                 android:key="keys_back_long_press"
                 android:title="@string/keys_action_long"
-                android:dependency="enable_hardware_rebind" />
+                android:dependency="enable_hw_keys" />
 
             <Preference
                 android:key="keys_back_double_tap"
                 android:title="@string/keys_action_double"
-                android:dependency="enable_hardware_rebind" />
+                android:dependency="enable_hw_keys" />
         </PreferenceCategory>
 
         <PreferenceCategory
@@ -67,17 +61,17 @@
             <Preference
                 android:key="keys_camera_press"
                 android:title="@string/keys_action_normal"
-                android:dependency="enable_hardware_rebind" />
+                android:dependency="enable_hw_keys" />
 
             <Preference
                 android:key="keys_camera_long_press"
                 android:title="@string/keys_action_long"
-                android:dependency="enable_hardware_rebind" />
+                android:dependency="enable_hw_keys" />
 
             <Preference
                 android:key="keys_camera_double_tap"
                 android:title="@string/keys_action_double"
-                android:dependency="enable_hardware_rebind" />
+                android:dependency="enable_hw_keys" />
         </PreferenceCategory>
 
         <PreferenceCategory
@@ -87,17 +81,17 @@
             <Preference
                 android:key="keys_home_press"
                 android:title="@string/keys_action_normal"
-                android:dependency="enable_hardware_rebind" />
+                android:dependency="enable_hw_keys" />
 
             <Preference
                 android:key="keys_home_long_press"
                 android:title="@string/keys_action_long"
-                android:dependency="enable_hardware_rebind" />
+                android:dependency="enable_hw_keys" />
 
             <Preference
                 android:key="keys_home_double_tap"
                 android:title="@string/keys_action_double"
-                android:dependency="enable_hardware_rebind" />
+                android:dependency="enable_hw_keys" />
         </PreferenceCategory>
 
         <PreferenceCategory
@@ -107,17 +101,17 @@
             <Preference
                 android:key="keys_menu_press"
                 android:title="@string/keys_action_normal"
-                android:dependency="enable_hardware_rebind" />
+                android:dependency="enable_hw_keys" />
 
             <Preference
                 android:key="keys_menu_long_press"
                 android:title="@string/keys_action_long"
-                android:dependency="enable_hardware_rebind" />
+                android:dependency="enable_hw_keys" />
 
             <Preference
                 android:key="keys_menu_double_tap"
                 android:title="@string/keys_action_double"
-                android:dependency="enable_hardware_rebind" />
+                android:dependency="enable_hw_keys" />
         </PreferenceCategory>
 
         <PreferenceCategory
@@ -127,17 +121,17 @@
             <Preference
                 android:key="keys_assist_press"
                 android:title="@string/keys_action_normal"
-                android:dependency="enable_hardware_rebind" />
+                android:dependency="enable_hw_keys" />
 
             <Preference
                 android:key="keys_assist_long_press"
                 android:title="@string/keys_action_long"
-                android:dependency="enable_hardware_rebind" />
+                android:dependency="enable_hw_keys" />
 
             <Preference
                 android:key="keys_assist_double_tap"
                 android:title="@string/keys_action_double"
-                android:dependency="enable_hardware_rebind" />
+                android:dependency="enable_hw_keys" />
         </PreferenceCategory>
 
         <PreferenceCategory
@@ -147,17 +141,17 @@
             <Preference
                 android:key="keys_app_switch_press"
                 android:title="@string/keys_action_normal"
-                android:dependency="enable_hardware_rebind" />
+                android:dependency="enable_hw_keys" />
 
             <Preference
                 android:key="keys_app_switch_long_press"
                 android:title="@string/keys_action_long"
-                android:dependency="enable_hardware_rebind" />
+                android:dependency="enable_hw_keys" />
 
             <Preference
                 android:key="keys_app_switch_double_tap"
                 android:title="@string/keys_action_double"
-                android:dependency="enable_hardware_rebind" />
+                android:dependency="enable_hw_keys" />
         </PreferenceCategory>
 
 </PreferenceScreen>
