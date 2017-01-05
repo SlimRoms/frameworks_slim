@@ -1,6 +1,6 @@
 /**
  * Copyright (c) 2015, The CyanogenMod Project
- * Copyright (c) 2016, The SlimRoms Project
+ * Copyright (c) 2016-2017 SlimRoms Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -37,7 +37,7 @@ import android.util.Log;
 
 import java.io.File;
 
-import org.slim.provider.SlimSettings;
+import slim.provider.SlimSettings;
 
 /**
  * The SlimDatabaseHelper allows creation of a database to store Slim specific settings for a user

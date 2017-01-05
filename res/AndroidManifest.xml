@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright (C) 2016 The SlimRoms Project
+<!-- Copyright (C) 2016-2017 SlimRoms Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
      limitations under the License.
 -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="org.slim.framework"
+          package="slim"
           coreApp="true" android:sharedUserId="android.uid.system">
 
     <!-- Allows an application to write to Slim system settings -->

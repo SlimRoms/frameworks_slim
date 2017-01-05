@@ -1,6 +1,5 @@
 /*
- * Copyright (C) 2012 The SlimRoms Project
- * Copyright (C) 2016 The SlimRoms Project
+ * Copyright (C) 2012-2017 SlimRoms Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,7 +34,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import org.slim.provider.SlimSettings;
+import slim.provider.SlimSettings;
 
 public final class SlimSettingsCmd {
 

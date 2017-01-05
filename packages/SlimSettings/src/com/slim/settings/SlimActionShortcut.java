@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2016, SlimRoms Project
+ * Copyright (C) 2016-2017 SlimRoms Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,7 +21,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
-import org.slim.action.Action;
+import slim.action.Action;
 
 public class SlimActionShortcut extends Activity  {
 

@@ -1,6 +1,6 @@
 /**
  * Copyright (c) 2015, The CyanogenMod Project
- * Copyright (c) 2016, The SlimRoms Project
+ * Copyright (c) 2016-2017 SlimRoms Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -46,7 +46,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.util.SparseArray;
 
-import org.slim.provider.SlimSettings;
+import slim.provider.SlimSettings;
 
 import java.util.HashMap;
 import java.util.List;
@@ -185,9 +185,9 @@ public class SlimSettingsProvider extends ContentProvider {
         // Framework can't do automatic permission checking for calls, so we need
         // to do it here.
         if (SlimSettings.CALL_METHOD_PUT_SYSTEM.equals(method)) {
-            enforceWritePermission(org.slim.framework.Manifest.permission.WRITE_SETTINGS);
+            enforceWritePermission(slim.Manifest.permission.WRITE_SETTINGS);
         } else {
-            enforceWritePermission(org.slim.framework.Manifest.permission.WRITE_SECURE_SETTINGS);
+            enforceWritePermission(slim.Manifest.permission.WRITE_SECURE_SETTINGS);
         }
 
         // Put methods
@@ -572,11 +572,11 @@ public class SlimSettingsProvider extends ContentProvider {
         if ((SlimDatabaseHelper.TABLE_SECURE.equals(tableName) ||
                 SlimDatabaseHelper.TABLE_GLOBAL.equals(tableName)) &&
                 getContext().checkCallingOrSelfPermission(
-                        org.slim.framework.Manifest.permission.WRITE_SECURE_SETTINGS) !=
+                        slim.Manifest.permission.WRITE_SECURE_SETTINGS) !=
                         PackageManager.PERMISSION_GRANTED) {
             throw new SecurityException(
                     String.format("Permission denial: writing to slim secure settings requires %1$s",
-                            org.slim.framework.Manifest.permission.WRITE_SECURE_SETTINGS));
+                            slim.Manifest.permission.WRITE_SECURE_SETTINGS));
         }
     }
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright (C) 2012-2016 SlimRoms Project
+<!-- Copyright (C) 2012-2017 SlimRoms Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -16,9 +16,9 @@
 
 <PreferenceScreen
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:slim="http://schemas.android.com/apk/res/org.slim.framework">
+    xmlns:slim="http://schemas.android.com/apk/res/slim">
 
-        <org.slim.preference.SlimSwitchPreference
+        <slim.preference.SlimSwitchPreference
                 android:key="navigation_bar_show"
                 android:title="@string/navbar_enable_bar"
                 android:summary="@string/navbar_enable_bar_summary" />
@@ -30,7 +30,7 @@
 
             <PreferenceScreen
                     android:key="navbar_button_settings"
-                    android:fragment="org.slim.preference.dslv.ActionListViewSettings"
+                    android:fragment="slim.preference.dslv.ActionListViewSettings"
                     android:title="@string/navbar_button_title"
                     android:summary="@string/navbar_button_summary" >
                 <extra android:name="actionMode" android:value="0" />
@@ -72,7 +72,7 @@
                     android:title="@string/title_pref_menu_location"
                     android:summary="@string/summary_pref_menu_location" />
 
-            <org.slim.preference.SlimSwitchPreference
+            <slim.preference.SlimSwitchPreference
                     android:key="navigation_bar_can_move"
                     android:title="@string/navbar_can_move"
                     android:summary="@string/navbar_can_move_summary" />
@@ -84,19 +84,19 @@
                 android:dependency="navigation_bar_show"
                 android:title="@string/dim_nav_buttons_category">
 
-            <org.slim.preference.SlimSwitchPreference
+            <slim.preference.SlimSwitchPreference
                     android:key="dim_nav_buttons"
                     android:title="@string/dim_nav_buttons_title"
                     android:summary="@string/dim_nav_buttons_summary" />
 
-            <org.slim.preference.SlimSwitchPreference
+            <slim.preference.SlimSwitchPreference
                     android:key="dim_nav_buttons_touch_anywhere"
                     android:dependency="dim_nav_buttons"
                     android:title="@string/dim_nav_buttons_touch_anywhere_title"
                     android:summaryOn="@string/dim_nav_buttons_touch_anywhere_summary_on"
                     android:summaryOff="@string/dim_nav_buttons_touch_anywhere_summary_off" />
 
-            <org.slim.preference.SlimSeekBarPreference
+            <slim.preference.SlimSeekBarPreference
                     android:key="dim_nav_buttons_timeout"
                     android:dependency="dim_nav_buttons"
                     android:title="@string/dim_nav_buttons_timeout_title"
@@ -107,7 +107,7 @@
                     slim:minValue="100"
                     slim:multiplyValue="100" />
 
-            <org.slim.preference.SlimSeekBarPreference
+            <slim.preference.SlimSeekBarPreference
                     android:key="dim_nav_buttons_alpha"
                     android:dependency="dim_nav_buttons"
                     android:title="@string/dim_nav_buttons_alpha_title"
@@ -115,13 +115,13 @@
                     slim:defaultValue="50"
                     slim:interval="1" />
 
-            <org.slim.preference.SlimSwitchPreference
+            <slim.preference.SlimSwitchPreference
                     android:key="dim_nav_buttons_animate"
                     android:dependency="dim_nav_buttons"
                     android:title="@string/dim_nav_buttons_animate_title"
                     android:summary="@string/dim_nav_buttons_animate_summary" />
 
-            <org.slim.preference.SlimSeekBarPreference
+            <slim.preference.SlimSeekBarPreference
                     android:key="dim_nav_buttons_animate_duration"
                     android:dependency="dim_nav_buttons_animate"
                     android:title="@string/dim_nav_buttons_animate_duration_title"

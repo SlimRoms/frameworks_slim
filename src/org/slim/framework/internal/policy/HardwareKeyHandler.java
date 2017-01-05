@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2016 SlimRoms Project
+ * Copyright (C) 2016-2017 SlimRoms Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -36,11 +36,11 @@ import android.view.WindowManagerPolicy.WindowState;
 
 import java.util.Arrays;
 
-import org.slim.action.Action;
-import org.slim.action.ActionConstants;
-import org.slim.action.SlimActionsManager;
-import org.slim.provider.SlimSettings;
-import org.slim.utils.HwKeyHelper;
+import slim.action.Action;
+import slim.action.ActionConstants;
+import slim.action.SlimActionsManager;
+import slim.provider.SlimSettings;
+import slim.utils.HwKeyHelper;
 
 public class HardwareKeyHandler {
 

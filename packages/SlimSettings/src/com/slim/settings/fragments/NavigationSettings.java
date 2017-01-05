@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2013-2016 SlimRoms Project
+ * Copyright (C) 2013-2017 SlimRoms Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +24,7 @@ import android.support.v7.preference.PreferenceScreen;
 import android.view.IWindowManager;
 
 import org.slim.framework.internal.logging.SlimMetricsLogger;
-import org.slim.provider.SlimSettings;
+import slim.provider.SlimSettings;
 
 import com.slim.settings.R;
 import com.slim.settings.SettingsPreferenceFragment;

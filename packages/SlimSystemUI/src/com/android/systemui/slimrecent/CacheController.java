@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2016 SlimRoms Project
+ * Copyright (C) 2014-2017 SlimRoms Project
  * Author: Lars Greiss - email: kufikugel@googlemail.com
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
@@ -36,7 +36,7 @@ import com.android.systemui.R;
 
 import java.util.ArrayList;
 
-import org.slim.provider.SlimSettings;
+import slim.provider.SlimSettings;
 
 /**
  * This class is our LRU cache controller. It holds

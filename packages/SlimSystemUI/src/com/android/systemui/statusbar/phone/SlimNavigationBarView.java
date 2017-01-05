@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2016 SlimRoms Project
+ * Copyright (C) 2016-2017 SlimRoms Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -69,12 +69,12 @@ import com.android.systemui.statusbar.phone.SlimNavigationBarTransitions;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.slim.action.ActionConfig;
-import org.slim.action.ActionConstants;
-import org.slim.action.ActionHelper;
-import org.slim.provider.SlimSettings;
-import org.slim.utils.ImageHelper;
-import org.slim.utils.DeviceUtils;
+import slim.action.ActionConfig;
+import slim.action.ActionConstants;
+import slim.action.ActionHelper;
+import slim.provider.SlimSettings;
+import slim.utils.ImageHelper;
+import slim.utils.DeviceUtils;
 
 public class SlimNavigationBarView extends NavigationBarView {
 

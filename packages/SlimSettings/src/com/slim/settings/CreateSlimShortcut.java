@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2016, SlimRoms Project
+ * Copyright (C) 2016-2017 SlimRoms Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,10 +23,10 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
-import org.slim.action.ActionsArray;
-import org.slim.action.ActionHelper;
-import org.slim.utils.ImageHelper;
 import com.slim.settings.SlimActionShortcut;
+import slim.action.ActionsArray;
+import slim.action.ActionHelper;
+import slim.utils.ImageHelper;
 
 import com.slim.settings.R;
 

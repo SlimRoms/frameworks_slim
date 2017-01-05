@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2016 SlimRoms Project
+* Copyright (C) 2016-2017 SlimRoms Project
 * Copyright (C) 2013-14 The Android Open Source Project
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
@@ -49,7 +49,7 @@ import com.android.systemui.R;
 import com.android.systemui.DemoMode;
 import com.android.systemui.statusbar.policy.BatteryController;
 
-import org.slim.provider.SlimSettings;
+import slim.provider.SlimSettings;
 
 public class SlimBatteryMeterView extends View implements DemoMode,
         BatteryController.BatteryStateChangeCallback {

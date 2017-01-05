@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright (C) 2012 Slimroms
+<!-- Copyright (C) 2012-2014 SlimRoms Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -54,7 +54,7 @@
             android:layout_below="@android:id/summary"
             android:layout_alignLeft="@android:id/summary">
             <TextView
-                android:id="@org.slim.framework:id/monitor_box"
+                android:id="@slim:id/monitor_box"
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
                 android:gravity="center_vertical"
@@ -62,7 +62,7 @@
                 android:textAppearance="?android:attr/textAppearanceListItemSecondary"
                 android:textColor="?android:attr/textColorSecondary" />
             <SeekBar
-                android:id="@org.slim.framework:id/seek_bar"
+                android:id="@slim:id/seek_bar"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:max="100"

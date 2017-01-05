@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2013-2016 SlimRoms Project
+ * Copyright (C) 2013-2017 SlimRoms Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -34,7 +34,7 @@ import com.slim.settings.SettingsPreferenceFragment;
 import com.slim.settings.Utils;
 
 import org.slim.framework.internal.logging.SlimMetricsLogger;
-import org.slim.provider.SlimSettings;
+import slim.provider.SlimSettings;
 
 
 public class StatusBar extends SettingsPreferenceFragment implements OnPreferenceChangeListener {

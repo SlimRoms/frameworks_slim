@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2016 SlimRoms Project
+ * Copyright (C) 2014-2017 SlimRoms Project
  * Author: Lars Greiss - email: kufikugel@googlemail.com
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
@@ -60,7 +60,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import org.slim.provider.SlimSettings;
+import slim.provider.SlimSettings;
 
 /**
  * Our main view controller which handles and construct most of the view

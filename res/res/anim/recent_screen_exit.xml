@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
 /*
-** Copyright 2014-2016, SlimRoms Project
+** Copyright 2014-2017 SlimRoms Project
 **
 ** Licensed under the Apache License, Version 2.0 (the "License");
 ** you may not use this file except in compliance with the License.
@@ -20,5 +20,5 @@
 <set xmlns:android="http://schemas.android.com/apk/res/android"
     android:interpolator="@android:anim/decelerate_interpolator">
     <translate android:fromXDelta="0" android:toXDelta="100%p"
-        android:duration="@org.slim.framework:integer/config_recentExitDur"/>
+        android:duration="@slim:integer/config_recentExitDur"/>
 </set>

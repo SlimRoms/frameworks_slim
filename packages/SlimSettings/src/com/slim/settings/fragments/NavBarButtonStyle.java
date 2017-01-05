@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2012-2016 SlimRoms Project
+ * Copyright (C) 2012-2017 SlimRoms Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -38,8 +38,8 @@ import com.slim.settings.SettingsPreferenceFragment;
 import com.slim.settings.R;
 
 import org.slim.framework.internal.logging.SlimMetricsLogger;
-import org.slim.preference.colorpicker.ColorPickerPreference;
-import org.slim.provider.SlimSettings;
+import slim.preference.colorpicker.ColorPickerPreference;
+import slim.provider.SlimSettings;
 
 public class NavBarButtonStyle extends SettingsPreferenceFragment implements
         OnPreferenceChangeListener {

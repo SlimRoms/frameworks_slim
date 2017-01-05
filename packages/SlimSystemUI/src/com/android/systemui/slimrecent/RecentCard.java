@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2016 SlimRoms Project
+ * Copyright (C) 2014-2017 SlimRoms Project
  * Author: Lars Greiss - email: kufikugel@googlemail.com
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
@@ -51,8 +51,8 @@ import com.android.systemui.R;
 import com.android.systemui.SystemUIApplication;
 import com.android.systemui.statusbar.phone.PhoneStatusBar;
 
-import org.slim.provider.SlimSettings;
-import org.slim.utils.ColorUtils;
+import slim.provider.SlimSettings;
+import slim.utils.ColorUtils;
 
 /**
  * This class handles our base card view.

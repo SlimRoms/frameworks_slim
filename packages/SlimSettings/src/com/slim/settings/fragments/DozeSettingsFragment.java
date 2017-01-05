@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2013-2016 SlimRoms project
+ * Copyright (C) 2013-2017 SlimRoms project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -41,8 +41,8 @@ import com.slim.settings.R;
 import com.slim.settings.SettingsPreferenceFragment;
 
 import org.slim.framework.internal.logging.SlimMetricsLogger;
-import org.slim.preference.SlimSeekBarPreference;
-import org.slim.provider.SlimSettings;
+import slim.preference.SlimSeekBarPreference;
+import slim.provider.SlimSettings;
 
 public class DozeSettingsFragment extends SettingsPreferenceFragment implements
         OnPreferenceChangeListener {

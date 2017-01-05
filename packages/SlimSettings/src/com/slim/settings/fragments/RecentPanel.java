@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015-2016 SlimRoms Project
+ * Copyright (C) 2015-2017 SlimRoms Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -41,11 +41,11 @@ import com.slim.settings.DialogCreatable;
 //import com.android.settings.R;
 import com.slim.settings.SettingsPreferenceFragment;
 
-import org.slim.framework.R;
 import org.slim.framework.internal.logging.SlimMetricsLogger;
-import org.slim.utils.DeviceUtils;
-import org.slim.preference.colorpicker.ColorPickerPreference;
-import org.slim.provider.SlimSettings;
+import slim.preference.colorpicker.ColorPickerPreference;
+import slim.provider.SlimSettings;
+import slim.R;
+import slim.utils.DeviceUtils;
 
 public class RecentPanel extends SettingsPreferenceFragment implements DialogCreatable,
         Preference.OnPreferenceChangeListener {

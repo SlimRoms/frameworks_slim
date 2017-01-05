@@ -1,6 +1,6 @@
 /*
  * Copyright (C) 2014 The Android Open Source Project
- * Copyright (C) 2016 The SlimRoms Project
+ * Copyright (C) 2016-2017 The SlimRoms Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -50,7 +50,7 @@ import com.android.systemui.statusbar.phone.SlimNavigationBarView;
 
 import java.util.ArrayList;
 
-import org.slim.provider.SlimSettings;
+import slim.provider.SlimSettings;
 
 public class SlimScreenPinningRequest implements View.OnClickListener {
 
