@@ -63,7 +63,7 @@ public class NavbarStyleDimenSettings extends SettingsPreferenceFragment impleme
 
     @Override
     protected int getMetricsCategory() {
-        return SlimMetricsLogger.NAV_BAR_DIMEN_SETTINGS;
+        return SlimMetricsLogger.NAVBAR_STYLE_DIMEN_SETTINGS;
     }
 
     @Override

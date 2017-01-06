@@ -1,5 +1,6 @@
 /*
  * Copyright (C) 2011 The Android Open Source Project
+ * Copyright (C) 2017 SlimRoms Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -42,6 +43,8 @@ public class SubSettings extends SettingsActivity {
     public static final String EXTRA_SHOW_FRAGMENT_TITLE = ":slim:settings:show_fragment_title";
     public static final String EXTRA_SHOW_FRAGMENT_AS_SHORTCUT =
             ":slim:settings:show_fragment_as_shortcut";
+    public static final String EXTRA_SHOW_FRAGMENT_SHOW_MENU =
+            ":slim:settings:show_fragment_show_menu";
 
     public static final String BACK_STACK_PREFS = ":slim:settings:prefs";
 
@@ -64,6 +67,9 @@ public class SubSettings extends SettingsActivity {
         setTitle(initialTitle);
 
         switchToFragment(initialFragmentName, initialArguments, true, false, initialTitle, false);
+        if (intent.getBooleanExtra(EXTRA_SHOW_FRAGMENT_SHOW_MENU, false)) {
+            showMenuIcon();
+        }
     }
 
     /**

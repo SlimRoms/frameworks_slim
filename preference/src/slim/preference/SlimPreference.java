@@ -18,88 +18,65 @@
 package slim.preference;
 
 import android.content.Context;
-import android.os.UserHandle;
-import android.util.Log;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
+import android.support.v7.preference.Preference;
+import android.util.AttributeSet;
 
-import slim.provider.SlimSettings;
+import slim.utils.AttributeHelper;
 
-public class SlimPreference {
-    public static final int SLIM_SYSTEM_SETTING = 0;
-    public static final int SLIM_GLOBAL_SETTING = 1;
-    public static final int SLIM_SECURE_SETTING = 2;
+import java.util.List;
 
-    public static int getIntFromSlimSettings(
-            Context context, int settingType, String key, int def) {
-        switch (settingType) {
-            case SLIM_GLOBAL_SETTING:
-                return SlimSettings.Global.getInt(context.getContentResolver(), key, def);
-            case SLIM_SECURE_SETTING:
-                return SlimSettings.Secure.getIntForUser(context.getContentResolver(), key,
-                        def, UserHandle.USER_CURRENT);
-            default:
-                return SlimSettings.System.getIntForUser(context.getContentResolver(), key,
-                        def, UserHandle.USER_CURRENT);
+public class SlimPreference extends Preference {
+
+    public SlimPreference(Context context, AttributeSet attrs, int defStyleAttr,
+            int defStyleRes) {
+        super(context, attrs, defStyleAttr, defStyleRes);
+        init(context, attrs);
+    }
+
+    public SlimPreference(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+        init(context, attrs);
+    }
+
+    public SlimPreference(Context context, AttributeSet attrs) {
+        super(context, attrs);
+        init(context, attrs);
+    }
+
+    public SlimPreference(Context context) {
+        this(context, null);
+    }
+
+    private void init(Context context, AttributeSet attrs) {
+        AttributeHelper a = new AttributeHelper(context, attrs,
+            slim.R.styleable.SlimPreference);
+
+        boolean hidePreference =
+                a.getBoolean(slim.R.styleable.SlimPreference_hidePreference, false);
+        int hidePreferenceInt = a.getInt(slim.R.styleable.SlimPreference_hidePreferenceInt, -1);
+        int intDep = a.getInt(slim.R.styleable.SlimPreference_hidePreferenceIntDependency, 0);
+        if (hidePreference || hidePreferenceInt == intDep) {
+            setVisible(false);
         }
     }
 
-    public static void putIntInSlimSettings(Context context, int settingType, String key, int val) {
-        switch (settingType) {
-            case SLIM_GLOBAL_SETTING:
-                SlimSettings.Global.putInt(context.getContentResolver(), key, val);
-                break;
-            case SLIM_SECURE_SETTING:
-                SlimSettings.Secure.putIntForUser(context.getContentResolver(), key, val,
-                        UserHandle.USER_CURRENT);
-                break;
-            default:
-                SlimSettings.System.putIntForUser(context.getContentResolver(), key, val,
-                        UserHandle.USER_CURRENT);
-                break;
+    @Override
+    public void onAttached() {
+        super.onAttached();
+        Intent intent = getIntent();
+        if (intent != null) {
+            if (!intentExists(getContext(), intent)) {
+                setVisible(false);
+            }
         }
     }
 
-    public static String getStringFromSlimSettings(Context context,
-            int settingType, String key, String def) {
-        if (!settingExists(context, settingType, key)) return def;
-        switch (settingType) {
-            case SLIM_GLOBAL_SETTING:
-                return SlimSettings.Global.getString(context.getContentResolver(), key);
-            case SLIM_SECURE_SETTING:
-                return SlimSettings.Secure.getStringForUser(context.getContentResolver(), key,
-                        UserHandle.USER_CURRENT);
-            default:
-                return SlimSettings.System.getStringForUser(context.getContentResolver(), key,
-                        UserHandle.USER_CURRENT);
-        }
-    }
-
-    public static void putStringInSlimSettings(
-            Context context, int settingType, String key, String val) {
-        switch (settingType) {
-            case SLIM_GLOBAL_SETTING:
-                SlimSettings.Global.putString(context.getContentResolver(), key, val);
-                break;
-            case SLIM_SECURE_SETTING:
-                SlimSettings.Secure.putStringForUser(context.getContentResolver(), key, val,
-                        UserHandle.USER_CURRENT);
-                break;
-            default:
-                SlimSettings.System.putStringForUser(context.getContentResolver(), key, val,
-                        UserHandle.USER_CURRENT);
-                break;
-        }
-    }
-
-    public static boolean settingExists(Context context, int settingType, String key) {
-        switch (settingType) {
-            case SLIM_GLOBAL_SETTING:
-                return SlimSettings.Global.getString(context.getContentResolver(), key) != null;
-            case SLIM_SECURE_SETTING:
-                return SlimSettings.Secure.getStringForUser(context.getContentResolver(), key,
-                        UserHandle.USER_CURRENT) != null;
-            default:
-                return SlimSettings.System.getStringForUser(context.getContentResolver(), key,
-                        UserHandle.USER_CURRENT) != null;
-        }
+    private boolean intentExists(Context context, Intent intent) {
+        PackageManager pm = context.getPackageManager();
+        List<ResolveInfo> list = pm.queryIntentActivities(intent, PackageManager.GET_META_DATA);
+        return (list.size() > 0);
     }
 }

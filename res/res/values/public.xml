@@ -36,6 +36,10 @@
   <public type="attr" name="multiplyValue" id="0x02010007" />
   <public type="attr" name="defaultColor" id="0x02010008" />
   <public type="attr" name="alphaSliderEnabled" id="0x02010009" />
+  <public type="attr" name="listDependency" id="0x02010010" />
+  <public type="attr" name="hidePreference" id="0x02010011" />
+  <public type="attr" name="hidePreferenceInt" id="0x02010012" />
+  <public type="attr" name="hidePreferenceIntDependency" id="0x02010013" />
 
   <!-- id (start with 0x02020000)-->
   <!--SlimSeekBar ids -->

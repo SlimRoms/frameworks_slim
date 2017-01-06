@@ -22,6 +22,7 @@ import android.content.pm.PackageManager;
 import android.content.res.TypedArray;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceViewHolder;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
@@ -32,10 +33,6 @@ import android.widget.TextView;
 
 import slim.R;
 import slim.utils.AttributeHelper;
-
-import static slim.preference.SlimPreference.SLIM_GLOBAL_SETTING;
-import static slim.preference.SlimPreference.SLIM_SECURE_SETTING;
-import static slim.preference.SlimPreference.SLIM_SYSTEM_SETTING;
 
 /**
  * @hide
@@ -58,6 +55,10 @@ public class SlimSeekBarPreference extends Preference
     boolean mIsMilliSeconds = false;
 
     private int mSettingType;
+
+    private SlimPreferenceManager mSlimPreferenceManager = SlimPreferenceManager.get();
+    private String mListDependency;
+    private String[] mListDependencyValues;
 
     private OnPreferenceChangeListener mChanger;
 
@@ -82,19 +83,42 @@ public class SlimSeekBarPreference extends Preference
         mMinimum = a.getInt(R.styleable.SlimSeekBarPreference_minValue, mMinimum);
         mMultiply = a.getInt(R.styleable.SlimSeekBarPreference_multiplyValue, mMultiply);
 
-        int s = a.getInt(R.styleable.SlimPreference_slimSettingType,
-                SLIM_SYSTEM_SETTING);
+        a = new AttributeHelper(context, attrs, slim.R.styleable.SlimPreference);
 
-        switch (s) {
-            case SLIM_GLOBAL_SETTING:
-                mSettingType = SLIM_GLOBAL_SETTING;
-                break;
-            case SLIM_SECURE_SETTING:
-                mSettingType = SLIM_SECURE_SETTING;
-                break;
-            default:
-                mSettingType = SLIM_SYSTEM_SETTING;
-                break;
+        mSettingType = SlimPreferenceManager.getSettingType(a);
+
+        String list = a.getString(slim.R.styleable.SlimPreference_listDependency);
+        if (!TextUtils.isEmpty(list)) {
+            String[] listParts = list.split(":");
+            if (listParts.length == 2) {
+                mListDependency = listParts[0];
+                mListDependencyValues = listParts[1].split("\\|");
+            }
+        }
+
+        boolean hidePreference =
+                a.getBoolean(slim.R.styleable.SlimPreference_hidePreference, false);
+        int hidePreferenceInt = a.getInt(slim.R.styleable.SlimPreference_hidePreferenceInt, -1);
+        int intDep = a.getInt(slim.R.styleable.SlimPreference_hidePreferenceIntDependency, 0);
+        if (hidePreference || hidePreferenceInt == intDep) {
+            setVisible(false);
+        }
+    }
+
+    @Override
+    public void onAttached() {
+        super.onAttached();
+        if (mListDependency != null) {
+            mSlimPreferenceManager.registerListDependent(
+                    this, mListDependency, mListDependencyValues);
+        }
+    }
+
+    @Override
+    public void onDetached() {
+        super.onDetached();
+        if (mListDependency != null) {
+            mSlimPreferenceManager.unregisterListDependent(this, mListDependency);
         }
     }
 
@@ -202,7 +226,7 @@ public class SlimSeekBarPreference extends Preference
             if (value == getPersistedInt(-1)) {
                 return true;
             }
-            SlimPreference.putIntInSlimSettings(getContext(),
+            SlimPreferenceManager.putIntInSlimSettings(getContext(),
                     mSettingType, getKey(), value);
             return true;
         }
@@ -214,12 +238,12 @@ public class SlimSeekBarPreference extends Preference
         if (!shouldPersist()) {
             return defaultReturnValue;
         }
-        return SlimPreference.getIntFromSlimSettings(getContext(), mSettingType,
+        return SlimPreferenceManager.getIntFromSlimSettings(getContext(), mSettingType,
                 getKey(), defaultReturnValue);
     }
 
     @Override
     protected boolean isPersisted() {
-        return SlimPreference.settingExists(getContext(), mSettingType, getKey());
+        return SlimPreferenceManager.settingExists(getContext(), mSettingType, getKey());
     }
 }

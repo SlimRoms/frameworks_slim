@@ -1,5 +1,6 @@
 /**
  * Copyright (C) 2007 Google Inc.
+ * Copyright (C) 2017 SlimRoms Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy
@@ -23,6 +24,7 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.os.Bundle;
+import android.util.Log;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceGroup;
 
@@ -106,15 +108,16 @@ public final class Utils {
      * @param title String to display for the title of this set of preferences.
      */
     public static void startWithFragment(Context context, String fragmentName, Bundle args,
-            Fragment resultTo, int resultRequestCode, CharSequence title) {
+            Fragment resultTo, int resultRequestCode, CharSequence title, boolean showMenu) {
         startWithFragment(context, fragmentName, args, resultTo, resultRequestCode,
-                title, false /* not a shortcut */);
+                title, false /* not a shortcut */, showMenu);
     }
 
     public static void startWithFragment(Context context, String fragmentName, Bundle args,
             Fragment resultTo, int resultRequestCode,
-            CharSequence title, boolean isShortcut) {
-        Intent intent = onBuildStartFragmentIntent(context, fragmentName, args, title, isShortcut);
+            CharSequence title, boolean isShortcut, boolean showMenu) {
+        Intent intent = onBuildStartFragmentIntent(context, fragmentName, args,
+                title, isShortcut, showMenu);
         if (resultTo == null) {
             context.startActivity(intent);
         } else {
@@ -137,13 +140,14 @@ public final class Utils {
      * fragment.
      */
     public static Intent onBuildStartFragmentIntent(Context context,
-            String fragmentName, Bundle args, CharSequence title, boolean isShortcut) {
+            String fragmentName, Bundle args, CharSequence title,
+            boolean isShortcut, boolean showMenu) {
         Intent intent = new Intent(Intent.ACTION_MAIN);
         intent.setClass(context, SubSettings.class);
         intent.putExtra(SubSettings.EXTRA_SHOW_FRAGMENT, fragmentName);
         intent.putExtra(SubSettings.EXTRA_SHOW_FRAGMENT_ARGUMENTS, args);
         intent.putExtra(SubSettings.EXTRA_SHOW_FRAGMENT_TITLE, title);
-        intent.putExtra(SubSettings.EXTRA_SHOW_FRAGMENT_AS_SHORTCUT, isShortcut);
+        intent.putExtra(SubSettings.EXTRA_SHOW_FRAGMENT_SHOW_MENU, showMenu);
         return intent;
     }
 }

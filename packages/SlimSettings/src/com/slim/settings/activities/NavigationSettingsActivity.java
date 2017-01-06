@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2016, SlimRoms Project
+ * Copyright (C) 2016-2017 SlimRoms Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,14 +16,22 @@
 package com.slim.settings.activities;
 
 import android.app.Fragment;
+import android.os.Bundle;
 
-import com.slim.settings.fragments.NavigationSettings;
+import com.slim.settings.fragments.SlimPreferenceFragment;
 import com.slim.settings.SettingsActivity;
 
 public class NavigationSettingsActivity extends SettingsActivity {
 
     @Override
     public Fragment getFragment() {
-        return new NavigationSettings();
+        return new SlimPreferenceFragment();
+    }
+
+    @Override
+    public Bundle getFragmentBundle() {
+        Bundle b = new Bundle();
+        b.putString("preference_xml", "slim_navigation_settings");
+        return b;
     }
 }

@@ -20,17 +20,18 @@ package slim.preference;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.support.v14.preference.SwitchPreference;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 
 import slim.utils.AttributeHelper;
 
-import static slim.preference.SlimPreference.SLIM_GLOBAL_SETTING;
-import static slim.preference.SlimPreference.SLIM_SECURE_SETTING;
-import static slim.preference.SlimPreference.SLIM_SYSTEM_SETTING;
-
 public class SlimSwitchPreference extends SwitchPreference {
 
-    private int mSettingType = SLIM_SYSTEM_SETTING;
+    private int mSettingType;
+
+    private SlimPreferenceManager mSlimPreferenceManager = SlimPreferenceManager.get();
+    private String mListDependency;
+    private String[] mListDependencyValues;
 
     public SlimSwitchPreference(Context context, AttributeSet attrs, int defStyleAttr,
             int defStyleRes) {
@@ -56,19 +57,39 @@ public class SlimSwitchPreference extends SwitchPreference {
         AttributeHelper a = new AttributeHelper(context, attrs,
             slim.R.styleable.SlimPreference);
 
-        int s = a.getInt(slim.R.styleable.SlimPreference_slimSettingType,
-                SLIM_SYSTEM_SETTING);
+        mSettingType = SlimPreferenceManager.getSettingType(a);
 
-        switch (s) {
-            case SLIM_GLOBAL_SETTING:
-                mSettingType = SLIM_GLOBAL_SETTING;
-                break;
-            case SLIM_SECURE_SETTING:
-                mSettingType = SLIM_SECURE_SETTING;
-                break;
-            default:
-                mSettingType = SLIM_SYSTEM_SETTING;
-                break;
+        String list = a.getString(slim.R.styleable.SlimPreference_listDependency);
+        if (!TextUtils.isEmpty(list)) {
+            String[] listParts = list.split(":");
+            mListDependency = listParts[0];
+            mListDependencyValues = listParts[1].split("\\|");
+        }
+
+        boolean hidePreference =
+                a.getBoolean(slim.R.styleable.SlimPreference_hidePreference, false);
+        int hidePreferenceInt = a.getInt(slim.R.styleable.SlimPreference_hidePreferenceInt, -1);
+        int intDep = a.getInt(slim.R.styleable.SlimPreference_hidePreferenceIntDependency, 0);
+        if (hidePreference || hidePreferenceInt == intDep) {
+            setVisible(false);
+        }
+
+    }
+
+    @Override
+    public void onAttached() {
+        super.onAttached();
+        if (mListDependency != null) {
+            mSlimPreferenceManager.registerListDependent(
+                    this, mListDependency, mListDependencyValues);
+        }
+    }
+
+    @Override
+    public void onDetached() {
+        super.onDetached();
+        if (mListDependency != null) {
+            mSlimPreferenceManager.unregisterListDependent(this, mListDependency);
         }
     }
 
@@ -78,7 +99,7 @@ public class SlimSwitchPreference extends SwitchPreference {
             if (value == getPersistedBoolean(!value)) {
                 return true;
             }
-            SlimPreference.putIntInSlimSettings(getContext(),
+            SlimPreferenceManager.putIntInSlimSettings(getContext(),
                     mSettingType, getKey(), value ? 1 : 0);
             return true;
         }
@@ -90,7 +111,7 @@ public class SlimSwitchPreference extends SwitchPreference {
         if (!shouldPersist()) {
             return defaultReturnValue;
         }
-        return SlimPreference.getIntFromSlimSettings(getContext(), mSettingType, getKey(),
+        return SlimPreferenceManager.getIntFromSlimSettings(getContext(), mSettingType, getKey(),
                 defaultReturnValue ? 1 : 0) != 0;
     }
 
@@ -98,7 +119,7 @@ public class SlimSwitchPreference extends SwitchPreference {
     protected boolean isPersisted() {
         // Using getString instead of getInt so we can simply check for null
         // instead of catching an exception. (All values are stored as strings.)
-        return SlimPreference.settingExists(getContext(), mSettingType, getKey());
+        return SlimPreferenceManager.settingExists(getContext(), mSettingType, getKey());
     }
 }
 

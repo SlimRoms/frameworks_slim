@@ -40,7 +40,7 @@ import android.widget.EditText;
 
 import com.android.internal.logging.MetricsLogger;
 import com.slim.settings.R;
-import com.slim.settings.SettingsPreferenceFragment;
+import com.slim.settings.fragments.SlimPreferenceFragment;
 import com.slim.settings.Utils;
 
 import java.util.Date;
@@ -49,107 +49,31 @@ import org.slim.framework.internal.logging.SlimMetricsLogger;
 import slim.preference.colorpicker.ColorPickerPreference;
 import slim.provider.SlimSettings;
 
-public class StatusBarClockStyle extends SettingsPreferenceFragment
+public class StatusBarClockStyle extends SlimPreferenceFragment
         implements OnPreferenceChangeListener {
 
     private static final String TAG = "StatusBarClockStyle";
 
-    private static final String PREF_ENABLE = "clock_style";
-    private static final String PREF_AM_PM_STYLE = "status_bar_am_pm";
-    private static final String PREF_COLOR_OVERRIDE = "statusbar_clock_color_override";
-    private static final String PREF_COLOR_PICKER = "clock_color";
-    private static final String PREF_CLOCK_DATE_DISPLAY = "clock_date_display";
+    private static final String PREF_AM_PM_STYLE = "statusbar_clock_am_pm_style";
     private static final String PREF_CLOCK_DATE_STYLE = "clock_date_style";
     private static final String PREF_CLOCK_DATE_POSITION = "clock_date_position";
     private static final String PREF_CLOCK_DATE_FORMAT = "clock_date_format";
-    private static final String STATUS_BAR_CLOCK = "status_bar_show_clock";
 
     public static final int CLOCK_DATE_STYLE_LOWERCASE = 1;
     public static final int CLOCK_DATE_STYLE_UPPERCASE = 2;
     private static final int CUSTOM_CLOCK_DATE_FORMAT_INDEX = 18;
 
-    private static final int MENU_RESET = Menu.FIRST;
-
-    private static final int DLG_RESET = 0;
-
-    private ListPreference mClockStyle;
-    private ListPreference mClockAmPmStyle;
-    private ColorPickerPreference mColorPicker;
-    private ListPreference mClockDateDisplay;
     private ListPreference mClockDateStyle;
     private ListPreference mClockDatePosition;
     private ListPreference mClockDateFormat;
-    private SwitchPreference mStatusBarClock;
-    private SwitchPreference mStatusBarClockColorOverride;
-
-    private boolean mCheckPreferences;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        createCustomView();
-    }
 
-    private PreferenceScreen createCustomView() {
-        mCheckPreferences = false;
         PreferenceScreen prefSet = getPreferenceScreen();
-        if (prefSet != null) {
-            prefSet.removeAll();
-        }
 
-        addPreferencesFromResource(R.xml.status_bar_clock_style);
-        prefSet = getPreferenceScreen();
-
-        PackageManager pm = getPackageManager();
-        Resources systemUiResources;
-        try {
-            systemUiResources = pm.getResourcesForApplication("com.android.systemui");
-        } catch (Exception e) {
-            Log.e(TAG, "can't access systemui resources",e);
-            return null;
-        }
-
-        mClockStyle = (ListPreference) findPreference(PREF_ENABLE);
-        mClockStyle.setOnPreferenceChangeListener(this);
-        mClockStyle.setValue(Integer.toString(SlimSettings.System.getInt(getActivity()
-                .getContentResolver(), SlimSettings.System.STATUSBAR_CLOCK_STYLE,
-                0)));
-        mClockStyle.setSummary(mClockStyle.getEntry());
-
-        mClockAmPmStyle = (ListPreference) prefSet.findPreference(PREF_AM_PM_STYLE);
-        mClockAmPmStyle.setOnPreferenceChangeListener(this);
-        mClockAmPmStyle.setValue(Integer.toString(SlimSettings.System.getInt(getActivity()
-                .getContentResolver(), SlimSettings.System.STATUSBAR_CLOCK_AM_PM_STYLE,
-                0)));
-        boolean is24hour = DateFormat.is24HourFormat(getActivity());
-        if (is24hour) {
-            mClockAmPmStyle.setSummary(R.string.status_bar_am_pm_info);
-        } else {
-            mClockAmPmStyle.setSummary(mClockAmPmStyle.getEntry());
-        }
-        mClockAmPmStyle.setEnabled(!is24hour);
-
-        mColorPicker = (ColorPickerPreference) findPreference(PREF_COLOR_PICKER);
-        mColorPicker.setOnPreferenceChangeListener(this);
-        int intColor = SlimSettings.System.getInt(getActivity().getContentResolver(),
-                    SlimSettings.System.STATUSBAR_CLOCK_COLOR, -2);
-        if (intColor == -2) {
-            intColor = systemUiResources.getColor(systemUiResources.getIdentifier(
-                    "com.android.systemui:color/status_bar_clock_color", null, null));
-            mColorPicker.setSummary(getResources().getString(
-                    org.slim.framework.internal.R.string.default_string));
-        } else {
-            String hexColor = String.format("#%08x", (0xffffffff & intColor));
-            mColorPicker.setSummary(hexColor);
-        }
-        mColorPicker.setNewPreviewColor(intColor);
-
-        mClockDateDisplay = (ListPreference) findPreference(PREF_CLOCK_DATE_DISPLAY);
-        mClockDateDisplay.setOnPreferenceChangeListener(this);
-        mClockDateDisplay.setValue(Integer.toString(SlimSettings.System.getInt(getActivity()
-                .getContentResolver(), SlimSettings.System.STATUSBAR_CLOCK_DATE_DISPLAY,
-                0)));
-        mClockDateDisplay.setSummary(mClockDateDisplay.getEntry());
+        findPreference(PREF_AM_PM_STYLE).setEnabled(!DateFormat.is24HourFormat(getActivity()));
 
         mClockDateStyle = (ListPreference) findPreference(PREF_CLOCK_DATE_STYLE);
         mClockDateStyle.setOnPreferenceChangeListener(this);
@@ -173,19 +97,6 @@ public class StatusBarClockStyle extends SettingsPreferenceFragment
 
         parseClockDateFormats();
 
-        mStatusBarClock = (SwitchPreference) prefSet.findPreference(STATUS_BAR_CLOCK);
-        mStatusBarClock.setChecked((SlimSettings.System.getInt(
-                getActivity().getApplicationContext().getContentResolver(),
-                SlimSettings.System.STATUS_BAR_CLOCK, 1) == 1));
-        mStatusBarClock.setOnPreferenceChangeListener(this);
-
-        mStatusBarClockColorOverride =
-                (SwitchPreference) prefSet.findPreference(PREF_COLOR_OVERRIDE);
-        mStatusBarClockColorOverride.setChecked((SlimSettings.System.getInt(
-                getActivity().getApplicationContext().getContentResolver(),
-                SlimSettings.System.STATUSBAR_CLOCK_COLOR_OVERRIDE, 0) == 1));
-        mStatusBarClockColorOverride.setOnPreferenceChangeListener(this);
-
         boolean mClockDateToggle = SlimSettings.System.getInt(getActivity().getContentResolver(),
                     SlimSettings.System.STATUSBAR_CLOCK_DATE_DISPLAY, 0) != 0;
         if (!mClockDateToggle) {
@@ -193,68 +104,18 @@ public class StatusBarClockStyle extends SettingsPreferenceFragment
             mClockDatePosition.setEnabled(false);
             mClockDateFormat.setEnabled(false);
         }
-
-        setHasOptionsMenu(true);
-        mCheckPreferences = true;
-        return prefSet;
     }
 
     public boolean onPreferenceChange(Preference preference, Object newValue) {
-        if (!mCheckPreferences) {
-            return false;
-        }
         AlertDialog dialog;
 
-        if (preference == mClockAmPmStyle) {
-            int val = Integer.parseInt((String) newValue);
-            int index = mClockAmPmStyle.findIndexOfValue((String) newValue);
-            SlimSettings.System.putInt(getActivity().getContentResolver(),
-                    SlimSettings.System.STATUSBAR_CLOCK_AM_PM_STYLE, val);
-            mClockAmPmStyle.setSummary(mClockAmPmStyle.getEntries()[index]);
-            return true;
-        } else if (preference == mClockStyle) {
-            int val = Integer.parseInt((String) newValue);
-            int index = mClockStyle.findIndexOfValue((String) newValue);
-            SlimSettings.System.putInt(getActivity().getContentResolver(),
-                    SlimSettings.System.STATUSBAR_CLOCK_STYLE, val);
-            mClockStyle.setSummary(mClockStyle.getEntries()[index]);
-            return true;
-        } else if (preference == mColorPicker) {
-            String hex = ColorPickerPreference.convertToARGB(Integer.valueOf(String
-                    .valueOf(newValue)));
-            preference.setSummary(hex);
-            int intHex = ColorPickerPreference.convertToColorInt(hex);
-            SlimSettings.System.putInt(getActivity().getContentResolver(),
-                    SlimSettings.System.STATUSBAR_CLOCK_COLOR, intHex);
-            return true;
-        } else if (preference == mClockDateDisplay) {
-            int val = Integer.parseInt((String) newValue);
-            int index = mClockDateDisplay.findIndexOfValue((String) newValue);
-            SlimSettings.System.putInt(getActivity().getContentResolver(),
-                    SlimSettings.System.STATUSBAR_CLOCK_DATE_DISPLAY, val);
-            mClockDateDisplay.setSummary(mClockDateDisplay.getEntries()[index]);
-            if (val == 0) {
-                mClockDateStyle.setEnabled(false);
-                mClockDatePosition.setEnabled(false);
-                mClockDateFormat.setEnabled(false);
-            } else {
-                mClockDateStyle.setEnabled(true);
-                mClockDatePosition.setEnabled(true);
-                mClockDateFormat.setEnabled(true);
-            }
-            return true;
-        } else if (preference == mClockDateStyle) {
+        if (preference == mClockDateStyle) {
             int val = Integer.parseInt((String) newValue);
             int index = mClockDateStyle.findIndexOfValue((String) newValue);
             SlimSettings.System.putInt(getActivity().getContentResolver(),
                     SlimSettings.System.STATUSBAR_CLOCK_DATE_STYLE, val);
             mClockDateStyle.setSummary(mClockDateStyle.getEntries()[index]);
             parseClockDateFormats();
-            return true;
-        } else if (preference == mStatusBarClock) {
-            SlimSettings.System.putInt(getActivity().getApplicationContext().getContentResolver(),
-                    SlimSettings.System.STATUS_BAR_CLOCK,
-                    (Boolean) newValue ? 1 : 0);
             return true;
         } else if (preference == mClockDatePosition) {
             int val = Integer.parseInt((String) newValue);
@@ -263,11 +124,6 @@ public class StatusBarClockStyle extends SettingsPreferenceFragment
                     SlimSettings.System.STATUSBAR_CLOCK_DATE_POSITION, val);
             mClockDatePosition.setSummary(mClockDatePosition.getEntries()[index]);
             parseClockDateFormats();
-            return true;
-        } else if (preference == mStatusBarClockColorOverride) {
-            SlimSettings.System.putInt(getActivity().getApplicationContext().getContentResolver(),
-                    SlimSettings.System.STATUSBAR_CLOCK_COLOR_OVERRIDE,
-                    (Boolean) newValue ? 1 : 0);
             return true;
         } else if (preference == mClockDateFormat) {
             int index = mClockDateFormat.findIndexOfValue((String) newValue);
@@ -318,29 +174,6 @@ public class StatusBarClockStyle extends SettingsPreferenceFragment
         return false;
     }
 
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        menu.add(0, MENU_RESET, 0, org.slim.framework.internal.R.string.reset)
-                .setIcon(org.slim.framework.internal.R.drawable.ic_settings_reset)
-                .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case MENU_RESET:
-                showDialogInner(DLG_RESET);
-                return true;
-             default:
-                return super.onContextItemSelected(item);
-        }
-    }
-
-    @Override
-    protected int getMetricsCategory() {
-        return SlimMetricsLogger.CLOCK_SETTINGS;
-    }
-
     private void parseClockDateFormats() {
         // Parse and repopulate mClockDateFormats's entries based on current date.
         String[] dateEntries = getResources().getStringArray(R.array.clock_date_format_entries_values);
@@ -370,53 +203,4 @@ public class StatusBarClockStyle extends SettingsPreferenceFragment
         }
         mClockDateFormat.setEntries(parsedDateEntries);
     }
-
-    private void showDialogInner(int id) {
-        DialogFragment newFragment = MyAlertDialogFragment.newInstance(id);
-        newFragment.setTargetFragment(this, 0);
-        newFragment.show(getFragmentManager(), "dialog " + id);
-    }
-
-    public static class MyAlertDialogFragment extends DialogFragment {
-
-        public static MyAlertDialogFragment newInstance(int id) {
-            MyAlertDialogFragment frag = new MyAlertDialogFragment();
-            Bundle args = new Bundle();
-            args.putInt("id", id);
-            frag.setArguments(args);
-            return frag;
-        }
-
-        StatusBarClockStyle getOwner() {
-            return (StatusBarClockStyle) getTargetFragment();
-        }
-
-        @Override
-        public Dialog onCreateDialog(Bundle savedInstanceState) {
-            int id = getArguments().getInt("id");
-            switch (id) {
-                case DLG_RESET:
-                    return new AlertDialog.Builder(getActivity())
-                    .setTitle(org.slim.framework.internal.R.string.reset)
-                    .setMessage(R.string.status_bar_clock_style_reset_message)
-                    .setNegativeButton(android.R.string.cancel, null)
-                    .setPositiveButton(android.R.string.ok,
-                        new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            SlimSettings.System.putInt(getActivity().getContentResolver(),
-                                SlimSettings.System.STATUSBAR_CLOCK_COLOR, -2);
-                            getOwner().createCustomView();
-                        }
-                    })
-                    .create();
-            }
-            throw new IllegalArgumentException("unknown id " + id);
-        }
-
-        @Override
-        public void onCancel(DialogInterface dialog) {
-
-        }
-    }
-
 }

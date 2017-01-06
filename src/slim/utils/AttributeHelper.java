@@ -118,10 +118,24 @@ public class AttributeHelper {
     public int getInt(int index, int defValue) {
         AttributeInfo info = mMap.get(getIdForIndex(index));
         if (info == null) return defValue;
+        if (info.value.startsWith("@")) {
+            int id = getResourceId(index, defValue);
+            try {
+                return mResources.getInteger(id);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
         try {
             return Integer.parseInt(info.value);
         } catch (Exception e) {
-            return XmlUtils.convertValueToInt(info.value, defValue);
+            e.printStackTrace();
+            try {
+                return XmlUtils.convertValueToInt(info.value, defValue);
+            } catch (Exception ex) {
+                ex.printStackTrace();
+                return defValue;
+            }
         }
     }
 
@@ -131,6 +145,15 @@ public class AttributeHelper {
             return Integer.parseInt(info.value.substring(1));
         } catch (Exception e) {
             return defValue;
+        }
+    }
+
+    public String getString(int index) {
+        AttributeInfo info = mMap.get(getIdForIndex(index));
+        try {
+            return info.value;
+        } catch (Exception e) {
+            return null;
         }
     }
 

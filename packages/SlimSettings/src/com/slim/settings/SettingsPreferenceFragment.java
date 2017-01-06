@@ -1,5 +1,6 @@
 /*
  * Copyright (C) 2010 The Android Open Source Project
+ * Copyright (C) 2017 SlimRoms Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -300,7 +301,7 @@ public abstract class SettingsPreferenceFragment extends InstrumentedPreferenceF
         final Activity activity = getActivity();
         if (activity instanceof SettingsActivity) {
             SettingsActivity sa = (SettingsActivity) activity;
-            sa.startPreferencePanel(fragmentClass, extras, null, caller, requestCode);
+            sa.startPreferencePanel(fragmentClass, extras, null, caller, requestCode, false);
             return true;
         } else {
             Log.w(TAG,

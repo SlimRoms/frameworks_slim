@@ -43,12 +43,11 @@
             android:title="@string/recent_panel_expanded_mode_title"
             android:summary="@string/recent_panel_expanded_mode_summary" />
 
-        <SwitchPreference
+        <slim.preference.SlimSwitchPreference
             android:dependency="use_slim_recents"
             android:key="recent_panel_lefty_mode"
             android:title="@string/recent_panel_lefty_mode_title"
-            android:summary="@string/recent_panel_lefty_mode_summary"
-            android:persistent="false" />
+            android:summary="@string/recent_panel_lefty_mode_summary" />
 
         <slim.preference.SlimSwitchPreference
             android:dependency="use_slim_recents"
@@ -67,21 +66,21 @@
             android:dependency="use_slim_recents"
             android:key="recent_panel_bg_color"
             android:title="@string/recent_panel_bg_color_title"
-            android:defaultValue="0x00ffffff"
-            alphaSlider="true" />
+            slim:defaultColor="#00ffffff"
+            slim:alphaSliderEnabled="true" />
 
         <slim.preference.colorpicker.ColorPickerPreference
             android:dependency="use_slim_recents"
             android:key="recent_card_bg_color"
             android:title="@string/recent_card_bg_color_title"
-            android:defaultValue="0x00ffffff"
-            alphaSlider="true" />
+            slim:defaultColor="#00ffffff"
+            slim:alphaSliderEnabled="true" />
 
         <slim.preference.colorpicker.ColorPickerPreference
             android:dependency="use_slim_recents"
             android:key="recent_card_text_color"
             android:title="@string/recent_card_text_color_title"
-            android:defaultValue="0x00ffffff"
-            alphaSlider="true" />
+            slim:defaultColor="#00ffffff"
+            slim:alphaSliderEnabled="true" />
 
 </PreferenceScreen>

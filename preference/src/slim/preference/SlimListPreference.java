@@ -25,13 +25,14 @@ import android.util.AttributeSet;
 
 import slim.utils.AttributeHelper;
 
-import static slim.preference.SlimPreference.SLIM_GLOBAL_SETTING;
-import static slim.preference.SlimPreference.SLIM_SECURE_SETTING;
-import static slim.preference.SlimPreference.SLIM_SYSTEM_SETTING;
-
 public class SlimListPreference extends ListPreference {
 
     private int mSettingType;
+
+    private SlimPreferenceManager mSlimPreferenceManager = SlimPreferenceManager.get();
+
+    private String mListDependency;
+    private String[] mListDependencyValues;
 
     public SlimListPreference(Context context) {
         super(context);
@@ -49,25 +50,41 @@ public class SlimListPreference extends ListPreference {
     }
 
     private void init(Context context, AttributeSet attrs) {
-        if (attrs != null) {
+        AttributeHelper a = new AttributeHelper(context, attrs,
+                slim.R.styleable.SlimPreference);
 
-            AttributeHelper a = new AttributeHelper(context, attrs,
-                    slim.R.styleable.SlimPreference);
+        mSettingType = SlimPreferenceManager.getSettingType(a);
 
-            int s = a.getInt(slim.R.styleable.SlimPreference_slimSettingType,
-                    SLIM_SYSTEM_SETTING);
+        String list = a.getString(slim.R.styleable.SlimPreference_listDependency);
+        if (!TextUtils.isEmpty(list)) {
+            String[] listParts = list.split(":");
+            mListDependency = listParts[0];
+            mListDependencyValues = listParts[1].split("\\|");
+        }
 
-            switch (s) {
-                case SLIM_GLOBAL_SETTING:
-                    mSettingType = SLIM_GLOBAL_SETTING;
-                    break;
-                case SLIM_SECURE_SETTING:
-                    mSettingType = SLIM_SECURE_SETTING;
-                    break;
-                default:
-                    mSettingType = SLIM_SYSTEM_SETTING;
-                    break;
-            }
+        boolean hidePreference =
+                a.getBoolean(slim.R.styleable.SlimPreference_hidePreference, false);
+        int hidePreferenceInt = a.getInt(slim.R.styleable.SlimPreference_hidePreferenceInt, -1);
+        int intDep = a.getInt(slim.R.styleable.SlimPreference_hidePreferenceIntDependency, 0);
+        if (hidePreference || hidePreferenceInt == intDep) {
+            setVisible(false);
+        }
+    }
+
+    @Override
+    public void onAttached() {
+        super.onAttached();
+        if (mListDependency != null) {
+            mSlimPreferenceManager.registerListDependent(
+                    this, mListDependency, mListDependencyValues);
+        }
+    }
+
+    @Override
+    public void onDetached() {
+        super.onDetached();
+        if (mListDependency != null) {
+            mSlimPreferenceManager.unregisterListDependent(this, mListDependency);
         }
     }
 
@@ -77,7 +94,9 @@ public class SlimListPreference extends ListPreference {
             if (TextUtils.equals(value, getPersistedString(null))) {
                 return true;
             }
-            SlimPreference.putStringInSlimSettings(getContext(), mSettingType, getKey(), value);
+            SlimPreferenceManager.putStringInSlimSettings(getContext(),
+                    mSettingType, getKey(), value);
+            mSlimPreferenceManager.updateDependents(this);
             return true;
         }
         return false;
@@ -88,7 +107,7 @@ public class SlimListPreference extends ListPreference {
         if (!shouldPersist()) {
             return defaultReturnValue;
         }
-        return SlimPreference.getStringFromSlimSettings(getContext(), mSettingType, getKey(),
+        return SlimPreferenceManager.getStringFromSlimSettings(getContext(), mSettingType, getKey(),
                 defaultReturnValue);
     }
 
@@ -96,6 +115,6 @@ public class SlimListPreference extends ListPreference {
     protected boolean isPersisted() {
         // Using getString instead of getInt so we can simply check for null
         // instead of catching an exception. (All values are stored as strings.)
-        return SlimPreference.settingExists(getContext(), mSettingType, getKey());
+        return SlimPreferenceManager.settingExists(getContext(), mSettingType, getKey());
     }
 }
