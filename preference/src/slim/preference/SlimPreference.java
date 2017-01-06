@@ -23,12 +23,13 @@ import android.util.Log;
 
 import slim.provider.SlimSettings;
 
-class SlimPreference {
-    static final int SLIM_SYSTEM_SETTING = 0;
-    static final int SLIM_GLOBAL_SETTING = 1;
-    static final int SLIM_SECURE_SETTING = 2;
+public class SlimPreference {
+    public static final int SLIM_SYSTEM_SETTING = 0;
+    public static final int SLIM_GLOBAL_SETTING = 1;
+    public static final int SLIM_SECURE_SETTING = 2;
 
-    static int getIntFromSlimSettings(Context context, int settingType, String key, int def) {
+    public static int getIntFromSlimSettings(
+            Context context, int settingType, String key, int def) {
         switch (settingType) {
             case SLIM_GLOBAL_SETTING:
                 return SlimSettings.Global.getInt(context.getContentResolver(), key, def);
@@ -41,7 +42,7 @@ class SlimPreference {
         }
     }
 
-    static void putIntInSlimSettings(Context context, int settingType, String key, int val) {
+    public static void putIntInSlimSettings(Context context, int settingType, String key, int val) {
         switch (settingType) {
             case SLIM_GLOBAL_SETTING:
                 SlimSettings.Global.putInt(context.getContentResolver(), key, val);
@@ -57,7 +58,7 @@ class SlimPreference {
         }
     }
 
-    static String getStringFromSlimSettings(Context context,
+    public static String getStringFromSlimSettings(Context context,
             int settingType, String key, String def) {
         if (!settingExists(context, settingType, key)) return def;
         switch (settingType) {
@@ -72,7 +73,8 @@ class SlimPreference {
         }
     }
 
-    static void putStringInSlimSettings(Context context, int settingType, String key, String val) {
+    public static void putStringInSlimSettings(
+            Context context, int settingType, String key, String val) {
         switch (settingType) {
             case SLIM_GLOBAL_SETTING:
                 SlimSettings.Global.putString(context.getContentResolver(), key, val);
@@ -88,7 +90,7 @@ class SlimPreference {
         }
     }
 
-    static boolean settingExists(Context context, int settingType, String key) {
+    public static boolean settingExists(Context context, int settingType, String key) {
         switch (settingType) {
             case SLIM_GLOBAL_SETTING:
                 return SlimSettings.Global.getString(context.getContentResolver(), key) != null;

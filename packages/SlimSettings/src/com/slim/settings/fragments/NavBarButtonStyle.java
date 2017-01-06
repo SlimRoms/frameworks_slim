@@ -45,17 +45,13 @@ public class NavBarButtonStyle extends SettingsPreferenceFragment implements
         OnPreferenceChangeListener {
 
     private static final String TAG = "NavBarButtonStyle";
-    private static final String PREF_NAV_BUTTON_COLOR = "nav_button_color";
     private static final String PREF_NAV_BUTTON_COLOR_MODE = "nav_button_color_mode";
-    private static final String PREF_NAV_GLOW_COLOR = "nav_button_glow_color";
 
     private static final int MENU_RESET = Menu.FIRST;
 
     private boolean mCheckPreferences;
 
-    ColorPickerPreference mNavigationBarButtonColor;
     ListPreference mNavigationBarButtonColorMode;
-    ColorPickerPreference mNavigationBarGlowColor;
 
     @Override
     protected int getMetricsCategory() {
@@ -79,36 +75,6 @@ public class NavBarButtonStyle extends SettingsPreferenceFragment implements
         addPreferencesFromResource(R.xml.navbar_button_style);
 
         prefs = getPreferenceScreen();
-
-        mNavigationBarButtonColor = (ColorPickerPreference) findPreference(PREF_NAV_BUTTON_COLOR);
-        mNavigationBarButtonColor.setOnPreferenceChangeListener(this);
-        int intColor = SlimSettings.System.getInt(getContentResolver(),
-                    SlimSettings.System.NAVIGATION_BAR_BUTTON_TINT, -2);
-        if (intColor == -2) {
-            intColor = getResources().getColor(
-                    com.android.internal.R.color.white);
-            mNavigationBarButtonColor.setSummary(
-                    getResources().getString(org.slim.framework.internal.R.string.default_string));
-        } else {
-            String hexColor = String.format("#%08x", (0xffffffff & intColor));
-            mNavigationBarButtonColor.setSummary(hexColor);
-        }
-        mNavigationBarButtonColor.setNewPreviewColor(intColor);
-
-        mNavigationBarGlowColor = (ColorPickerPreference) findPreference(PREF_NAV_GLOW_COLOR);
-        mNavigationBarGlowColor.setOnPreferenceChangeListener(this);
-        intColor = SlimSettings.System.getInt(getContentResolver(),
-                    SlimSettings.System.NAVIGATION_BAR_GLOW_TINT, -2);
-        if (intColor == -2) {
-            intColor = getResources().getColor(
-                    com.android.internal.R.color.white);
-            mNavigationBarGlowColor.setSummary(
-                    getResources().getString(org.slim.framework.internal.R.string.default_string));
-        } else {
-            String hexColor = String.format("#%08x", (0xffffffff & intColor));
-            mNavigationBarGlowColor.setSummary(hexColor);
-        }
-        mNavigationBarGlowColor.setNewPreviewColor(intColor);
 
         mNavigationBarButtonColorMode =
             (ListPreference) prefs.findPreference(PREF_NAV_BUTTON_COLOR_MODE);
@@ -169,15 +135,7 @@ public class NavBarButtonStyle extends SettingsPreferenceFragment implements
         if (!mCheckPreferences) {
             return false;
         }
-        if (preference == mNavigationBarButtonColor) {
-            String hex = ColorPickerPreference.convertToARGB(
-                    Integer.valueOf(String.valueOf(newValue)));
-            preference.setSummary(hex);
-            int intHex = ColorPickerPreference.convertToColorInt(hex);
-            SlimSettings.System.putInt(getActivity().getContentResolver(),
-                    SlimSettings.System.NAVIGATION_BAR_BUTTON_TINT, intHex);
-            return true;
-        } else if (preference == mNavigationBarButtonColorMode) {
+        if (preference == mNavigationBarButtonColorMode) {
             int index = mNavigationBarButtonColorMode.findIndexOfValue((String) newValue);
             int value = Integer.valueOf((String) newValue);
             SlimSettings.System.putInt(getContentResolver(),
@@ -186,14 +144,6 @@ public class NavBarButtonStyle extends SettingsPreferenceFragment implements
             mNavigationBarButtonColorMode.setSummary(
                 mNavigationBarButtonColorMode.getEntries()[index]);
             updateColorPreference();
-            return true;
-        } if (preference == mNavigationBarGlowColor) {
-            String hex = ColorPickerPreference.convertToARGB(
-                    Integer.valueOf(String.valueOf(newValue)));
-            preference.setSummary(hex);
-            int intHex = ColorPickerPreference.convertToColorInt(hex);
-            SlimSettings.System.putInt(getActivity().getContentResolver(),
-                    SlimSettings.System.NAVIGATION_BAR_GLOW_TINT, intHex);
             return true;
         }
         return false;
@@ -207,6 +157,6 @@ public class NavBarButtonStyle extends SettingsPreferenceFragment implements
     private void updateColorPreference() {
         int navigationBarButtonColorMode = SlimSettings.System.getInt(getContentResolver(),
                 SlimSettings.System.NAVIGATION_BAR_BUTTON_TINT_MODE, 0);
-        mNavigationBarButtonColor.setEnabled(navigationBarButtonColorMode != 3);
+        //mNavigationBarButtonColor.setEnabled(navigationBarButtonColorMode != 3);
     }
 }

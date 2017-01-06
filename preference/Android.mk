@@ -1,5 +1,5 @@
 # Copyright (C) 2016 The Android Open Source Project
-# Copyright (C) 2016 SlimRoms Project
+# Copyright (C) 2016-2017 SlimRoms Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,11 +16,24 @@
 LOCAL_PATH := $(call my-dir)
 
 include $(CLEAR_VARS)
+LOCAL_USE_AAPT2 := true
+LOCAL_MODULE := slim-preference-res
+LOCAL_RESOURCE_DIR := $(LOCAL_PATH)/res
+LOCAL_JAVA_LANGUAGE_VERSION := 1.7
+include $(BUILD_STATIC_JAVA_LIBRARY)
+
+include $(CLEAR_VARS)
+LOCAL_USE_AAPT2 := true
 LOCAL_MODULE := slim-preference
 LOCAL_SRC_FILES := $(call all-java-files-under,src)
-LOCAL_JAVA_LIBRARIES := \
-    org.slim.framework \
+LOCAL_STATIC_ANDROID_LIBRARIES := \
+    slim-preference-res
+LOCAL_SHARED_ANDROID_LIBRARIES := \
     android-support-v7-preference \
     android-support-v7-recyclerview \
     android-support-v14-preference
+LOCAL_JAVA_LIBRARIES := \
+    org.slim.framework
+LOCAL_JAR_EXCLUDE_FILES := none
+LOCAL_JAVA_LANGUAGE_VERSION := 1.7
 include $(BUILD_STATIC_JAVA_LIBRARY)

@@ -30,7 +30,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
-import org.slim.framework.internal.R;
+import org.slim.preference.R;
 
 public class ColorPickerDialog
         extends
@@ -77,25 +77,26 @@ public class ColorPickerDialog
     private void setUp(int color) {
 
         LayoutInflater inflater = LayoutInflater.from(getContext());
+
         View layout = inflater.inflate(R.layout.dialog_color_picker, null);
 
         setContentView(layout);
 
         setTitle(R.string.dialog_color_picker);
 
-        mColorPicker = (ColorPickerView) layout.findViewById(R.id.color_picker_view);
-        mOldColor = (ColorPickerPanelView) layout.findViewById(R.id.old_color_panel);
-        mNewColor = (ColorPickerPanelView) layout.findViewById(R.id.new_color_panel);
+        mColorPicker = (ColorPickerView) layout.findViewById(slim.R.id.color_picker_view);
+        mOldColor = (ColorPickerPanelView) layout.findViewById(slim.R.id.old_color_panel);
+        mNewColor = (ColorPickerPanelView) layout.findViewById(slim.R.id.new_color_panel);
 
-        mWhite = (ColorPickerPanelView) layout.findViewById(R.id.white_panel);
-        mBlack = (ColorPickerPanelView) layout.findViewById(R.id.black_panel);
-        mCyan = (ColorPickerPanelView) layout.findViewById(R.id.cyan_panel);
-        mRed = (ColorPickerPanelView) layout.findViewById(R.id.red_panel);
-        mGreen = (ColorPickerPanelView) layout.findViewById(R.id.green_panel);
-        mYellow = (ColorPickerPanelView) layout.findViewById(R.id.yellow_panel);
+        mWhite = (ColorPickerPanelView) layout.findViewById(slim.R.id.white_panel);
+        mBlack = (ColorPickerPanelView) layout.findViewById(slim.R.id.black_panel);
+        mCyan = (ColorPickerPanelView) layout.findViewById(slim.R.id.cyan_panel);
+        mRed = (ColorPickerPanelView) layout.findViewById(slim.R.id.red_panel);
+        mGreen = (ColorPickerPanelView) layout.findViewById(slim.R.id.green_panel);
+        mYellow = (ColorPickerPanelView) layout.findViewById(slim.R.id.yellow_panel);
 
-        mHex = (EditText) layout.findViewById(R.id.hex);
-        mSetButton = (ImageButton) layout.findViewById(R.id.enter);
+        mHex = (EditText) layout.findViewById(slim.R.id.hex);
+        mSetButton = (ImageButton) layout.findViewById(slim.R.id.enter);
 
         ((LinearLayout) mOldColor.getParent()).setPadding(
                 Math.round(mColorPicker.getDrawingOffset()),
@@ -187,7 +188,7 @@ public class ColorPickerDialog
 
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.new_color_panel) {
+        if (v.getId() == slim.R.id.new_color_panel) {
             if (mListener != null) {
                 mListener.onColorChanged(mNewColor.getColor());
             }

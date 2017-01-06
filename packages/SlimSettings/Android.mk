@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2016 SlimRoms Project
+# Copyright (C) 2016-2017 SlimRoms Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -38,10 +38,11 @@ LOCAL_RESOURCE_DIR := \
     frameworks/support/v7/preference/res \
     frameworks/support/v14/preference/res \
     frameworks/support/v7/appcompat/res \
-    frameworks/support/v7/recyclerview/res
+    frameworks/support/v7/recyclerview/res \
+    frameworks/opt/slim/preference/res
 
 LOCAL_AAPT_FLAGS := --auto-add-overlay \
-    --extra-packages android.support.v7.preference:android.support.v14.preference:android.support.v7.appcompat:android.support.v7.recyclerview
+    --extra-packages android.support.v7.preference:android.support.v14.preference:android.support.v7.appcompat:android.support.v7.recyclerview:org.slim.preference
 
 LOCAL_CERTIFICATE := platform
 LOCAL_PACKAGE_NAME := SlimSettings

@@ -25,20 +25,21 @@
         android:title="@string/nav_bar_button_style">
 
         <slim.preference.colorpicker.ColorPickerPreference
-             android:key="nav_button_color"
+             android:key="navigation_bar_button_tint"
              android:title="@string/navigation_bar_icon_tint_title"
-             android:defaultValue="0xffffffff" />
+             android:defaultValue="0xffffffff"
+             slim:listDependency="navigation_bar_button_tint_mode:3" />
 
-        <ListPreference
+        <slim.preference.SlimListPreference
              android:entries="@array/icon_color_mode_entries"
              android:entryValues="@array/icon_color_mode_values"
-             android:key="nav_button_color_mode"
+             android:key="navigation_bar_button_tint_mode"
              android:title="@string/nav_button_color_mode_title"
              android:dialogTitle="@string/nav_button_color_mode_dialog_title"
              android:summary="@string/nav_button_color_mode_summary" />
 
         <slim.preference.colorpicker.ColorPickerPreference
-             android:key="nav_button_glow_color"
+             android:key="navigation_bar_glow_tint"
              android:title="@string/navigation_bar_glow_tint_title"
              android:defaultValue="0xffffffff" />
 

@@ -34,6 +34,8 @@
   <public type="attr" name="interval" id="0x02010005" />
   <public type="attr" name="minValue" id="0x02010006" />
   <public type="attr" name="multiplyValue" id="0x02010007" />
+  <public type="attr" name="defaultColor" id="0x02010008" />
+  <public type="attr" name="alphaSliderEnabled" id="0x02010009" />
 
   <!-- id (start with 0x02020000)-->
   <!--SlimSeekBar ids -->
@@ -80,6 +82,8 @@
   <public type="string" name="prox_auto_speaker_incall_only_title" id="0x02040013" />
   <public type="string" name="prox_auto_speaker_incall_only_summary_on" id="0x02040014" />
   <public type="string" name="prox_auto_speaker_incall_only_summary_off" id="0x02040015" />
+
+  <public type="string" name="hex" id="0x02040016" />
 
   <!-- dimen (start with 0x02050000) -->
 
