@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2016 The SlimRoms Project
+ * Copyright (C) 2016-2017 The SlimRoms Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -57,6 +57,15 @@ public class SlimActionsService extends SlimSystemService {
             if (mBar != null) {
                 try {
                     mBar.showCustomIntentAfterKeyguard(intent);
+                } catch (RemoteException ex) {}
+            }
+        }
+
+        @Override
+        public void toggleSplitScreen() {
+            if (mBar != null) {
+                try {
+                    mBar.toggleSplitScreen();
                 } catch (RemoteException ex) {}
             }
         }

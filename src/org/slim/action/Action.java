@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2016 SlimRoms Project
+* Copyright (C) 2016-2017 SlimRoms Project
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -188,7 +188,10 @@ public class Action {
                 actionsManager.toggleLastApp();
                 return;
             } else if (action.equals(ActionConstants.ACTION_SCREENSHOT)) {
-                    actionsManager.toggleScreenshot();
+                actionsManager.toggleScreenshot();
+                return;
+            } else if (action.equals(ActionConstants.ACTION_SPLIT_SCREEN)) {
+                actionsManager.toggleSplitScreen();
                 return;
             } else if (action.equals(ActionConstants.ACTION_RECENTS)) {
                 if (isKeyguardShowing) {

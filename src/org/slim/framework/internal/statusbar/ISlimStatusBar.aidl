@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2016, The SlimRoms Project
+ * Copyright (c) 2016-2017, The SlimRoms Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,6 +28,7 @@ oneway interface ISlimStatusBar {
     void toggleKillApp();
 
     void startAssist(in Bundle bundle);
+    void toggleSplitScreen();
     void toggleRecentApps();
     void preloadRecentApps();
     void cancelPreloadRecentApps();

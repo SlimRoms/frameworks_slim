@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-     Copyright (C) 2016 SlimRoms Project
+     Copyright (C) 2016-2017 SlimRoms Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -161,6 +161,7 @@
         <item>@string/shortcut_action_ring_vib_silent</item>
         <item>@string/shortcut_action_wake_device</item>
         <!--<item>@string/shortcut_action_nav_bar</item>-->
+        <item>@string/shortcut_action_split_screen</item>
         <item>@string/shortcut_action_none</item>
     </string-array>
 
@@ -192,6 +193,7 @@
         <item>**ring_vib_silent**</item>
         <item>**wake_device**</item>
         <!--<item>**nav_bar**</item>-->
+        <item>**split_screen**</item>
         <item>**null**</item>
     </string-array>
 
