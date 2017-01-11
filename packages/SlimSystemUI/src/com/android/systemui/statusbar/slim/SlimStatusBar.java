@@ -25,12 +25,18 @@ import android.app.IActivityManager;
 import android.content.ComponentName;
 import android.content.ContentResolver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.ResolveInfo;
 import android.content.ServiceConnection;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.PackageManager.NameNotFoundException;
+import android.content.pm.ResolveInfo;
 import android.database.ContentObserver;
 import android.graphics.PixelFormat;
 import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.IBinder;
@@ -39,22 +45,34 @@ import android.os.Messenger;
 import android.os.Process;
 import android.os.RemoteException;
 import android.os.UserHandle;
+import android.service.notification.StatusBarNotification;
 import android.util.Log;
 import android.view.Display;
 import android.util.Slog;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 import android.view.WindowManager;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.internal.logging.MetricsLogger;
+import com.android.internal.logging.MetricsProto.MetricsEvent;
+import com.android.keyguard.KeyguardHostView.OnDismissAction;
 import com.android.systemui.R;
 import com.android.systemui.slimrecent.RecentController;
 import com.android.systemui.slimrecent.SlimScreenPinningRequest;
+import com.android.systemui.statusbar.ExpandableNotificationRow;
+import com.android.systemui.statusbar.SlimNotificationGuts;
+import com.android.systemui.statusbar.StatusBarState;
 import com.android.systemui.statusbar.phone.SlimNavigationBarView;
 import com.android.systemui.statusbar.phone.NavigationBarView;
 import com.android.systemui.statusbar.phone.PhoneStatusBar;
 import com.android.systemui.statusbar.phone.PhoneStatusBarView;
+import com.android.systemui.statusbar.phone.SystemUIDialog;
 import com.android.systemui.statusbar.slim.SlimQuickStatusBarHeader;
 
 import java.util.List;
@@ -702,6 +720,122 @@ public class SlimStatusBar extends PhoneStatusBar implements
         }
         if (lastAppId != 0) {
             am.moveTaskToFront(lastAppId, am.MOVE_TASK_NO_USER_ACTION);
+        }
+    }
+
+    @Override
+    protected void bindGuts(final ExpandableNotificationRow row) {
+        row.inflateGuts();
+        final StatusBarNotification sbn = row.getStatusBarNotification();
+        PackageManager pmUser = getPackageManagerForUser(mContext, sbn.getUser().getIdentifier());
+        row.setTag(sbn.getPackageName());
+        final SlimNotificationGuts guts = (SlimNotificationGuts) row.getGuts();
+        guts.setClosedListener(this);
+        final String pkg = sbn.getPackageName();
+        String appname = pkg;
+        Drawable pkgicon = null;
+        int appUid = -1;
+        try {
+            final ApplicationInfo info = pmUser.getApplicationInfo(pkg,
+                    PackageManager.GET_UNINSTALLED_PACKAGES
+                            | PackageManager.GET_DISABLED_COMPONENTS);
+            if (info != null) {
+                appname = String.valueOf(pmUser.getApplicationLabel(info));
+                pkgicon = pmUser.getApplicationIcon(info);
+                appUid = info.uid;
+            }
+        } catch (NameNotFoundException e) {
+            // app is gone, just show package name and generic icon
+            pkgicon = pmUser.getDefaultActivityIcon();
+        }
+
+        ((ImageView) guts.findViewById(R.id.app_icon)).setImageDrawable(pkgicon);
+        ((TextView) guts.findViewById(R.id.pkgname)).setText(appname);
+
+        final TextView settingsButton = (TextView) guts.findViewById(R.id.more_settings);
+        LinearLayout buttonParent = (LinearLayout) settingsButton.getParent();
+        final TextView killButton = (TextView) LayoutInflater.from(
+                settingsButton.getContext()).inflate(
+                R.layout.kill_button, buttonParent, false /* attachToRoot */);
+        if (buttonParent.findViewById(R.id.notification_inspect_kill) == null) { // only add once
+            buttonParent.addView(killButton, buttonParent.indexOfChild(settingsButton)/*index*/);
+        }
+        if (appUid >= 0) {
+            final int appUidF = appUid;
+            settingsButton.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    MetricsLogger.action(mContext, MetricsEvent.ACTION_NOTE_INFO);
+                    guts.resetFalsingCheck();
+                    startAppNotificationSettingsActivity(pkg, appUidF);
+                }
+            });
+            settingsButton.setText(R.string.notification_more_settings);
+            if (isThisASystemPackage(pkg, pmUser)) {
+                killButton.setVisibility(View.GONE);
+            } else {
+                killButton.setVisibility(View.VISIBLE);
+                killButton.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View v) {
+                        final SystemUIDialog killDialog = new SystemUIDialog(mContext);
+                        killDialog.setTitle(mContext.getText(R.string.force_stop_dlg_title));
+                        killDialog.setMessage(mContext.getText(R.string.force_stop_dlg_text));
+                        killDialog.setPositiveButton(
+                                R.string.dlg_ok, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                // kill pkg
+                                ActivityManager actMan =
+                                        (ActivityManager) mContext.getSystemService(
+                                        Context.ACTIVITY_SERVICE);
+                                actMan.forceStopPackage(pkg);
+                            }
+                        });
+                        killDialog.setNegativeButton(R.string.dlg_cancel, null);
+                        killDialog.show();
+                    }
+                });
+                killButton.setText(R.string.kill);
+            }
+        } else {
+            settingsButton.setVisibility(View.GONE);
+            killButton.setVisibility(View.GONE);
+        }
+
+        guts.bindGutsImportance(pmUser, sbn, mNonBlockablePkgs,
+                mNotificationData.getImportance(sbn.getKey()));
+
+        final TextView doneButton = (TextView) guts.findViewById(R.id.done);
+        doneButton.setText(R.string.notification_done);
+        doneButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // If the user has security enabled, show challenge if the setting is changed.
+                if (guts.hasImportanceChanged() && isLockscreenPublicMode() &&
+                        (mState == StatusBarState.KEYGUARD
+                        || mState == StatusBarState.SHADE_LOCKED)) {
+                    OnDismissAction dismissAction = new OnDismissAction() {
+                        @Override
+                        public boolean onDismiss() {
+                            saveImportanceCloseControls(sbn, row, guts, v);
+                            return true;
+                        }
+                    };
+                    onLockedNotificationImportanceChange(dismissAction);
+                } else {
+                    saveImportanceCloseControls(sbn, row, guts, v);
+                }
+            }
+        });
+    }
+
+    private boolean isThisASystemPackage(String packageName, PackageManager pm) {
+        try {
+            PackageInfo packageInfo = pm.getPackageInfo(packageName,
+                    PackageManager.GET_SIGNATURES);
+            PackageInfo sys = pm.getPackageInfo("android", PackageManager.GET_SIGNATURES);
+            return (packageInfo != null && packageInfo.signatures != null &&
+                    sys.signatures[0].equals(packageInfo.signatures[0]));
+        } catch (PackageManager.NameNotFoundException e) {
+            return false;
         }
     }
 }

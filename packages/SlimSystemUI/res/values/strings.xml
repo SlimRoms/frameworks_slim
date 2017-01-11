@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-     Copyright (C) 2016 SlimRoms Project
+     Copyright (C) 2016-2017 SlimRoms Project
      Copyright (C) 2013-14 The Android Open Source Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
@@ -22,5 +22,12 @@
 
     <!-- Battery level text while charging [CHAR LIMIT=2] -->
     <string name="battery_level_template_charging"><xliff:g id="level" example="45">%d</xliff:g>~</string>
+
+    <!-- Kill button in notification guts -->
+    <string name="force_stop_dlg_title">Force stop?</string>
+    <string name="force_stop_dlg_text">If you force stop an app, it may misbehave.</string>
+    <string name="dlg_ok">OK</string>
+    <string name="dlg_cancel">Cancel</string>
+    <string name="kill">Kill App</string>
 
 </resources>
