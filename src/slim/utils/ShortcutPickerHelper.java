@@ -39,7 +39,8 @@ import java.util.ArrayList;
 public class ShortcutPickerHelper {
 
     public static final String ACTION_SHORTCUT_PICKED = "slim.action.SHORTCUT_PICKED";
-    public static final String EXTRA_SHORTCUT_ACTION = "::extra:shortcut:action";
+    public static final String EXTRA_ACTION = "::extra:shortcut:action";
+    public static final String EXTRA_DESCRIPTION = "::extra:shortcut:description";
 
     public static final int REQUEST_PICK_SHORTCUT = 100;
     public static final int REQUEST_PICK_APPLICATION = 101;
