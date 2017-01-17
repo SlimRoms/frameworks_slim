@@ -24,10 +24,12 @@ import android.app.Fragment;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.DataSetObserver;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.v14.preference.PreferenceFragment;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceGroupAdapter;
 import android.support.v7.preference.PreferenceScreen;
@@ -48,13 +50,15 @@ import com.slim.settings.R;
 import com.slim.settings.preference.CustomDialogPreference;
 import com.slim.settings.widget.FloatingActionButton;
 
+import slim.preference.SlimActionsPreference;
+
 import java.util.UUID;
 
 /**
  * Base class for Settings fragments, with some helper functions and dialog management.
  */
 public abstract class SettingsPreferenceFragment extends InstrumentedPreferenceFragment
-        implements DialogCreatable {
+        implements DialogCreatable, SlimActionsPreference.SlimActionsPreferenceCallback {
 
     private static final String TAG = "SettingsPreferenceFragment";
 
@@ -80,6 +84,11 @@ public abstract class SettingsPreferenceFragment extends InstrumentedPreferenceF
 
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
+    }
+
+    @Override
+    public PreferenceFragment getPreferenceFragment() {
+        return this;
     }
 
     /**
@@ -310,5 +319,16 @@ public abstract class SettingsPreferenceFragment extends InstrumentedPreferenceF
                     + ", requestCode: " + requestCode + ")");
             return false;
         }
+    }
+
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        PreferenceScreen ps = getPreferenceScreen();
+        for (int i = 0; i < ps.getPreferenceCount(); i++) {
+            Preference p = ps.getPreference(i);
+            if (p instanceof SlimActionsPreference) {
+                ((SlimActionsPreference) p).onActivityResult(requestCode, resultCode, data);
+            }
+        }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 }
