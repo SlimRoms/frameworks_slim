@@ -27,7 +27,8 @@ public class ShortcutPickerActivity extends Activity implements
     @Override
     public void shortcutPicked(String uri, String friendlyName, Bitmap bmp, boolean isApplication) {
         Intent intent = new Intent(ShortcutPickerHelper.ACTION_SHORTCUT_PICKED);
-        intent.putExtra(ShortcutPickerHelper.EXTRA_SHORTCUT_ACTION, uri);
+        intent.putExtra(ShortcutPickerHelper.EXTRA_ACTION, uri);
+        intent.putExtra(ShortcutPickerHelper.EXTRA_DESCRIPTION, friendlyName);
         sendBroadcastAsUser(intent, UserHandle.CURRENT);
         finish();
     }

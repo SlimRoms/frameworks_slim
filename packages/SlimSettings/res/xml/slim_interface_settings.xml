@@ -16,8 +16,8 @@
 
 <PreferenceScreen
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:title="@string/interface_settings_title"
-    xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
+    xmlns:slim="http://schemas.android.com/apk/res/slim"
+    android:title="@string/interface_settings_title">
 
     <PreferenceScreen
         android:key="status_bar"

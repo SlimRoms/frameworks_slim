@@ -157,6 +157,14 @@ public class AttributeHelper {
         }
     }
 
+    public String getString(int index, String defValue) {
+        String str = getString(index);
+        if (str == null) {
+            return defValue;
+        }
+        return str;
+    }
+
     private void loadMap(AttributeSet attrs) {
         int count = attrs.getAttributeCount();
         for (int i = 0; i < count; i++) {
