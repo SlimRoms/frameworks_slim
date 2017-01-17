@@ -29,7 +29,7 @@ public class SlimListPreference extends ListPreference {
 
     private int mSettingType;
 
-    private SlimPreferenceManager mSlimPreferenceManager = SlimPreferenceManager.get();
+    private SlimPreferenceManager mSlimPreferenceManager = SlimPreferenceManager.getInstance();
 
     private String mListDependency;
     private String[] mListDependencyValues;
