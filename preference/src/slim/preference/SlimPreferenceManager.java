@@ -54,7 +54,7 @@ public class SlimPreferenceManager {
     private SlimPreferenceManager() {
     }
 
-    public static SlimPreferenceManager get() {
+    public static SlimPreferenceManager getInstance() {
         if (INSTANCE == null) {
             INSTANCE = new SlimPreferenceManager();
         }
