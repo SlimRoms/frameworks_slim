@@ -57,6 +57,9 @@
   <public type="attr" name="maxValue" id="0x02010028" />
   <public type="attr" name="defValue" id="0x02010029" />
   <public type="attr" name="units" id="0x02010030" />
+  <public type="attr" name="showWake" id="0x02010031" />
+  <public type="attr" name="showNone" id="0x02010032" />
+  <public type="attr" name="removeActions" id="0x02010033" />
 
   <!-- id (start with 0x02020000)-->
   <!--SlimSeekBar ids -->
