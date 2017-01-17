@@ -80,4 +80,10 @@
         <attr name="units" format="string|reference" />
     </declare-styleable>
 
+    <declare-styleable name="SlimActionsPreference">
+        <attr name="showWake" format="boolean" />
+        <attr name="showNone" format="boolean" />
+        <attr name="removeActions" format="string" />
+    </declare-styleable>
+
 </resources>
