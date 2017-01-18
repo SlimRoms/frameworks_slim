@@ -886,6 +886,7 @@ public class SlimBatteryMeterView extends View implements DemoMode,
         public void setDarkIntensity(int backgroundColor, int fillColor) {
             mIconTint = fillColor;
             mBoltPaint.setColor(fillColor);
+            mBackPaint.setColor(backgroundColor);
             mChargeColor = fillColor;
             invalidate();
         }
