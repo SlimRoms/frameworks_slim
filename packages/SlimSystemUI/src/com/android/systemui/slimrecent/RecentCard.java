@@ -200,10 +200,15 @@ public class RecentCard extends Card {
                     }
                 }
             });
-            mHeader.setOtherButtonVisible(isTopTask);
+            mHeader.setOtherButtonVisible(isTopTask && screenPinningEnabled());
         }
 
         setExpanded(isExpanded);
+    }
+
+    private boolean screenPinningEnabled() {
+        return Settings.System.getInt(getContext().getContentResolver(),
+                Settings.System.LOCK_TO_APP_ENABLED, 0) != 0;
     }
 
     @Override
