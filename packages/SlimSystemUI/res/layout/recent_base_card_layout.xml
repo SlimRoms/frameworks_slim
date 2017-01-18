@@ -70,30 +70,34 @@
         android:background="#ffff0000">
 
         <ImageView
+            style="@android:style/Widget.Material.Light.Button.Borderless.Small"
             android:id="@+id/app_info"
             android:layout_weight="1"
-            android:layout_width="wrap_content"
+            android:layout_width="52dp"
             android:layout_height="match_parent"
             android:src="@drawable/ic_info" />
 
         <ImageView
+            style="@android:style/Widget.Material.Light.Button.Borderless.Small"
             android:id="@+id/market"
             android:layout_weight="1"
-            android:layout_width="wrap_content"
+            android:layout_width="52dp"
             android:layout_height="match_parent"
             android:src="@drawable/ic_shop" />
 
         <ImageView
+            style="@android:style/Widget.Material.Light.Button.Borderless.Small"
             android:id="@+id/multiwindow"
             android:layout_weight="1"
-            android:layout_width="wrap_content"
+            android:layout_width="52dp"
             android:layout_height="match_parent"
-            android:src="@drawable/ic_sysbar_docked" />
+            android:src="@drawable/ic_multiwindow" />
 
         <ImageView
+            style="@android:style/Widget.Material.Light.Button.Borderless.Small"
             android:id="@+id/close"
             android:layout_weight="1"
-            android:layout_width="wrap_content"
+            android:layout_width="52dp"
             android:layout_height="match_parent"
             android:src="@drawable/ic_done" />
 
