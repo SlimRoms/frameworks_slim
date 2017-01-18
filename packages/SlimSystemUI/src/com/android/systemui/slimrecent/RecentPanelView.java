@@ -38,6 +38,7 @@ import android.os.Process;
 import android.os.RemoteException;
 import android.os.UserHandle;
 import android.provider.Settings;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.ViewHolder;
 import android.support.v7.widget.helper.ItemTouchHelper;
@@ -711,6 +712,11 @@ public class RecentPanelView {
             e.printStackTrace();
         }
         return false;
+    }
+
+    protected void scrollToFirst() {
+        LinearLayoutManager lm = (LinearLayoutManager) mCardRecyclerView.getLayoutManager();
+        lm.scrollToPositionWithOffset(0, 0);
     }
 
     /**

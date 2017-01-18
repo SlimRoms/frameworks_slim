@@ -507,6 +507,7 @@ public class RecentController implements RecentPanelView.OnExitListener,
         mHandler.removeCallbacks(mRecentRunnable);
         CacheController.getInstance(mContext).setRecentScreenShowing(true);
         mWindowManager.addView(mParentView, generateLayoutParameter());
+        mRecentPanelView.scrollToFirst();
     }
 
     public static void sendCloseSystemWindows(String reason) {
