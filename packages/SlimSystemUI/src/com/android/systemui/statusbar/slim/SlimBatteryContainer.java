@@ -32,6 +32,7 @@ import com.android.systemui.R;
 import com.android.systemui.statusbar.policy.BatteryController;
 
 import slim.provider.SlimSettings;
+import slim.utils.UserContentObserver;
 
 public class SlimBatteryContainer extends LinearLayout implements
         BatteryController.BatteryStateChangeCallback {
@@ -72,7 +73,7 @@ public class SlimBatteryContainer extends LinearLayout implements
         if (mBatteryController != null) {
             mBatteryController.removeStateChangedCallback(this);
         }
-        mBatteryObserver.unObserve();
+        mBatteryObserver.unobserve();
 
         mAttached = false;
     }
@@ -152,12 +153,15 @@ public class SlimBatteryContainer extends LinearLayout implements
         }
     }
 
-    private final class BatterySettingsObserver extends ContentObserver {
+    private final class BatterySettingsObserver extends UserContentObserver {
         BatterySettingsObserver(Handler handler) {
             super(handler);
         }
 
-        void observe() {
+        @Override
+        protected void observe() {
+            super.observe();
+
             ContentResolver resolver = getContext().getContentResolver();
 
             resolver.registerContentObserver(SlimSettings.Secure.getUriFor(
@@ -168,12 +172,14 @@ public class SlimBatteryContainer extends LinearLayout implements
                     false, this, UserHandle.USER_ALL);
         }
 
-        void unObserve() {
+        @Override
+        protected void unobserve() {
+            super.unobserve();
             getContext().getContentResolver().unregisterContentObserver(this);
         }
 
         @Override
-        public void onChange(boolean selfChange, Uri uri) {
+        protected void update() {
             updateSettings();
         }
     }

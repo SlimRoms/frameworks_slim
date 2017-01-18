@@ -325,16 +325,14 @@ public final class SlimSettings {
                 // Our own user's settings data uses a client-side cache
                 synchronized (this) {
                     if (mValuesVersion != newValuesVersion) {
-                        if (LOCAL_LOGV || false) {
+                        if (LOCAL_LOGV) {
                             Log.v(TAG, "invalidate [" + mUri.getLastPathSegment() + "]: current "
                                     + newValuesVersion + " != cached " + mValuesVersion);
                         }
 
                         mValues.clear();
                         mValuesVersion = newValuesVersion;
-                    }
-
-                    if (mValues.containsKey(name)) {
+                    } else if (mValues.containsKey(name)) {
                         return mValues.get(name);  // Could be null, that's OK -- negative caching
                     }
                 }
@@ -352,7 +350,7 @@ public final class SlimSettings {
             if (mCallGetCommand != null) {
                 try {
                     Bundle args = null;
-                    if (!isSelf) {
+                    if (!isSelf || userHandle == UserHandle.USER_CURRENT) {
                         args = new Bundle();
                         args.putInt(CALL_METHOD_USER_KEY, userHandle);
                     }
@@ -463,7 +461,7 @@ public final class SlimSettings {
          * @return the corresponding value, or null if not present
          */
         public static String getString(ContentResolver resolver, String name) {
-            return getStringForUser(resolver, name, UserHandle.myUserId());
+            return getStringForUser(resolver, name, UserHandle.USER_CURRENT);
         }
 
         /** @hide */
@@ -491,7 +489,7 @@ public final class SlimSettings {
          * @return true if the value was set, false on database errors
          */
         public static boolean putString(ContentResolver resolver, String name, String value) {
-            return putStringForUser(resolver, name, value, UserHandle.myUserId());
+            return putStringForUser(resolver, name, value, UserHandle.USER_CURRENT);
         }
 
         /** @hide */
@@ -546,7 +544,7 @@ public final class SlimSettings {
          * or not a valid integer.
          */
         public static int getInt(ContentResolver cr, String name, int def) {
-            return getIntForUser(cr, name, def, UserHandle.myUserId());
+            return getIntForUser(cr, name, def, UserHandle.USER_CURRENT);
         }
 
         /** @hide */
@@ -579,7 +577,7 @@ public final class SlimSettings {
          */
         public static int getInt(ContentResolver cr, String name)
                 throws SlimSettingNotFoundException {
-            return getIntForUser(cr, name, UserHandle.myUserId());
+            return getIntForUser(cr, name, UserHandle.USER_CURRENT);
         }
 
         /** @hide */
@@ -607,7 +605,7 @@ public final class SlimSettings {
          * @return true if the value was set, false on database errors
          */
         public static boolean putInt(ContentResolver cr, String name, int value) {
-            return putIntForUser(cr, name, value, UserHandle.myUserId());
+            return putIntForUser(cr, name, value, UserHandle.USER_CURRENT);
         }
 
         /** @hide */
@@ -631,7 +629,7 @@ public final class SlimSettings {
          * or not a valid {@code long}.
          */
         public static long getLong(ContentResolver cr, String name, long def) {
-            return getLongForUser(cr, name, def, UserHandle.myUserId());
+            return getLongForUser(cr, name, def, UserHandle.USER_CURRENT);
         }
 
         /** @hide */
@@ -666,7 +664,7 @@ public final class SlimSettings {
          */
         public static long getLong(ContentResolver cr, String name)
                 throws SlimSettingNotFoundException {
-            return getLongForUser(cr, name, UserHandle.myUserId());
+            return getLongForUser(cr, name, UserHandle.USER_CURRENT);
         }
 
         /** @hide */
@@ -694,7 +692,7 @@ public final class SlimSettings {
          * @return true if the value was set, false on database errors
          */
         public static boolean putLong(ContentResolver cr, String name, long value) {
-            return putLongForUser(cr, name, value, UserHandle.myUserId());
+            return putLongForUser(cr, name, value, UserHandle.USER_CURRENT);
         }
 
         /** @hide */
@@ -718,7 +716,7 @@ public final class SlimSettings {
          * or not a valid float.
          */
         public static float getFloat(ContentResolver cr, String name, float def) {
-            return getFloatForUser(cr, name, def, UserHandle.myUserId());
+            return getFloatForUser(cr, name, def, UserHandle.USER_CURRENT);
         }
 
         /** @hide */
@@ -752,7 +750,7 @@ public final class SlimSettings {
          */
         public static float getFloat(ContentResolver cr, String name)
                 throws SlimSettingNotFoundException {
-            return getFloatForUser(cr, name, UserHandle.myUserId());
+            return getFloatForUser(cr, name, UserHandle.USER_CURRENT);
         }
 
         /** @hide */
@@ -783,7 +781,7 @@ public final class SlimSettings {
          * @return true if the value was set, false on database errors
          */
         public static boolean putFloat(ContentResolver cr, String name, float value) {
-            return putFloatForUser(cr, name, value, UserHandle.myUserId());
+            return putFloatForUser(cr, name, value, UserHandle.USER_CURRENT);
         }
 
         /** @hide */
@@ -935,7 +933,7 @@ public final class SlimSettings {
          * @return the corresponding value, or null if not present
          */
         public static String getString(ContentResolver resolver, String name) {
-            return getStringForUser(resolver, name, UserHandle.myUserId());
+            return getStringForUser(resolver, name, UserHandle.USER_CURRENT);
         }
 
         /** @hide */
@@ -989,7 +987,7 @@ public final class SlimSettings {
          * @return true if the value was set, false on database errors
          */
         public static boolean putString(ContentResolver resolver, String name, String value) {
-            return putStringForUser(resolver, name, value, UserHandle.myUserId());
+            return putStringForUser(resolver, name, value, UserHandle.USER_CURRENT);
         }
 
         /** @hide */
@@ -1033,7 +1031,7 @@ public final class SlimSettings {
          * or not a valid integer.
          */
         public static int getInt(ContentResolver cr, String name, int def) {
-            return getIntForUser(cr, name, def, UserHandle.myUserId());
+            return getIntForUser(cr, name, def, UserHandle.USER_CURRENT);
         }
 
         /** @hide */
@@ -1066,7 +1064,7 @@ public final class SlimSettings {
          */
         public static int getInt(ContentResolver cr, String name)
                 throws SlimSettingNotFoundException {
-            return getIntForUser(cr, name, UserHandle.myUserId());
+            return getIntForUser(cr, name, UserHandle.USER_CURRENT);
         }
 
         /** @hide */
@@ -1094,7 +1092,7 @@ public final class SlimSettings {
          * @return true if the value was set, false on database errors
          */
         public static boolean putInt(ContentResolver cr, String name, int value) {
-            return putIntForUser(cr, name, value, UserHandle.myUserId());
+            return putIntForUser(cr, name, value, UserHandle.USER_CURRENT);
         }
 
         /** @hide */
@@ -1118,7 +1116,7 @@ public final class SlimSettings {
          * or not a valid {@code long}.
          */
         public static long getLong(ContentResolver cr, String name, long def) {
-            return getLongForUser(cr, name, def, UserHandle.myUserId());
+            return getLongForUser(cr, name, def, UserHandle.USER_CURRENT);
         }
 
         /** @hide */
@@ -1153,7 +1151,7 @@ public final class SlimSettings {
          */
         public static long getLong(ContentResolver cr, String name)
                 throws SlimSettingNotFoundException {
-            return getLongForUser(cr, name, UserHandle.myUserId());
+            return getLongForUser(cr, name, UserHandle.USER_CURRENT);
         }
 
         /** @hide */
@@ -1181,7 +1179,7 @@ public final class SlimSettings {
          * @return true if the value was set, false on database errors
          */
         public static boolean putLong(ContentResolver cr, String name, long value) {
-            return putLongForUser(cr, name, value, UserHandle.myUserId());
+            return putLongForUser(cr, name, value, UserHandle.USER_CURRENT);
         }
 
         /** @hide */
@@ -1205,7 +1203,7 @@ public final class SlimSettings {
          * or not a valid float.
          */
         public static float getFloat(ContentResolver cr, String name, float def) {
-            return getFloatForUser(cr, name, def, UserHandle.myUserId());
+            return getFloatForUser(cr, name, def, UserHandle.USER_CURRENT);
         }
 
         /** @hide */
@@ -1239,7 +1237,7 @@ public final class SlimSettings {
          */
         public static float getFloat(ContentResolver cr, String name)
                 throws SlimSettingNotFoundException {
-            return getFloatForUser(cr, name, UserHandle.myUserId());
+            return getFloatForUser(cr, name, UserHandle.USER_CURRENT);
         }
 
         /** @hide */
@@ -1270,7 +1268,7 @@ public final class SlimSettings {
          * @return true if the value was set, false on database errors
          */
         public static boolean putFloat(ContentResolver cr, String name, float value) {
-            return putFloatForUser(cr, name, value, UserHandle.myUserId());
+            return putFloatForUser(cr, name, value, UserHandle.USER_CURRENT);
         }
 
         /** @hide */

@@ -116,6 +116,7 @@ public class SlimSettingsProvider extends ContentProvider {
 
         IntentFilter userFilter = new IntentFilter();
         userFilter.addAction(Intent.ACTION_USER_REMOVED);
+        userFilter.addAction(Intent.ACTION_USER_SWITCHED);
         getContext().registerReceiver(new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
@@ -127,11 +128,21 @@ public class SlimSettingsProvider extends ContentProvider {
 
                 if (action.equals(Intent.ACTION_USER_REMOVED)) {
                     onUserRemoved(userId);
+                } else if (action.equals(Intent.ACTION_USER_SWITCHED)) {
+                    updateProp(SlimSettings.System.SYS_PROP_SLIM_SETTING_VERSION);
+                    updateProp(SlimSettings.Secure.SYS_PROP_SLIM_SETTING_VERSION);
+                    updateProp(SlimSettings.Global.SYS_PROP_SLIM_SETTING_VERSION);
                 }
             }
         }, userFilter);
 
         return true;
+    }
+
+    private void updateProp(String property) {
+        long version = SystemProperties.getLong(property, 0) + 1;
+        if (LOCAL_LOGV) Log.v(TAG, "property: " + property + "=" + version);
+        SystemProperties.set(property, Long.toString(version));
     }
 
     /**
