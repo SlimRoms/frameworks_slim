@@ -504,24 +504,6 @@ public class RecentPanelView {
         cardLoader.executeOnExecutor(AsyncTask.SERIAL_EXECUTOR);
     }
 
-    public void startLastTask() {
-        if (mCards.size() == 0) return;
-        ActivityManager.StackInfo stackInfo = null;
-        try {
-            stackInfo = ActivityManagerNative.getDefault()
-                    .getStackInfo(ActivityManager.StackId.HOME_STACK_ID);
-        } catch (RemoteException e) {}
-        if (stackInfo == null) return;
-        ComponentName topActivity = stackInfo.topActivity;
-        TaskDescription launch = ((RecentCard) mCards.get(0)).getTaskDescription();
-        if (mShowTopTask && isActivityVisible(launch.intent.getComponent())) {
-            launch = ((RecentCard) mCards.get(1)).getTaskDescription();
-        }
-        if (launch != null) {
-            startApplication(launch);
-        }
-    }
-
     /**
      * Set correct visibility states for the listview and the empty recent icon.
      */
@@ -679,41 +661,6 @@ public class RecentPanelView {
         }
     }
 
-    private boolean isActivityVisible(ComponentName cn) {
-        return isActivityVisible(cn.getPackageName(), cn.getClassName());
-    }
-
-    private boolean isActivityVisible(String packageName, String className) {
-        try {
-            ActivityManager.StackInfo stackInfo = ActivityManagerNative.getDefault().getStackInfo(
-                    ActivityManager.StackId.HOME_STACK_ID);
-            ComponentName topActivity = stackInfo.topActivity;
-            final ActivityManager am = (ActivityManager) mContext
-                .getSystemService(Activity.ACTIVITY_SERVICE);
-            List <ActivityManager.RunningTaskInfo> tasks = am.getRunningTasks(5);
-            for (ActivityManager.RunningTaskInfo info : tasks) {
-                if (!info.topActivity.getPackageName().equals(topActivity.getPackageName())) {
-                    topActivity = info.topActivity;
-                    break;
-                }
-            }
-            if (topActivity != null) {
-                Log.d("TEST", "topActivity.pn=" + topActivity.getPackageName());
-                Log.d("TEST", "topActivity.cl=" + topActivity.getClassName());
-            } else {
-                Log.d("TEST", "topActivity == null");
-            }
-            Log.d("TEST", "packageName=" + packageName);
-            Log.d("TEST", "className=" + className);
-            return (topActivity != null
-                    && topActivity.getPackageName().equals(packageName)
-                    && topActivity.getClassName().equals(className));
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
-        return false;
-    }
-
     protected void scrollToFirst() {
         LinearLayoutManager lm = (LinearLayoutManager) mCardRecyclerView.getLayoutManager();
         lm.scrollToPositionWithOffset(0, 0);
@@ -802,10 +749,14 @@ public class RecentPanelView {
                 }
 
                 boolean topTask = i == 0;
-
-                // Never load the current home activity.
-                if (topTask && recentInfo.topActivity == null) {
-                    topTask = false;
+                if (topTask) {
+                    ActivityManager.RunningTaskInfo rTask = getRunningTask(am);
+                    if (rTask != null) {
+                        if (!rTask.baseActivity.getPackageName().equals(
+                                recentInfo.baseIntent.getComponent().getPackageName())) {
+                            topTask = false;
+                        }
+                    }
                 }
 
                 if (mOnlyShowRunningTasks) {
@@ -836,7 +787,7 @@ public class RecentPanelView {
                     }
 
                     if (topTask) {
-                        if (mShowTopTask) {
+                        if (mShowTopTask || screenPinningEnabled()) {
                             // User want to see actual running task. Set it here
                             int oldState = getExpandedState(item);
                             if ((oldState & EXPANDED_STATE_TOPTASK) == 0) {
@@ -848,6 +799,7 @@ public class RecentPanelView {
                         } else {
                             // Skip the first task for our list but save it for later use.
                            mFirstTask = item;
+                           mCounter--;
                         }
                     } else {
                         // FirstExpandedItems value forces to show always the app screenshot
@@ -947,11 +899,23 @@ public class RecentPanelView {
 
             // Notify arrayadapter that data set has changed
             if (DEBUG) Log.v(TAG, "notifiy arrayadapter that data has changed");
-            notifyDataSetChanged(false);
+            notifyDataSetChanged(true);
             // Notfiy controller that tasks are completly loaded.
             tasksLoaded();
         }
+    }
 
+    private ActivityManager.RunningTaskInfo getRunningTask(ActivityManager am) {
+        List<ActivityManager.RunningTaskInfo> tasks = am.getRunningTasks(1);
+        if (tasks != null && !tasks.isEmpty()) {
+            return tasks.get(0);
+        }
+        return null;
+    }
+
+    private boolean screenPinningEnabled() {
+        return Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.LOCK_TO_APP_ENABLED, 0) != 0;
     }
 
     /**

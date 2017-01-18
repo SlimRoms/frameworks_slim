@@ -349,12 +349,6 @@ public class RecentController implements RecentPanelView.OnExitListener,
                 }
                 mLastToggleTime = SystemClock.elapsedRealtime();
             } else {
-                if (true || ViewConfiguration.getDoubleTapMinTime() < elapsedTime &&
-                        elapsedTime < ViewConfiguration.getDoubleTapTimeout()) {
-                    if (mRecentPanelView != null) {
-                        mRecentPanelView.startLastTask();
-                    }
-                }
                 hideRecents(false);
             }
         }
