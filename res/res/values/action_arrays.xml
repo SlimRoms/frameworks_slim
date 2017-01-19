@@ -160,6 +160,7 @@
         <item>@string/shortcut_action_ring_vib</item>
         <item>@string/shortcut_action_ring_vib_silent</item>
         <item>@string/shortcut_action_wake_device</item>
+        <item>@string/shortcut_action_doze_pulse</item>
         <!--<item>@string/shortcut_action_nav_bar</item>-->
         <item>@string/shortcut_action_split_screen</item>
         <item>@string/shortcut_action_none</item>
@@ -192,6 +193,7 @@
         <item>**ring_vib**</item>
         <item>**ring_vib_silent**</item>
         <item>**wake_device**</item>
+        <item>**doze_pulse**</item>
         <!--<item>**nav_bar**</item>-->
         <item>**split_screen**</item>
         <item>**null**</item>

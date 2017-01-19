@@ -296,6 +296,13 @@ public class Action {
                     powerManager.wakeUp(SystemClock.uptimeMillis());
                 }
                 return;
+            } else if (action.equals(ActionConstants.ACTION_DOZE_PULSE)) {
+                PowerManager powerManager =
+                        (PowerManager) context.getSystemService(Context.POWER_SERVICE);
+                if (!powerManager.isScreenOn()) {
+                    context.sendBroadcast(new Intent("com.android.systemui.doze.pulse"));
+                }
+                return;
             } else {
                 // we must have a custom uri
                 Intent intent = null;
