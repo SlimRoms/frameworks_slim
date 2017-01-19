@@ -119,6 +119,7 @@ public class HardwareKeyHandler {
     private String mPressOnCameraBehavior        = ActionConstants.ACTION_NULL;
     private String mLongPressOnCameraBehavior    = ActionConstants.ACTION_NULL;
     private String mDoubleTapOnCameraBehavior    = ActionConstants.ACTION_NULL;
+    private String mWakeKeyBehavior              = ActionConstants.ACTION_NULL;
 
     private HwKeySettingsObserver mHwKeySettingsObserver;
 
@@ -241,6 +242,9 @@ public class HardwareKeyHandler {
             resolver.registerContentObserver(SlimSettings.System.getUriFor(
                     SlimSettings.System.KEY_CAMERA_DOUBLE_TAP_ACTION), false, this,
                     UserHandle.USER_ALL);
+            resolver.registerContentObserver(SlimSettings.System.getUriFor(
+                    SlimSettings.System.KEY_WAKE_ACTION), false, this,
+                    UserHandle.USER_ALL);
             updateKeyAssignments();
         }
 
@@ -358,6 +362,13 @@ public class HardwareKeyHandler {
         mDoubleTapOnCameraBehavior =
                 HwKeyHelper.getDoubleTapOnCameraBehavior(
                         mContext, noCamera);
+
+        // Wake key
+        mWakeKeyBehavior = SlimSettings.System.getStringForUser(mContext.getContentResolver(),
+                SlimSettings.System.KEY_WAKE_ACTION, UserHandle.USER_CURRENT);
+       if (mWakeKeyBehavior == null) {
+           mWakeKeyBehavior = ActionConstants.ACTION_WAKE_DEVICE;
+       }
     }
 
     public boolean isHwKeysDisabled() {
@@ -373,6 +384,10 @@ public class HardwareKeyHandler {
             }
         }
         return false;
+    }
+
+    public void handleWakeKey() {
+        Action.processAction(mContext, mWakeKeyBehavior, false);
     }
 
     public boolean handleKeyEvent(int keyCode, int repeatCount, boolean down,
