@@ -25,7 +25,7 @@
             android:defaultValue="true" />
 
         <slim.preference.SlimSwitchPreference
-            android:key="only_show_running_tasks"
+            android:key="show_running_tasks"
             android:title="@string/show_running_tasks_title"
             android:defaultValue="false" />
 
