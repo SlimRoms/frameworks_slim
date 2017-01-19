@@ -15,6 +15,7 @@
  */
 package org.slim.framework.internal.policy;
 
+import android.app.ActivityManagerNative;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.res.Resources;
@@ -570,12 +571,17 @@ public class HardwareKeyHandler {
                     }
                 } else if (longpress) {
                     if (!keyguardOn
-                            && !mLongPressOnBackBehavior.equals(ActionConstants.ACTION_NULL)) {
+                            && (!mLongPressOnBackBehavior.equals(ActionConstants.ACTION_NULL)
+                                    || isInLockTask())) {
                         if (!mLongPressOnBackBehavior.equals(ActionConstants.ACTION_RECENTS)) {
                             cancelPreloadRecentApps();
                         }
                         performHapticFeedback(null, HapticFeedbackConstants.LONG_PRESS, false);
-                        Action.processAction(mContext, mLongPressOnBackBehavior, false);
+                        if (isInLockTask()) {
+                            finishLockTask();
+                        } else {
+                            Action.processAction(mContext, mLongPressOnBackBehavior, false);
+                        }
                         mBackConsumed = true;
                     }
                 }
@@ -802,6 +808,21 @@ public class HardwareKeyHandler {
                 actionsManager.cancelPreloadRecentApps();
             }
         }
+    }
+
+    private void finishLockTask() {
+        try {
+            ActivityManagerNative.getDefault().stopSystemLockTaskMode();
+        } catch (Exception e) {
+        }
+    }
+
+    private boolean isInLockTask() {
+        try {
+            return ActivityManagerNative.getDefault().isInLockTaskMode();
+        } catch (Exception e) {
+        }
+        return false;
     }
 
     private boolean performHapticFeedback(WindowState win, int effectId, boolean always) {
