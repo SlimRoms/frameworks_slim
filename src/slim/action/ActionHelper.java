@@ -247,7 +247,7 @@ public class ActionHelper {
 
     public static String getActionDescription(Context context, String action) {
         Resources resources = context.getResources();
-        ActionsArray actionsArray = new ActionsArray(context);
+        ActionsArray actionsArray = new ActionsArray(context, true, true);
 
         int index = -1;
         for (int i = 0; i < actionsArray.getEntries().length; i++) {
