@@ -81,7 +81,8 @@ public class ShortcutPickerHelper {
         if (context != null) {
             ComponentName comp = new ComponentName("com.slim.settings",
                     "com.slim.settings.activities.ShortcutPickerActivity");
-            Intent intent = new Intent(Intent.ACTION_MAIN);
+            Intent intent = new Intent();
+            intent.setComponent(comp);
             context.startActivity(intent);
         }
     }
