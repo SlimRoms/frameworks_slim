@@ -15,6 +15,7 @@ public class ShortcutPickerActivity extends Activity implements
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         mPicker = new ShortcutPickerHelper(this, this);
         mPicker.pickShortcut(0);
     }

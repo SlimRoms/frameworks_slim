@@ -192,6 +192,12 @@ public final class SlimSettingsKeys {
                 "key_camera_double_tap_action";
 
         /**
+         * Action to perform for wake key
+         * @hide
+         */
+        public static final String KEY_WAKE_ACTION = "key_wake_action";
+
+        /**
          * Whether to dim the navigation bar icons after inactivity
          * @hide
          */
