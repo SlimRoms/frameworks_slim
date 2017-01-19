@@ -25,6 +25,7 @@ import android.database.ContentObserver;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.UserHandle;
+import android.provider.Settings;
 import android.support.v7.preference.ListPreference;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.Preference.OnPreferenceChangeListener;
@@ -62,6 +63,12 @@ public class RecentPanel extends SlimPreferenceFragment implements DialogCreatab
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initializeAllPreferences();
+
+        if (screenPinningEnabled()) {
+            SwitchPreference pref = (SwitchPreference) findPreference("recent_panel_show_topmost");
+            pref.setChecked(true);
+            pref.setEnabled(false);
+        }
     }
 
     @Override
@@ -77,6 +84,11 @@ public class RecentPanel extends SlimPreferenceFragment implements DialogCreatab
             return true;
         }
         return false;
+    }
+
+    private boolean screenPinningEnabled() {
+        return Settings.System.getInt(getContext().getContentResolver(),
+                Settings.System.LOCK_TO_APP_ENABLED, 0) != 0;
     }
 
     @Override
