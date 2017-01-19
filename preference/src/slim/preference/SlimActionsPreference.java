@@ -1,8 +1,10 @@
 package slim.preference;
 
 import android.app.Activity;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.support.v14.preference.PreferenceFragment;
@@ -12,13 +14,14 @@ import android.util.AttributeSet;
 
 import slim.action.ActionsArray;
 import slim.action.ActionConstants;
+import slim.action.ActionHelper;
+import slim.utils.AppHelper;
 import slim.utils.AttributeHelper;
 import slim.utils.ShortcutPickerHelper;
 
 import java.util.Arrays;
 
-public class SlimActionsPreference extends ListPreference implements
-       ShortcutPickerHelper.OnPickListener  {
+public class SlimActionsPreference extends ListPreference {
 
     private SlimPreferenceManager mSlimPreferenceManager = SlimPreferenceManager.getInstance();
 
@@ -26,16 +29,20 @@ public class SlimActionsPreference extends ListPreference implements
     private String mListDependency;
     private String[] mListDependencyValues;
 
-    private ShortcutPickerHelper mPicker;
     private ActionsArray mActionsArray;
 
     private boolean mPending = false;
 
-    private SlimActionsPreferenceCallback mCallback;
-
-    public interface SlimActionsPreferenceCallback {
-        PreferenceFragment getPreferenceFragment();
-    }
+    private BroadcastReceiver mReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+            if (action.equals(ShortcutPickerHelper.ACTION_SHORTCUT_PICKED)) {
+                String shortcutAction = intent.getStringExtra(ShortcutPickerHelper.EXTRA_ACTION);
+                shortcutPicked(shortcutAction);
+            }
+        }
+    };
 
     public SlimActionsPreference(Context context, AttributeSet attrs) {
        super(context, attrs);
@@ -79,6 +86,24 @@ public class SlimActionsPreference extends ListPreference implements
         }
         setEntries(mActionsArray.getEntries());
         setEntryValues(mActionsArray.getValues());
+
+        IntentFilter filter = new IntentFilter(ShortcutPickerHelper.ACTION_SHORTCUT_PICKED);
+        getContext().registerReceiver(mReceiver, filter);
+
+        handleSetSummary();
+    }
+
+    private void handleSetSummary() {
+        String action = getPersistedString(null);
+        if (action != null) {
+            if (action.startsWith("**")) {
+                String desc = mActionsArray.getActionDescription(action);
+                setSummary(desc);
+            } else {
+                setSummary(AppHelper.getFriendlyNameForUri(
+                        getContext(), getContext().getPackageManager(), action));
+            }
+        }
     }
 
     @Override
@@ -87,37 +112,15 @@ public class SlimActionsPreference extends ListPreference implements
         if (mListDependency != null) {
             mSlimPreferenceManager.unregisterListDependent(this, mListDependency);
         }
+        getContext().unregisterReceiver(mReceiver);
     }
 
-    public void setCallback(SlimActionsPreferenceCallback callback) {
-        mCallback = callback;
-
-        mPicker = new ShortcutPickerHelper(mCallback.getPreferenceFragment().getActivity(), this);
-    }
-
-    @Override
-    public void shortcutPicked(String action, String description,
-            Bitmap bmp, boolean isApplication) {
+    public void shortcutPicked(String action) {
         mPending = false;
         if (action == null) {
             return;
         }
-
-        SlimPreferenceManager.putStringInSlimSettings(getContext(),
-                mSettingType, getKey(), action);
-    }
-
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (resultCode == Activity.RESULT_OK && mPending) {
-            if (requestCode == ShortcutPickerHelper.REQUEST_PICK_SHORTCUT
-                    || requestCode == ShortcutPickerHelper.REQUEST_PICK_APPLICATION
-                    || requestCode == ShortcutPickerHelper.REQUEST_CREATE_SHORTCUT) {
-                mPicker.onActivityResult(requestCode, resultCode, data);
-
-            }
-        } else {
-            mPending = false;
-        }
+        persistString(action);
     }
 
     @Override
@@ -127,14 +130,12 @@ public class SlimActionsPreference extends ListPreference implements
                 return true;
             }
             if (value.equals(ActionConstants.ACTION_APP)) {
-                if (mPicker != null) {
-                    mPending = true;
-                    mPicker.pickShortcut(mCallback.getPreferenceFragment().getId());
-                }
+                ShortcutPickerHelper.pickShortcut(getContext());
             } else {
                 SlimPreferenceManager.putStringInSlimSettings(getContext(),
                         mSettingType, getKey(), value);
             }
+            handleSetSummary();
             return true;
         }
         return false;
