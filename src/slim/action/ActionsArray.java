@@ -26,6 +26,7 @@ import slim.utils.DeviceUtils;
 
 public class ActionsArray {
 
+    private Context mContext;
     private String[] values;
     private String[] entries;
 
@@ -43,6 +44,9 @@ public class ActionsArray {
 
     public ActionsArray(Context context, boolean showNone, boolean showWake,
             List<String> actionsToExclude) {
+
+        mContext = context;
+
         String[] initialValues = context.getResources().getStringArray(
                 slim.R.array.shortcut_action_values);
         String[] initialEntries = context.getResources().getStringArray(
@@ -82,6 +86,17 @@ public class ActionsArray {
 
     public String[] getValues() {
         return values;
+    }
+
+    public String getActionDescription(String action) {
+        for (int i = 0; i < entries.length; i++) {
+            if (action.equals(values[i])) {
+                return entries[i];
+            }
+        }
+
+        return mContext.getResources().getString(
+                org.slim.framework.internal.R.string.shortcut_action_none);
     }
 
     private static boolean isSupported(Context context, String action) {
