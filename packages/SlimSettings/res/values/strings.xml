@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-     Copyright (C) 2013-2016 SlimRoms Project
+     Copyright (C) 2013-2017 SlimRoms Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -24,6 +24,9 @@
 
     <!-- Common color picker strings -->
     <string name="color_picker_reset_message">Reset color?</string>
+    <string name="reset">Reset</string>
+    <string name="add">Add</string>
+    <string name="choose_app">Choose application</string>
 
     <!-- Slim settings screens -->
     <string name="navigation_settings_title">Navigation</string>

@@ -122,6 +122,36 @@
 
         </activity-alias>
 
+        <activity-alias
+            android:name="NotificationLightSettingsActivity"
+            android:enabled="@*slim:bool/config_intrusiveNotificationLed"
+            android:taskAffinity="com.slim.settings"
+            android:targetActivity="SettingsActivity"
+            android:label="@string/notification_light_title"
+            android:icon="@drawable/ic_settings_interface">
+            <intent-filter android:priority="1">
+                <action android:name="slim.settings.NOTIFICATION_LIGHT_SETTINGS" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <meta-data android:name="com.android.settings.FRAGMENT_CLASS"
+                       android:value="com.slim.settings.notificationlight.NotificationLightSettings" />
+        </activity-alias>
+
+        <activity-alias
+            android:name="BatteryLightSettingsActivity"
+            android:enabled="@*slim:bool/config_intrusiveBatteryLed"
+            android:taskAffinity="com.slim.settings"
+            android:targetActivity="SettingsActivity"
+            android:label="@string/battery_light_title"
+            android:icon="@drawable/ic_settings_interface">
+            <intent-filter android:priority="1">
+                <action android:name="slim.settings.BATTERY_LIGHT_SETTINGS" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <meta-data android:name="com.android.settings.FRAGMENT_CLASS"
+                        android:value="com.slim.settings.notificationlight.BatteryLightSettings" />
+        </activity-alias>
+
         <activity android:name=".SubSettings"
                 android:theme="@style/Theme.Settings"
                 android:taskAffinity="com.slim.settings">
