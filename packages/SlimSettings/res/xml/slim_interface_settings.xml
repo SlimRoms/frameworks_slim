@@ -33,4 +33,14 @@
         <extra android:name="preference_xml" android:value="recent_panel_settings" />
     </PreferenceScreen>
 
+    <PreferenceScreen
+        android:key="battery_light"
+        android:fragment="com.slim.settings.notificationlight.BatteryLightSettings"
+        android:title="@string/battery_light_title" />
+
+    <PreferenceScreen
+        android:key="notification_light"
+        android:fragment="com.slim.settings.notificationlight.NotificationLightSettings"
+        android:title="@string/notification_light_title" />
+
 </PreferenceScreen>
