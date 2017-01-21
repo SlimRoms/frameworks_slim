@@ -78,7 +78,7 @@ import java.util.regex.Pattern;
  */
 public final class SlimSettings {
     private static final String TAG = "SlimSettings";
-    private static final boolean LOCAL_LOGV = false;
+    private static final boolean LOCAL_LOGV = true;
 
     public static final String AUTHORITY = "slimsettings";
 

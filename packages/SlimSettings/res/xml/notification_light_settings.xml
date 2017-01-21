@@ -60,6 +60,7 @@
     <PreferenceCategory
         android:key="applications_list"
         android:title="@string/notification_light_applist_title"
-        android:dependency="notification_light_pulse_custom_enable" />
+        android:dependency="notification_light_pulse_custom_enable" >
+    </PreferenceCategory>
 
 </PreferenceScreen>
