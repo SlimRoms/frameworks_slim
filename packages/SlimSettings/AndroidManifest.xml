@@ -76,6 +76,32 @@
         </activity>
 
         <activity
+            android:name="com.slim.settings.Settings$NotificationLightSettingsActivity"
+            android:taskAffinity="com.slim.settings"
+            android:label="@string/notification_light_title"
+            android:icon="@drawable/ic_settings_interface">
+            <intent-filter android:priority="1">
+                <action android:name="slim.settings.NOTIFICATION_LIGHT_SETTINGS" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <meta-data android:name="com.android.settings.FRAGMENT_CLASS"
+                       android:value="com.slim.settings.notificationlight.NotificationLightSettings" />
+        </activity>
+
+        <activity
+            android:name="com.slim.settings.Settings$BatteryLightSettingsActivity"
+            android:taskAffinity="com.slim.settings"
+            android:label="@string/battery_light_title"
+            android:icon="@drawable/ic_settings_interface">
+            <intent-filter android:priority="1">
+                <action android:name="slim.settings.BATTERY_LIGHT_SETTINGS" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <meta-data android:name="com.android.settings.FRAGMENT_CLASS"
+                       android:value="com.slim.settings.notificationlight.BatteryLightSettings" />
+        </activity>
+
+        <activity
             android:name="com.slim.settings.activities.DozeSettingsActivity"
             android:label="@string/doze_settings_title"
             android:theme="@style/Theme.Settings" >
