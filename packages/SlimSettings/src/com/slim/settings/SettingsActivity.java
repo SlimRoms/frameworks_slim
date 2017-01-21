@@ -19,6 +19,8 @@ package com.slim.settings;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.content.pm.ActivityInfo;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.v7.preference.Preference;
 import android.support.v14.preference.PreferenceFragment;
@@ -32,11 +34,25 @@ public class SettingsActivity extends SettingsDrawerActivity implements
         PreferenceFragment.OnPreferenceStartFragmentCallback,
         PreferenceFragment.OnPreferenceStartScreenCallback {
 
+    public static final String META_DATA_KEY_FRAGMENT_CLASS =
+        "com.android.settings.FRAGMENT_CLASS";
+
+    private String mFragmentClass;
+
+    private boolean mHomeUp = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        getMetaData();
+
         Fragment fragment = getFragment();
+        if (mFragmentClass != null) {
+            fragment = Fragment.instantiate(this, mFragmentClass, new Bundle());
+            mHomeUp = true;
+        }
+
         if (fragment != null) {
             FragmentTransaction transaction = getFragmentManager().beginTransaction();
             if (getFragmentBundle() != null) {
@@ -44,9 +60,29 @@ public class SettingsActivity extends SettingsDrawerActivity implements
             }
             transaction.replace(R.id.content_frame, fragment);
             transaction.commit();
-            showMenuIcon();
+            if (!mHomeUp) showMenuIcon();
         }
         getActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (mHomeUp && item.getItemId() == android.R.id.home) {
+            onBackPressed();
+            return true;
+        } else {
+            return super.onOptionsItemSelected(item);
+        }
+    }
+
+    private void getMetaData() {
+        try {
+            ActivityInfo ai = getPackageManager().getActivityInfo(getComponentName(),
+                    PackageManager.GET_META_DATA);
+            if (ai == null || ai.metaData == null) return;
+            mFragmentClass = ai.metaData.getString(META_DATA_KEY_FRAGMENT_CLASS);
+        } catch (PackageManager.NameNotFoundException e) {
+        }
     }
 
     @Override
