@@ -24,6 +24,7 @@ import android.content.pm.ResolveInfo;
 import android.support.v7.preference.Preference;
 import android.util.AttributeSet;
 
+import slim.utils.AppHelper;
 import slim.utils.AttributeHelper;
 
 import java.util.List;
@@ -70,6 +71,9 @@ public class SlimPreference extends Preference {
         if (intent != null) {
             if (!intentExists(getContext(), intent)) {
                 setVisible(false);
+            } else {
+                setTitle(AppHelper.getFriendlyActivityName(getContext(),
+                        getContext().getPackageManager(), intent, false));
             }
         }
     }
