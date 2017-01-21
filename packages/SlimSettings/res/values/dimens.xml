@@ -39,4 +39,6 @@
     <!-- ActionBar contentInsetStart -->
     <dimen name="actionbar_contentInsetStart">16dp</dimen>
 
+    <dimen name="oval_notification_size">26dp</dimen>
+
 </resources>
