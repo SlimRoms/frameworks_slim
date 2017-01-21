@@ -73,6 +73,9 @@ public class SlimPreference extends Preference {
                     getContext().getPackageManager(), intent, false));
             if (!intentExists(getContext(), intent)) {
                 setVisible(false);
+            } else {
+                setTitle(AppHelper.getFriendlyActivityName(getContext(),
+                        getContext().getPackageManager(), intent, false));
             }
         }
     }
