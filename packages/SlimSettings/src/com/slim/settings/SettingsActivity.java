@@ -19,6 +19,7 @@ package com.slim.settings;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -29,6 +30,8 @@ import android.text.TextUtils;
 import android.view.MenuItem;
 
 import com.slim.settings.Utils;
+import com.slim.settings.search.SettingsList;
+import com.slim.settings.search.SettingsList.SettingInfo;
 import com.android.settingslib.drawer.SettingsDrawerActivity;
 
 public class SettingsActivity extends SettingsDrawerActivity implements
@@ -40,6 +43,14 @@ public class SettingsActivity extends SettingsDrawerActivity implements
     public static final String META_DATA_KEY_PREFRERENCE_XML =
             "com.slim.settings.PREFERENCE_XML";
 
+    public static final String EXTRA_SHOW_FRAGMENT = ":settings:show_fragment";
+    public static final String EXTRA_SHOW_FRAGMENT_ARGUMENTS = ":settings:show_fragment_args";
+    public static final String EXTRA_SHOW_FRAGMENT_TITLE = ":settings:show_fragment_title";
+    public static final String EXTRA_FRAGMENT_ARG_KEY = ":settings:fragment_args_key";
+    public static final String EXTRA_SHOW_FRAGMENT_TITLE_RESID =
+            ":settings:show_fragment_title_resid";
+
+    private CharSequence mInitialTitle;
     private String mFragmentClass;
     private String mPreferenceXML;
 
@@ -51,10 +62,37 @@ public class SettingsActivity extends SettingsDrawerActivity implements
 
         getMetaData();
 
+        String action = getIntent().getAction();
+        if (action != null && action.startsWith(SettingsList.SETTINGS_ACTION)) {
+            android.util.Log.d("TEST", "action - " + action);
+            String key = action.substring(SettingsList.SETTINGS_ACTION.length() + 1);
+            if (key.contains("..")) {
+                key = key.substring(0, key.indexOf(".."));
+            }
+            SettingInfo info = SettingsList.get(this).getSetting(key);
+            setTitle(getIntent(), info);
+            mFragmentClass = info.fragmentClass;
+            mPreferenceXML = getResources().getResourceEntryName(info.xmlResId);
+
+        }
+
+        //if (TextUtils.isEmpty(mPreferenceXML)) {
+        //}
+
         Fragment fragment = getFragment();
+        String fragmentClass = getIntent().getStringExtra(EXTRA_SHOW_FRAGMENT);
         if (mFragmentClass != null) {
-            fragment = Fragment.instantiate(this, mFragmentClass, new Bundle());
+            fragment = Fragment.instantiate(this, mFragmentClass);
             mHomeUp = true;
+        } else if (fragmentClass != null) {
+            fragment = Fragment.instantiate(this, fragmentClass);
+        }
+
+        Bundle initialArgs = getIntent().getBundleExtra(EXTRA_SHOW_FRAGMENT_ARGUMENTS);
+        if (initialArgs == null) {
+            initialArgs = getFragmentBundle();
+        } else {
+            initialArgs.putString("preference_xml", mPreferenceXML);
         }
 
         if (fragment != null) {
@@ -71,11 +109,15 @@ public class SettingsActivity extends SettingsDrawerActivity implements
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (mHomeUp && item.getItemId() == android.R.id.home) {
-            onBackPressed();
-            return true;
+        if (!super.onOptionsItemSelected(item)) {
+            if (item.getItemId() == android.R.id.home) {
+                onBackPressed();
+                return true;
+            } else {
+                return false;
+            }
         } else {
-            return super.onOptionsItemSelected(item);
+            return true;
         }
     }
 
@@ -148,6 +190,20 @@ public class SettingsActivity extends SettingsDrawerActivity implements
             b.putString("preference_xml", mPreferenceXML);
             return b;
         }
-        return null;
+        return new Bundle();
+    }
+
+    private void setTitle(Intent intent, SettingInfo info) {
+        if (info != null) {
+            setTitle(info.title);
+        } else {
+            final int initialTitleResId = intent.getIntExtra(EXTRA_SHOW_FRAGMENT_TITLE_RESID, -1);
+            if (initialTitleResId > 0) {
+                setTitle(getResources().getString(initialTitleResId));
+            } else {
+                String title = intent.getStringExtra(EXTRA_SHOW_FRAGMENT);
+                setTitle(title != null ? title : getTitle());
+            }
+        }
     }
 }
