@@ -60,6 +60,7 @@
             <enum name="global" value="1" />
             <enum name="secure" value="2" />
         </attr>
+        <attr name="preferenceXml" format="string" />
         <attr name="listDependency" format="string" />
         <attr name="hidePreference" format="boolean" />
         <attr name="hidePreferenceInt" format="integer" />
