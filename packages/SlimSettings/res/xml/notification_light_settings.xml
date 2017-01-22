@@ -15,7 +15,8 @@
 -->
 
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
+    xmlns:settings="http://schemas.android.com/apk/res/com.android.settings"
+    android:key="notification_light_settings">
 
     <PreferenceCategory
         android:key="general_section"
@@ -59,7 +60,6 @@
     <PreferenceCategory
         android:key="applications_list"
         android:title="@string/notification_light_applist_title"
-        android:dependency="notification_light_pulse_custom_enable" >
-    </PreferenceCategory>
+        android:dependency="notification_light_pulse_custom_enable" />
 
 </PreferenceScreen>
