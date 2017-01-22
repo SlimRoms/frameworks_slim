@@ -18,6 +18,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:slim="http://schemas.android.com/apk/res/slim"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:key="navbar_button_style"
     android:title="@string/nav_bar_button_style">
 
     <slim.preference.colorpicker.ColorPickerPreference

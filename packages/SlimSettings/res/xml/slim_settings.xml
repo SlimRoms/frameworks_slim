@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Copyright (C) 2017 The SlimRoms Project
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+ -->
+
+ <slim-settings
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:slim="http://schemas.android.com/apk/res/slim">
+
+    <setting
+        android:key="battery_light_settings"
+        android:title="@string/battery_light_title"
+        android:fragment="com.slim.settings.notificationlight.BatteryLightSettings"
+        slim:preferenceXml="@xml/battery_light_settings" />
+
+    <setting
+        android:key="notification_light_settings"
+        android:title="@string/notification_light_title"
+        android:fragment="com.slim.settings.notificationlight.NotificationLightSettings"
+        slim:preferenceXml="@xml/notification_light_settings" />
+
+    <setting
+        android:key="slim_interface_settings"
+        android:title="@string/interface_settings_title"
+        android:fragment="com.slim.settings.fragments.SlimPreferenceFragment"
+        slim:preferenceXml="@xml/slim_interface_settings" />
+
+    <setting
+        android:key="slim_navigation_settings"
+        android:title="@string/navigation_settings_title"
+        android:fragment="com.slim.settings.fragments.SlimPreferenceFragment"
+        slim:preferenceXml="@xml/slim_navigation_settings" />
+
+    <setting
+        android:key="advanced_doze_settings"
+        android:title="@string/doze_settings_title"
+        android:fragment="com.slim.settings.fragments.DozeSettingsFragment"
+        slim:preferenceXml="@xml/doze_settings" />
+
+    <setting
+        android:key="prox_auto_speaker"
+        android:title="@slim:string/prox_auto_speaker_title"
+        android:fragment="com.slim.settings.fragments.SlimPreferenceFragment"
+        slim:preferenceXml="@xml/prox_auto_speaker" />
+
+</slim-settings>

@@ -15,9 +15,10 @@
 -->
 
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:slim="http://schemas.android.com/apk/res/slim"
-        android:title="@string/recent_panel_category">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:slim="http://schemas.android.com/apk/res/slim"
+    android:title="@string/recent_panel_category"
+    android:key="recent_panel_settings">
 
     <slim.preference.SlimSwitchPreference
         android:key="use_slim_recents"
