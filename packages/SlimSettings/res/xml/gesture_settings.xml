@@ -17,6 +17,7 @@ limitations under the License.
 <PreferenceScreen
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:slim="http://schemas.android.com/apk/res/slim"
+    android:key="slim_gesture_settings"
     android:title="@string/gesture_settings_title">
 
     <!--<slim.preference.SlimSwitchPreference
