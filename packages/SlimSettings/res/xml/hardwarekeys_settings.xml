@@ -15,7 +15,8 @@
 -->
 
 <PreferenceScreen
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:key="hw_key_settings">
 
     <PreferenceCategory
         android:key="button_keys"

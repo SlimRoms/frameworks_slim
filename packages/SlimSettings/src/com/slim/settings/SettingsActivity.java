@@ -30,6 +30,8 @@ import android.text.TextUtils;
 import android.view.MenuItem;
 
 import com.slim.settings.Utils;
+import com.slim.settings.search.SettingsList;
+import com.slim.settings.search.SettingsList.SettingInfo;
 import com.android.settingslib.drawer.SettingsDrawerActivity;
 
 public class SettingsActivity extends SettingsDrawerActivity implements
@@ -48,8 +50,11 @@ public class SettingsActivity extends SettingsDrawerActivity implements
     public static final String EXTRA_SHOW_FRAGMENT_TITLE_RESID =
             ":settings:show_fragment_title_resid";
 
+    private CharSequence mInitialTitle;
     private String mFragmentClass;
     private String mPreferenceXML;
+
+    private boolean mHomeUp = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,12 +62,37 @@ public class SettingsActivity extends SettingsDrawerActivity implements
 
         getMetaData();
 
+        String action = getIntent().getAction();
+        if (action != null && action.startsWith(SettingsList.SETTINGS_ACTION)) {
+            android.util.Log.d("TEST", "action - " + action);
+            String key = action.substring(SettingsList.SETTINGS_ACTION.length() + 1);
+            if (key.contains("..")) {
+                key = key.substring(0, key.indexOf(".."));
+            }
+            SettingInfo info = SettingsList.get(this).getSetting(key);
+            setTitle(getIntent(), info);
+            mFragmentClass = info.fragmentClass;
+            mPreferenceXML = getResources().getResourceEntryName(info.xmlResId);
+
+        }
+
+        //if (TextUtils.isEmpty(mPreferenceXML)) {
+        //}
+
         Fragment fragment = getFragment();
         String fragmentClass = getIntent().getStringExtra(EXTRA_SHOW_FRAGMENT);
         if (mFragmentClass != null) {
             fragment = Fragment.instantiate(this, mFragmentClass);
+            mHomeUp = true;
         } else if (fragmentClass != null) {
             fragment = Fragment.instantiate(this, fragmentClass);
+        }
+
+        Bundle initialArgs = getIntent().getBundleExtra(EXTRA_SHOW_FRAGMENT_ARGUMENTS);
+        if (initialArgs == null) {
+            initialArgs = getFragmentBundle();
+        } else {
+            initialArgs.putString("preference_xml", mPreferenceXML);
         }
 
         Bundle fragmentArgs = getIntent().getBundleExtra(EXTRA_SHOW_FRAGMENT_ARGUMENTS);
@@ -78,8 +108,20 @@ public class SettingsActivity extends SettingsDrawerActivity implements
             transaction.commit();
         }
         getActionBar().setDisplayHomeAsUpEnabled(true);
+    }
 
-        setTitle(getIntent());
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (!super.onOptionsItemSelected(item)) {
+            if (item.getItemId() == android.R.id.home) {
+                onBackPressed();
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return true;
+        }
     }
 
     private void getMetaData() {
@@ -154,13 +196,17 @@ public class SettingsActivity extends SettingsDrawerActivity implements
         return new Bundle();
     }
 
-    private void setTitle(Intent intent) {
-        final int titleResId = intent.getIntExtra(EXTRA_SHOW_FRAGMENT_TITLE_RESID, -1);
-        if (titleResId > 0) {
-            setTitle(getResources().getString(titleResId));
+    private void setTitle(Intent intent, SettingInfo info) {
+        if (info != null) {
+            setTitle(info.title);
         } else {
-            String title = intent.getStringExtra(EXTRA_SHOW_FRAGMENT_TITLE);
-            setTitle(title != null ? title : getTitle());
+            final int initialTitleResId = intent.getIntExtra(EXTRA_SHOW_FRAGMENT_TITLE_RESID, -1);
+            if (initialTitleResId > 0) {
+                setTitle(getResources().getString(initialTitleResId));
+            } else {
+                String title = intent.getStringExtra(EXTRA_SHOW_FRAGMENT);
+                setTitle(title != null ? title : getTitle());
+            }
         }
     }
 }

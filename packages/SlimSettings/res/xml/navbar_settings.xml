@@ -16,7 +16,8 @@
 
 <PreferenceScreen
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:slim="http://schemas.android.com/apk/res/slim">
+    xmlns:slim="http://schemas.android.com/apk/res/slim"
+    android:key="navbar_settings">
 
     <slim.preference.SlimSwitchPreference
         android:key="navigation_bar_show"
@@ -24,6 +25,66 @@
         android:summary="@string/navbar_enable_bar_summary"
         android:defaultValue="@*android:bool/config_showNavigationBar"
         slim:hidePreference="@*android:bool/config_showNavigationBar" />
+
+    <PreferenceCategory
+        android:key="navbar_cat"
+        android:dependency="navigation_bar_show"
+        android:title="@string/navbar_cat" >
+
+        <PreferenceScreen
+            android:key="navbar_button_settings"
+            android:fragment="slim.preference.dslv.ActionListViewSettings"
+            android:title="@string/navbar_button_title"
+            android:summary="@string/navbar_button_summary" >
+            <extra android:name="actionMode" android:value="0" />
+            <extra android:name="maxAllowedButtons" android:value="5" />
+            <extra android:name="disableDeleteLastEntry" android:value="true" />
+            <!--<extra android:name="fragment" android:value="com.android.settings.slim.fragments.NavbarButtonFragment" />-->
+        </PreferenceScreen>
+
+        <PreferenceScreen
+            android:fragment="com.slim.settings.fragments.SlimPreferenceFragment"
+            android:key="nav_bar_button_style"
+            android:title="@string/nav_bar_button_style"
+            android:summary="@string/nav_bar_button_style_summary">
+            <extra android:name="preference_xml" android:value="navbar_button_style" />
+        </PreferenceScreen>
+
+        <PreferenceScreen
+            android:key="navbar_style_dimen_settings"
+            android:fragment="com.slim.settings.fragments.NavbarStyleDimenSettings"
+            android:title="@string/navbar_style_dimen_title"
+            android:summary="@string/navbar_style_dimen_summary" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="advanced_cat"
+        android:dependency="navigation_bar_show"
+        android:title="@string/advanced_settings">
+
+        <slim.preference.SlimListPreference
+            android:key="menu_visibility"
+            android:entries="@array/pref_menu_display_entries"
+            android:entryValues="@array/pref_menu_display_values"
+            android:title="@string/title_pref_menu_display"
+            android:summary="@string/summary_pref_menu_display" />
+
+        <slim.preference.SlimListPreference
+            android:key="menu_location"
+            android:entries="@array/pref_navigation_menu_entries"
+            android:entryValues="@array/pref_navigation_menu_values"
+            android:title="@string/title_pref_menu_location"
+            android:summary="@string/summary_pref_menu_location" />
+
+        <slim.preference.SlimSwitchPreference
+            android:key="navigation_bar_show"
+            android:title="@string/navbar_enable_bar"
+            android:summary="@string/navbar_enable_bar_summary"
+            android:defaultValue="@*android:bool/config_showNavigationBar"
+            slim:hidePreference="@*android:bool/config_showNavigationBar" />
+
+    </PreferenceCategory>
 
     <PreferenceCategory
         android:key="navbar_cat"
@@ -68,6 +129,49 @@
             android:entryValues="@array/pref_navigation_menu_values"
             android:title="@string/title_pref_menu_location"
             android:summary="@string/summary_pref_menu_location" />
+
+        <slim.preference.SlimSwitchPreference
+            android:key="navigation_bar_can_move"
+            android:title="@string/navbar_can_move"
+            android:summary="@string/navbar_can_move_summary" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="dim_nav_buttons_cat"
+        android:dependency="navigation_bar_show"
+        android:title="@string/dim_nav_buttons_category">
+
+        <slim.preference.SlimSwitchPreference
+            android:key="dim_nav_buttons"
+            android:title="@string/dim_nav_buttons_title"
+            android:summary="@string/dim_nav_buttons_summary" />
+
+        <slim.preference.SlimSwitchPreference
+            android:key="dim_nav_buttons_touch_anywhere"
+            android:dependency="dim_nav_buttons"
+            android:title="@string/dim_nav_buttons_touch_anywhere_title"
+            android:summaryOn="@string/dim_nav_buttons_touch_anywhere_summary_on"
+            android:summaryOff="@string/dim_nav_buttons_touch_anywhere_summary_off" />
+
+        <slim.preference.SlimSeekBarPreference
+            android:key="dim_nav_buttons_timeout"
+            android:dependency="dim_nav_buttons"
+            android:title="@string/dim_nav_buttons_timeout_title"
+            android:summary="@string/dim_nav_buttons_timeout_summary"
+            slim:defaultValue="3000"
+            slim:useMilliSeconds="true"
+            slim:interval="1"
+            slim:minValue="100"
+            slim:multiplyValue="100" />
+
+        <slim.preference.SlimSeekBarPreference
+            android:key="dim_nav_buttons_alpha"
+            android:dependency="dim_nav_buttons"
+            android:title="@string/dim_nav_buttons_alpha_title"
+            android:summary="@string/dim_nav_buttons_alpha_summary"
+            slim:defaultValue="50"
+            slim:interval="1" />
 
         <slim.preference.SlimSwitchPreference
             android:key="navigation_bar_can_move"

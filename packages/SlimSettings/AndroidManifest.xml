@@ -22,19 +22,21 @@
           android:versionCode="1"
           android:versionName="1" >
 
+    <uses-permission android:name="android.permission.READ_SEARCH_INDEXABLES" />
+
     <application
         android:icon="@android:drawable/sym_def_app_icon"
         android:theme="@style/Theme.Settings"
         android:label="SlimSettings" >
 
         <activity
-            android:name=".SettingsActivity"
+            android:name="com.slim.settings.SettingsActivity"
             android:label="SlimSettings"
             android:icon="@android:drawable/sym_def_app_icon"
             android:theme="@style/Theme.Settings" />
 
-        <activity-alias
-            android:name="InterfaceSettingsActivity"
+        <activity
+            android:name="com.slim.settings.Settings$InterfaceSettingsActivity"
             android:label="@string/interface_settings_title"
             android:icon="@drawable/ic_settings_interface"
             android:theme="@style/Theme.Settings"
@@ -56,7 +58,7 @@
                 android:name="com.slim.settings.PREFERENCE_XML"
                 android:value="slim_interface_settings" />
 
-        </activity-alias>
+        </activity>
 
         <activity-alias
             android:name="NavigationSettingsActivity"
@@ -179,6 +181,18 @@
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
+
+        <provider
+            android:name=".search.SlimSearchIndexablesProvider"
+            android:authorities="com.slim.settings"
+            android:multiprocess="false"
+            android:grantUriPermissions="true"
+            android:permission="android.permission.READ_SEARCH_INDEXABLES"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.content.action.SEARCH_INDEXABLES_PROVIDER" />
+            </intent-filter>
+        </provider>
 
     </application>
 </manifest>

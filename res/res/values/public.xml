@@ -60,6 +60,7 @@
   <public type="attr" name="showWake" id="0x02010031" />
   <public type="attr" name="showNone" id="0x02010032" />
   <public type="attr" name="removeActions" id="0x02010033" />
+  <public type="attr" name="preferenceXml" id="0x02010034" />
 
   <!-- id (start with 0x02020000)-->
   <!--SlimSeekBar ids -->
