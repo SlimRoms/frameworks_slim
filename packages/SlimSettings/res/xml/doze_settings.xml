@@ -15,9 +15,9 @@
 -->
 
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:slim="http://schemas.android.com/apk/res/slim"
-        android:key="doze_settings"
-        android:title="@string/doze_settings_title">
+    xmlns:slim="http://schemas.android.com/apk/res/slim"
+    android:key="doze_settings"
+    android:title="@string/doze_settings_title">
 
     <slim.preference.SlimSeekBarPreferencev2
             android:key="doze_fade_in_pickup"
