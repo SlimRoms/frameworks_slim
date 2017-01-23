@@ -149,9 +149,9 @@ public class SlimActionsService extends SlimSystemService {
     }
 
     private void enforceSlimActionsService() {
-       // mContext.enforceCallingOrSelfPermission(
-         //       slim.Manifest.permission.SLIM_ACTIONS_SERVICE,
-           //     "SlimActionsService");
+        mContext.enforceCallingOrSelfPermission(
+                slim.Manifest.permission.SLIM_ACTIONS_SERVICE,
+                "SlimActionsService");
     }
 
     @Override
