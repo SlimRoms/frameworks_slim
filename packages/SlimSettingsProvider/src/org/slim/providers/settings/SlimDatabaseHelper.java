@@ -1,12 +1,12 @@
-/**
- * Copyright (c) 2015, The CyanogenMod Project
- * Copyright (c) 2016-2017 SlimRoms Project
+/*
+ * Copyright (C) 2007 The Android Open Source Project
+ * Copyright (C) 2017 SlimRoms Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -17,197 +17,253 @@
 
 package org.slim.providers.settings;
 
+import android.content.ComponentName;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
+import android.content.pm.ActivityInfo;
+import android.content.pm.IPackageManager;
 import android.content.pm.PackageManager;
-import android.content.res.AssetManager;
-import android.content.res.Configuration;
-import android.content.res.Resources;
+import android.content.res.XmlResourceParser;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteStatement;
+import android.media.AudioSystem;
+import android.media.AudioManager;
+import android.net.ConnectivityManager;
 import android.os.Build;
 import android.os.Environment;
+import android.os.RemoteException;
+import android.os.ServiceManager;
 import android.os.SystemProperties;
 import android.os.UserHandle;
-import android.provider.Settings;
+import android.telephony.TelephonyManager;
 import android.text.TextUtils;
-import android.util.DisplayMetrics;
 import android.util.Log;
 
+import com.android.ims.ImsConfig;
+import com.android.internal.content.PackageHelper;
+import com.android.internal.telephony.RILConstants;
+import com.android.internal.telephony.cdma.CdmaSubscriptionSourceManager;
+import com.android.internal.util.XmlUtils;
+import com.android.internal.widget.LockPatternUtils;
+import com.android.internal.widget.LockPatternView;
+
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
+
 import java.io.File;
+import java.io.IOException;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import slim.provider.SlimSettings;
+import slim.provider.SlimSettings.Global;
+import slim.provider.SlimSettings.Secure;
 
 /**
- * The SlimDatabaseHelper allows creation of a database to store Slim specific settings for a user
- * in System, Secure, and Global tables.
+ * Legacy settings database helper class for {@link SettingsProvider}.
+ *
+ * IMPORTANT: Do not add any more upgrade steps here as the global,
+ * secure, and system settings are no longer stored in a database
+ * but are kept in memory and persisted to XML.
+ *
+ * See: SettingsProvider.UpgradeController#onUpgradeLocked
+ *
+ * @deprecated The implementation is frozen.  Do not add any new code to this class!
  */
-public class SlimDatabaseHelper extends SQLiteOpenHelper{
-    private static final String TAG = "SlimDatabaseHelper";
-    private static final boolean DEBUG = false;
-
+@Deprecated
+class SlimDatabaseHelper extends SQLiteOpenHelper {
+    private static final String TAG = "SlimSettingsProvider";
     private static final String DATABASE_NAME = "slim_settings.db";
+
+    // Please, please please. If you update the database version, check to make sure the
+    // database gets upgraded properly. At a minimum, please confirm that 'upgradeVersion'
+    // is properly propagated through your change.  Not doing so will result in a loss of user
+    // settings.
     private static final int DATABASE_VERSION = 1;
-
-    public static final String TABLE_SYSTEM = "system";
-    public static final String TABLE_SECURE = "secure";
-    public static final String TABLE_GLOBAL = "global";
-
-    private static final String CREATE_TABLE_SQL_FORMAT = "CREATE TABLE %s (" +
-            "_id INTEGER PRIMARY KEY AUTOINCREMENT," +
-            "name TEXT UNIQUE ON CONFLICT REPLACE," +
-            "value TEXT" +
-            ");)";
-
-    private static final String CREATE_INDEX_SQL_FORMAT = "CREATE INDEX %sIndex%d ON %s (name);";
-
-    private static final String DROP_TABLE_SQL_FORMAT = "DROP TABLE IF EXISTS %s;";
-
-    private static final String DROP_INDEX_SQL_FORMAT = "DROP INDEX IF EXISTS %sIndex%d;";
-
-    private static final String MCC_PROP_NAME = "ro.prebundled.mcc";
 
     private Context mContext;
     private int mUserHandle;
-    private String mPublicSrcDir;
 
-    /**
-     * Gets the appropriate database path for a specific user
-     * @param userId The database path for this user
-     * @return The database path string
-     */
-    static String dbNameForUser(final int userId) {
+    private static final HashSet<String> mValidTables = new HashSet<String>();
+
+    private static final String DATABASE_JOURNAL_SUFFIX = "-journal";
+    private static final String DATABASE_BACKUP_SUFFIX = "-backup";
+
+    private static final String TABLE_SYSTEM = "system";
+    private static final String TABLE_SECURE = "secure";
+    private static final String TABLE_GLOBAL = "global";
+
+    static {
+        mValidTables.add(TABLE_SYSTEM);
+        mValidTables.add(TABLE_SECURE);
+        mValidTables.add(TABLE_GLOBAL);
+    }
+
+    static String dbNameForUser(final int userHandle) {
         // The owner gets the unadorned db name;
-        if (userId == UserHandle.USER_OWNER) {
+        if (userHandle == UserHandle.USER_SYSTEM) {
             return DATABASE_NAME;
         } else {
             // Place the database in the user-specific data tree so that it's
             // cleaned up automatically when the user is deleted.
             File databaseFile = new File(
-                    Environment.getUserSystemDirectory(userId), DATABASE_NAME);
+                    Environment.getUserSystemDirectory(userHandle), DATABASE_NAME);
+            // If databaseFile doesn't exist, database can be kept in memory. It's safe because the
+            // database will be migrated and disposed of immediately after onCreate finishes
+            if (!databaseFile.exists()) {
+                Log.i(TAG, "No previous database file exists - running in in-memory mode");
+                return null;
+            }
             return databaseFile.getPath();
         }
     }
 
-    /**
-     * Creates an instance of {@link SlimDatabaseHelper}
-     * @param context
-     * @param userId
-     */
-    public SlimDatabaseHelper(Context context, int userId) {
-        super(context, dbNameForUser(userId), null, DATABASE_VERSION);
+    public SlimDatabaseHelper(Context context, int userHandle) {
+        super(context, dbNameForUser(userHandle), null, DATABASE_VERSION);
         mContext = context;
-        mUserHandle = userId;
+        mUserHandle = userHandle;
+    }
 
-        try {
-            String packageName = mContext.getPackageName();
-            mPublicSrcDir = mContext.getPackageManager().getApplicationInfo(packageName, 0)
-                    .publicSourceDir;
-        } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
+    public static boolean isValidTable(String name) {
+        return mValidTables.contains(name);
+    }
+
+    private boolean isInMemory() {
+        return getDatabaseName() == null;
+    }
+
+    public void dropDatabase() {
+        close();
+        // No need to remove files if db is in memory
+        if (isInMemory()) {
+            return;
+        }
+        File databaseFile = mContext.getDatabasePath(getDatabaseName());
+        if (databaseFile.exists()) {
+            databaseFile.delete();
+        }
+        File databaseJournalFile = mContext.getDatabasePath(getDatabaseName()
+                + DATABASE_JOURNAL_SUFFIX);
+        if (databaseJournalFile.exists()) {
+            databaseJournalFile.delete();
         }
     }
 
-    /**
-     * Creates System, Secure, and Global tables in the specified {@link SQLiteDatabase} and loads
-     * default values into the created tables.
-     * @param db The database.
-     */
+    public void backupDatabase() {
+        close();
+        // No need to backup files if db is in memory
+        if (isInMemory()) {
+            return;
+        }
+        File databaseFile = mContext.getDatabasePath(getDatabaseName());
+        if (!databaseFile.exists()) {
+            return;
+        }
+        File backupFile = mContext.getDatabasePath(getDatabaseName()
+                + DATABASE_BACKUP_SUFFIX);
+        if (backupFile.exists()) {
+            return;
+        }
+        databaseFile.renameTo(backupFile);
+    }
+
+    private void createSecureTable(SQLiteDatabase db) {
+        db.execSQL("CREATE TABLE secure (" +
+                "_id INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "name TEXT UNIQUE ON CONFLICT REPLACE," +
+                "value TEXT" +
+                ");");
+        db.execSQL("CREATE INDEX secureIndex1 ON secure (name);");
+    }
+
+    private void createGlobalTable(SQLiteDatabase db) {
+        db.execSQL("CREATE TABLE global (" +
+                "_id INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "name TEXT UNIQUE ON CONFLICT REPLACE," +
+                "value TEXT" +
+                ");");
+        db.execSQL("CREATE INDEX globalIndex1 ON global (name);");
+    }
+
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.beginTransaction();
+        db.execSQL("CREATE TABLE system (" +
+                    "_id INTEGER PRIMARY KEY AUTOINCREMENT," +
+                    "name TEXT UNIQUE ON CONFLICT REPLACE," +
+                    "value TEXT" +
+                    ");");
+        db.execSQL("CREATE INDEX systemIndex1 ON system (name);");
 
-        try {
-            createDbTable(db, TABLE_SYSTEM);
-            createDbTable(db, TABLE_SECURE);
+        createSecureTable(db);
 
-            if (mUserHandle == UserHandle.USER_OWNER) {
-                createDbTable(db, TABLE_GLOBAL);
-            }
-
-            loadSettings(db);
-
-            db.setTransactionSuccessful();
-
-            if (DEBUG) Log.d(TAG, "Successfully created tables for slim settings db");
-        } finally {
-            db.endTransaction();
+        // Only create the global table for the singleton 'owner/system' user
+        if (mUserHandle == UserHandle.USER_SYSTEM) {
+            createGlobalTable(db);
         }
-    }
 
-    /**
-     * Creates a table and index for the specified database and table name
-     * @param db The {@link SQLiteDatabase} to create the table and index in.
-     * @param tableName The name of the database table to create.
-     */
-    private void createDbTable(SQLiteDatabase db, String tableName) {
-        if (DEBUG) Log.d(TAG, "Creating table and index for: " + tableName);
-
-        String createTableSql = String.format(CREATE_TABLE_SQL_FORMAT, tableName);
-        db.execSQL(createTableSql);
-
-        String createIndexSql = String.format(CREATE_INDEX_SQL_FORMAT, tableName, 1, tableName);
-        db.execSQL(createIndexSql);
+        // Load inital settings values
+        loadSettings(db);
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int currentVersion) {
+        Log.w(TAG, "Upgrading settings database from version " + oldVersion + " to "
+                + currentVersion);
+
         int upgradeVersion = oldVersion;
 
-        // *** Remember to update DATABASE_VERSION above!
+        // Pattern for upgrade blocks:
+        //
+        //    if (upgradeVersion == [the DATABASE_VERSION you set] - 1) {
+        //        .. your upgrade logic..
+        //        upgradeVersion = [the DATABASE_VERSION you set]
+        //    }
 
-        if (upgradeVersion < newVersion) {
-            Log.w(TAG, "Got stuck trying to upgrade db. Old version: " + oldVersion
-                    + ", version stuck at: " +  upgradeVersion + ", new version: "
-                            + newVersion + ". Must wipe the slim settings provider.");
+        /*
+         * IMPORTANT: Do not add any more upgrade steps here as the global,
+         * secure, and system settings are no longer stored in a database
+         * but are kept in memory and persisted to XML.
+         *
+         * See: SettingsProvider.UpgradeController#onUpgradeLocked
+         */
 
-            dropDbTable(db, TABLE_SYSTEM);
-            dropDbTable(db, TABLE_SECURE);
-
-            if (mUserHandle == UserHandle.USER_OWNER) {
-                dropDbTable(db, TABLE_GLOBAL);
-            }
-
-            onCreate(db);
+        if (upgradeVersion != currentVersion) {
+            recreateDatabase(db, oldVersion, upgradeVersion, currentVersion);
         }
     }
 
-    /**
-     * Drops the table and index for the specified database and table name
-     * @param db The {@link SQLiteDatabase} to drop the table and index in.
-     * @param tableName The name of the database table to drop.
-     */
-    private void dropDbTable(SQLiteDatabase db, String tableName) {
-        if (DEBUG) Log.d(TAG, "Dropping table and index for: " + tableName);
+    public void recreateDatabase(SQLiteDatabase db, int oldVersion,
+            int upgradeVersion, int currentVersion) {
+        db.execSQL("DROP TABLE IF EXISTS global");
+        db.execSQL("DROP TABLE IF EXISTS globalIndex1");
+        db.execSQL("DROP TABLE IF EXISTS system");
+        db.execSQL("DROP INDEX IF EXISTS systemIndex1");
+        db.execSQL("DROP TABLE IF EXISTS secure");
+        db.execSQL("DROP INDEX IF EXISTS secureIndex1");
 
-        String dropTableSql = String.format(DROP_TABLE_SQL_FORMAT, tableName);
-        db.execSQL(dropTableSql);
+        onCreate(db);
 
-        String dropIndexSql = String.format(DROP_INDEX_SQL_FORMAT, tableName, 1);
-        db.execSQL(dropIndexSql);
+        // Added for diagnosing settings.db wipes after the fact
+        String wipeReason = oldVersion + "/" + upgradeVersion + "/" + currentVersion;
+        db.execSQL("INSERT INTO secure(name,value) values('" +
+                "wiped_db_reason" + "','" + wipeReason + "');");
     }
 
-    /**
-     * Loads default values for specific settings into the database.
-     * @param db The {@link SQLiteDatabase} to insert into.
-     */
+    private String[] setToStringArray(Set<String> set) {
+        String[] array = new String[set.size()];
+        return set.toArray(array);
+    }
+
     private void loadSettings(SQLiteDatabase db) {
         loadSystemSettings(db);
         loadSecureSettings(db);
-        // The global table only exists for the 'owner' user
-        if (mUserHandle == UserHandle.USER_OWNER) {
+        // The global table only exists for the 'owner/system' user
+        if (mUserHandle == UserHandle.USER_SYSTEM) {
             loadGlobalSettings(db);
-        }
-    }
-
-    private void loadSecureSettings(SQLiteDatabase db) {
-        SQLiteStatement stmt = null;
-        try {
-            stmt = db.compileStatement("INSERT OR IGNORE INTO secure(name,value)"
-                    + " VALUES(?,?);");
-        } finally {
-            if (stmt != null) stmt.close();
         }
     }
 
@@ -215,6 +271,16 @@ public class SlimDatabaseHelper extends SQLiteOpenHelper{
         SQLiteStatement stmt = null;
         try {
             stmt = db.compileStatement("INSERT OR IGNORE INTO system(name,value)"
+                    + " VALUES(?,?);");
+        } finally {
+            if (stmt != null) stmt.close();
+        }
+    }
+
+    private void loadSecureSettings(SQLiteDatabase db) {
+        SQLiteStatement stmt = null;
+        try {
+            stmt = db.compileStatement("INSERT OR IGNORE INTO secure(name,value)"
                     + " VALUES(?,?);");
         } finally {
             if (stmt != null) stmt.close();
@@ -231,44 +297,63 @@ public class SlimDatabaseHelper extends SQLiteOpenHelper{
         }
     }
 
-    /**
-     * Loads a string resource into a database table. If a conflict occurs, that value is not
-     * inserted into the database table.
-     * @param stmt The SQLLiteStatement (transaction) for this setting.
-     * @param name The name of the value to insert into the table.
-     * @param resId The name of the string resource.
-     */
-    private void loadStringSetting(SQLiteStatement stmt, String name, int resId) {
-        loadSetting(stmt, name, mContext.getResources().getString(resId));
-    }
-
-    /**
-     * Loads a boolean resource into a database table. If a conflict occurs, that value is not
-     * inserted into the database table.
-     * @param stmt The SQLLiteStatement (transaction) for this setting.
-     * @param name The name of the value to insert into the table.
-     * @param resId The name of the boolean resource.
-     */
-    private void loadBooleanSetting(SQLiteStatement stmt, String name, int resId) {
-        loadSetting(stmt, name,
-                mContext.getResources().getBoolean(resId) ? "1" : "0");
-    }
-
-    /**
-     * Loads an integer resource into a database table. If a conflict occurs, that value is not
-     * inserted into the database table.
-     * @param stmt The SQLLiteStatement (transaction) for this setting.
-     * @param name The name of the value to insert into the table.
-     * @param resId The name of the integer resource.
-     */
-    private void loadIntegerSetting(SQLiteStatement stmt, String name, int resId) {
-        loadSetting(stmt, name,
-                Integer.toString(mContext.getResources().getInteger(resId)));
-    }
-
     private void loadSetting(SQLiteStatement stmt, String key, Object value) {
         stmt.bindString(1, key);
         stmt.bindString(2, value.toString());
         stmt.execute();
+    }
+
+    private void loadStringSetting(SQLiteStatement stmt, String key, int resid) {
+        loadSetting(stmt, key, mContext.getResources().getString(resid));
+    }
+
+    private void loadBooleanSetting(SQLiteStatement stmt, String key, int resid) {
+        loadSetting(stmt, key,
+                mContext.getResources().getBoolean(resid) ? "1" : "0");
+    }
+
+    private void loadIntegerSetting(SQLiteStatement stmt, String key, int resid) {
+        loadSetting(stmt, key,
+                Integer.toString(mContext.getResources().getInteger(resid)));
+    }
+
+    private void loadFractionSetting(SQLiteStatement stmt, String key, int resid, int base) {
+        loadSetting(stmt, key,
+                Float.toString(mContext.getResources().getFraction(resid, base, base)));
+    }
+
+    private int getIntValueFromSystem(SQLiteDatabase db, String name, int defaultValue) {
+        return getIntValueFromTable(db, TABLE_SYSTEM, name, defaultValue);
+    }
+
+    private int getIntValueFromTable(SQLiteDatabase db, String table, String name,
+            int defaultValue) {
+        String value = getStringValueFromTable(db, table, name, null);
+        return (value != null) ? Integer.parseInt(value) : defaultValue;
+    }
+
+    private String getStringValueFromTable(SQLiteDatabase db, String table, String name,
+            String defaultValue) {
+        Cursor c = null;
+        try {
+            c = db.query(table, new String[] { SlimSettings.System.VALUE }, "name='" + name + "'",
+                    null, null, null, null);
+            if (c != null && c.moveToFirst()) {
+                String val = c.getString(0);
+                return val == null ? defaultValue : val;
+            }
+        } finally {
+            if (c != null) c.close();
+        }
+        return defaultValue;
+    }
+
+    private String getOldDefaultDeviceName() {
+        return mContext.getResources().getString(R.string.def_device_name,
+                Build.MANUFACTURER, Build.MODEL);
+    }
+
+    private String getDefaultDeviceName() {
+        return mContext.getResources().getString(R.string.def_device_name_simple, Build.MODEL);
     }
 }
