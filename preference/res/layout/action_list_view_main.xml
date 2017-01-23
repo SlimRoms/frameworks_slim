@@ -16,30 +16,29 @@
 
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:settings="http://schemas.android.com/apk/res-auto"
-    android:theme="@android:style/Theme.Material.Light"
+    xmlns:slim="http://schemas.android.com/apk/res/slim"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <LinearLayout
-        android:id="@id/fragment_container"
+        android:id="@*slim:id/fragment_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
     </LinearLayout>
     <View
-        android:id="@id/divider"
+        android:id="@*slim:id/divider"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:visibility="gone"
         android:background="@android:color/darker_gray"/>
     <TextView
-        android:id="@id/disable_message"
+        android:id="@*slim:id/disable_message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dip"
         android:layout_gravity="center"
         android:gravity="center_horizontal"
-        android:text="@slim:string/shortcut_action_disable_message"
+        android:text="@*slim:string/shortcut_action_disable_message"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:visibility="gone" />
     <slim.preference.dslv.DragSortListView
@@ -51,18 +50,18 @@
         android:paddingLeft="0dp"
         android:layout_margin="0dp"
         android:dividerHeight="1dp"
-        settings:dragEnabled="true"
-        settings:collapsedHeight="2dp"
-        settings:dragScrollStart="0.33"
-        settings:maxDragScrollSpeed="0.5"
-        settings:floatAlpha="0.6"
-        settings:slideShuffleSpeed="0.3"
-        settings:trackDragSort="false"
-        settings:useDefaultController="true"
-        settings:dragHandleId="@slim:id/drag_handle"
-        settings:sortEnabled="true"
-        settings:removeEnabled="true"
-        settings:dragStartMode="onMove"
-        settings:removeMode="flingRemove"
-        settings:floatBackgroundColor="@slim:color/dslv_float_background_color" />
+        slim:dragEnabled="true"
+        slim:collapsedHeight="2dp"
+        slim:dragScrollStart="0.33"
+        slim:maxDragScrollSpeed="0.5"
+        slim:floatAlpha="0.6"
+        slim:slideShuffleSpeed="0.3"
+        slim:trackDragSort="false"
+        slim:useDefaultController="true"
+        slim:dragHandleId="@*slim:id/drag_handle"
+        slim:sortEnabled="true"
+        slim:removeEnabled="true"
+        slim:dragStartMode="onMove"
+        slim:removeMode="flingRemove"
+        slim:floatBackgroundColor="@slim:color/dslv_float_background_color" />
 </LinearLayout>

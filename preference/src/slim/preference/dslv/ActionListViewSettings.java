@@ -183,7 +183,7 @@ public class ActionListViewSettings extends ListFragment implements
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
-        return inflater.inflate(slim.R.layout.action_list_view_main, container, false);
+        return inflater.inflate(org.slim.preference.R.layout.action_list_view_main, container, false);
     }
 
     @Override
@@ -648,7 +648,7 @@ public class ActionListViewSettings extends ListFragment implements
     private class ActionConfigsAdapter extends ArrayAdapter<ActionConfig> {
 
         public ActionConfigsAdapter(Context context, List<ActionConfig> clickActionDescriptions) {
-            super(context, R.layout.action_list_view_item,
+            super(context, org.slim.preference.R.layout.action_list_view_item,
                     R.id.click_action_description, clickActionDescriptions);
         }
 

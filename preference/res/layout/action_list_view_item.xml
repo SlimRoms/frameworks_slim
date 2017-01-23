@@ -15,7 +15,7 @@
 -->
 
 <GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:theme="@android:style/Theme.Material.Light"
+    xmlns:slim="http://schemas.android.com/apk/res/slim"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:minHeight="?android:attr/listPreferredItemHeight"
@@ -24,7 +24,7 @@
     android:paddingTop="8dip"
     android:paddingBottom="8dip" >
     <ImageView
-        android:id="@id/drag_handle"
+        android:id="@*slim:id/drag_handle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@*slim:drawable/ic_grabber"
@@ -39,7 +39,7 @@
         android:orientation="vertical"
         android:paddingRight="5dp">
         <TextView
-            android:id="@id/click_action_description"
+            android:id="@*slim:id/click_action_description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="fill_horizontal"
@@ -48,7 +48,7 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textAlignment="viewStart" />
         <TextView
-            android:id="@id/longpress_action_description"
+            android:id="@*slim:id/longpress_action_description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="fill_horizontal"
@@ -58,7 +58,7 @@
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textAlignment="viewStart" />
         <TextView
-            android:id="@id/doubletap_action_description"
+            android:id="@*slim:id/doubletap_action_description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="fill_horizontal"
@@ -69,7 +69,7 @@
             android:textAlignment="viewStart" />
     </LinearLayout>
     <ImageView
-        android:id="@id/list_item_icon"
+        android:id="@*slim:id/list_item_icon"
         android:layout_width="36dip"
         android:layout_height="36dip"
         android:layout_marginEnd="8dip"

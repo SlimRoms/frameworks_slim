@@ -40,6 +40,20 @@
   <public type="attr" name="hidePreference" id="0x02010011" />
   <public type="attr" name="hidePreferenceInt" id="0x02010012" />
   <public type="attr" name="hidePreferenceIntDependency" id="0x02010013" />
+  <public type="attr" name="dragEnabled" id="0x02010014" />
+  <public type="attr" name="collapsedHeight" id="0x02010015" />
+  <public type="attr" name="dragScrollStart" id="0x02010016" />
+  <public type="attr" name="maxDragScrollSpeed" id="0x02010017" />
+  <public type="attr" name="floatAlpha" id="0x02010018" />
+  <public type="attr" name="slideShuffleSpeed" id="0x02010019" />
+  <public type="attr" name="trackDragSort" id="0x02010020" />
+  <public type="attr" name="useDefaultController" id="0x02010021" />
+  <public type="attr" name="dragHandleId" id="0x02010022" />
+  <public type="attr" name="sortEnabled" id="0x02010023" />
+  <public type="attr" name="removeEnabled" id="0x02010024" />
+  <public type="attr" name="dragStartMode" id="0x02010025" />
+  <public type="attr" name="removeMode" id="0x02010026" />
+  <public type="attr" name="floatBackgroundColor" id="0x02010027" />
 
   <!-- id (start with 0x02020000)-->
   <!--SlimSeekBar ids -->
@@ -119,8 +133,6 @@
   <public type="layout" name="dialog_color_picker" id="0x02090001" />
 
   <!-- DSLV -->
-  <public type="layout" name="action_list_view_item" id="0x02090002" />
-  <public type="layout" name="action_list_view_main" id="0x02090003" />
 
   <!-- anim (start with 0x020a0000) -->
 
