@@ -712,7 +712,8 @@ public class RecentPanelView {
                     mContext.getSystemService(Context.ACTIVITY_SERVICE);
 
             int maxNumTasksToLoad = SlimSettings.System.getIntForUser(mContext.getContentResolver(),
-                    SlimSettings.System.RECENTS_MAX_APPS, ActivityManager.getMaxRecentTasksStatic(),
+                    SlimSettings.System.RECENTS_MAX_APPS, mContext.getResources().getInteger(
+                    slim.R.integer.slim_recents_max_apps_default),
                     UserHandle.USER_CURRENT);
 
             final List<ActivityManager.RecentTaskInfo> recentTasks =

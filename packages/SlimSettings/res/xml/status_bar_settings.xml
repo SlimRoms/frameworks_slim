@@ -51,6 +51,7 @@
             android:dialogTitle="@string/status_bar_battery_style_title"
             android:entries="@array/status_bar_battery_style_entries"
             android:entryValues="@array/status_bar_battery_style_values"
+            android:defaultValue="0"
             slim:slimSettingType="secure" />
 
         <slim.preference.SlimListPreference
@@ -59,6 +60,7 @@
             android:dialogTitle="@string/status_bar_battery_percentage_dialog_title"
             android:entries="@array/status_bar_battery_percentage_entries"
             android:entryValues="@array/status_bar_battery_percentage_values"
+            android:defaultValue="0"
             slim:listDependency="status_bar_battery_style:4|6"
             slim:slimSettingType="secure" />
     </PreferenceCategory>

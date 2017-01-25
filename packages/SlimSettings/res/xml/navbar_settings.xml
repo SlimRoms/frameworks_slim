@@ -22,6 +22,7 @@
                 android:key="navigation_bar_show"
                 android:title="@string/navbar_enable_bar"
                 android:summary="@string/navbar_enable_bar_summary"
+                android:defaultValue="@*android:bool/config_showNavigationBar"
                 slim:hidePreference="@*android:bool/config_showNavigationBar" />
 
         <PreferenceCategory

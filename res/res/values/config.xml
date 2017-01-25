@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-     Copyright (C) 2016 SlimRoms Project
+     Copyright (C) 2016-2017 SlimRoms Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -43,4 +43,7 @@
 
     <!-- Disable speaker proximity preference for problematic devices -->
     <bool name="config_enabled_speakerprox" translatable="false">true</bool>
+
+    <!-- Slim Recents default allowed max apps -->
+    <integer name="slim_recents_max_apps_default">25</integer>
 </resources>

@@ -131,6 +131,7 @@
   <!-- mipmap (start with 0x020d0000) -->
 
   <!-- integer (start with 0x020e0000) -->
+  <public type="integer" name="slim_recents_max_apps_default" id="0x020e0000" />
 
   <!-- transition (start with 0x020f0000) -->
 
