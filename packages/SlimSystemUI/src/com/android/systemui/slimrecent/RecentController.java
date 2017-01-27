@@ -33,7 +33,6 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.VectorDrawable;
 import android.graphics.PixelFormat;
-import android.net.Uri;
 import android.os.Handler;
 import android.os.RemoteException;
 import android.os.SystemClock;
@@ -65,7 +64,6 @@ import com.android.systemui.recents.misc.Utilities;
 import com.android.systemui.statusbar.BaseStatusBar;
 
 import slim.provider.SlimSettings;
-import slim.utils.UserContentObserver;
 
 /**
  * Our main recents controller.
@@ -548,14 +546,12 @@ public class RecentController implements RecentPanelView.OnExitListener,
      * Settingsobserver to take care of the user settings.
      * Either gravity or scale factor of our recent panel can change.
      */
-    private class SettingsObserver extends UserContentObserver {
+    private class SettingsObserver extends ContentObserver {
         SettingsObserver(Handler handler) {
             super(handler);
         }
 
-        @Override
-        protected void observe() {
-            super.observe();
+        void observe() {
             ContentResolver resolver = mContext.getContentResolver();
             resolver.registerContentObserver(SlimSettings.System.getUriFor(
                     SlimSettings.System.RECENT_PANEL_GRAVITY),
@@ -579,7 +575,12 @@ public class RecentController implements RecentPanelView.OnExitListener,
         }
 
         @Override
-        protected void update() {
+        public void onChange(boolean selfChange) {
+            super.onChange(selfChange);
+            update();
+        }
+
+        public void update() {
             // Close recent panel if it is opened.
             hideRecents(false);
 

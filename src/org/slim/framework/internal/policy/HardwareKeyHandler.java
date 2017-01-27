@@ -19,8 +19,8 @@ import android.app.ActivityManagerNative;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.res.Resources;
+import android.database.ContentObserver;
 import android.media.AudioAttributes;
-import android.net.Uri;
 import android.os.Handler;
 import android.os.RemoteException;
 import android.os.ServiceManager;
@@ -42,7 +42,6 @@ import slim.action.ActionConstants;
 import slim.action.SlimActionsManager;
 import slim.provider.SlimSettings;
 import slim.utils.HwKeyHelper;
-import slim.utils.UserContentObserver;
 
 public class HardwareKeyHandler {
 
@@ -177,15 +176,12 @@ public class HardwareKeyHandler {
         }
     };
 
-    private class HwKeySettingsObserver extends UserContentObserver {
+    private class HwKeySettingsObserver extends ContentObserver {
         HwKeySettingsObserver(Handler handler) {
             super(handler);
         }
 
-        @Override
-        protected void observe() {
-            super.observe();
-
+        void observe() {
             // Observe all hw key users' changes
             ContentResolver resolver = mContext.getContentResolver();
             resolver.registerContentObserver(SlimSettings.System.getUriFor(
@@ -249,7 +245,7 @@ public class HardwareKeyHandler {
         }
 
         @Override
-        protected void update() {
+        public void onChange(boolean selfChange) {
             updateKeyAssignments();
         }
     }
