@@ -26,48 +26,6 @@ public final class SlimSettingsKeys {
          */
         public static final String NAVIGATION_BAR_CONFIG = "navigation_bar_config";
 
-         /**
-         * Timeout for ambient display notification
-         * @hide
-         */
-        public static final String DOZE_TIMEOUT = "doze_timeout";
-
-        /**
-         * Use pick up gesture sensor as doze pulse trigger
-         * @hide
-         */
-        public static final String DOZE_TRIGGER_PICKUP = "doze_trigger_pickup";
-
-        /**
-         * Use significant motion sensor as doze pulse trigger
-         * @hide
-         */
-        public static final String DOZE_TRIGGER_SIGMOTION = "doze_trigger_sigmotion";
-
-        /**
-         * Use notifications as doze pulse triggers
-         * @hide
-         */
-        public static final String DOZE_TRIGGER_NOTIFICATION = "doze_trigger_notification";
-
-        /**
-         * Follow pre-configured doze pulse repeat schedule
-         * @hide
-         */
-        public static final String DOZE_SCHEDULE = "doze_schedule";
-
-        /**
-         * Doze pulse screen brightness level
-         * @hide
-         */
-        public static final String DOZE_BRIGHTNESS = "doze_brightness";
-
-        /**
-         * Require double tap instead of simple tap to wake from Doze pulse screen
-         * @hide
-         */
-        public static final String DOZE_WAKEUP_DOUBLETAP = "doze_wakeup_doubletap";
-
         /**
          * Check the proximity sensor during wakeup
          * @hide
