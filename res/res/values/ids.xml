@@ -38,4 +38,8 @@
     <item type="id" name="click_action_description" />
     <item type="id" name="longpress_action_description" />
     <item type="id" name="doubletap_action_description" />
+
+    <!-- SlimSeekBar v2 -->
+    <item type="id" name="seekBarPrefBarContainer"/>
+    <item type="id" name="seekBarPrefValue"/>
 </resources>

@@ -54,6 +54,9 @@
   <public type="attr" name="dragStartMode" id="0x02010025" />
   <public type="attr" name="removeMode" id="0x02010026" />
   <public type="attr" name="floatBackgroundColor" id="0x02010027" />
+  <public type="attr" name="maxValue" id="0x02010028" />
+  <public type="attr" name="defValue" id="0x02010029" />
+  <public type="attr" name="units" id="0x02010030" />
 
   <!-- id (start with 0x02020000)-->
   <!--SlimSeekBar ids -->
@@ -72,6 +75,10 @@
   <public type="id" name="yellow_panel" id="0x02020010" />
   <public type="id" name="hex" id="0x02020011" />
   <public type="id" name="enter" id="0x02020012" />
+
+  <!--SlimSeekBar v2 ids -->
+  <public type="id" name="seekBarPrefBarContainer" id="0x02020013" />
+  <public type="id" name="seekBarPrefValue" id="0x02020014" />
 
   <!-- style (start with 0x02030000) -->
 
@@ -131,6 +138,9 @@
 
   <!-- ColorPickerDialog @hide -->
   <public type="layout" name="dialog_color_picker" id="0x02090001" />
+
+  <!--Slim Slider v2 layout @hide -->
+  <public type="layout" name="slim_seek_bar_preference_v2" id="0x02090002" />
 
   <!-- DSLV -->
 
