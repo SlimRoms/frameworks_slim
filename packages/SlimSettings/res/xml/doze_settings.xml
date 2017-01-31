@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2010 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:slim="http://schemas.android.com/apk/res/slim"
+        android:key="doze_settings"
+        android:title="@string/doze_settings_title">
+
+    <slim.preference.SlimSeekBarPreferencev2
+            android:key="doze_fade_in_pickup"
+            android:title="@string/doze_fade_in_pickup_title"
+            android:summary="@string/doze_fade_in_pickup_summary"
+            slim:maxValue="10000"
+            slim:minValue="0"
+            slim:interval="100"
+            slim:units="ms"
+            android:persistent="false" />
+
+    <slim.preference.SlimSeekBarPreferencev2
+            android:key="doze_fade_in_doubletap"
+            android:title="@string/doze_fade_in_doubletap_title"
+            android:summary="@string/doze_fade_in_doubletap_summary"
+            slim:maxValue="10000"
+            slim:minValue="0"
+            slim:interval="100"
+            slim:units="ms"
+            android:persistent="false" />
+
+    <slim.preference.SlimSeekBarPreferencev2
+            android:key="doze_timeout"
+            android:title="@string/doze_timeout_title"
+            android:summary="@string/doze_timeout_summary"
+            slim:maxValue="30000"
+            slim:minValue="500"
+            slim:interval="100"
+            slim:units="ms"
+            android:persistent="false" />
+
+    <slim.preference.SlimSeekBarPreferencev2
+            android:key="doze_fade_out"
+            android:title="@string/doze_fade_out_title"
+            android:summary="@string/doze_fade_out_summary"
+            slim:maxValue="10000"
+            slim:minValue="0"
+            slim:interval="100"
+            slim:units="ms"
+            android:persistent="false" />
+
+    <slim.preference.SlimSeekBarPreferencev2
+            android:key="doze_brightness"
+            android:title="@string/doze_brightness_title"
+            android:summary="@string/doze_brightness_summary"
+            slim:maxValue="100"
+            slim:minValue="0"
+            slim:interval="1"
+            slim:units="%" />
+
+     <SwitchPreference
+            android:key="doze_wakeup_doubletap"
+            android:title="@string/doze_wakeup_doubletap_title"
+            android:summaryOn="@string/doze_wakeup_doubletap_summary_on"
+            android:summaryOff="@string/doze_wakeup_doubletap_summary_off"
+            android:persistent="false" />
+
+    <SwitchPreference
+            android:key="doze_trigger_pickup"
+            android:title="@string/doze_trigger_pickup_title"
+            android:summaryOn="@string/doze_trigger_pickup_summary_on"
+            android:summaryOff="@string/doze_trigger_pickup_summary_off"
+            android:persistent="false" />
+
+    <SwitchPreference
+            android:key="doze_trigger_sigmotion"
+            android:title="@string/doze_trigger_sigmotion_title"
+            android:summaryOn="@string/doze_trigger_sigmotion_summary_on"
+            android:summaryOff="@string/doze_trigger_sigmotion_summary_off"
+            android:persistent="false" />
+
+    <!--SwitchPreference
+            android:key="doze_trigger_doubletap"
+            android:title="@string/doze_trigger_doubletap_title"
+            android:summaryOn="@string/doze_trigger_doubletap_summary_on"
+            android:summaryOff="@string/doze_trigger_doubletap_summary_off"
+            android:persistent="false" /-->
+
+    <SwitchPreference
+            android:key="doze_trigger_notification"
+            android:title="@string/doze_trigger_notification_title"
+            android:summaryOn="@string/doze_trigger_notification_summary_on"
+            android:summaryOff="@string/doze_trigger_notification_summary_off"
+            android:persistent="false" />
+
+</PreferenceScreen>

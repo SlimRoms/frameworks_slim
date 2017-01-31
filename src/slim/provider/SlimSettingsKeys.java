@@ -450,6 +450,66 @@ public final class SlimSettingsKeys {
          */
         public static final String STATUSBAR_CLOCK_DATE_POSITION = "statusbar_clock_date_position";
 
+        /**
+         * Doze pulse screen fade in delay
+         * @hide
+         */
+        public static final String DOZE_FADE_IN_PICKUP = "doze_fade_in_pickup";
+
+        /**
+         * Doze pulse screen fade in delay
+         * @hide
+         */
+        public static final String DOZE_FADE_IN_DOUBLETAP = "doze_fade_in_doubletap";
+
+        /**
+         * Timeout for ambient display notification
+         * @hide
+         */
+        public static final String DOZE_TIMEOUT = "doze_timeout";
+
+        /**
+         * Doze pulse screen fade out delay
+         * @hide
+         */
+        public static final String DOZE_FADE_OUT = "doze_fade_out";
+
+        /**
+         * Doze pulse screen brightness level
+         * @hide
+         */
+        public static final String DOZE_BRIGHTNESS = "doze_brightness";
+
+        /**
+         * Require double tap instead of simple tap to wake from Doze pulse screen
+         * @hide
+         */
+        public static final String DOZE_WAKEUP_DOUBLETAP = "doze_wakeup_doubletap";
+
+        /**
+         * Use pick up gesture sensor as doze pulse trigger
+         * @hide
+         */
+        public static final String DOZE_TRIGGER_PICKUP = "doze_trigger_pickup";
+
+        /**
+         * Use significant motion sensor as doze pulse trigger
+         * @hide
+         */
+        public static final String DOZE_TRIGGER_SIGMOTION = "doze_trigger_sigmotion";
+
+        /**
+         * Use notifications as doze pulse triggers
+         * @hide
+         */
+        public static final String DOZE_TRIGGER_NOTIFICATION = "doze_trigger_notification";
+
+        /**
+         * Use doubletap as doze pulse triggers
+         * @hide
+         */
+//        public static final String DOZE_TRIGGER_DOUBLETAP = "doze_trigger_doubletap";
+
     }
 
     public interface Secure {

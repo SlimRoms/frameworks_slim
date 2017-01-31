@@ -476,4 +476,33 @@
     <string name="advanced_options_settings_title">Advanced</string>
     <string name="device_settings_title">Device Specific Settings</string>
 
+    <!-- Doze options -->
+    <string name="display_category_doze_options_title">Ambient display (doze) options</string>
+    <string name="doze_settings_title">Advanced doze options</string>
+    <string name="doze_fade_in_pickup_title">Doze pulse fade in (pickup)</string>
+    <string name="doze_fade_in_pickup_summary">Time that the screen fades in for notification pulse on pickup (default 100)</string>
+    <string name="doze_fade_in_doubletap_title">Doze pulse fade in (doubletap)</string>
+    <string name="doze_fade_in_doubletap_summary">Time that the screen fades in for notification pulse on doubletap (default 900)</string>
+    <string name="doze_timeout_title">Doze pulse timeout</string>
+    <string name="doze_timeout_summary">Time that the screen stays on for notification pulse (default 6000)</string>
+    <string name="doze_fade_out_title">Doze pulse fade out</string>
+    <string name="doze_fade_out_summary">Time that the screen fades out after notification pulse (default 600)</string>
+    <string name="doze_wakeup_doubletap_title">Double-tap to wake on doze</string>
+    <string name="doze_wakeup_doubletap_summary_on">Require a double-tap to wake the device on a doze pulse screen</string>
+    <string name="doze_wakeup_doubletap_summary_off">Require a simple-tap to wake the device on a doze pulse screen (default)</string>
+    <string name="doze_trigger_pickup_title">Pick up gesture trigger</string>
+    <string name="doze_trigger_pickup_summary_on">Doze pulse will be triggered by pick up gesture sensor events (default)</string>
+    <string name="doze_trigger_pickup_summary_off">Pick up gesture sensor will not be utilized as a triggering mechanism</string>
+    <string name="doze_trigger_sigmotion_title">Significant motion trigger</string>
+    <string name="doze_trigger_sigmotion_summary_on">Doze pulse will be triggered by significant motion sensor events (default)</string>
+    <string name="doze_trigger_sigmotion_summary_off">Significant motion sensor will not be utilized as a triggering mechanism</string>
+    <!--string name="doze_trigger_doubletap_title">Double tap trigger</string-->
+    <!--string name="doze_trigger_doubletap_summary_on">Doze pulse will be triggered by a double tap</string-->
+    <!--string name="doze_trigger_doubletap_summary_off">Double tap sensor will not be utilized as a triggering mechanism (default)</string-->
+    <string name="doze_trigger_notification_title">Notification trigger</string>
+    <string name="doze_trigger_notification_summary_on">Doze pulse will be triggered by notifications (default)</string>
+    <string name="doze_trigger_notification_summary_off">Notifications will not be utilized as a trigger</string>
+    <string name="doze_brightness_title">Doze brightness level</string>
+    <string name="doze_brightness_summary">Brightness level of doze pulse screen (% of max allowed brightness)</string>
+
 </resources>
