@@ -110,6 +110,11 @@
 
   <public type="string" name="hex" id="0x02040016" />
 
+  <!-- increasing ring tone volume -->
+  <public type="string" name="increasing_ring_volume_option_title" id="0x02040017" />
+  <public type="string" name="increasing_ring_min_volume_title" id="0x02040018" />
+  <public type="string" name="increasing_ring_ramp_up_time_title" id="0x02040019" />
+
   <!-- dimen (start with 0x02050000) -->
 
   <!-- color (start with 0x02060000) -->

@@ -185,4 +185,9 @@
 
     <!-- Proximity auto speaker -->
     <java-symbol type="bool" name="config_enabled_speakerprox" />
+
+    <!-- Increasing ring tone volume -->
+    <java-symbol type="string" name="increasing_ring_volume_option_title" />
+    <java-symbol type="string" name="increasing_ring_min_volume_title" />
+    <java-symbol type="string" name="increasing_ring_ramp_up_time_title" />
 </resources>
