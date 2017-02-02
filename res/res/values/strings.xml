@@ -187,4 +187,8 @@
     <string name="prox_auto_speaker_incall_only_summary_on">On outgoing calls, listener will only become active after the receiving party answers</string>
     <string name="prox_auto_speaker_incall_only_summary_off">Listener will be active during all offhook call states (default)</string>
 
+    <!-- Slim Doze-->
+    <string name="display_category_doze_options_title">Ambient display (doze) options</string>
+    <string name="doze_settings_title">Advanced doze options</string>
+
 </resources>
