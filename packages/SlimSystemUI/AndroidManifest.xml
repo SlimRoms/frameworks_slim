@@ -25,4 +25,8 @@
     <uses-permission android:name="slim.permission.SLIM_ACTIONS_SERVICE" />
     <uses-permission android:name="slim.permission.WRITE_SETTINGS" />
 
+    <!-- Sync tile -->
+    <uses-permission android:name="android.permission.READ_SYNC_SETTINGS" />
+    <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS" />
+
 </manifest>
