@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-     Copyright (C) 2016 SlimRoms Project
+     Copyright (C) 2016-2017 SlimRoms Project
      Copyright (C) 2013-14 The Android Open Source Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,31 +16,11 @@
      limitations under the License.
 -->
 
-<com.android.systemui.statusbar.slim.SlimBatteryContainer xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/slim_battery_container"
+<com.android.systemui.AutoReinflateContainer
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/slim_reinflate_battery_container"
+    android:layout="@layout/slim_reinflate_battery_container"
     android:layout_width="wrap_content"
-    android:layout_height="match_parent"
-    android:gravity="center_vertical">
+    android:layout_height="match_parent">
 
-    <!-- battery must be padded below to match assets -->
-    <com.android.systemui.statusbar.slim.SlimBatteryMeterView android:id="@+id/slim_battery"
-        android:layout_height="14.5dp"
-        android:layout_width="9.5dp"
-        android:visibility="gone"
-        android:layout_marginBottom="@dimen/battery_margin_bottom"/>
-
-    <View
-        android:id="@+id/battery_batterytext_spacer"
-        android:layout_width="@dimen/header_battery_margin_keyguard"
-        android:layout_height="4dp"
-        android:visibility="gone" />
-
-    <TextView android:id="@+id/battery_level_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:textColor="#ffffff"
-        android:visibility="gone"
-        android:textSize="@dimen/battery_level_text_size" />
-
-</com.android.systemui.statusbar.slim.SlimBatteryContainer>
+</com.android.systemui.AutoReinflateContainer>

@@ -234,7 +234,9 @@ public class SlimBatteryMeterView extends View implements DemoMode,
         super.onDetachedFromWindow();
 
         mAttached = false;
-        mBatteryController.removeStateChangedCallback(this);
+        if (mBatteryController != null) {
+            mBatteryController.removeStateChangedCallback(this);
+        }
     }
 
     protected BatteryMeterDrawable createBatteryMeterDrawable(BatteryMeterMode mode) {
