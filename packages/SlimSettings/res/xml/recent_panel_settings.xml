@@ -60,7 +60,7 @@
 
         <slim.preference.SlimSeekBarPreference
             android:dependency="use_slim_recents"
-            android:key="recent_panel_scale"
+            android:key="recent_panel_scale_factor"
             android:title="@string/recent_panel_scale_title"
             slim:interval="5"
             slim:defaultValue="100"
