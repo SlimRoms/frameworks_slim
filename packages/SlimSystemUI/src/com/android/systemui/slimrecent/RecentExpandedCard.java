@@ -61,9 +61,6 @@ public class RecentExpandedCard extends CardExpand {
     private float mScaleFactor;
     private boolean mScaleFactorChanged;
 
-    private int defaultCardBg;
-    private int cardColor;
-
     private BitmapDownloaderTask mTask;
 
     private boolean mReload;
@@ -91,13 +88,6 @@ public class RecentExpandedCard extends CardExpand {
         mPersistentTaskId = td.persistentTaskId;
         mLabel = (String) td.getLabel();
         mScaleFactor = scaleFactor;
-
-        defaultCardBg = mContext.getResources().getColor(
-                R.color.recents_task_bar_default_background_color);
-        cardColor = SlimSettings.System.getIntForUser(
-                mContext.getContentResolver(), SlimSettings.System.RECENT_CARD_BG_COLOR,
-                defaultCardBg, UserHandle.USER_CURRENT);
-
         initDimensions();
     }
 
@@ -124,7 +114,7 @@ public class RecentExpandedCard extends CardExpand {
         if (mTaskDescription != null && mTaskDescription.cardColor != 0) {
             return mTaskDescription.cardColor;
         }
-        return defaultCardBg;
+        return mContext.getResources().getColor(R.color.recents_task_bar_default_background_color);
     }
 
     // Setup main dimensions we need.
@@ -203,6 +193,10 @@ public class RecentExpandedCard extends CardExpand {
                 }
             }
         }
+
+        int cardColor = SlimSettings.System.getIntForUser(
+                mContext.getContentResolver(), SlimSettings.System.RECENT_CARD_BG_COLOR,
+                0x00ffffff, UserHandle.USER_CURRENT);
 
         // set custom background
         if (cardColor != 0x00ffffff) {
