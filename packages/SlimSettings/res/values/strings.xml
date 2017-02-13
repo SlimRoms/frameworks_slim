@@ -24,7 +24,6 @@
     <!-- Slim settings screens -->
     <string name="navigation_settings_title">Navigation</string>
     <string name="interface_settings_title">Interface</string>
-    <string name="advanced_settings">Advanced</string>
 
     <string name="quick_settings">Quick Settings</string>
     <string name="status_bar_icons">Status bar icons</string>
