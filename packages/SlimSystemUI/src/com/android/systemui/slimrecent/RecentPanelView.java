@@ -800,7 +800,6 @@ public class RecentPanelView {
                         } else {
                             // Skip the first task for our list but save it for later use.
                            mFirstTask = item;
-                           mCounter--;
                         }
                     } else {
                         // FirstExpandedItems value forces to show always the app screenshot
@@ -839,7 +838,6 @@ public class RecentPanelView {
                         firstItems++;
                     }
                 }
-                mCounter++;
             }
 
             // Add now the non favorite tasks to the final task list.
@@ -881,6 +879,7 @@ public class RecentPanelView {
                 card = assignListeners(card, task);
                 mCards.add(card);
             }
+            mCounter++;
         }
 
         @Override
