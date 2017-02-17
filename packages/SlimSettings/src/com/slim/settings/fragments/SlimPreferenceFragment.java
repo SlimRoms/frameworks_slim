@@ -149,7 +149,7 @@ public class SlimPreferenceFragment extends SettingsPreferenceFragment {
                 case DLG_RESET:
                     return new AlertDialog.Builder(getActivity())
                     .setTitle(org.slim.framework.internal.R.string.reset)
-                    .setMessage(com.slim.settings.R.string.status_bar_clock_style_reset_message)
+                    .setMessage(com.slim.settings.R.string.color_picker_reset_message)
                     .setNegativeButton(android.R.string.cancel, null)
                     .setPositiveButton(android.R.string.ok,
                         new DialogInterface.OnClickListener() {

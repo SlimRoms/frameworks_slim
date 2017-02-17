@@ -21,6 +21,9 @@
     <string name="menu_save">Save</string>
     <string name="menu_cancel">Discard</string>
 
+    <!-- Common color picker strings -->
+    <string name="color_picker_reset_message">Reset color?</string>
+
     <!-- Slim settings screens -->
     <string name="navigation_settings_title">Navigation</string>
     <string name="interface_settings_title">Interface</string>
@@ -470,7 +473,6 @@
     <string name="clock_date_style_lowercase">Lowercase</string>
     <string name="clock_date_style_uppercase">Uppercase</string>
     <string name="clock_date_format_custom">Custom java format</string>
-    <string name="status_bar_clock_style_reset_message">Reset clock color?</string>
 
     <!-- Advanced, Device specific (DeviceParts) settings  -->
     <string name="advanced_options_settings_title">Advanced</string>
