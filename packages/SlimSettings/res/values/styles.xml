@@ -60,4 +60,12 @@
         <item name="android:scrollbarStyle">outsideOverlay</item>
     </style>
 
+    <style name="Theme.Translucent" parent="@android:style/Theme.Material.NoActionBar">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowActivityTransitions">false</item>
+        <item name="android:windowAnimationStyle">@null</item>
+    </style>
+
 </resources>

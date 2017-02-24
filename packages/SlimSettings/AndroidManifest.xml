@@ -181,5 +181,12 @@
             </intent-filter>
         </activity>
 
+        <!-- Helper activities -->
+        <activity
+            android:name=".activities.ShortcutPickerActivity"
+            android:theme="@style/Theme.Translucent"
+            android:label="@*slim:string/shortcuts_select_custom_app_title"
+            android:excludeFromRecents="true" />
+
     </application>
 </manifest>
