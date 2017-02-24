@@ -151,5 +151,10 @@
             </intent-filter>
         </activity>
 
+        <!-- Helper activities -->
+        <activity
+            android:name=".activities.ShortcutPickerActivity"
+            android:theme="@style/Theme.Settings" />
+
     </application>
 </manifest>
