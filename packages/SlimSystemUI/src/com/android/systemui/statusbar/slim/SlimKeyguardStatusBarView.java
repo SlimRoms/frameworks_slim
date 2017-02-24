@@ -22,6 +22,8 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.android.systemui.AutoReinflateContainer;
+import com.android.systemui.AutoReinflateContainer.InflateListener;
 import com.android.systemui.R;
 import com.android.systemui.statusbar.phone.KeyguardStatusBarView;
 import com.android.systemui.statusbar.policy.BatteryController;
@@ -41,9 +43,18 @@ public class SlimKeyguardStatusBarView extends KeyguardStatusBarView {
     }
 
     @Override
-    public void setBatteryController(BatteryController controller) {
+    public void setBatteryController(final BatteryController controller) {
         super.setBatteryController(controller);
-        ((SlimBatteryContainer) findViewById(R.id.slim_battery_container))
-                .setBatteryController(controller);
+        AutoReinflateContainer batteryContainer = (AutoReinflateContainer)
+                findViewById(R.id.slim_reinflate_battery_container);
+        if (batteryContainer != null) {
+            batteryContainer.addInflateListener(new InflateListener() {
+                @Override
+                public void onInflated(View v) {
+                    ((SlimBatteryContainer) v.findViewById(R.id.slim_battery_container))
+                            .setBatteryController(controller);
+                }
+            });
+        }
     }
 }
