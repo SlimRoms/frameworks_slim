@@ -20,6 +20,7 @@
     <string name="disabled">Disabled</string>
     <string name="menu_save">Save</string>
     <string name="menu_cancel">Discard</string>
+    <string name="advanced_settings">Advanced</string>
 
     <!-- Common color picker strings -->
     <string name="color_picker_reset_message">Reset color?</string>
