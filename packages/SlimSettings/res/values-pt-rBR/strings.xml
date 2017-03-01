@@ -20,10 +20,11 @@
   <string name="disabled">Desativado</string>
   <string name="menu_save">Salvar</string>
   <string name="menu_cancel">Descartar</string>
+  <string name="advanced_settings">Avançado</string>
+  <!-- Common color picker strings -->
   <!-- Slim settings screens -->
   <string name="navigation_settings_title">Navegação</string>
   <string name="interface_settings_title">Interface</string>
-  <string name="advanced_settings">Avançado</string>
   <string name="quick_settings">Configurações Rápidas</string>
   <string name="status_bar_icons">Ícones da barra de status</string>
   <!-- Navigation settings -->
@@ -236,28 +237,6 @@
   <!-- Proximity wake -->
   <string name="proximity_wake_title">Impedir que a tela se ligue acidentalmente</string>
   <string name="proximity_wake_summary">Verificar o sensor de proximidade antes de despertar a tela</string>
-  <!-- Doze options -->
-  <string name="display_category_doze_options_title">Opções da tela ambiente (doze)</string>
-  <string name="doze_settings_title">Doze: Opções avançadas</string>
-  <string name="doze_timeout_title">Doze: Tempo limite do pulso</string>
-  <string name="doze_timeout_summary">Tempo que a tela permanecerá ligada ao receber notificações</string>
-  <string name="doze_trigger_pickup_title">Doze: Ativar ao apanhar o dispositivo</string>
-  <string name="doze_trigger_pickup_summary_on">Doze: A tela será ativada ao pegar o dispositivo</string>
-  <string name="doze_trigger_pickup_summary_off">O gesto de apanhar o dispositivo não será utilizado como mecanismo de ativação</string>
-  <string name="doze_trigger_sigmotion_title">Ativar a tela quando o dispositivo for movimentado</string>
-  <string name="doze_trigger_sigmotion_summary_on">Doze: A tela será ativada ao movimentar significativamente o dispositivo</string>
-  <string name="doze_trigger_sigmotion_summary_off">A tela não será ativada ao se movimentar significativamente o dispositivo</string>
-  <string name="doze_trigger_notification_title">Gatilho de notificação</string>
-  <string name="doze_trigger_notification_summary_on">Doze: O pulso será ativado via notificações</string>
-  <string name="doze_trigger_notification_summary_off">Notificações não serão utilizadas como um gatilho para o Doze</string>
-  <string name="doze_schedule_title">Doze: Agendamento</string>
-  <string name="doze_schedule_summary_on">Doze: Valores pré-definidos de intervalos de repetição (normalmente [1s, 10s, 30s, 60s, 120s]) serão usados (padrão)</string>
-  <string name="doze_schedule_summary_off">Doze pulsará apenas uma vez por notificação</string>
-  <string name="doze_brightness_title">Doze: Nível do brilho</string>
-  <string name="doze_brightness_summary">Doze: Nível de brilho da tela (% do máximo brilho permitido)</string>
-  <string name="doze_wakeup_doubletap_title">Duplo toque na tela para acordar no modo doze</string>
-  <string name="doze_wakeup_doubletap_summary_on">Requerer duplo toque para ativar a tela durante o modo doze</string>
-  <string name="doze_wakeup_doubletap_summary_off">Requerer só um toque para ativar a tela durante o modo doze (padrão)</string>
   <!-- Advanced reboot options -->
   <string name="advanced_reboot_title">Reinicialização avançada</string>
   <string name="advanced_reboot_dialog_title">Menu de reinicialização avançada</string>
@@ -458,8 +437,30 @@
   <string name="clock_date_style_lowercase">Minúscula</string>
   <string name="clock_date_style_uppercase">Maiúscula</string>
   <string name="clock_date_format_custom">Formato personalizado java</string>
-  <string name="status_bar_clock_style_reset_message">Resetar a cor do relógio?</string>
   <!-- Advanced, Device specific (DeviceParts) settings  -->
   <string name="advanced_options_settings_title">Avançado</string>
   <string name="device_settings_title">Configurações específicas do dispositivo</string>
+  <!-- Doze options -->
+  <string name="display_category_doze_options_title">Opções da tela ambiente (doze)</string>
+  <string name="doze_settings_title">Doze: Opções avançadas</string>
+  <string name="doze_timeout_title">Doze: Tempo limite do pulso</string>
+  <string name="doze_timeout_summary">Tempo que a tela permanecerá ligada ao receber notificações</string>
+  <string name="doze_wakeup_doubletap_title">Duplo toque na tela para acordar no modo doze</string>
+  <string name="doze_wakeup_doubletap_summary_on">Requerer duplo toque para ativar a tela durante o modo doze</string>
+  <string name="doze_wakeup_doubletap_summary_off">Requerer só um toque para ativar a tela durante o modo doze (padrão)</string>
+  <string name="doze_trigger_pickup_title">Doze: Ativar ao apanhar o dispositivo</string>
+  <string name="doze_trigger_pickup_summary_on">Doze: A tela será ativada ao pegar o dispositivo</string>
+  <string name="doze_trigger_pickup_summary_off">O gesto de apanhar o dispositivo não será utilizado como mecanismo de ativação</string>
+  <string name="doze_trigger_sigmotion_title">Ativar a tela quando o dispositivo for movimentado</string>
+  <string name="doze_trigger_sigmotion_summary_on">Doze: A tela será ativada ao movimentar significativamente o dispositivo</string>
+  <string name="doze_trigger_sigmotion_summary_off">A tela não será ativada ao se movimentar significativamente o dispositivo</string>
+  <!--string name="doze_trigger_doubletap_title">Double tap trigger</string-->
+  <!--string name="doze_trigger_doubletap_summary_on">Doze pulse will be triggered by a double tap</string-->
+  <!--string name="doze_trigger_doubletap_summary_off">Double tap sensor will not be utilized as a triggering mechanism (default)</string-->
+  <string name="doze_trigger_notification_title">Gatilho de notificação</string>
+  <string name="doze_trigger_notification_summary_on">Doze: O pulso será ativado via notificações</string>
+  <string name="doze_trigger_notification_summary_off">Notificações não serão utilizadas como um gatilho para o Doze</string>
+  <string name="doze_brightness_title">Doze: Nível do brilho</string>
+  <string name="doze_brightness_summary">Doze: Nível de brilho da tela (% do máximo brilho permitido)</string>
+  <!-- Increasing ring tone volume -->
 </resources>

@@ -32,6 +32,7 @@
   <string name="no_home_key">Nemáte již nastaveno žádné tlačítko pro návrat \"Domů\"!\n\nToto může učinit vaše zařízení nepoužitelným!</string>
   <string name="no_back_key">Nemáte již žádné tlačítko přiřaditelné pro akci \"Zpět\"!\n\nToto může učinit vaše zařízení nepoužitelným!</string>
   <!-- Settings categories -->
+  <string name="settings_header_category_personalization">Přizpůsobení</string>
   <!-- Shortcut actions -->
   <string name="shortcut_action_none">Žádný</string>
   <string name="shortcut_action_menu">Nabídka</string>
@@ -146,6 +147,8 @@
   <string name="shortcut_action_torch">Svítilna</string>
   <string name="shortcut_action_voice_search">Hlasové vyhledávání</string>
   <string name="shortcut_action_nowontap">Google Now / Now on Tap</string>
+  <string name="shortcut_action_split_screen">Rozdělené zobrazení</string>
+  <string name="shortcut_action_doze_pulse">Pulsování Doze</string>
   <!-- Icon color options -->
   <string name="icon_color_mode_all_icons">Všechny ikony</string>
   <string name="icon_color_mode_system_icons">Systémové ikony</string>
@@ -159,4 +162,20 @@
   <string name="set">Nastavit</string>
   <string name="color_default">Výchozí</string>
   <!-- Proximity speaker -->
+  <string name="display_category_prox_auto_speaker_title">Nastavení automatického hlasitého reproduktoru</string>
+  <string name="prox_auto_speaker_options">Možnosti automatického hlasitého reproduktoru</string>
+  <string name="prox_auto_speaker_title">Automatický hlasitý reproduktor</string>
+  <string name="prox_auto_speaker_summary">Zapnout hlasitý odposlech v případě, že je zařízení odloženo od hlavy</string>
+  <string name="prox_auto_speaker_delay_title">Prodleva automatického hlasitého reproduktoru</string>
+  <string name="prox_auto_speaker_delay_summary">Prodleva před aktivací automatického hlasitého reproduktoru</string>
+  <string name="prox_auto_speaker_incall_only_title">Pouze při hovoru</string>
+  <string name="prox_auto_speaker_incall_only_summary_on">Při odchozích hovorech se reproduktor aktivuje při přijmutí hovoru protistranou</string>
+  <string name="prox_auto_speaker_incall_only_summary_off">Reproduktor bude aktivní vždy, i při vyzvánění (výchozí)</string>
+  <!-- Slim Doze-->
+  <string name="display_category_doze_options_title">Nastavení ambientního displeje (doze)</string>
+  <string name="doze_settings_title">Rozšířené možnosti-Doze</string>
+  <!-- Increasing ring tone volume -->
+  <string name="increasing_ring_volume_option_title">Zvyšující se hlasitost vyzvánění</string>
+  <string name="increasing_ring_min_volume_title">Počáteční hlasitost</string>
+  <string name="increasing_ring_ramp_up_time_title">Doba zesilování</string>
 </resources>

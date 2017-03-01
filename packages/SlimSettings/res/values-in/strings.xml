@@ -17,10 +17,53 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <!-- Common strings -->
+  <string name="menu_save">Simpan</string>
+  <string name="menu_cancel">Batalkan</string>
+  <!-- Common color picker strings -->
   <!-- Slim settings screens -->
+  <string name="navigation_settings_title">Navigasi</string>
+  <string name="interface_settings_title">Antarmuka</string>
+  <string name="quick_settings">Pengaturan Cepat</string>
+  <string name="status_bar_icons">Ikon status bar</string>
   <!-- Navigation settings -->
+  <string name="navigation_settings_options_title">Pilihan navigasi</string>
   <!-- Names of categories of app ops tabs - extension of AOSP -->
+  <string name="app_ops_categories_location">Lokasi</string>
+  <string name="app_ops_categories_personal">Pribadi</string>
+  <string name="app_ops_categories_messaging">Pesan</string>
+  <string name="app_ops_categories_media">Media</string>
+  <string name="app_ops_categories_device">Perangkat</string>
+  <string name="app_ops_categories_bootup">Bootup</string>
+  <string name="app_ops_categories_su">Superuser</string>
   <!-- User display names for app ops codes - extension of AOSP -->
+  <string name="app_ops_summaries_gps">GPS</string>
+  <string name="app_ops_summaries_vibrate">getar</string>
+  <string name="app_ops_summaries_read_contacts">membaca kontak</string>
+  <string name="app_ops_summaries_modify_contacts">mengubah kontak</string>
+  <string name="app_ops_summaries_read_call_log">membaca log panggilan</string>
+  <string name="app_ops_summaries_modify_call_log">mengubah log panggilan</string>
+  <string name="app_ops_summaries_read_calendar">membaca kalender</string>
+  <string name="app_ops_summaries_modify_calendar">mengubah kalender</string>
+  <string name="app_ops_summaries_wifi_scan">Pindai Wi-Fi</string>
+  <string name="app_ops_summaries_notification">pemberitahuan/Toast</string>
+  <string name="app_ops_summaries_call_phone">panggilan telepon</string>
+  <string name="app_ops_summaries_read_sms">membaca SMS</string>
+  <string name="app_ops_summaries_write_sms">menulis SMS</string>
+  <string name="app_ops_summaries_receive_sms">menerima SMS</string>
+  <string name="app_ops_summaries_receive_emergency_sms">menerima SMS darurat</string>
+  <string name="app_ops_summaries_receive_mms">menerima SMS</string>
+  <string name="app_ops_summaries_send_sms">mengirim SMS</string>
+  <string name="app_ops_summaries_read_icc_sms">membaca ICC SMS</string>
+  <string name="app_ops_summaries_write_icc_sms">menulis ICC SMS</string>
+  <string name="app_ops_summaries_modify_settings">mengubah pengaturan</string>
+  <string name="app_ops_summaries_draw_on_top">gambar di atas</string>
+  <string name="app_ops_summaries_access_notifications">akses pemberitahuan</string>
+  <string name="app_ops_summaries_camera">kamera</string>
+  <string name="app_ops_summaries_record_audio">merekam audio</string>
+  <string name="app_ops_summaries_play_audio">memutar audio</string>
+  <string name="app_ops_summaries_read_clipboard">membaca clipboard</string>
+  <string name="app_ops_summaries_modify_clipboard">mengubah clipboard</string>
+  <string name="app_ops_summaries_media_buttons">tombol media</string>
   <!-- User display names for app ops codes - extension of AOSP -->
   <!-- App ops permissions -->
   <!-- App ops detail -->
@@ -33,7 +76,6 @@
   <!-- Display & Lights screen, setting options for LCD density -->
   <!-- Wakeup options -->
   <!-- Proximity wake -->
-  <!-- Doze options -->
   <!-- Advanced reboot options -->
   <!-- Hardware keys and lights -->
   <!-- Key backlight -->
@@ -53,4 +95,9 @@
   <!-- ATTENTION: RTL languages need to replace left with right -->
   <!-- Clock & Date options -->
   <!-- Advanced, Device specific (DeviceParts) settings  -->
+  <!-- Doze options -->
+  <!--string name="doze_trigger_doubletap_title">Double tap trigger</string-->
+  <!--string name="doze_trigger_doubletap_summary_on">Doze pulse will be triggered by a double tap</string-->
+  <!--string name="doze_trigger_doubletap_summary_off">Double tap sensor will not be utilized as a triggering mechanism (default)</string-->
+  <!-- Increasing ring tone volume -->
 </resources>

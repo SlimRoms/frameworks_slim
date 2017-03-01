@@ -32,6 +32,7 @@
   <string name="no_home_key">Non hai nessun pulsante assegnato all\'azione \"Home\"!\n\nQuesta opzione può rendere il dispositivo inutilizzabile!</string>
   <string name="no_back_key">Non hai nessun pulsante assegnato all\'azione \"Indietro\"!\n\n Questa opzione può rendere il dispositivo inutilizzabile!</string>
   <!-- Settings categories -->
+  <string name="settings_header_category_personalization">Personalizzazione</string>
   <!-- Shortcut actions -->
   <string name="shortcut_action_none">Nulla</string>
   <string name="shortcut_action_menu">Menù</string>
@@ -146,6 +147,7 @@
   <string name="shortcut_action_torch">Torcia</string>
   <string name="shortcut_action_voice_search">Ricerca vocale</string>
   <string name="shortcut_action_nowontap">Google Now/Now on Tap</string>
+  <string name="shortcut_action_split_screen">Dividi schermo</string>
   <!-- Icon color options -->
   <string name="icon_color_mode_all_icons">Tutte le icone</string>
   <string name="icon_color_mode_system_icons">Icone di sistema</string>
@@ -162,4 +164,20 @@
   <string name="set">Imposta</string>
   <string name="color_default">Predefinito</string>
   <!-- Proximity speaker -->
+  <string name="display_category_prox_auto_speaker_title">Impostazioni di prossimità degli altoparlanti</string>
+  <string name="prox_auto_speaker_options">Opzioni di prossimità degli altoparlanti</string>
+  <string name="prox_auto_speaker_title">Attiva automaticamente il vivavoce con il sensore di prossimità</string>
+  <string name="prox_auto_speaker_summary">Attiva il vivavoce quando il dispositivo viene allontanato dal tuo viso</string>
+  <string name="prox_auto_speaker_delay_title">Ritardo del sensore di prossimità</string>
+  <string name="prox_auto_speaker_delay_summary">Tempo di ritardo prima di attivare il vivavoce</string>
+  <string name="prox_auto_speaker_incall_only_title">Solo durante le chiamate</string>
+  <string name="prox_auto_speaker_incall_only_summary_on">Nelle chiamate in uscita, il vivavoce si attiverà dopo la risposta</string>
+  <string name="prox_auto_speaker_incall_only_summary_off">Il vivavoce sarà attivato per tutte le chiamate (predefinito)</string>
+  <!-- Slim Doze-->
+  <string name="display_category_doze_options_title">Opzioni Ambient Display (doze)</string>
+  <string name="doze_settings_title">Opzioni avanzate doze</string>
+  <!-- Increasing ring tone volume -->
+  <string name="increasing_ring_volume_option_title">Suoneria incrementale</string>
+  <string name="increasing_ring_min_volume_title">Volume di partenza</string>
+  <string name="increasing_ring_ramp_up_time_title">Tempo di aumento</string>
 </resources>

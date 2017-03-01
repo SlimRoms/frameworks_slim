@@ -32,6 +32,7 @@
   <string name="no_home_key">\"Ana Ekran\" için tanımlı herhangi bir tuş belirlenmedi!\n\nBu işlem cihazınızı kullanılamaz hale getirebilir!</string>
   <string name="no_back_key">\"Geri\" eylemi için tanımlı herhangi bir tuş belirlenmedi!\n\nBu işlem cihazınızı kullanılamaz hale getirebilir!</string>
   <!-- Settings categories -->
+  <string name="settings_header_category_personalization">Kişiselleştirme</string>
   <!-- Shortcut actions -->
   <string name="shortcut_action_none">Hiçbiri</string>
   <string name="shortcut_action_menu">Menü</string>
@@ -146,6 +147,7 @@
   <string name="shortcut_action_torch">El feneri</string>
   <string name="shortcut_action_voice_search">Sesli arama</string>
   <string name="shortcut_action_nowontap">Google Now / Now on Tap</string>
+  <string name="shortcut_action_split_screen">Bölünmüş ekran</string>
   <!-- Icon color options -->
   <string name="icon_color_mode_all_icons">Tüm simgeler</string>
   <string name="icon_color_mode_system_icons">Sistem simgeleri</string>
@@ -159,4 +161,15 @@
   <string name="set">Uygula</string>
   <string name="color_default">Varsayılan</string>
   <!-- Proximity speaker -->
+  <string name="display_category_prox_auto_speaker_title">Yakınsak hoparlör ayarları</string>
+  <string name="prox_auto_speaker_options">Yakınsak hoparlör seçenekleri</string>
+  <string name="prox_auto_speaker_title">Otomatik yakınlık hoparlörü</string>
+  <string name="prox_auto_speaker_summary">Telefonu yüzünüzden uzaklaştırdığınızda hoparlörü etkinleştir</string>
+  <string name="prox_auto_speaker_delay_title">Yakınsak hoparlör gecikmesi</string>
+  <string name="prox_auto_speaker_delay_summary">Hoparlör etkinleştirilmeden önce gecikme süresi</string>
+  <string name="prox_auto_speaker_incall_only_title">Sadece arama sırasında</string>
+  <string name="prox_auto_speaker_incall_only_summary_on">Giden aramalarda dinleyici sadece alıcı taraf cevapladıktan sonra aktif hale gelecektir</string>
+  <string name="prox_auto_speaker_incall_only_summary_off">Dinleyici, çağrı cevapladığı durumda etkin olacak (varsayılan)</string>
+  <!-- Slim Doze-->
+  <!-- Increasing ring tone volume -->
 </resources>

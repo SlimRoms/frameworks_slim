@@ -20,10 +20,11 @@
   <string name="disabled">Wyłączone</string>
   <string name="menu_save">Zapisz</string>
   <string name="menu_cancel">Odrzuć</string>
+  <string name="advanced_settings">Opcje zaawansowane</string>
+  <!-- Common color picker strings -->
   <!-- Slim settings screens -->
   <string name="navigation_settings_title">Nawigacja</string>
   <string name="interface_settings_title">Interfejs</string>
-  <string name="advanced_settings">Opcje zaawansowane</string>
   <string name="quick_settings">Szybkie ustawienia</string>
   <string name="status_bar_icons">Ikony paska stanu</string>
   <!-- Navigation settings -->
@@ -236,28 +237,6 @@
   <!-- Proximity wake -->
   <string name="proximity_wake_title">Zapobieganie przypadkowemu wybudzeniu</string>
   <string name="proximity_wake_summary">Sprawdź czujnik zbliżeniowy przed wybudzeniem ekranu</string>
-  <!-- Doze options -->
-  <string name="display_category_doze_options_title">Opcje wyświetlania Ambient display (drzemka)</string>
-  <string name="doze_settings_title">Zaawansowane opcje drzemki</string>
-  <string name="doze_timeout_title">Drzemka limitu czasu powiadomień</string>
-  <string name="doze_timeout_summary">Czas przez jaki ekran pozostaje włączony po otrzymaniu powiadomienia</string>
-  <string name="doze_trigger_pickup_title">Gest podnoszenia</string>
-  <string name="doze_trigger_pickup_summary_on">Drzemka impulsu powiadomień aktywuje się poprzez gest podczas podnoszenia</string>
-  <string name="doze_trigger_pickup_summary_off">Czujnik gestu nie będzie wykorzystywany jako mechanizm uruchamiający</string>
-  <string name="doze_trigger_sigmotion_title">Znaczący ruch uruchamiający</string>
-  <string name="doze_trigger_sigmotion_summary_on">Impulsy powiadomień będą uruchamiane przez znaczące akcje czujnika ruchu</string>
-  <string name="doze_trigger_sigmotion_summary_off">Czujnik znaczącego ruchu nie będzie wykorzystywany jako mechanizm uruchamiający</string>
-  <string name="doze_trigger_notification_title">Uruchamianie powiadomieniami</string>
-  <string name="doze_trigger_notification_summary_on">Impulsy powiadomień będą uruchamiane przez powiadomienia</string>
-  <string name="doze_trigger_notification_summary_off">Powiadomienia nie będą wykorzystywane do uruchamiania</string>
-  <string name="doze_schedule_title">Harmonogram drzemki</string>
-  <string name="doze_schedule_summary_on">Predefiniowane powtórki interwałów drzemki (normalnie [1s,10s,30s,60s,120s]) użyte będzie (domyślne)</string>
-  <string name="doze_schedule_summary_off">Drzemka da impuls tylko raz dla powiadomienia</string>
-  <string name="doze_brightness_title">Poziom jasności dla drzemki</string>
-  <string name="doze_brightness_summary">Poziom jasności dla impulsów ekranu drzemki (% maksymalnej dozwolonej jasności)</string>
-  <string name="doze_wakeup_doubletap_title">Podwójne dotknięcie wybudzi urządzenie</string>
-  <string name="doze_wakeup_doubletap_summary_on">Wymaga dwukrotnego stuknięcia do obudzenia urządzenia na ekranie pulsu drzemki</string>
-  <string name="doze_wakeup_doubletap_summary_off">Wymaga stuknięcia do obudzenia urządzenia na ekranie pulsu drzemki</string>
   <!-- Advanced reboot options -->
   <string name="advanced_reboot_title">Zaawansowany restart</string>
   <string name="advanced_reboot_dialog_title">Zaawansowane menu restartu</string>
@@ -458,8 +437,30 @@
   <string name="clock_date_style_lowercase">Małe litery</string>
   <string name="clock_date_style_uppercase">Duże litery</string>
   <string name="clock_date_format_custom">Format niestandardowy java</string>
-  <string name="status_bar_clock_style_reset_message">Przywrócić domyślny kolor zegara?</string>
   <!-- Advanced, Device specific (DeviceParts) settings  -->
   <string name="advanced_options_settings_title">Zaawansowane</string>
   <string name="device_settings_title">Specyficzne ustawienia urządzenia</string>
+  <!-- Doze options -->
+  <string name="display_category_doze_options_title">Opcje wyświetlania Ambient display (drzemka)</string>
+  <string name="doze_settings_title">Zaawansowane opcje drzemki</string>
+  <string name="doze_timeout_title">Drzemka limitu czasu powiadomień</string>
+  <string name="doze_timeout_summary">Czas przez jaki ekran pozostaje włączony po otrzymaniu powiadomienia</string>
+  <string name="doze_wakeup_doubletap_title">Podwójne dotknięcie wybudzi urządzenie</string>
+  <string name="doze_wakeup_doubletap_summary_on">Wymaga dwukrotnego stuknięcia do obudzenia urządzenia na ekranie pulsu drzemki</string>
+  <string name="doze_wakeup_doubletap_summary_off">Wymaga stuknięcia do obudzenia urządzenia na ekranie pulsu drzemki</string>
+  <string name="doze_trigger_pickup_title">Gest podnoszenia</string>
+  <string name="doze_trigger_pickup_summary_on">Drzemka impulsu powiadomień aktywuje się poprzez gest podczas podnoszenia</string>
+  <string name="doze_trigger_pickup_summary_off">Czujnik gestu nie będzie wykorzystywany jako mechanizm uruchamiający</string>
+  <string name="doze_trigger_sigmotion_title">Znaczący ruch uruchamiający</string>
+  <string name="doze_trigger_sigmotion_summary_on">Impulsy powiadomień będą uruchamiane przez znaczące akcje czujnika ruchu</string>
+  <string name="doze_trigger_sigmotion_summary_off">Czujnik znaczącego ruchu nie będzie wykorzystywany jako mechanizm uruchamiający</string>
+  <!--string name="doze_trigger_doubletap_title">Double tap trigger</string-->
+  <!--string name="doze_trigger_doubletap_summary_on">Doze pulse will be triggered by a double tap</string-->
+  <!--string name="doze_trigger_doubletap_summary_off">Double tap sensor will not be utilized as a triggering mechanism (default)</string-->
+  <string name="doze_trigger_notification_title">Uruchamianie powiadomieniami</string>
+  <string name="doze_trigger_notification_summary_on">Impulsy powiadomień będą uruchamiane przez powiadomienia</string>
+  <string name="doze_trigger_notification_summary_off">Powiadomienia nie będą wykorzystywane do uruchamiania</string>
+  <string name="doze_brightness_title">Poziom jasności dla drzemki</string>
+  <string name="doze_brightness_summary">Poziom jasności dla impulsów ekranu drzemki (% maksymalnej dozwolonej jasności)</string>
+  <!-- Increasing ring tone volume -->
 </resources>

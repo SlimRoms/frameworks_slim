@@ -160,4 +160,6 @@
   <string name="set">설정</string>
   <string name="color_default">기본값</string>
   <!-- Proximity speaker -->
+  <!-- Slim Doze-->
+  <!-- Increasing ring tone volume -->
 </resources>

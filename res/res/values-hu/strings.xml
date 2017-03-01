@@ -32,6 +32,7 @@
   <string name="no_home_key">Nem jelölt ki gombot a \"Kezdőlap\" művelethez!\n\nKészüléke használhatatlanná válhat!</string>
   <string name="no_back_key">Nem jelölt ki gombot a \"Vissza\" művelethez!\n\nKészüléke használhatatlanná válhat!</string>
   <!-- Settings categories -->
+  <string name="settings_header_category_personalization">Testreszabás</string>
   <!-- Shortcut actions -->
   <string name="shortcut_action_none">Semmi</string>
   <string name="shortcut_action_menu">Menü</string>
@@ -146,6 +147,7 @@
   <string name="shortcut_action_torch">Zseblámpa</string>
   <string name="shortcut_action_voice_search">Hangalapú keresés</string>
   <string name="shortcut_action_nowontap">Google Now / Now on Tap</string>
+  <string name="shortcut_action_split_screen">Osztott képernyő</string>
   <!-- Icon color options -->
   <string name="icon_color_mode_all_icons">Összes ikon</string>
   <string name="icon_color_mode_system_icons">Rendszer ikonok</string>
@@ -162,4 +164,20 @@
   <string name="set">Beállít</string>
   <string name="color_default">Alapértelmezett</string>
   <!-- Proximity speaker -->
+  <string name="display_category_prox_auto_speaker_title">Közelség hangszóró beállítások</string>
+  <string name="prox_auto_speaker_options">Közelség hangszóró beállítások</string>
+  <string name="prox_auto_speaker_title">Automatikus közelség hangszóró</string>
+  <string name="prox_auto_speaker_summary">Hangszóró engedélyezése, ha a telefon a fejtől eltávolodik</string>
+  <string name="prox_auto_speaker_delay_title">Közelségi hangszóró késleltetés</string>
+  <string name="prox_auto_speaker_delay_summary">Időtartam, mielőtt a hangszóró aktiválódna</string>
+  <string name="prox_auto_speaker_incall_only_title">Csak hívás közben</string>
+  <string name="prox_auto_speaker_incall_only_summary_on">A kimenő hívások esetén a hallgató csak akkor lesz aktív, ha a fogadó fél válaszolt</string>
+  <string name="prox_auto_speaker_incall_only_summary_off">Hallgató aktív lesz az összes felvett telefon állapot alatt (alapértelmezett)</string>
+  <!-- Slim Doze-->
+  <string name="display_category_doze_options_title">Környezeti kijelző (doze) beállítások</string>
+  <string name="doze_settings_title">Környezeti kijelző haladó beállítások</string>
+  <!-- Increasing ring tone volume -->
+  <string name="increasing_ring_volume_option_title">Emelkedő csengőhang</string>
+  <string name="increasing_ring_min_volume_title">Kezdeti hangerő</string>
+  <string name="increasing_ring_ramp_up_time_title">Felfutási idő</string>
 </resources>

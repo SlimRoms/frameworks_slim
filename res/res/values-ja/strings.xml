@@ -21,9 +21,45 @@
   <!-- General Strings -->
   <!-- Settings categories -->
   <!-- Shortcut actions -->
+  <string name="shortcut_action_screenshot">ス クリーンショット</string>
+  <string name="shortcut_action_notifications">通知</string>
+  <string name="shortcut_action_qs">クイック設定パネル</string>
+  <string name="shortcut_action_longpress">長押し:</string>
+  <string name="shortcut_action_reset">リセット</string>
+  <string name="shortcut_action_add">追加</string>
+  <string name="shortcut_action_help_shortcut">ショートカット</string>
+  <string name="shortcut_action_help_button">ボタン</string>
+  <string name="shortcut_action_help_app">アプリ</string>
+  <string name="shortcuts_applications">アプリケーション</string>
+  <string name="shortcuts_icon_presets">システムアイコン</string>
+  <string name="shortcuts_icon_custom">ギャラリー</string>
+  <string name="shortcuts_icon_picker_choose_icon_title">アイコンを選択</string>
+  <string name="shortcuts_icon_picker_alarm">アラーム</string>
+  <string name="shortcuts_icon_picker_quicksettings">クイック設定</string>
+  <string name="shortcuts_icon_picker_unlock">ロックを解除</string>
   <!-- Button shorcut actions -->
+  <string name="shortcut_action_back">戻る</string>
+  <string name="shortcut_action_home">ホーム</string>
+  <string name="shortcut_action_navbar">ナビゲーションバー</string>
+  <string name="shortcut_action_ime">入力方法の選択を開く</string>
+  <string name="shortcut_action_power_menu">電源メニュー</string>
+  <string name="shortcut_action_smart">スマートプルダウン</string>
+  <string name="shortcut_action_camera">カメラ</string>
+  <string name="shortcut_action_assist">検索</string>
+  <string name="shortcut_action_search">アプリ内検索</string>
+  <string name="shortcut_action_theme_switch">テーマスイッチャー</string>
+  <string name="shortcut_action_torch">トーチ</string>
+  <string name="shortcut_action_voice_search">音声検索</string>
+  <string name="shortcut_action_nowontap">Google Now / Now on Tap</string>
+  <string name="shortcut_action_split_screen">スクリーン分割</string>
   <!-- Icon color options -->
+  <string name="icon_color_mode_all_icons">すべてのアイコン</string>
+  <string name="icon_color_mode_system_icons">システムアイコン</string>
+  <string name="icon_color_mode_system_custom_icons">システムとカスタムアイコン</string>
   <!-- Slimseekbar -->
   <!-- Color Picker -->
+  <string name="press_color_to_apply">色を選択して適用</string>
   <!-- Proximity speaker -->
+  <!-- Slim Doze-->
+  <!-- Increasing ring tone volume -->
 </resources>

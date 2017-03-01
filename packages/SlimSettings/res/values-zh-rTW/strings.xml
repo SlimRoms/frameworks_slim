@@ -20,10 +20,12 @@
   <string name="disabled">已停用</string>
   <string name="menu_save">儲存</string>
   <string name="menu_cancel">捨棄</string>
+  <string name="advanced_settings">進階</string>
+  <!-- Common color picker strings -->
+  <string name="color_picker_reset_message">重設顏色？</string>
   <!-- Slim settings screens -->
   <string name="navigation_settings_title">導覽</string>
   <string name="interface_settings_title">介面</string>
-  <string name="advanced_settings">進階</string>
   <string name="quick_settings">快速設定</string>
   <string name="status_bar_icons">狀態列圖示</string>
   <!-- Navigation settings -->
@@ -236,28 +238,6 @@
   <!-- Proximity wake -->
   <string name="proximity_wake_title">防止意外喚醒</string>
   <string name="proximity_wake_summary">喚醒螢幕前檢查距離感應器</string>
-  <!-- Doze options -->
-  <string name="display_category_doze_options_title">環境顯示 (休眠) 選項</string>
-  <string name="doze_settings_title">進階休眠選項</string>
-  <string name="doze_timeout_title">休眠時閃爍呼吸燈喚醒逾時</string>
-  <string name="doze_timeout_summary">螢幕保持通知閃爍呼吸燈喚醒的時間</string>
-  <string name="doze_trigger_pickup_title">拿起手勢觸發</string>
-  <string name="doze_trigger_pickup_summary_on">休眠時閃爍呼吸燈喚醒將透過拿起手勢感應器事件觸發</string>
-  <string name="doze_trigger_pickup_summary_off">拿起手勢感應器不會被用作觸發機制</string>
-  <string name="doze_trigger_sigmotion_title">特殊動作觸發</string>
-  <string name="doze_trigger_sigmotion_summary_on">休眠時閃爍呼吸燈喚醒將由特殊動作感應器事件觸發</string>
-  <string name="doze_trigger_sigmotion_summary_off">特殊動作觸發感應器不會被用作觸發機制</string>
-  <string name="doze_trigger_notification_title">通知觸發</string>
-  <string name="doze_trigger_notification_summary_on">休眠時閃爍呼吸燈喚醒將由通知觸發</string>
-  <string name="doze_trigger_notification_summary_off">通知不會被用作觸發器</string>
-  <string name="doze_schedule_title">休眠時間表</string>
-  <string name="doze_schedule_summary_on">將使用預設的休眠間隔 (通常為 [1秒、10秒、30秒、60秒、120 秒]) (預設)</string>
-  <string name="doze_schedule_summary_off">休眠時只在每次有通知時才閃爍呼吸燈喚醒</string>
-  <string name="doze_brightness_title">休眠亮度級別</string>
-  <string name="doze_brightness_summary">休眠閃爍呼吸燈喚醒螢幕的亮度級別 (最大允許亮度的百分比)</string>
-  <string name="doze_wakeup_doubletap_title">休眠時輕觸兩次即可喚醒裝置</string>
-  <string name="doze_wakeup_doubletap_summary_on">需要輕觸兩次才能在休眠時閃爍呼吸燈喚醒螢幕上喚醒裝置</string>
-  <string name="doze_wakeup_doubletap_summary_off">需要輕觸一次才能在休眠時閃爍呼吸燈喚醒螢幕上喚醒裝置 (預設)</string>
   <!-- Advanced reboot options -->
   <string name="advanced_reboot_title">進階重新啟動</string>
   <string name="advanced_reboot_dialog_title">進階重新啟動選單</string>
@@ -458,8 +438,39 @@
   <string name="clock_date_style_lowercase">小寫</string>
   <string name="clock_date_style_uppercase">大寫</string>
   <string name="clock_date_format_custom">自訂 java 格式</string>
-  <string name="status_bar_clock_style_reset_message">重設時鐘顏色嗎？</string>
   <!-- Advanced, Device specific (DeviceParts) settings  -->
   <string name="advanced_options_settings_title">進階</string>
   <string name="device_settings_title">裝置特定的設定</string>
+  <!-- Doze options -->
+  <string name="display_category_doze_options_title">環境顯示 (休眠) 選項</string>
+  <string name="doze_settings_title">進階休眠選項</string>
+  <string name="doze_fade_in_pickup_title">休眠顯示淡入 (拿起)</string>
+  <string name="doze_fade_in_pickup_summary">拿起時通知顯示螢幕消失的時間 (預設為 100)</string>
+  <string name="doze_fade_in_doubletap_title">休眠顯示淡入 (輕觸兩下)</string>
+  <string name="doze_fade_in_doubletap_summary">輕觸兩下時通知顯示螢幕消失的時間 (預設為 900)</string>
+  <string name="doze_timeout_title">休眠時閃爍呼吸燈喚醒逾時</string>
+  <string name="doze_timeout_summary">螢幕保持通知閃爍呼吸燈喚醒的時間</string>
+  <string name="doze_fade_out_title">休眠顯示淡出</string>
+  <string name="doze_fade_out_summary">通知顯示後螢幕消失的時間 (預設為 600)</string>
+  <string name="doze_wakeup_doubletap_title">休眠時輕觸兩次即可喚醒裝置</string>
+  <string name="doze_wakeup_doubletap_summary_on">需要輕觸兩次才能在休眠時閃爍呼吸燈喚醒螢幕上喚醒裝置</string>
+  <string name="doze_wakeup_doubletap_summary_off">需要輕觸一次才能在休眠時閃爍呼吸燈喚醒螢幕上喚醒裝置 (預設)</string>
+  <string name="doze_trigger_pickup_title">拿起手勢觸發</string>
+  <string name="doze_trigger_pickup_summary_on">休眠時閃爍呼吸燈喚醒將透過拿起手勢感應器事件觸發</string>
+  <string name="doze_trigger_pickup_summary_off">拿起手勢感應器不會被用作觸發機制</string>
+  <string name="doze_trigger_sigmotion_title">特殊動作觸發</string>
+  <string name="doze_trigger_sigmotion_summary_on">休眠時閃爍呼吸燈喚醒將由特殊動作感應器事件觸發</string>
+  <string name="doze_trigger_sigmotion_summary_off">特殊動作觸發感應器不會被用作觸發機制</string>
+  <!--string name="doze_trigger_doubletap_title">Double tap trigger</string-->
+  <!--string name="doze_trigger_doubletap_summary_on">Doze pulse will be triggered by a double tap</string-->
+  <!--string name="doze_trigger_doubletap_summary_off">Double tap sensor will not be utilized as a triggering mechanism (default)</string-->
+  <string name="doze_trigger_notification_title">通知觸發</string>
+  <string name="doze_trigger_notification_summary_on">休眠時閃爍呼吸燈喚醒將由通知觸發</string>
+  <string name="doze_trigger_notification_summary_off">通知不會被用作觸發器</string>
+  <string name="doze_brightness_title">休眠亮度級別</string>
+  <string name="doze_brightness_summary">休眠閃爍呼吸燈喚醒螢幕的亮度級別 (最大允許亮度的百分比)</string>
+  <!-- Increasing ring tone volume -->
+  <string name="increasing_ring_volume_option_title">漸強鈴聲音量</string>
+  <string name="increasing_ring_min_volume_title">起始音量</string>
+  <string name="increasing_ring_ramp_up_time_title">漸強時間</string>
 </resources>

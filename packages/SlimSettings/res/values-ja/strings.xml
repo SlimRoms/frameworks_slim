@@ -17,23 +17,49 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <!-- Common strings -->
+  <!-- Common color picker strings -->
   <!-- Slim settings screens -->
+  <string name="navigation_settings_title">ナビゲーション</string>
+  <string name="interface_settings_title">インターフェース</string>
+  <string name="quick_settings">クイック設定</string>
+  <string name="status_bar_icons">ステータスバーのアイコン</string>
   <!-- Navigation settings -->
+  <string name="navigation_settings_options_title">ナビゲーションオプション</string>
   <!-- Names of categories of app ops tabs - extension of AOSP -->
   <!-- User display names for app ops codes - extension of AOSP -->
+  <string name="app_ops_summaries_gps">GPS</string>
+  <string name="app_ops_summaries_vibrate">バイブレーション</string>
+  <string name="app_ops_summaries_camera">カメラ</string>
   <!-- User display names for app ops codes - extension of AOSP -->
   <!-- App ops permissions -->
   <!-- App ops detail -->
   <!-- App ops menu options -->
   <!-- Privacy Settings Header item -->
+  <string name="privacy_settings_title"> プライバシー</string>
   <!-- Privacy Guard -->
+  <string name="privacy_guard_switch_label">プライバシーガードを有効化</string>
+  <string name="privacy_guard_dlg_title">プライバシーガードを有効にしますか？</string>
+  <string name="privacy_guard_dlg_text">プライバシーガードを有効にすると、アプリは連絡先、メッセージ、通話履歴のような個人データにアクセスできなくなります。</string>
+  <string name="privacy_guard_dlg_system_app_text">内蔵アプリでプライバシーガードを有効にすると、個人データへのアクセスまたは提供ができなくなり、他のアプリがうまく動かなくなる可能性があります。</string>
+  <string name="privacy_guard_default_title">デフォルトで有効化</string>
+  <string name="privacy_guard_default_summary">新しくインストールされたアプリは自動的に有効にする</string>
+  <string name="privacy_guard_manager_title">プライバシーガード</string>
+  <string name="privacy_guard_help_title">ヘルプ</string>
+  <string name="privacy_guard_reset_title">リセット</string>
+  <string name="privacy_guard_reset_text">権限をリセットしますか？</string>
   <!-- Setting checkbox title for root access -->
+  <string name="root_access">ルートアクセス</string>
+  <string name="root_access_warning_title">ルートアクセスを許可しますか？</string>
+  <string name="root_access_warning_message">ルートアクセスのリクエストをアプリに許可することは非常に危険で、システムのセキュリティが損なわれる可能性があります。</string>
+  <string name="root_access_none">無効</string>
+  <string name="root_access_apps">アプリのみ</string>
+  <string name="root_access_adb">ADB経由のみ</string>
+  <string name="root_access_all">アプリとADB経由の両方</string>
   <!-- Memory -->
   <!-- About phone screen, Slim version -->
   <!-- Display & Lights screen, setting options for LCD density -->
   <!-- Wakeup options -->
   <!-- Proximity wake -->
-  <!-- Doze options -->
   <!-- Advanced reboot options -->
   <!-- Hardware keys and lights -->
   <!-- Key backlight -->
@@ -42,15 +68,94 @@
   <!-- Chamber of Secrets -->
   <!-- Device specific settings -->
   <!-- Status bar -->
+  <string name="status_bar_title">ステータスバー</string>
+  <string name="status_bar_style_title">ステータスバーのスタイル</string>
   <!-- Status bar - Battery Options -->
   <!-- Status bar - Battery Style -->
+  <string name="status_bar_battery_style_circle">サークル</string>
+  <string name="status_bar_battery_style_dotted_circle">ドットのサークル</string>
+  <string name="status_bar_battery_style_text">テキスト</string>
+  <string name="status_bar_battery_style_icon_portrait">縦向きのアイコン</string>
+  <string name="status_bar_battery_style_icon_landscape">横向きのアイコン</string>
   <!-- Status bar - Battery percentage -->
+  <string name="status_bar_battery_percentage_title">電池をパーセントで表示</string>
+  <string name="status_bar_battery_percentage_dialog_title">バッテリー残量</string>
+  <string name="status_bar_battery_percentage_default">非表示 (デフォルト)</string>
+  <string name="status_bar_battery_percentage_text_inside">アイコンの中</string>
+  <string name="status_bar_battery_percentage_text_next">アイコンの隣</string>
   <!-- Navigation bar -->
+  <string name="navigation_bar">ナビゲーションバー</string>
+  <string name="navigation_settings_category">ナビゲーション</string>
+  <string name="navigation_bar_size_42_dp_default">42 dp(デフォルト)</string>
+  <string name="navigation_bar_size_36_dp">36 dp</string>
+  <string name="navigation_bar_size_30_dp">30 dp</string>
+  <string name="navigation_bar_size_24_dp">24 dp</string>
+  <string name="navigation_bar_size_48_dp_default">48 dp(デフォルト)</string>
+  <string name="navigation_bar_size_44_dp">44 dp</string>
+  <string name="navigation_bar_size_40_dp">40 dp</string>
+  <string name="navigation_bar_size_42_dp">42 dp</string>
+  <string name="navigation_bar_size_0_dp">0 dp (無し)</string>
+  <string name="navigation_menu_always_show">常に表示</string>
+  <string name="navbar_button_cat">ナビゲーションバーのボタン</string>
+  <string name="title_pref_menu_location">メニューの場所</string>
+  <string name="summary_pref_menu_location">どこにメニューボタンを表示しますか？</string>
+  <string name="navbar_button_title">ボタン</string>
+  <string name="navbar_cat">ナビゲーションバー</string>
   <!-- SlimDim -->
   <!-- Navigation bar button style -->
   <!-- Icon color options -->
   <!-- Recent panel -->
+  <string name="recent_panel_expanded_mode_title">拡張モード</string>
+  <string name="recent_panel_expanded_mode_summary">最近のタスクの拡張プレビューモード</string>
+  <string name="recent_panel_expanded_mode_auto">自動(デフォルト)</string>
+  <string name="recent_panel_show_topmost_title">最上位のタスクを表示</string>
+  <string name="recent_panel_show_topmost_summary">最近使ったアプリで最上位のものを除外しません</string>
+  <string name="recent_panel_bg_color_title">パネルの背景色</string>
+  <string name="recent_card_bg_color_title">カードの背景色</string>
+  <string name="recent_card_text_color_title">カードのテキストカラー</string>
   <!-- ATTENTION: RTL languages need to replace left with right -->
+  <string name="recent_panel_lefty_mode_title">左端に表示</string>
+  <string name="recent_panel_lefty_mode_summary">画面左に最近使ったアプリパネルを表示</string>
   <!-- Clock & Date options -->
+  <string name="status_bar_clock">時計と日付の外観</string>
+  <string name="status_bar_clock_title">時計と日付のスタイル</string>
+  <string name="clock_enabled">有効</string>
+  <string name="clock_disabled">無効</string>
+  <string name="clock_color_title">色</string>
+  <string name="status_bar_clock_style_reset">色のリセット</string>
+  <string name="status_bar_show_clock_title">日付と時刻を表示</string>
+  <string name="status_bar_am_pm_title">午前と午後</string>
+  <string name="status_bar_am_pm_info">24時間表示が有効です</string>
+  <string name="enable_clock_weekday">曜日を表示</string>
+  <string name="enable_clock_weekday_summary">時間の前の曜日を省略</string>
+  <string name="right_clock">時計を右側に表示</string>
+  <string name="center_clock">時計を中央に表示</string>
+  <string name="left_clock">時計を左側に表示</string>
+  <string name="dont_show">表示しない</string>
+  <string name="clock_date_display">日付</string>
+  <string name="clock_date_display_summary">時計の前に日付を表示</string>
+  <string name="clock_date_style">日付のスタイル</string>
+  <string name="clock_date_position">日付の位置</string>
+  <string name="clock_date_format">日付のフォーマット</string>
+  <string name="clock_date_string_edittext_title">MM/dd/yyの形式でなければなりません</string>
+  <string name="clock_date_string_edittext_summary">文字列を入力</string>
+  <string name="am_pm_clock_normal">通常のフォントサイズ</string>
+  <string name="am_pm_clock_small">小さいフォントサイズ</string>
+  <string name="am_pm_clock_none">表示しない</string>
+  <string name="clock_date_display_none">表示しない</string>
+  <string name="clock_date_display_small">小さいフォントサイズ</string>
+  <string name="clock_date_display_normal">通常のフォントサイズ</string>
+  <string name="clock_date_right">時刻の右</string>
+  <string name="clock_date_left">時刻の左</string>
+  <string name="clock_date_style_normal">普通</string>
+  <string name="clock_date_style_lowercase">小文字</string>
+  <string name="clock_date_style_uppercase">大文字</string>
+  <string name="clock_date_format_custom">カスタムjava形式</string>
   <!-- Advanced, Device specific (DeviceParts) settings  -->
+  <string name="advanced_options_settings_title">高度</string>
+  <!-- Doze options -->
+  <!--string name="doze_trigger_doubletap_title">Double tap trigger</string-->
+  <!--string name="doze_trigger_doubletap_summary_on">Doze pulse will be triggered by a double tap</string-->
+  <!--string name="doze_trigger_doubletap_summary_off">Double tap sensor will not be utilized as a triggering mechanism (default)</string-->
+  <!-- Increasing ring tone volume -->
 </resources>

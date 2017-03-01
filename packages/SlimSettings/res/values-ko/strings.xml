@@ -20,10 +20,11 @@
   <string name="disabled">사용 안함</string>
   <string name="menu_save">저장</string>
   <string name="menu_cancel">저장 안함</string>
+  <string name="advanced_settings">고급 설정</string>
+  <!-- Common color picker strings -->
   <!-- Slim settings screens -->
   <string name="navigation_settings_title">내비게이션</string>
   <string name="interface_settings_title">인터페이스</string>
-  <string name="advanced_settings">고급 설정</string>
   <string name="quick_settings">빠른 설정</string>
   <string name="status_bar_icons">상태 표시줄 아이콘</string>
   <!-- Navigation settings -->
@@ -236,11 +237,6 @@
   <!-- Proximity wake -->
   <string name="proximity_wake_title">실수로 화면 켜기 방지</string>
   <string name="proximity_wake_summary">화면을 켜기 전에 근접 센서 확인</string>
-  <!-- Doze options -->
-  <string name="display_category_doze_options_title">앰비언트 디스플레이 옵션</string>
-  <string name="doze_settings_title">고급 설정</string>
-  <string name="doze_trigger_pickup_title">휴대폰 들기 제스쳐 사용</string>
-  <string name="doze_trigger_pickup_summary_on">휴대폰을 드는 것을 센서가 감지할 경우 펄스가 실행됩니다.</string>
   <!-- Advanced reboot options -->
   <string name="advanced_reboot_disabled">사용 안함</string>
   <string name="advanced_reboot_hide_on_keyguard">잠금 화면에서는 숨기기</string>
@@ -393,8 +389,16 @@
   <string name="clock_date_style_lowercase">소문자</string>
   <string name="clock_date_style_uppercase">대문자</string>
   <string name="clock_date_format_custom">사용자 지정 JAVA 형식</string>
-  <string name="status_bar_clock_style_reset_message">시계 색상을 초기화 하시겠습니까?</string>
   <!-- Advanced, Device specific (DeviceParts) settings  -->
   <string name="advanced_options_settings_title">고급 설정</string>
   <string name="device_settings_title">디바이스 개별 설정</string>
+  <!-- Doze options -->
+  <string name="display_category_doze_options_title">앰비언트 디스플레이 옵션</string>
+  <string name="doze_settings_title">고급 설정</string>
+  <string name="doze_trigger_pickup_title">휴대폰 들기 제스쳐 사용</string>
+  <string name="doze_trigger_pickup_summary_on">휴대폰을 드는 것을 센서가 감지할 경우 펄스가 실행됩니다.</string>
+  <!--string name="doze_trigger_doubletap_title">Double tap trigger</string-->
+  <!--string name="doze_trigger_doubletap_summary_on">Doze pulse will be triggered by a double tap</string-->
+  <!--string name="doze_trigger_doubletap_summary_off">Double tap sensor will not be utilized as a triggering mechanism (default)</string-->
+  <!-- Increasing ring tone volume -->
 </resources>

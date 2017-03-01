@@ -20,10 +20,12 @@
   <string name="disabled">Letiltva</string>
   <string name="menu_save">Mentés</string>
   <string name="menu_cancel">Elvetés</string>
+  <string name="advanced_settings">Speciális</string>
+  <!-- Common color picker strings -->
+  <string name="color_picker_reset_message">Színek visszaállítása?</string>
   <!-- Slim settings screens -->
   <string name="navigation_settings_title">Navigáció</string>
   <string name="interface_settings_title">Felület</string>
-  <string name="advanced_settings">Speciális</string>
   <string name="quick_settings">Gyors beállítások</string>
   <string name="status_bar_icons">Állapotsor ikonjai</string>
   <!-- Navigation settings -->
@@ -236,28 +238,6 @@
   <!-- Proximity wake -->
   <string name="proximity_wake_title">Véletlen ébresztés megakadályozása</string>
   <string name="proximity_wake_summary">Közelség érzékelő ellenőrzése a képernyő felébresztése előtt</string>
-  <!-- Doze options -->
-  <string name="display_category_doze_options_title">Környezeti kijelző (doze) beállítások</string>
-  <string name="doze_settings_title">Környezeti kijelző haladó beállítások</string>
-  <string name="doze_timeout_title">Doze impulzus időkorlát</string>
-  <string name="doze_timeout_summary">Az az idő, amíg a képernyő bekapcsolva marad az értesítési impulzusra</string>
-  <string name="doze_trigger_pickup_title">Felemelő mozdulat általi kiváltó</string>
-  <string name="doze_trigger_pickup_summary_on">A kijelző felvillanását a készülék felemelése aktiválja</string>
-  <string name="doze_trigger_pickup_summary_off">Felemelő mozdulat érzékelő nem lesz kiváltó mechanizmusként használva</string>
-  <string name="doze_trigger_sigmotion_title">Jelentős mozgás általi kiváltó</string>
-  <string name="doze_trigger_sigmotion_summary_on">A kijelző felvillanását egy jellemző mozdulattal aktiválja</string>
-  <string name="doze_trigger_sigmotion_summary_off">Jelentős mozgás érzékelő nem lesz kiváltó mechanizmusként használva</string>
-  <string name="doze_trigger_notification_title">Értesítés általi kiváltó</string>
-  <string name="doze_trigger_notification_summary_on">Környezeti kijelzőt az értesítések aktiválják</string>
-  <string name="doze_trigger_notification_summary_off">Értesítések nem lesznek kiváltó események</string>
-  <string name="doze_schedule_title">Doze ismétlődések</string>
-  <string name="doze_schedule_summary_on">Alvó mód előre definiált ismétlési gyakorisága (normál [1s,10s,30s,60s,120s]) kerül alkalmazásra (alapértelmezett)</string>
-  <string name="doze_schedule_summary_off">Értesítésenként egyszer csak</string>
-  <string name="doze_brightness_title">Doze fényerő szint</string>
-  <string name="doze_brightness_summary">Környezeti kijelző fényereje (max engedélyezett fényerő %-a)</string>
-  <string name="doze_wakeup_doubletap_title">Dupla érintés a szundiból való ébresztéshez</string>
-  <string name="doze_wakeup_doubletap_summary_on">Dupla érintés kérése az eszköz felébresztéséhez a doze impulzus képernyőn</string>
-  <string name="doze_wakeup_doubletap_summary_off">Egyszerű érintés kérése az eszköz felébresztéséhez a doze impulzus képernyőn (alapértelmezett)</string>
   <!-- Advanced reboot options -->
   <string name="advanced_reboot_title">Speciális újraindítás</string>
   <string name="advanced_reboot_dialog_title">Sperciális újraindítási menü</string>
@@ -458,8 +438,33 @@
   <string name="clock_date_style_lowercase">Kisbetűs</string>
   <string name="clock_date_style_uppercase">Nagybetűs</string>
   <string name="clock_date_format_custom">Egyéni java formátum</string>
-  <string name="status_bar_clock_style_reset_message">Visszaállítja az óra színét?</string>
   <!-- Advanced, Device specific (DeviceParts) settings  -->
   <string name="advanced_options_settings_title">Speciális</string>
   <string name="device_settings_title">Eszköz specifikus beállítások</string>
+  <!-- Doze options -->
+  <string name="display_category_doze_options_title">Környezeti kijelző (doze) beállítások</string>
+  <string name="doze_settings_title">Környezeti kijelző haladó beállítások</string>
+  <string name="doze_timeout_title">Doze impulzus időkorlát</string>
+  <string name="doze_timeout_summary">Az az idő, amíg a képernyő bekapcsolva marad az értesítési impulzusra</string>
+  <string name="doze_wakeup_doubletap_title">Dupla érintés a szundiból való ébresztéshez</string>
+  <string name="doze_wakeup_doubletap_summary_on">Dupla érintés kérése az eszköz felébresztéséhez a doze impulzus képernyőn</string>
+  <string name="doze_wakeup_doubletap_summary_off">Egyszerű érintés kérése az eszköz felébresztéséhez a doze impulzus képernyőn (alapértelmezett)</string>
+  <string name="doze_trigger_pickup_title">Felemelő mozdulat általi kiváltó</string>
+  <string name="doze_trigger_pickup_summary_on">A kijelző felvillanását a készülék felemelése aktiválja</string>
+  <string name="doze_trigger_pickup_summary_off">Felemelő mozdulat érzékelő nem lesz kiváltó mechanizmusként használva</string>
+  <string name="doze_trigger_sigmotion_title">Jelentős mozgás általi kiváltó</string>
+  <string name="doze_trigger_sigmotion_summary_on">A kijelző felvillanását egy jellemző mozdulattal aktiválja</string>
+  <string name="doze_trigger_sigmotion_summary_off">Jelentős mozgás érzékelő nem lesz kiváltó mechanizmusként használva</string>
+  <!--string name="doze_trigger_doubletap_title">Double tap trigger</string-->
+  <!--string name="doze_trigger_doubletap_summary_on">Doze pulse will be triggered by a double tap</string-->
+  <!--string name="doze_trigger_doubletap_summary_off">Double tap sensor will not be utilized as a triggering mechanism (default)</string-->
+  <string name="doze_trigger_notification_title">Értesítés általi kiváltó</string>
+  <string name="doze_trigger_notification_summary_on">Környezeti kijelzőt az értesítések aktiválják</string>
+  <string name="doze_trigger_notification_summary_off">Értesítések nem lesznek kiváltó események</string>
+  <string name="doze_brightness_title">Doze fényerő szint</string>
+  <string name="doze_brightness_summary">Környezeti kijelző fényereje (max engedélyezett fényerő %-a)</string>
+  <!-- Increasing ring tone volume -->
+  <string name="increasing_ring_volume_option_title">Emelkedő csengőhang</string>
+  <string name="increasing_ring_min_volume_title">Kezdeti hangerő</string>
+  <string name="increasing_ring_ramp_up_time_title">Felfutási idő</string>
 </resources>

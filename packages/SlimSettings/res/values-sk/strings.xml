@@ -20,10 +20,12 @@
   <string name="disabled">Vypnuté</string>
   <string name="menu_save">Uložiť</string>
   <string name="menu_cancel">Odstrániť</string>
+  <string name="advanced_settings">Pokročilé</string>
+  <!-- Common color picker strings -->
+  <string name="color_picker_reset_message">Resetovať farby?</string>
   <!-- Slim settings screens -->
   <string name="navigation_settings_title">Navigácia</string>
   <string name="interface_settings_title">Rozhranie</string>
-  <string name="advanced_settings">Pokročilé</string>
   <string name="quick_settings">Rýchle nastavenia</string>
   <string name="status_bar_icons">Ikony stavového riadku</string>
   <!-- Navigation settings -->
@@ -236,28 +238,6 @@
   <!-- Proximity wake -->
   <string name="proximity_wake_title">Zabrániť nechcenému prebudeniu</string>
   <string name="proximity_wake_summary">Kontrolovať snímač priblíženia pre zabránenie nechcenému prebudeniu</string>
-  <!-- Doze options -->
-  <string name="display_category_doze_options_title">Nastavenia ambientneho zobrazenia</string>
-  <string name="doze_settings_title">Rozšírené možnosti Doze</string>
-  <string name="doze_timeout_title">Časový limit pulzovania Doze</string>
-  <string name="doze_timeout_summary">Čas, po ktorý zostane obrazovka zapnutá pre zobrazenie oznámenia</string>
-  <string name="doze_trigger_pickup_title">Spustenie pri použití gesta</string>
-  <string name="doze_trigger_pickup_summary_on">Pulzovanie Doze bude spustené snímačom pohybu pri zdvihnutí</string>
-  <string name="doze_trigger_pickup_summary_off">Senzor pohybu nebude použitý ako spúšťací mechanizmus</string>
-  <string name="doze_trigger_sigmotion_title">Spustenie pri pohybe</string>
-  <string name="doze_trigger_sigmotion_summary_on">Pulzovanie Doze bude spustené významnou udalosťou snímača pohybu</string>
-  <string name="doze_trigger_sigmotion_summary_off">Snímač pohybu sa nesmie použiť ako spúšťací mechanizmus</string>
-  <string name="doze_trigger_notification_title">Spustenie pri upozornení</string>
-  <string name="doze_trigger_notification_summary_on">Pulzovanie Doze sa aktivuje upozornením</string>
-  <string name="doze_trigger_notification_summary_off">Oznámenia nebudú použité k spusteniu</string>
-  <string name="doze_schedule_title">Harmonogram Doze</string>
-  <string name="doze_schedule_summary_on">Preddefinované intervaly spania (normálne [1s, 10s, 30s, 60s, 120s]) (predvolené)</string>
-  <string name="doze_schedule_summary_off">Doze zabliká iba jedenkrát na jednu notifikáciu</string>
-  <string name="doze_brightness_title">Úroveň jasu Doze</string>
-  <string name="doze_brightness_summary">Úroveň jasu obrazovky s Doze v pulznom režime (% maximálneho jasu)</string>
-  <string name="doze_wakeup_doubletap_title">Dvojklikom prebudiť zariadenie zo spánku</string>
-  <string name="doze_wakeup_doubletap_summary_on">Vyžaduje dvojklik na obrazovku pre prebudenie zariadenia zo spánku</string>
-  <string name="doze_wakeup_doubletap_summary_off">Vyžaduje normálne dotknutie na obrazovku pre prebudenie zariadenia zo spánku (predvolené)</string>
   <!-- Advanced reboot options -->
   <string name="advanced_reboot_title">Rozšírený reštart</string>
   <string name="advanced_reboot_dialog_title">Rozšírená ponuka reštartovania</string>
@@ -458,8 +438,39 @@
   <string name="clock_date_style_lowercase">Malé písmená</string>
   <string name="clock_date_style_uppercase">Veľké písmená</string>
   <string name="clock_date_format_custom">Vlastný java formát</string>
-  <string name="status_bar_clock_style_reset_message">Obnoviť farbu hodín?</string>
   <!-- Advanced, Device specific (DeviceParts) settings  -->
   <string name="advanced_options_settings_title">Pokročilé</string>
   <string name="device_settings_title">Špecifické nastavenia zariadenia</string>
+  <!-- Doze options -->
+  <string name="display_category_doze_options_title">Nastavenia ambientneho zobrazenia</string>
+  <string name="doze_settings_title">Rozšírené možnosti Doze</string>
+  <string name="doze_fade_in_pickup_title">Časovanie tmavnutia Doze pulzovania (zdvihnutie)</string>
+  <string name="doze_fade_in_pickup_summary">Čas, za ktorý obrazovka stmavne po výzve na vyzdvihnutie (predvolené 100)</string>
+  <string name="doze_fade_in_doubletap_title">Časovanie tmavnutia Doze pulzovania (dvojklik)</string>
+  <string name="doze_fade_in_doubletap_summary">Čas, za ktorý obrazovka stmavne po výzve na dvojklik (predvolené 100)</string>
+  <string name="doze_timeout_title">Časový limit pulzovania Doze</string>
+  <string name="doze_timeout_summary">Čas, po ktorý zostane obrazovka zapnutá pre zobrazenie oznámenia</string>
+  <string name="doze_fade_out_title">Časovanie blednutia Doze pulzovania</string>
+  <string name="doze_fade_out_summary">Čas, za ktorý obrazovka zbledne po oznámení (predvolené 600)</string>
+  <string name="doze_wakeup_doubletap_title">Dvojklikom prebudiť zariadenie zo spánku</string>
+  <string name="doze_wakeup_doubletap_summary_on">Vyžaduje dvojklik na obrazovku pre prebudenie zariadenia zo spánku</string>
+  <string name="doze_wakeup_doubletap_summary_off">Vyžaduje normálne dotknutie na obrazovku pre prebudenie zariadenia zo spánku (predvolené)</string>
+  <string name="doze_trigger_pickup_title">Spustenie pri použití gesta</string>
+  <string name="doze_trigger_pickup_summary_on">Pulzovanie Doze bude spustené snímačom pohybu pri zdvihnutí</string>
+  <string name="doze_trigger_pickup_summary_off">Senzor pohybu nebude použitý ako spúšťací mechanizmus</string>
+  <string name="doze_trigger_sigmotion_title">Spustenie pri pohybe</string>
+  <string name="doze_trigger_sigmotion_summary_on">Pulzovanie Doze bude spustené významnou udalosťou snímača pohybu</string>
+  <string name="doze_trigger_sigmotion_summary_off">Snímač pohybu sa nesmie použiť ako spúšťací mechanizmus</string>
+  <!--string name="doze_trigger_doubletap_title">Double tap trigger</string-->
+  <!--string name="doze_trigger_doubletap_summary_on">Doze pulse will be triggered by a double tap</string-->
+  <!--string name="doze_trigger_doubletap_summary_off">Double tap sensor will not be utilized as a triggering mechanism (default)</string-->
+  <string name="doze_trigger_notification_title">Spustenie pri upozornení</string>
+  <string name="doze_trigger_notification_summary_on">Pulzovanie Doze sa aktivuje upozornením</string>
+  <string name="doze_trigger_notification_summary_off">Oznámenia nebudú použité k spusteniu</string>
+  <string name="doze_brightness_title">Úroveň jasu Doze</string>
+  <string name="doze_brightness_summary">Úroveň jasu obrazovky s Doze v pulznom režime (% maximálneho jasu)</string>
+  <!-- Increasing ring tone volume -->
+  <string name="increasing_ring_volume_option_title">Zvyšovanie hlasitosti zvonenia</string>
+  <string name="increasing_ring_min_volume_title">Počiatočná hlasitosť</string>
+  <string name="increasing_ring_ramp_up_time_title">Doba zvyšovania</string>
 </resources>

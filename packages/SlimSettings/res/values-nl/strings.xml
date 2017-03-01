@@ -20,10 +20,11 @@
   <string name="disabled">Uitgeschakeld</string>
   <string name="menu_save">Opslaan</string>
   <string name="menu_cancel">Negeer</string>
+  <string name="advanced_settings">Geavanceerd</string>
+  <!-- Common color picker strings -->
   <!-- Slim settings screens -->
   <string name="navigation_settings_title">Navigatie</string>
   <string name="interface_settings_title">Uiterlijk</string>
-  <string name="advanced_settings">Geavanceerd</string>
   <string name="quick_settings">Snelle Instellingen</string>
   <string name="status_bar_icons">Statusbalk iconen</string>
   <!-- Navigation settings -->
@@ -71,7 +72,57 @@
   <string name="app_ops_summaries_media_buttons">mediaknoppen</string>
   <string name="app_ops_summaries_audio_focus">audiofocus</string>
   <string name="app_ops_summaries_master_volume">hoofdvolume</string>
+  <string name="app_ops_summaries_voice_volume">spraakvolume</string>
+  <string name="app_ops_summaries_ring_volume">beltoonvolume</string>
+  <string name="app_ops_summaries_media_volume">mediavolume</string>
+  <string name="app_ops_summaries_alarm_volume">wekkervolume</string>
+  <string name="app_ops_summaries_notification_volume">meldingsvolume</string>
+  <string name="app_ops_summaries_bluetooth_volume">bluetoothvolume</string>
+  <string name="app_ops_summaries_keep_awake">wakker houden</string>
+  <string name="app_ops_summaries_monitor_location">locatie bijhouden</string>
+  <string name="app_ops_summaries_monitor_high_power_location">locatie bijhouden met hoog energiebruik</string>
+  <string name="app_ops_summaries_get_usage_stats">verbruiksstatistieken opvragen</string>
+  <string name="app_ops_summaries_mute_unmute_microphone">microfoon in-/uitschakelen</string>
+  <string name="app_ops_summaries_toast_window">toasts weergeven</string>
+  <string name="app_ops_summaries_project_media">media projecteren</string>
+  <string name="app_ops_summaries_activate_vpn">VPN activeren</string>
+  <string name="app_ops_summaries_write_wallpaper">achtergrond opslaan</string>
+  <string name="app_ops_summaries_assist_structure">ondersteuningsvoorziening</string>
+  <string name="app_ops_summaries_assist_screenshot">screenshot voor ondersteuning</string>
+  <string name="app_ops_summaries_read_phone_state">telefoonstatus opvragen</string>
+  <string name="app_ops_summaries_add_voicemail">voicemail toevoegen</string>
+  <string name="app_ops_summaries_use_sip">SIP gebruiken</string>
+  <string name="app_ops_summaries_make_call">oproep starten</string>
+  <string name="app_ops_summaries_use_fingerprint">vingerafdruk gebruiken</string>
+  <string name="app_ops_summaries_use_body_sensors">lichaamssensoren gebruiken</string>
+  <string name="app_ops_summaries_read_cell_broadcasts">noodwaarschuwingen lezen</string>
+  <string name="app_ops_summaries_mock_location">neplocatie gebruiken</string>
+  <string name="app_ops_summaries_read_external_storage">externe opslag lezen</string>
+  <string name="app_ops_summaries_write_external_storage">naar externe opslag schrijven</string>
+  <string name="app_ops_summaries_turn_screen_on">scherm inschakelen</string>
+  <string name="app_ops_summaries_get_accounts">accounts opvragen</string>
+  <string name="app_ops_summaries_toggle_wifi">Wi-Fi aan-/uitzetten</string>
+  <string name="app_ops_summaries_toggle_bluetooth">bluetooth aan-/uitzetten</string>
+  <string name="app_ops_summaries_start_at_boot">bij het opstarten starten</string>
+  <string name="app_ops_summaries_toggle_nfc">NFC aan-/uitzetten</string>
+  <string name="app_ops_summaries_toggle_mobile_data">mobiele gegevens aan-/uitzetten</string>
+  <string name="app_ops_summaries_superuser">root-toegang</string>
   <!-- User display names for app ops codes - extension of AOSP -->
+  <string name="app_ops_labels_coarse_location">Geschatte locatie</string>
+  <string name="app_ops_labels_fine_location">Nauwkeurige locatie</string>
+  <string name="app_ops_labels_gps">GPS</string>
+  <string name="app_ops_labels_vibrate">Trillen</string>
+  <string name="app_ops_labels_read_contacts">Contacten inzien</string>
+  <string name="app_ops_labels_modify_contacts">Contacten bewerken</string>
+  <string name="app_ops_labels_read_call_log">Gespreksgeschiedenis inzien</string>
+  <string name="app_ops_labels_modify_call_log">Gespreksgeschiedenis bewerken</string>
+  <string name="app_ops_labels_read_calendar">Agenda inzien</string>
+  <string name="app_ops_labels_modify_calendar">Agenda bewerken</string>
+  <string name="app_ops_labels_wifi_scan">Wi-Fi scan</string>
+  <string name="app_ops_labels_notification">Melding/Toast</string>
+  <string name="app_ops_labels_cell_scan">Mobiele netwerken zoeken</string>
+  <string name="app_ops_labels_call_phone">Nummer bellen</string>
+  <string name="app_ops_labels_read_sms">SMS lezen</string>
   <string name="app_ops_labels_write_sms">Schrijf SMS</string>
   <string name="app_ops_labels_receive_sms">Sms ontvangen</string>
   <string name="app_ops_labels_receive_emergency_sms">Nood-sms ontvangen</string>
@@ -122,11 +173,40 @@
   <string name="app_ops_labels_get_accounts">Verkrijg accounts</string>
   <string name="app_ops_labels_change_wifi">WiFi aan-/uitzetten</string>
   <string name="app_ops_labels_toggle_bluetooth">Bluetooth aan-/uitzetten</string>
+  <string name="app_ops_labels_start_at_boot">Bij het opstarten starten</string>
+  <string name="app_ops_labels_toggle_nfc">NFC aan-/uitzetten</string>
+  <string name="app_ops_labels_toggle_mobile_data">Mobiele gegevens aan-/uitzetten</string>
+  <string name="app_ops_labels_superuser">Root-toegang</string>
   <!-- App ops permissions -->
+  <string name="app_ops_permissions_allowed">Toegestaan</string>
+  <string name="app_ops_permissions_ignored">Genegeerd</string>
+  <string name="app_ops_permissions_always_ask">Altijd vragen</string>
   <!-- App ops detail -->
+  <string name="app_ops_entry_summary"><xliff:g id="op">%1$s</xliff:g> (<xliff:g id="count">%2$s</xliff:g> gebruikt)</string>
+  <string name="app_ops_allowed_count"><xliff:g id="count" example="2 times">%s</xliff:g> toegestaan</string>
+  <string name="app_ops_ignored_count"><xliff:g id="count" example="2 times">%s</xliff:g> geweigerd</string>
+  <string name="app_ops_both_count"><xliff:g id="count">%1$s</xliff:g> toegestaan, <xliff:g id="count">%2$s</xliff:g> geweigerd</string>
   <!-- App ops menu options -->
+  <string name="app_ops_show_user_apps">Gebruikersapplicaties tonen</string>
+  <string name="app_ops_show_system_apps">Ingebouwde applicaties tonen</string>
+  <string name="app_ops_reset_counters">Toestaan-/weigertellers opnieuw instellen</string>
+  <string name="app_ops_reset_confirm_title">Opnieuw instellen tellers bevestigen</string>
+  <string name="app_ops_reset_confirm_mesg">Weet u zeker dat u de tellers opnieuw wilt instellen?</string>
   <!-- Privacy Settings Header item -->
+  <string name="privacy_settings_title">Privacy</string>
   <!-- Privacy Guard -->
+  <string name="privacy_guard_switch_label">Privacy Guard inschakelen</string>
+  <string name="privacy_guard_dlg_title">Privacy Guard inschakelen?</string>
+  <string name="privacy_guard_dlg_text">Als Privacy Guard ingeschakeld is, dan zal de applicatie geen toegang hebben tot persoonlijke gegevens zoals contacten, berichten of belgeschiedenis.</string>
+  <string name="privacy_guard_dlg_system_app_text">Als Privacy Guard ingeschakeld is voor een ingebouwde applicatie, dan zal de applicatie geen persoonlijke gegevens kunnen inzien of verstrekken. Dit kan ervoor zorgen dat andere applicaties niet meer goed werken.</string>
+  <string name="privacy_guard_default_title">Standaard ingeschakeld</string>
+  <string name="privacy_guard_default_summary">Standaard inschakelen voor nieuw geïnstalleerde applicaties</string>
+  <string name="privacy_guard_manager_title">Privacy Guard</string>
+  <string name="privacy_guard_manager_summary">Beheer welke applicaties toegang hebben tot uw persoonlijke gegevens</string>
+  <string name="privacy_guard_no_user_apps">Er zijn geen applicaties geïnstalleerd</string>
+  <string name="privacy_guard_help_title">Help</string>
+  <string name="privacy_guard_reset_title">Herstellen</string>
+  <string name="privacy_guard_reset_text">Machtigingen opnieuw instellen?</string>
   <!-- Setting checkbox title for root access -->
   <!-- Memory -->
   <!-- About phone screen, Slim version -->
@@ -136,28 +216,6 @@
   <!-- Proximity wake -->
   <string name="proximity_wake_title">Voorkom onbedoeld ontwaken</string>
   <string name="proximity_wake_summary">Nabijheidssensor checken voorafgaand aan ontwaken van scherm</string>
-  <!-- Doze options -->
-  <string name="display_category_doze_options_title">Ambient display (doze) opties</string>
-  <string name="doze_settings_title">Geavanceerde doze opties</string>
-  <string name="doze_timeout_title">Doze puls time-out</string>
-  <string name="doze_timeout_summary">Tijd dat het scherm aan blijft bij een notificatie puls</string>
-  <string name="doze_trigger_pickup_title">Trigger door oppakken</string>
-  <string name="doze_trigger_pickup_summary_on">Doze puls zal worden geactiveerd door oppaksensor</string>
-  <string name="doze_trigger_pickup_summary_off">Oppak sensor zal niet worden gebruikt als trigger</string>
-  <string name="doze_trigger_sigmotion_title">Grote beweging trigger</string>
-  <string name="doze_trigger_sigmotion_summary_on">Pulse zal worden geactiveerd door grote bewegingssensor evenementen</string>
-  <string name="doze_trigger_sigmotion_summary_off">De grote bewegingssensor zal niet worden gebruikt als trigger</string>
-  <string name="doze_trigger_notification_title">Notificatie trigger</string>
-  <string name="doze_trigger_notification_summary_on">Doze puls wordt getriggerd door notificaties</string>
-  <string name="doze_trigger_notification_summary_off">Notificaties zullen niet worden gebruikt als trigger</string>
-  <string name="doze_schedule_title">Doze schema</string>
-  <string name="doze_schedule_summary_on">Vooraf gedefinieerde doze intervallen (normaal [1s, 10s, 30s, 60s, 120s]) zullen worden gebruikt (standaard)</string>
-  <string name="doze_schedule_summary_off">Doze zal maar één keer pulseren per notificatie</string>
-  <string name="doze_brightness_title">Doze helderheidsniveau</string>
-  <string name="doze_brightness_summary">Helderheidsniveau van doze pulsscherm (% van maximaal toegestane helderheid)</string>
-  <string name="doze_wakeup_doubletap_title">Dubbel tap om te ontwaken bij doze</string>
-  <string name="doze_wakeup_doubletap_summary_on">Vereist een dubbel-tap om het apparaat op doze pulsscherm te ontwaken</string>
-  <string name="doze_wakeup_doubletap_summary_off">Vereist een enkel-tap om het apparaat op doze pulsscherm te ontwaken (standaard)</string>
   <!-- Advanced reboot options -->
   <string name="advanced_reboot_title">Geavanceerd herstarten</string>
   <string name="advanced_reboot_dialog_title">Menu voor geavanceerd herstarten</string>
@@ -192,4 +250,27 @@
   <!-- ATTENTION: RTL languages need to replace left with right -->
   <!-- Clock & Date options -->
   <!-- Advanced, Device specific (DeviceParts) settings  -->
+  <!-- Doze options -->
+  <string name="display_category_doze_options_title">Ambient display (doze) opties</string>
+  <string name="doze_settings_title">Geavanceerde doze opties</string>
+  <string name="doze_timeout_title">Doze puls time-out</string>
+  <string name="doze_timeout_summary">Tijd dat het scherm aan blijft bij een notificatie puls</string>
+  <string name="doze_wakeup_doubletap_title">Dubbel tap om te ontwaken bij doze</string>
+  <string name="doze_wakeup_doubletap_summary_on">Vereist een dubbel-tap om het apparaat op doze pulsscherm te ontwaken</string>
+  <string name="doze_wakeup_doubletap_summary_off">Vereist een enkel-tap om het apparaat op doze pulsscherm te ontwaken (standaard)</string>
+  <string name="doze_trigger_pickup_title">Trigger door oppakken</string>
+  <string name="doze_trigger_pickup_summary_on">Doze puls zal worden geactiveerd door oppaksensor</string>
+  <string name="doze_trigger_pickup_summary_off">Oppak sensor zal niet worden gebruikt als trigger</string>
+  <string name="doze_trigger_sigmotion_title">Grote beweging trigger</string>
+  <string name="doze_trigger_sigmotion_summary_on">Pulse zal worden geactiveerd door grote bewegingssensor evenementen</string>
+  <string name="doze_trigger_sigmotion_summary_off">De grote bewegingssensor zal niet worden gebruikt als trigger</string>
+  <!--string name="doze_trigger_doubletap_title">Double tap trigger</string-->
+  <!--string name="doze_trigger_doubletap_summary_on">Doze pulse will be triggered by a double tap</string-->
+  <!--string name="doze_trigger_doubletap_summary_off">Double tap sensor will not be utilized as a triggering mechanism (default)</string-->
+  <string name="doze_trigger_notification_title">Notificatie trigger</string>
+  <string name="doze_trigger_notification_summary_on">Doze puls wordt getriggerd door notificaties</string>
+  <string name="doze_trigger_notification_summary_off">Notificaties zullen niet worden gebruikt als trigger</string>
+  <string name="doze_brightness_title">Doze helderheidsniveau</string>
+  <string name="doze_brightness_summary">Helderheidsniveau van doze pulsscherm (% van maximaal toegestane helderheid)</string>
+  <!-- Increasing ring tone volume -->
 </resources>

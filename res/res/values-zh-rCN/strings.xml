@@ -32,6 +32,7 @@
   <string name="no_home_key">你没有给“主页”键设置键位! \n\n这会使您的设备无法正常使用 ！</string>
   <string name="no_back_key">你没有给“返回”键设置键位! \n\n这会使您的设备无法正常使用 ！</string>
   <!-- Settings categories -->
+  <string name="settings_header_category_personalization">个性化</string>
   <!-- Shortcut actions -->
   <string name="shortcut_action_none">无</string>
   <string name="shortcut_action_menu">菜单</string>
@@ -146,6 +147,7 @@
   <string name="shortcut_action_torch">手电筒</string>
   <string name="shortcut_action_voice_search">语音搜索</string>
   <string name="shortcut_action_nowontap">Google Now / Now on Tap</string>
+  <string name="shortcut_action_split_screen">分屏</string>
   <!-- Icon color options -->
   <string name="icon_color_mode_all_icons">所有图标</string>
   <string name="icon_color_mode_system_icons">系统图标</string>
@@ -162,4 +164,15 @@
   <string name="set">设定</string>
   <string name="color_default">默认​​​​​</string>
   <!-- Proximity speaker -->
+  <string name="display_category_prox_auto_speaker_title">距离传感器设置</string>
+  <string name="prox_auto_speaker_options">距离传感器选项</string>
+  <string name="prox_auto_speaker_title">自动距离传感器</string>
+  <string name="prox_auto_speaker_summary">从脸部移开时启用免提</string>
+  <string name="prox_auto_speaker_delay_title">距离传感器延迟</string>
+  <string name="prox_auto_speaker_delay_summary">传感器激活前的延迟时间</string>
+  <string name="prox_auto_speaker_incall_only_title">仅在通话中时</string>
+  <string name="prox_auto_speaker_incall_only_summary_on">拨出电话时，传感器在对方接听后才激活</string>
+  <string name="prox_auto_speaker_incall_only_summary_off">传感器在通话状态始终激活（默认）</string>
+  <!-- Slim Doze-->
+  <!-- Increasing ring tone volume -->
 </resources>

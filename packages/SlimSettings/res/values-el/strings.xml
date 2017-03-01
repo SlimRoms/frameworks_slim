@@ -20,10 +20,12 @@
   <string name="disabled">Απενεργοποιημένο</string>
   <string name="menu_save">Αποθήκευση</string>
   <string name="menu_cancel">Απόρριψη</string>
+  <string name="advanced_settings">Για προχωρημένους</string>
+  <!-- Common color picker strings -->
+  <string name="color_picker_reset_message">Επαναφορά χρώματος;</string>
   <!-- Slim settings screens -->
   <string name="navigation_settings_title">Πλοήγηση</string>
   <string name="interface_settings_title">Περιβάλλον Χρήσης</string>
-  <string name="advanced_settings">Για προχωρημένους</string>
   <string name="quick_settings">Γρήγορες ρυθμίσεις</string>
   <string name="status_bar_icons">Εικονίδια γραμμής κατάστασης</string>
   <!-- Navigation settings -->
@@ -236,28 +238,6 @@
   <!-- Proximity wake -->
   <string name="proximity_wake_title">Πρόληψη ακούσιας αφύπνισης</string>
   <string name="proximity_wake_summary">Έλεγχος του αισθητήρα εγγύτητας για την αφύπνιση της οθόνης</string>
-  <!-- Doze options -->
-  <string name="display_category_doze_options_title">Επιλογές οθόνης περιβάλλοντος (Ελαφρύς ύπνος)</string>
-  <string name="doze_settings_title">Προηγμένες Επιλογές για \"ελαφρύ ύπνο\"</string>
-  <string name="doze_timeout_title">Χρονικό όριο παλμών σε κατάσταση ύπνου</string>
-  <string name="doze_timeout_summary">Χρόνος που η οθόνη παραμένει ενεργή για παλμό ειδοποίησης</string>
-  <string name="doze_trigger_pickup_title">Έναυσμα με το σήκωμα του τηλεφώνου</string>
-  <string name="doze_trigger_pickup_summary_on">Ο παλμός ενεργοποιείται σύμφωνα με τα εναύσματα του αισθητήρα κατά το σήκωμα του κινητού</string>
-  <string name="doze_trigger_pickup_summary_off">Ο αισθητήρας κίνησης/σήκωμα του κινητού δεν θα χρησιμοποιείται ως μηχανισμός ενεργοποίησης</string>
-  <string name="doze_trigger_sigmotion_title">Έναυσμα ενεργοποίσης αισθητήρα κίνησης</string>
-  <string name="doze_trigger_sigmotion_summary_on">Ο παλμός ενεργοποιείται σύμφωνα με τα σημαντικά γεγονότα αισθητήρα κίνησης</string>
-  <string name="doze_trigger_sigmotion_summary_off">Ο αισθητήρας σημαντικής κίνησης δεν θα χρησιμοποιείται ως μηχανισμός ενεργοποίησης</string>
-  <string name="doze_trigger_notification_title">Συρτάρι ειδοποιήσεων</string>
-  <string name="doze_trigger_notification_summary_on">Ο παλμός ελαφριού ύπνου θα ενεργοποιείται από ειδοποιήσεις</string>
-  <string name="doze_trigger_notification_summary_off">Οι ειδοποιήσεις δεν θα χρησιμοποιούνται ως έναυσμα</string>
-  <string name="doze_schedule_title">Χρονοδιάγραμμα ελαφρού ύπνου</string>
-  <string name="doze_schedule_summary_on">Θα χρησιμοποιούνται προκαθορισμένα διαστήματα επανάληψης ελαφρού ύπνου (κανονικά [1δευτ, 10δευτ, 30δευτ, 60δευτ, 120δευτ]) (προεπιλογή)</string>
-  <string name="doze_schedule_summary_off">Κατά τον ελαφρύ ύπνο αναβοσβήνει μόνο μία φορά ανά ειδοποιήση</string>
-  <string name="doze_brightness_title">Επίπεδο φωτεινότητας ελαφρού ύπνου</string>
-  <string name="doze_brightness_summary">Επίπεδο φωτεινότητας παλμού οθόνης κατά τον ελαφρύ ύπνο(% μέγιστο επιτρεπόμενο φωτεινότητας)</string>
-  <string name="doze_wakeup_doubletap_title">Διπλό χτύπημα για ενεργοποίηση οθόνης από τον ελαφρύ ύπνο</string>
-  <string name="doze_wakeup_doubletap_summary_on">Απαιτείται διπλό χτύπημα στην οθόνη για να ξυπνήσετε τη συσκευή από την κατάσταση ύπνου</string>
-  <string name="doze_wakeup_doubletap_summary_off">Απαιτείται μονό χτύπημα στην οθόνη για να ξυπνήσετε τη συσκευή από την κατάσταση ύπνου (προεπηλογή)</string>
   <!-- Advanced reboot options -->
   <string name="advanced_reboot_title">Προηγμένη επανεκκίνηση</string>
   <string name="advanced_reboot_dialog_title">Προηγμένο μενού επανεκκίνησης</string>
@@ -458,8 +438,39 @@
   <string name="clock_date_style_lowercase">Πεζά</string>
   <string name="clock_date_style_uppercase">Κεφαλαία</string>
   <string name="clock_date_format_custom">Προσαρμοσμένη μορφή java</string>
-  <string name="status_bar_clock_style_reset_message">Επαναφορά χρώματος ρολογιού;</string>
   <!-- Advanced, Device specific (DeviceParts) settings  -->
   <string name="advanced_options_settings_title">Για προχωρημένους</string>
   <string name="device_settings_title">Συγκεκριμένες ρυθμίσεις συσκευής</string>
+  <!-- Doze options -->
+  <string name="display_category_doze_options_title">Επιλογές οθόνης περιβάλλοντος (Ελαφρύς ύπνος)</string>
+  <string name="doze_settings_title">Προηγμένες Επιλογές για \"ελαφρύ ύπνο\"</string>
+  <string name="doze_fade_in_pickup_title">Ενεργοποίηση παλμού ελαφρύ ύπνου (σήκωμα)</string>
+  <string name="doze_fade_in_pickup_summary">Ο χρόνος που ενεργοποιείται η οθόνη για τον παλμό ειδοποίησης στο σήκωμα (προεπιλογή 100)</string>
+  <string name="doze_fade_in_doubletap_title">Ενεργοποίηση παλμού ελαφρύ ύπνου (διπλό πάτημα)</string>
+  <string name="doze_fade_in_doubletap_summary">Ο χρόνος που ενεργοποιείται η οθόνη για τον παλμό ειδοποίησης στο διπλό πάτημα (προεπιλογή 900)</string>
+  <string name="doze_timeout_title">Χρονικό όριο παλμών σε κατάσταση ύπνου</string>
+  <string name="doze_timeout_summary">Χρόνος που η οθόνη παραμένει ενεργή για παλμό ειδοποίησης</string>
+  <string name="doze_fade_out_title">Απενεργοποίηση παλμού ελαφρύ ύπνου</string>
+  <string name="doze_fade_out_summary">Ο χρόνος που η οθόνη απενεργοποιείται μετά τον παλμό ειδοποίησης (προεπιλογή 600)</string>
+  <string name="doze_wakeup_doubletap_title">Διπλό χτύπημα για ενεργοποίηση οθόνης από τον ελαφρύ ύπνο</string>
+  <string name="doze_wakeup_doubletap_summary_on">Απαιτείται διπλό χτύπημα στην οθόνη για να ξυπνήσετε τη συσκευή από την κατάσταση ύπνου</string>
+  <string name="doze_wakeup_doubletap_summary_off">Απαιτείται μονό χτύπημα στην οθόνη για να ξυπνήσετε τη συσκευή από την κατάσταση ύπνου (προεπηλογή)</string>
+  <string name="doze_trigger_pickup_title">Έναυσμα με το σήκωμα του τηλεφώνου</string>
+  <string name="doze_trigger_pickup_summary_on">Ο παλμός ενεργοποιείται σύμφωνα με τα εναύσματα του αισθητήρα κατά το σήκωμα του κινητού</string>
+  <string name="doze_trigger_pickup_summary_off">Ο αισθητήρας κίνησης/σήκωμα του κινητού δεν θα χρησιμοποιείται ως μηχανισμός ενεργοποίησης</string>
+  <string name="doze_trigger_sigmotion_title">Έναυσμα ενεργοποίσης αισθητήρα κίνησης</string>
+  <string name="doze_trigger_sigmotion_summary_on">Ο παλμός ενεργοποιείται σύμφωνα με τα σημαντικά γεγονότα αισθητήρα κίνησης</string>
+  <string name="doze_trigger_sigmotion_summary_off">Ο αισθητήρας σημαντικής κίνησης δεν θα χρησιμοποιείται ως μηχανισμός ενεργοποίησης</string>
+  <!--string name="doze_trigger_doubletap_title">Double tap trigger</string-->
+  <!--string name="doze_trigger_doubletap_summary_on">Doze pulse will be triggered by a double tap</string-->
+  <!--string name="doze_trigger_doubletap_summary_off">Double tap sensor will not be utilized as a triggering mechanism (default)</string-->
+  <string name="doze_trigger_notification_title">Συρτάρι ειδοποιήσεων</string>
+  <string name="doze_trigger_notification_summary_on">Ο παλμός ελαφριού ύπνου θα ενεργοποιείται από ειδοποιήσεις</string>
+  <string name="doze_trigger_notification_summary_off">Οι ειδοποιήσεις δεν θα χρησιμοποιούνται ως έναυσμα</string>
+  <string name="doze_brightness_title">Επίπεδο φωτεινότητας ελαφρού ύπνου</string>
+  <string name="doze_brightness_summary">Επίπεδο φωτεινότητας παλμού οθόνης κατά τον ελαφρύ ύπνο(% μέγιστο επιτρεπόμενο φωτεινότητας)</string>
+  <!-- Increasing ring tone volume -->
+  <string name="increasing_ring_volume_option_title">Αυξανόμενη ένταση κουδουνίσματος</string>
+  <string name="increasing_ring_min_volume_title">Αρχική ένταση</string>
+  <string name="increasing_ring_ramp_up_time_title">Χρονικό διάστημα αύξησης</string>
 </resources>

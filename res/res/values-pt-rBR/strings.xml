@@ -32,6 +32,7 @@
   <string name="no_home_key">Você não tem nenhuma função atribuída para o botão \"Home\"! \n\nIsto pode tornar o seu dispositivo inutilizável!</string>
   <string name="no_back_key">Você não tem nenhuma função atribuída para o botão \"Voltar\"! \n\nIsto pode tornar o seu dispositivo inutilizável!</string>
   <!-- Settings categories -->
+  <string name="settings_header_category_personalization">Personalização</string>
   <!-- Shortcut actions -->
   <string name="shortcut_action_none">Nenhum</string>
   <string name="shortcut_action_menu">Menu</string>
@@ -146,6 +147,7 @@
   <string name="shortcut_action_torch">Lanterna</string>
   <string name="shortcut_action_voice_search">Pesquisa por voz</string>
   <string name="shortcut_action_nowontap">Google Now / Now on Tap</string>
+  <string name="shortcut_action_split_screen">Dividir a tela</string>
   <!-- Icon color options -->
   <string name="icon_color_mode_all_icons">Todos os ícones</string>
   <string name="icon_color_mode_system_icons">Ícones de sistema</string>
@@ -162,4 +164,15 @@
   <string name="set">Definir</string>
   <string name="color_default">Padrão</string>
   <!-- Proximity speaker -->
+  <string name="display_category_prox_auto_speaker_title">Configurações do alto-falante de proximidade</string>
+  <string name="prox_auto_speaker_options">Opções do alto-falante de proximidade</string>
+  <string name="prox_auto_speaker_title">Alto-falante de proximidade automático</string>
+  <string name="prox_auto_speaker_summary">Ativa o viva-voz quando o dispositivo for distanciado do seu rosto</string>
+  <string name="prox_auto_speaker_delay_title">Atraso do alto-falante de proximidade</string>
+  <string name="prox_auto_speaker_delay_summary">Tempo de atraso antes do alto-falante ser ativado</string>
+  <string name="prox_auto_speaker_incall_only_title">Somente quando em chamada</string>
+  <string name="prox_auto_speaker_incall_only_summary_on">Em chamadas sendo realizadas, o alto-falante só ficará ativo após a outra parte responder</string>
+  <string name="prox_auto_speaker_incall_only_summary_off">Alto-falante viva-voz ficará ativo durante toda a chamada (padrão)</string>
+  <!-- Slim Doze-->
+  <!-- Increasing ring tone volume -->
 </resources>

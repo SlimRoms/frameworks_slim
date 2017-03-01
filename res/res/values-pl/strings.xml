@@ -32,6 +32,7 @@
   <string name="no_home_key">Nie przypisałeś akcji \"Pulpit domowy\" do żadnego przycisku!\n\nTo może spowodować problemy w używaniu telefonu!</string>
   <string name="no_back_key">Nie przypisałeś akcji \"Cofnij\" do żadnego przycisku!\n\nTo może spowodować problemy w używaniu telefonu!</string>
   <!-- Settings categories -->
+  <string name="settings_header_category_personalization">Personalizacja</string>
   <!-- Shortcut actions -->
   <string name="shortcut_action_none">Żadne</string>
   <string name="shortcut_action_menu">Menu</string>
@@ -146,6 +147,7 @@
   <string name="shortcut_action_torch">Latarka</string>
   <string name="shortcut_action_voice_search">Wyszukiwanie głosowe</string>
   <string name="shortcut_action_nowontap">Google Now / Now przy tapnięciu</string>
+  <string name="shortcut_action_split_screen">Podziel ekran</string>
   <!-- Icon color options -->
   <string name="icon_color_mode_all_icons">Wszystkie ikony</string>
   <string name="icon_color_mode_system_icons">Ikony systemowe</string>
@@ -162,4 +164,8 @@
   <string name="set">Ustaw</string>
   <string name="color_default">Domyślny</string>
   <!-- Proximity speaker -->
+  <string name="display_category_prox_auto_speaker_title">Ustawienia czujnika zbliżeniowego dla głośnika</string>
+  <string name="prox_auto_speaker_options">Opcje czujnika zbliżeniowego dla głośnika</string>
+  <!-- Slim Doze-->
+  <!-- Increasing ring tone volume -->
 </resources>

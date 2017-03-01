@@ -20,10 +20,11 @@
   <string name="disabled">Вимкнено</string>
   <string name="menu_save">Зберегти</string>
   <string name="menu_cancel">Відкинути</string>
+  <string name="advanced_settings">Розширені параметри</string>
+  <!-- Common color picker strings -->
   <!-- Slim settings screens -->
   <string name="navigation_settings_title">Навігація</string>
   <string name="interface_settings_title">Інтерфейс</string>
-  <string name="advanced_settings">Розширені параметри</string>
   <string name="quick_settings">Швидкі налаштування</string>
   <string name="status_bar_icons">Значки в рядку стану</string>
   <!-- Navigation settings -->
@@ -236,28 +237,6 @@
   <!-- Proximity wake -->
   <string name="proximity_wake_title">Запобігання випадковому пробудженню</string>
   <string name="proximity_wake_summary">Перевірити датчик наближення перед пробудженням</string>
-  <!-- Doze options -->
-  <string name="display_category_doze_options_title">Параметри активного дисплею (doze)</string>
-  <string name="doze_settings_title">Додаткові опції doze</string>
-  <string name="doze_timeout_title">Тривалість пульсації Doze</string>
-  <string name="doze_timeout_summary">Час, протягом якого екран залишається увімкненим для пульсуючих сповіщень</string>
-  <string name="doze_trigger_pickup_title">Дія при підніманні</string>
-  <string name="doze_trigger_pickup_summary_on">Пульсування Doze при підніманні пристрою</string>
-  <string name="doze_trigger_pickup_summary_off">Датчик піднімання не буде задіяно як тригер</string>
-  <string name="doze_trigger_sigmotion_title">Тригер значного переміщення</string>
-  <string name="doze_trigger_sigmotion_summary_on">Пульсування Doze будуть залежати від тригера значного переміщення</string>
-  <string name="doze_trigger_sigmotion_summary_off">Датчик значного переміщення не буде задіяно</string>
-  <string name="doze_trigger_notification_title">Тригер сповіщень</string>
-  <string name="doze_trigger_notification_summary_on">Пульсація Doze буде викликана надходженням сповіщення</string>
-  <string name="doze_trigger_notification_summary_off">Сповіщення не буде використовуватися як тригер</string>
-  <string name="doze_schedule_title">Режим пульсації</string>
-  <string name="doze_schedule_summary_on">Попередньо визначені інтервали повтору doze (зазвичай [1с, 10с, 30с, 60с, 120с]) будуть використовуватися (типово)</string>
-  <string name="doze_schedule_summary_off">Одноразова пульсація при отриманні сповіщення</string>
-  <string name="doze_brightness_title">Рівень яскравості Doze</string>
-  <string name="doze_brightness_summary">Рівень яскравості екрана при пульсації (% від максимально допустимої яскравості)</string>
-  <string name="doze_wakeup_doubletap_title">Натисніть двічі щоб розбудити пристрій</string>
-  <string name="doze_wakeup_doubletap_summary_on">Вимагати подвійного дотику на екрані Doze для прокидання пристрою</string>
-  <string name="doze_wakeup_doubletap_summary_off">Вимагати дотику на екрані Doze для прокидання пристрою (типово)</string>
   <!-- Advanced reboot options -->
   <string name="advanced_reboot_title">Варіанти перезавантаження</string>
   <string name="advanced_reboot_dialog_title">Варіанти перезавантаження</string>
@@ -458,8 +437,30 @@
   <string name="clock_date_style_lowercase">Нижній регістр</string>
   <string name="clock_date_style_uppercase">Верхній регістр</string>
   <string name="clock_date_format_custom">Користувацький java-формат</string>
-  <string name="status_bar_clock_style_reset_message">Скинути колір годинника?</string>
   <!-- Advanced, Device specific (DeviceParts) settings  -->
   <string name="advanced_options_settings_title">Розширені параметри</string>
   <string name="device_settings_title">Специфічні для пристрою налаштування</string>
+  <!-- Doze options -->
+  <string name="display_category_doze_options_title">Параметри активного дисплею (doze)</string>
+  <string name="doze_settings_title">Додаткові опції doze</string>
+  <string name="doze_timeout_title">Тривалість пульсації Doze</string>
+  <string name="doze_timeout_summary">Час, протягом якого екран залишається увімкненим для пульсуючих сповіщень</string>
+  <string name="doze_wakeup_doubletap_title">Натисніть двічі щоб розбудити пристрій</string>
+  <string name="doze_wakeup_doubletap_summary_on">Вимагати подвійного дотику на екрані Doze для прокидання пристрою</string>
+  <string name="doze_wakeup_doubletap_summary_off">Вимагати дотику на екрані Doze для прокидання пристрою (типово)</string>
+  <string name="doze_trigger_pickup_title">Дія при підніманні</string>
+  <string name="doze_trigger_pickup_summary_on">Пульсування Doze при підніманні пристрою</string>
+  <string name="doze_trigger_pickup_summary_off">Датчик піднімання не буде задіяно як тригер</string>
+  <string name="doze_trigger_sigmotion_title">Тригер значного переміщення</string>
+  <string name="doze_trigger_sigmotion_summary_on">Пульсування Doze будуть залежати від тригера значного переміщення</string>
+  <string name="doze_trigger_sigmotion_summary_off">Датчик значного переміщення не буде задіяно</string>
+  <!--string name="doze_trigger_doubletap_title">Double tap trigger</string-->
+  <!--string name="doze_trigger_doubletap_summary_on">Doze pulse will be triggered by a double tap</string-->
+  <!--string name="doze_trigger_doubletap_summary_off">Double tap sensor will not be utilized as a triggering mechanism (default)</string-->
+  <string name="doze_trigger_notification_title">Тригер сповіщень</string>
+  <string name="doze_trigger_notification_summary_on">Пульсація Doze буде викликана надходженням сповіщення</string>
+  <string name="doze_trigger_notification_summary_off">Сповіщення не буде використовуватися як тригер</string>
+  <string name="doze_brightness_title">Рівень яскравості Doze</string>
+  <string name="doze_brightness_summary">Рівень яскравості екрана при пульсації (% від максимально допустимої яскравості)</string>
+  <!-- Increasing ring tone volume -->
 </resources>

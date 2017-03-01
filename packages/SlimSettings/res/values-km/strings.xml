@@ -17,6 +17,7 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <!-- Common strings -->
+  <!-- Common color picker strings -->
   <!-- Slim settings screens -->
   <!-- Navigation settings -->
   <!-- Names of categories of app ops tabs - extension of AOSP -->
@@ -33,7 +34,6 @@
   <!-- Display & Lights screen, setting options for LCD density -->
   <!-- Wakeup options -->
   <!-- Proximity wake -->
-  <!-- Doze options -->
   <!-- Advanced reboot options -->
   <!-- Hardware keys and lights -->
   <!-- Key backlight -->
@@ -53,4 +53,9 @@
   <!-- ATTENTION: RTL languages need to replace left with right -->
   <!-- Clock & Date options -->
   <!-- Advanced, Device specific (DeviceParts) settings  -->
+  <!-- Doze options -->
+  <!--string name="doze_trigger_doubletap_title">Double tap trigger</string-->
+  <!--string name="doze_trigger_doubletap_summary_on">Doze pulse will be triggered by a double tap</string-->
+  <!--string name="doze_trigger_doubletap_summary_off">Double tap sensor will not be utilized as a triggering mechanism (default)</string-->
+  <!-- Increasing ring tone volume -->
 </resources>

@@ -19,12 +19,14 @@
   <!-- Common strings -->
   <string name="disabled">Disabilitato</string>
   <string name="menu_save">Salva</string>
-  <string name="menu_cancel">Scarta</string>
+  <string name="menu_cancel">Dimentica</string>
+  <string name="advanced_settings">Avanzate</string>
+  <!-- Common color picker strings -->
+  <string name="color_picker_reset_message">Ripristina colore?</string>
   <!-- Slim settings screens -->
   <string name="navigation_settings_title">Navigazione</string>
   <string name="interface_settings_title">Interfaccia</string>
-  <string name="advanced_settings">Avanzate</string>
-  <string name="quick_settings">Impostazioni rapide</string>
+  <string name="quick_settings">Impostazioni Rapide</string>
   <string name="status_bar_icons">Icone della barra di stato</string>
   <!-- Navigation settings -->
   <string name="navigation_settings_options_title">Opzioni di navigazione</string>
@@ -50,7 +52,7 @@
   <string name="app_ops_summaries_wifi_scan">Scansione Wi-Fi</string>
   <string name="app_ops_summaries_notification">notifica/toast</string>
   <string name="app_ops_summaries_cell_scan">scansione cella</string>
-  <string name="app_ops_summaries_call_phone">chiamata telefono</string>
+  <string name="app_ops_summaries_call_phone">chiamata telefonica</string>
   <string name="app_ops_summaries_read_sms">lettura SMS</string>
   <string name="app_ops_summaries_write_sms">scrittura SMS</string>
   <string name="app_ops_summaries_receive_sms">ricezione SMS</string>
@@ -236,28 +238,6 @@
   <!-- Proximity wake -->
   <string name="proximity_wake_title">Previeni i risvegli accidentali</string>
   <string name="proximity_wake_summary">Controlla il sensore di prossimità prima di accendere lo schermo</string>
-  <!-- Doze options -->
-  <string name="display_category_doze_options_title">Opzioni Ambient Display</string>
-  <string name="doze_settings_title">Opzioni avanzate doze</string>
-  <string name="doze_timeout_title">Regola il tempo di frequenza di Doze</string>
-  <string name="doze_timeout_summary">Imposta il tempo in cui lo schermo deve rimanere accesso per visualizzare le notifiche</string>
-  <string name="doze_trigger_pickup_title">Risveglia il dispositivo quando viene sollevato</string>
-  <string name="doze_trigger_pickup_summary_on">Lo schermo si riattiva quando il dispositivo viene sollevato</string>
-  <string name="doze_trigger_pickup_summary_off">Lo schermo non si riattiva quando il dispositivo viene sollevato</string>
-  <string name="doze_trigger_sigmotion_title">Attivazione movimento significativo</string>
-  <string name="doze_trigger_sigmotion_summary_on">Lo schermo si riattiva quando il dispositivo viene mosso significativamente</string>
-  <string name="doze_trigger_sigmotion_summary_off">Lo schermo non si riattiva quando il dispositivo viene mosso significativamente</string>
-  <string name="doze_trigger_notification_title">Attivazione notifica</string>
-  <string name="doze_trigger_notification_summary_on">Riattiva lo schermo quando si ricevono notifiche</string>
-  <string name="doze_trigger_notification_summary_off">Le notifiche non riattiveranno gli eventi</string>
-  <string name="doze_schedule_title">Pianificazione doze</string>
-  <string name="doze_schedule_summary_on">Riattiva lo schermo ad intervalli regolari se vi sono notifiche (normalmente 1, 10, 30, 60, 120 secondi) sono utilizzati come predefinito</string>
-  <string name="doze_schedule_summary_off">Lo schermo si riattiverà solo una volta per notifica</string>
-  <string name="doze_brightness_title">Livello di luminosità doze</string>
-  <string name="doze_brightness_summary">Livello di luminosità dello schermo (% massima della luminosità consentita)</string>
-  <string name="doze_wakeup_doubletap_title">Doppio tocco per attivare il dispositivo</string>
-  <string name="doze_wakeup_doubletap_summary_on">Richiede un doppio tocco per riattivare il dispositivo sullo schermo ad un impulso di doze</string>
-  <string name="doze_wakeup_doubletap_summary_off">Richiede un singolo tocco per riattivare il dispositivo sullo schermo ad un impulso di doze (predefinito)</string>
   <!-- Advanced reboot options -->
   <string name="advanced_reboot_title">Riavvio avanzato</string>
   <string name="advanced_reboot_dialog_title">Menù riavvio avanzato</string>
@@ -458,8 +438,33 @@
   <string name="clock_date_style_lowercase">Minuscolo</string>
   <string name="clock_date_style_uppercase">Maiuscolo</string>
   <string name="clock_date_format_custom">Formato java personalizzato</string>
-  <string name="status_bar_clock_style_reset_message">Ripristina il colore dell\'orologio?</string>
   <!-- Advanced, Device specific (DeviceParts) settings  -->
   <string name="advanced_options_settings_title">Avanzate</string>
   <string name="device_settings_title">Impostazioni specifiche del dispositivo</string>
+  <!-- Doze options -->
+  <string name="display_category_doze_options_title">Opzioni Ambient Display</string>
+  <string name="doze_settings_title">Opzioni avanzate doze</string>
+  <string name="doze_timeout_title">Regola il tempo di frequenza di Doze</string>
+  <string name="doze_timeout_summary">Imposta il tempo in cui lo schermo deve rimanere accesso per visualizzare le notifiche</string>
+  <string name="doze_wakeup_doubletap_title">Doppio tocco per attivare il dispositivo</string>
+  <string name="doze_wakeup_doubletap_summary_on">Richiede un doppio tocco per riattivare il dispositivo sullo schermo ad un impulso di doze</string>
+  <string name="doze_wakeup_doubletap_summary_off">Richiede un singolo tocco per riattivare il dispositivo sullo schermo ad un impulso di doze (predefinito)</string>
+  <string name="doze_trigger_pickup_title">Risveglia il dispositivo quando viene sollevato</string>
+  <string name="doze_trigger_pickup_summary_on">Lo schermo si riattiva quando il dispositivo viene sollevato</string>
+  <string name="doze_trigger_pickup_summary_off">Lo schermo non si riattiva quando il dispositivo viene sollevato</string>
+  <string name="doze_trigger_sigmotion_title">Attivazione movimento significativo</string>
+  <string name="doze_trigger_sigmotion_summary_on">Lo schermo si riattiva quando il dispositivo viene mosso significativamente</string>
+  <string name="doze_trigger_sigmotion_summary_off">Lo schermo non si riattiva quando il dispositivo viene mosso significativamente</string>
+  <!--string name="doze_trigger_doubletap_title">Double tap trigger</string-->
+  <!--string name="doze_trigger_doubletap_summary_on">Doze pulse will be triggered by a double tap</string-->
+  <!--string name="doze_trigger_doubletap_summary_off">Double tap sensor will not be utilized as a triggering mechanism (default)</string-->
+  <string name="doze_trigger_notification_title">Attivazione notifica</string>
+  <string name="doze_trigger_notification_summary_on">Riattiva lo schermo quando si ricevono notifiche</string>
+  <string name="doze_trigger_notification_summary_off">Le notifiche non riattiveranno gli eventi</string>
+  <string name="doze_brightness_title">Livello di luminosità doze</string>
+  <string name="doze_brightness_summary">Livello di luminosità dello schermo (% massima della luminosità consentita)</string>
+  <!-- Increasing ring tone volume -->
+  <string name="increasing_ring_volume_option_title">Suoneria incrementale</string>
+  <string name="increasing_ring_min_volume_title">Volume di partenza</string>
+  <string name="increasing_ring_ramp_up_time_title">Tempo di aumento</string>
 </resources>

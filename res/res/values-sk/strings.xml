@@ -32,6 +32,7 @@
   <string name="no_home_key">Nemáte nastavené žiadne tlačítko pre návrat \"Domov\"!\n\nToto môže spôsobiť, že vaše zariadenie bude nepoužiteľné!</string>
   <string name="no_back_key">Nemáte nastavené žiadne tlačítko pre akciu \"Späť\"!\n\nToto môže spôsobiť, že vaše zariadenie bude nepoužiteľné!</string>
   <!-- Settings categories -->
+  <string name="settings_header_category_personalization">Prispôsobenie</string>
   <!-- Shortcut actions -->
   <string name="shortcut_action_none">Žiadny</string>
   <string name="shortcut_action_menu">Ponuka</string>
@@ -146,6 +147,8 @@
   <string name="shortcut_action_torch">Baterka</string>
   <string name="shortcut_action_voice_search">Hlasové vyhľadávanie</string>
   <string name="shortcut_action_nowontap">Google Now / Now on Tap</string>
+  <string name="shortcut_action_split_screen">Rozdelené zobrazenie</string>
+  <string name="shortcut_action_doze_pulse">Pulzovanie Doze</string>
   <!-- Icon color options -->
   <string name="icon_color_mode_all_icons">Všetky ikony</string>
   <string name="icon_color_mode_system_icons">Systémové ikony</string>
@@ -159,4 +162,20 @@
   <string name="set">Nastaviť</string>
   <string name="color_default">Predvolené</string>
   <!-- Proximity speaker -->
+  <string name="display_category_prox_auto_speaker_title">Nastavenia automatického prepínania reproduktorov</string>
+  <string name="prox_auto_speaker_options">Nastavenia automatického prepínania reproduktorov</string>
+  <string name="prox_auto_speaker_title">Automatický hlasitý odposluch</string>
+  <string name="prox_auto_speaker_summary">Zapnúť hlasitý odposluch, keď oddialite zariadenie od hlavy</string>
+  <string name="prox_auto_speaker_delay_title">Oneskorenie prepnutia na hlasitý odposluch</string>
+  <string name="prox_auto_speaker_delay_summary">Časové oneskorenie pred zapnutím reproduktora</string>
+  <string name="prox_auto_speaker_incall_only_title">Len počas hovoru</string>
+  <string name="prox_auto_speaker_incall_only_summary_on">Pri odchádzajúcich hovoroch sa reproduktor aktivuje pri prijatí hovoru protistranou</string>
+  <string name="prox_auto_speaker_incall_only_summary_off">Reproduktor bude aktívny vždy, aj pri zvonení (predvolené)</string>
+  <!-- Slim Doze-->
+  <string name="display_category_doze_options_title">Nastavenia ambientneho zobrazenia (Doze)</string>
+  <string name="doze_settings_title">Rozšírené možnosti Doze</string>
+  <!-- Increasing ring tone volume -->
+  <string name="increasing_ring_volume_option_title">Zvyšovanie hlasitosti zvonenia</string>
+  <string name="increasing_ring_min_volume_title">Počiatočná hlasitosť</string>
+  <string name="increasing_ring_ramp_up_time_title">Doba zvyšovania</string>
 </resources>

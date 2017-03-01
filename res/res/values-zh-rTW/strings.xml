@@ -32,6 +32,7 @@
   <string name="no_home_key">您沒有設定任何鍵至 [主畫面] 鍵！\n\n這可能會使您無法使用您的裝置！</string>
   <string name="no_back_key">您沒有設定任何鍵至 [返回] 鍵！\n\n這可能會使您無法使用您的裝置！</string>
   <!-- Settings categories -->
+  <string name="settings_header_category_personalization">個人化</string>
   <!-- Shortcut actions -->
   <string name="shortcut_action_none">無</string>
   <string name="shortcut_action_menu">選單</string>
@@ -146,6 +147,8 @@
   <string name="shortcut_action_torch">手電筒</string>
   <string name="shortcut_action_voice_search">語音搜尋</string>
   <string name="shortcut_action_nowontap">Google Now / Now on Tap</string>
+  <string name="shortcut_action_split_screen">分割視窗</string>
+  <string name="shortcut_action_doze_pulse">休眠顯示</string>
   <!-- Icon color options -->
   <string name="icon_color_mode_all_icons">所有的圖示</string>
   <string name="icon_color_mode_system_icons">系統圖示</string>
@@ -159,4 +162,20 @@
   <string name="set">設定</string>
   <string name="color_default">預設</string>
   <!-- Proximity speaker -->
+  <string name="display_category_prox_auto_speaker_title">接近揚聲器設定</string>
+  <string name="prox_auto_speaker_options">接近揚聲器選項</string>
+  <string name="prox_auto_speaker_title">自動接近揚聲器</string>
+  <string name="prox_auto_speaker_summary">裝置遠離臉部時自動啟用擴音</string>
+  <string name="prox_auto_speaker_delay_title">接近揚聲器延遲</string>
+  <string name="prox_auto_speaker_delay_summary">啟用擴音前的延遲時間</string>
+  <string name="prox_auto_speaker_incall_only_title">僅通話時</string>
+  <string name="prox_auto_speaker_incall_only_summary_on">僅在電話接通時啟用麥克風</string>
+  <string name="prox_auto_speaker_incall_only_summary_off">持續啟用麥克風 (預設)</string>
+  <!-- Slim Doze-->
+  <string name="display_category_doze_options_title">環境顯示 (休眠) 選項</string>
+  <string name="doze_settings_title">進階休眠選項</string>
+  <!-- Increasing ring tone volume -->
+  <string name="increasing_ring_volume_option_title">漸強鈴聲音量</string>
+  <string name="increasing_ring_min_volume_title">起始音量</string>
+  <string name="increasing_ring_ramp_up_time_title">漸強時間</string>
 </resources>

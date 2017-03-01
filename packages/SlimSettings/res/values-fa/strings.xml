@@ -17,40 +17,444 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <!-- Common strings -->
+  <string name="disabled">غیرفعال</string>
+  <string name="menu_save">ذخيره</string>
+  <string name="menu_cancel">صرف‌نظر</string>
+  <!-- Common color picker strings -->
   <!-- Slim settings screens -->
+  <string name="navigation_settings_title">ناوبری</string>
+  <string name="interface_settings_title">رابط کاربری</string>
+  <string name="quick_settings">تنظیمات سریع</string>
+  <string name="status_bar_icons">آیکون های نوار وضعیت</string>
   <!-- Navigation settings -->
+  <string name="navigation_settings_options_title">کنترل ناوبری</string>
   <!-- Names of categories of app ops tabs - extension of AOSP -->
+  <string name="app_ops_categories_location">مكان</string>
+  <string name="app_ops_categories_personal">شخصی</string>
+  <string name="app_ops_categories_messaging">پیام رسانی</string>
+  <string name="app_ops_categories_media">رسانه</string>
+  <string name="app_ops_categories_device">دستگاه</string>
+  <string name="app_ops_categories_bootup">راه‌اندازی</string>
+  <string name="app_ops_categories_su">فرا کاربر</string>
   <!-- User display names for app ops codes - extension of AOSP -->
+  <string name="app_ops_summaries_coarse_location">مکان تقریبی</string>
+  <string name="app_ops_summaries_fine_location">مکان دقیق</string>
+  <string name="app_ops_summaries_gps">GPS</string>
+  <string name="app_ops_summaries_vibrate">لرزش</string>
+  <string name="app_ops_summaries_read_contacts">مشاهده مخاطب ها</string>
+  <string name="app_ops_summaries_modify_contacts">ویرایش مخاطب ها</string>
+  <string name="app_ops_summaries_read_call_log">مشاهده گزارش تماس</string>
+  <string name="app_ops_summaries_modify_call_log">ویرایش گزارش تماس</string>
+  <string name="app_ops_summaries_read_calendar">مشاهده تقویم</string>
+  <string name="app_ops_summaries_modify_calendar">ویرایش تقویم</string>
+  <string name="app_ops_summaries_wifi_scan">اسکن Wi-Fi</string>
+  <string name="app_ops_summaries_notification">اعلان/متن کوچک</string>
+  <string name="app_ops_summaries_cell_scan">اسکن همراه</string>
+  <string name="app_ops_summaries_call_phone">تماس تلفن</string>
+  <string name="app_ops_summaries_read_sms">مشاهده پیامک</string>
+  <string name="app_ops_summaries_write_sms">نوشتن پیامک</string>
+  <string name="app_ops_summaries_receive_sms">دریافت پیامک</string>
+  <string name="app_ops_summaries_receive_emergency_sms">دریافت پیامک‌ اضطراری</string>
+  <string name="app_ops_summaries_receive_mms">دریافت ام‌ام‌اس</string>
+  <string name="app_ops_summaries_receive_wap_push">دریافت پیامک وپ</string>
+  <string name="app_ops_summaries_send_sms">ارسال پیامک</string>
+  <string name="app_ops_summaries_read_icc_sms">مشاهده پیامک ICC</string>
+  <string name="app_ops_summaries_write_icc_sms">نوشتن پیامک ICC</string>
+  <string name="app_ops_summaries_modify_settings">تغییر تنظیمات</string>
+  <string name="app_ops_summaries_draw_on_top">نمایان شدن در بالا</string>
+  <string name="app_ops_summaries_access_notifications">دسترسی به اعلان‌ها</string>
+  <string name="app_ops_summaries_camera">دوربین</string>
+  <string name="app_ops_summaries_record_audio">ضبط صدا</string>
+  <string name="app_ops_summaries_play_audio">پخش صدا</string>
+  <string name="app_ops_summaries_read_clipboard">مشاهده کلیپ برد</string>
+  <string name="app_ops_summaries_modify_clipboard">ویرایش کلیپ برد</string>
+  <string name="app_ops_summaries_media_buttons">دکمه‌های رسانه</string>
+  <string name="app_ops_summaries_audio_focus">تمرکز صدا</string>
+  <string name="app_ops_summaries_master_volume">میزان صدای کلی</string>
+  <string name="app_ops_summaries_voice_volume">میزان صدای صوتی</string>
+  <string name="app_ops_summaries_ring_volume">میزان صدای زنگ</string>
+  <string name="app_ops_summaries_media_volume">میزان صدای رسانه</string>
+  <string name="app_ops_summaries_alarm_volume">میزان صدای آلارم</string>
+  <string name="app_ops_summaries_notification_volume">میزان صدای اعلان</string>
+  <string name="app_ops_summaries_bluetooth_volume">میزان صدای بلوتوث</string>
+  <string name="app_ops_summaries_keep_awake">بیدار نگه داشتن</string>
+  <string name="app_ops_summaries_monitor_location">کنترل مکان</string>
+  <string name="app_ops_summaries_monitor_high_power_location">کنترل مکان دارای مصرف بالای باتری</string>
+  <string name="app_ops_summaries_get_usage_stats">فرستادن آمار کارکرد</string>
+  <string name="app_ops_summaries_mute_unmute_microphone">قطع/وصل کردن صدای میکروفون</string>
+  <string name="app_ops_summaries_toast_window">نمایش متن‌های کوچک</string>
+  <string name="app_ops_summaries_project_media">پخش رسانه</string>
+  <string name="app_ops_summaries_activate_vpn">فعال کردن وی‌پی‌ان</string>
+  <string name="app_ops_summaries_write_wallpaper">تنظیم کاغذدیواری</string>
+  <string name="app_ops_summaries_assist_structure">ساختار کمک یار</string>
+  <string name="app_ops_summaries_assist_screenshot">اسکرین شات کمک یار</string>
+  <string name="app_ops_summaries_read_phone_state">خواندن وضعیت تلفن</string>
+  <string name="app_ops_summaries_add_voicemail">اضافه کردن پست صوتی</string>
+  <string name="app_ops_summaries_use_sip">استفاده از SIP</string>
+  <string name="app_ops_summaries_make_call">ایجاد تماس</string>
+  <string name="app_ops_summaries_use_fingerprint">استفاده اثرانگشت</string>
+  <string name="app_ops_summaries_use_body_sensors">استفاده از سنسور بدن</string>
+  <string name="app_ops_summaries_read_cell_broadcasts">خواندن برنامه های همراه</string>
+  <string name="app_ops_summaries_mock_location">مکان تقلیدی</string>
+  <string name="app_ops_summaries_read_external_storage">خواندن حافظه خارجی</string>
+  <string name="app_ops_summaries_write_external_storage">تنظیم حافظه خارجی</string>
+  <string name="app_ops_summaries_turn_screen_on">روشن کردن صفحه نمایش</string>
+  <string name="app_ops_summaries_get_accounts">دریافت حساب ها</string>
+  <string name="app_ops_summaries_toggle_wifi">تغییروضعیت Wi-Fi</string>
+  <string name="app_ops_summaries_toggle_bluetooth">تغییروضعیت بلوتوث</string>
+  <string name="app_ops_summaries_start_at_boot">شروع در بوت</string>
+  <string name="app_ops_summaries_toggle_nfc">تغییروضعیت NFC</string>
+  <string name="app_ops_summaries_toggle_mobile_data">فعال کردن دیتای موبایل</string>
+  <string name="app_ops_summaries_superuser">دسترسی روت</string>
   <!-- User display names for app ops codes - extension of AOSP -->
+  <string name="app_ops_labels_coarse_location">مکان تقریبی</string>
+  <string name="app_ops_labels_fine_location">مکان دقیق</string>
+  <string name="app_ops_labels_gps">GPS</string>
+  <string name="app_ops_labels_vibrate">لرزش</string>
+  <string name="app_ops_labels_read_contacts">مشاهده مخاطب ها</string>
+  <string name="app_ops_labels_modify_contacts">ویرایش مخاطب ها</string>
+  <string name="app_ops_labels_read_call_log">مشاهده گزارش تماس</string>
+  <string name="app_ops_labels_modify_call_log">ویرایش گزارش تماس</string>
+  <string name="app_ops_labels_read_calendar">مشاهده تقویم</string>
+  <string name="app_ops_labels_modify_calendar">ویرایش تقویم</string>
+  <string name="app_ops_labels_wifi_scan">اسکن Wi-Fi</string>
+  <string name="app_ops_labels_notification">اعلان/متن کوچک</string>
+  <string name="app_ops_labels_cell_scan">اسکن همراه</string>
+  <string name="app_ops_labels_call_phone">تماس تلفن</string>
+  <string name="app_ops_labels_read_sms">مشاهده پیامک</string>
+  <string name="app_ops_labels_write_sms">نوشتن پیامک</string>
+  <string name="app_ops_labels_receive_sms">دریافت پیامک</string>
+  <string name="app_ops_labels_receive_emergency_sms">دریافت پیامک‌ اضطراری</string>
+  <string name="app_ops_labels_receive_mms">دریافت ام‌ام‌اس</string>
+  <string name="app_ops_labels_receive_wap_push">دریافت پیامک وپ</string>
+  <string name="app_ops_labels_send_sms">ارسال پیامک</string>
+  <string name="app_ops_labels_read_icc_sms">مشاهده پیامک ICC</string>
+  <string name="app_ops_labels_write_icc_sms">نوشتن پیامک ICC</string>
+  <string name="app_ops_labels_modify_settings">ویرایش تنظیمات</string>
+  <string name="app_ops_labels_draw_on_top">نمایان شدن در بالا</string>
+  <string name="app_ops_labels_access_notifications">دسترسی به اعلان‌ها</string>
+  <string name="app_ops_labels_camera">دوربین</string>
+  <string name="app_ops_labels_record_audio">ضبط صدا</string>
+  <string name="app_ops_labels_play_audio">پخش صدا</string>
+  <string name="app_ops_labels_read_clipboard">مشاهده کلیپ برد</string>
+  <string name="app_ops_labels_modify_clipboard">ویرایش کلیپ برد</string>
+  <string name="app_ops_labels_media_buttons">دکمه‌های رسانه</string>
+  <string name="app_ops_labels_audio_focus">تمرکز صدا</string>
+  <string name="app_ops_labels_master_volume">میزان صدای کلی</string>
+  <string name="app_ops_labels_voice_volume">میزان صدای صوتی</string>
+  <string name="app_ops_labels_ring_volume">میزان صدای زنگ</string>
+  <string name="app_ops_labels_media_volume">میزان صدای رسانه</string>
+  <string name="app_ops_labels_alarm_volume">میزان صدای آلارم</string>
+  <string name="app_ops_labels_notification_volume">میزان صدای اعلان</string>
+  <string name="app_ops_labels_bluetooth_volume">میزان صدای بلوتوث</string>
+  <string name="app_ops_labels_keep_awake">بیدار نگه داشتن</string>
+  <string name="app_ops_labels_monitor_location">کنترل مکان</string>
+  <string name="app_ops_labels_monitor_high_power_location">کنترل مکان دارای مصرف بالای باتری</string>
+  <string name="app_ops_labels_get_usage_stats">فرستادن آمار کارکرد</string>
+  <string name="app_ops_labels_mute_unmute_microphone">قطع/وصل کردن صدای میکروفون</string>
+  <string name="app_ops_labels_toast_window">نمایش متن‌های کوچک</string>
+  <string name="app_ops_labels_project_media">پخش رسانه</string>
+  <string name="app_ops_labels_activate_vpn">فعال کردن وی‌پی‌ان</string>
+  <string name="app_ops_labels_write_wallpaper">تنظیم کاغذدیواری</string>
+  <string name="app_ops_labels_assist_structure">ساختار کمک یار</string>
+  <string name="app_ops_labels_assist_screenshot">اسکرین شات کمک یار</string>
+  <string name="app_ops_labels_read_phone_state">خواندن وضعیت تلفن</string>
+  <string name="app_ops_labels_add_voicemail">اضافه کردن پست صوتی</string>
+  <string name="app_ops_labels_use_sip">استفاده از SIP</string>
+  <string name="app_ops_labels_make_call">ایجاد تماس</string>
+  <string name="app_ops_labels_use_fingerprint">استفاده اثرانگشت</string>
+  <string name="app_ops_labels_use_body_sensors">استفاده از سنسور بدن</string>
+  <string name="app_ops_labels_read_cell_broadcasts">خواندن برنامه های همراه</string>
+  <string name="app_ops_labels_mock_location">مکان تقلیدی</string>
+  <string name="app_ops_labels_read_external_storage">خواندن حافظه خارجی</string>
+  <string name="app_ops_labels_write_external_storage">تنظیم حافظه خارجی</string>
+  <string name="app_ops_labels_turn_screen_on">روشن کردن صفحه نمایش</string>
+  <string name="app_ops_labels_get_accounts">دریافت حساب ها</string>
+  <string name="app_ops_labels_change_wifi">تغییروضعیت Wi-Fi</string>
+  <string name="app_ops_labels_toggle_bluetooth">تغییروضعیت بلوتوث</string>
+  <string name="app_ops_labels_start_at_boot">شروع در بوت</string>
+  <string name="app_ops_labels_toggle_nfc">تغییروضعیت NFC</string>
+  <string name="app_ops_labels_toggle_mobile_data">فعال کردن دیتای موبایل</string>
+  <string name="app_ops_labels_superuser">دسترسی روت</string>
   <!-- App ops permissions -->
+  <string name="app_ops_permissions_allowed">مجاز</string>
+  <string name="app_ops_permissions_ignored">انصراف</string>
+  <string name="app_ops_permissions_always_ask">همیشه بپرس</string>
   <!-- App ops detail -->
+  <string name="app_ops_entry_summary"><xliff:g id="op">%1$s</xliff:g> (<xliff:g id="count">%2$s</xliff:g> استفاده شده)</string>
+  <string name="app_ops_allowed_count"><xliff:g id="count" example="2 times">%s</xliff:g> مجاز</string>
+  <string name="app_ops_ignored_count"><xliff:g id="count" example="2 times">%s</xliff:g> رد شده</string>
+  <string name="app_ops_both_count">مجاز <xliff:g id="count">%1$s </xliff:g>، رد <xliff:g id="count">%2$s </xliff:g></string>
   <!-- App ops menu options -->
+  <string name="app_ops_show_user_apps">نمایش برنامه‌های کاربر</string>
+  <string name="app_ops_show_system_apps">نمایش برنامه‌های درون ساز</string>
+  <string name="app_ops_reset_counters">تنظیم مجدد شمارشگرهای مجاز/رد شده</string>
+  <string name="app_ops_reset_confirm_title">تایید تنظیم مجدد شمارنده</string>
+  <string name="app_ops_reset_confirm_mesg">از تنظیم مجدد شمارشگرها اطمینان دارید?</string>
   <!-- Privacy Settings Header item -->
+  <string name="privacy_settings_title">حریم خصوصی</string>
   <!-- Privacy Guard -->
+  <string name="privacy_guard_switch_label">فعال کردن محافظ حریم خصوصی</string>
+  <string name="privacy_guard_dlg_title">فعال کردن محافظ حریم خصوصی انجام گیرد?</string>
+  <string name="privacy_guard_dlg_text">در صورت فعال بودن محافظ حریم خصوصی نرم افزارها قادر به دسترسی به اطلاعات شخصی مانند مخاطبین، پیام ها و یا سیاهههای مربوط به تماس نخواهد بود.</string>
+  <string name="privacy_guard_dlg_system_app_text">وقتی محافظ حریم خصوصی برای برنامه های درون ساز فعال باشد، برنامه قادر به دسترسی یا ساخت اطلاعات شخصی نخواهد بود. این امر ممکن است بر رفتار دیگربرنامه ها تاثیر بگذارد.</string>
+  <string name="privacy_guard_default_title">فعال به صورت پیش‌فرض</string>
+  <string name="privacy_guard_default_summary">فعال شده به صورت پیش فرض برای برنامه های تازه نصب شده</string>
+  <string name="privacy_guard_manager_title">محافظ حریم خصوصی</string>
+  <string name="privacy_guard_manager_summary">مدیریت برنامه هایی که دسترسی به اطلاعات شخصی شما دارند</string>
+  <string name="privacy_guard_no_user_apps">هیچ برنامه ای نصب نشده</string>
+  <string name="privacy_guard_help_title">راهنما</string>
+  <string name="privacy_guard_reset_title">راه اندازی</string>
+  <string name="privacy_guard_reset_text">مجوز راه اندازی مجدد دارد?</string>
+  <string name="privacy_guard_help_text">در این صفحه شما می توانید انتخاب کنید که برنامه پرایوسی گارد با بهره برداری از آنها را به سادگی برای باید فعال باشد. برنامه های انتخاب شده را می خواهد نه قادر به دسترسی به داده های شخصی خود را مانند مخاطبین، پیام ها و یا سیاهههای مربوط به تماس. با فشار دادن طولانی برنامه ورود نرم جزئیات برنامه های screen.\n\nBuilt-in پیش فرض نمایش داده می شود اما می توانید با انتخاب گزینه منوی مربوطه نشان داد باز می کند.</string>
+  <string name="privacy_guard_manager_show_system_apps">نمایش برنامه‌های درون ساز</string>
+  <string name="privacy_guard_advanced_settings_title">پیشرفته</string>
   <!-- Setting checkbox title for root access -->
+  <string name="root_access">دسترسی روت</string>
+  <string name="root_access_warning_title">اجازه دسترسی روت را می‌دهید?</string>
+  <string name="root_access_warning_message">اجازه دادن به برنامه‌ها برای درخواست دسترسی روت بسیار خطرناک بوده و می‌تواند امنیت سیستم شما را تهدید کند!</string>
+  <string name="root_access_none">غیر فعال</string>
+  <string name="root_access_apps">فقط برنامه‌ها</string>
+  <string name="root_access_adb">فقط ADB</string>
+  <string name="root_access_all">برنامه ها و ADB</string>
   <!-- Memory -->
+  <string name="memory_startup_apps_title">برنامه های شروع شده در بوت</string>
   <!-- About phone screen, Slim version -->
+  <string name="slim_version_title">نسخهٔ Slim</string>
+  <string name="slim_version_default">نامشخص</string>
   <!-- Display & Lights screen, setting options for LCD density -->
+  <string name="lcd_density">تراکم ال سی دی</string>
+  <string name="dialog_title_lcd_density">تراکم ال سی دی</string>
+  <string name="lcd_density_value_format">%d نقطه اینچ</string>
+  <string name="lcd_density_default_value_format">%d نقطه در اینچ (پیش فرض)</string>
+  <string name="restarting_ui">شروع مجدد UI\u2026</string>
+  <string name="lcd_density_prompt_message">ممکن است برخی از برنامه های تابع در dpi.\n\nThis غیر استاندارد موجب راه اندازی مجدد شوند.</string>
   <!-- Wakeup options -->
+  <string name="display_category_wakeup_options_title">گزینه های بیدارباش</string>
+  <string name="wakeup_when_plugged_unplugged_title">بیدارباش در شارژ</string>
+  <string name="wakeup_when_plugged_unplugged_summary">بیدارسازی دستگاه در صورتی وصل/قطع شارژر.</string>
   <!-- Proximity wake -->
-  <!-- Doze options -->
+  <string name="proximity_wake_title">جلوگیری از بیداری تصادفی</string>
+  <string name="proximity_wake_summary">بررسی سنسور مجاورت قبل از بیداری صفحه نمایش</string>
   <!-- Advanced reboot options -->
+  <string name="advanced_reboot_title">راه اندازی مجدد پیشرفته</string>
+  <string name="advanced_reboot_dialog_title">منوی راه اندازی مجدد پیشرفته</string>
+  <string name="advanced_reboot_disabled">غیرفعال</string>
+  <string name="advanced_reboot_hide_on_keyguard">مخفی کردن در صفحه قفل شده</string>
+  <string name="advanced_reboot_show_always">نمایش همیشگی</string>
   <!-- Hardware keys and lights -->
+  <string name="hardware_keys_enable_title">فعال کردن کلید های سخت افزاری</string>
+  <string name="hardware_keys_enable_summary">فعال/غیر فعال کردن کلید های سخت افزاری</string>
+  <string name="hardware_keys_lights_enable_title">تنظیمات نور کلید سخت افزاری</string>
   <!-- Key backlight -->
+  <string name="settings_reset_button">راه اندازی</string>
+  <string name="button_backlight_enabled">دکمه های روشن</string>
+  <string name="keyboard_backlight_enabled">صفحه کلید روشن</string>
+  <string name="button_backlight_seekbar_title">روشنایی دکمه ها</string>
+  <string name="keyboard_backlight_seekbar_title">روشنایی صفحه کلید</string>
+  <string name="backlight_timeout_title">زمان قطعی نور</string>
+  <string name="backlight_timeout_unlimited">خاموش نکنید</string>
+  <string name="backlight_summary_disabled">غیر فعال</string>
+  <string name="backlight_summary_enabled_with_timeout">فعال برای <xliff:g id="timeout">%s </xliff:g></string>
+  <string name="backlight_summary_enabled">فعال شده</string>
   <!-- Hardware keys -->
+  <string name="enable_hw_keys_title">فعال کردن دکمه های سخت افزاری</string>
+  <string name="button_keys_title">دکمه اصلی سخت افزار</string>
+  <string name="keys_bindings_title">اقدامات کلید</string>
+  <string name="keys_enable_custom_title">فعال کردن عملیات سفارشی</string>
+  <string name="keys_enable_custom_summary">فعالسازی سفارشی کردن دکمه سخت افزاری</string>
+  <string name="keys_back_press_title">کلید بازگشت</string>
+  <string name="keys_back_long_press_title">کلید بازگشت (نگه داشتن)</string>
+  <string name="keys_back_double_tap_title">کلید های عقب (دابل تَپ)</string>
+  <string name="keys_home_press_title">کلید خانه</string>
+  <string name="keys_home_long_press_title">کلید خانه (نگه داشتن)</string>
+  <string name="keys_home_double_tap_title">کلید خانه (دابل تَپ)</string>
+  <string name="keys_menu_press_title">کلید منو</string>
+  <string name="keys_menu_long_press_title">کلید منو (نگه داشتن)</string>
+  <string name="keys_menu_double_tap_title">کلید منو (دابل تَپ)</string>
+  <string name="keys_assist_press_title">کلید جستجو</string>
+  <string name="keys_assist_long_press_title">کلید جستجو (نگه داشتن)</string>
+  <string name="keys_assist_double_tap_title">کلید جستجو (دابل تَپ)</string>
+  <string name="keys_app_switch_press_title">برنامه سوئیچ کلید</string>
+  <string name="keys_app_switch_long_press_title">برنامه سوئیچ کلید (نگه داشتن)</string>
+  <string name="keys_app_switch_double_tap_title">برنامه سوئیچ کلید (دابل تَپ)</string>
+  <string name="keys_camera_press_title">کلید دوربین</string>
+  <string name="keys_camera_long_press_title">کلید دوربین (نگه داشتن)</string>
+  <string name="keys_camera_double_tap_title">کلید دوربین (دابل تَپ)</string>
+  <string name="keys_action_normal">فشار عادی</string>
+  <string name="keys_action_long">نگه داشتن</string>
+  <string name="keys_action_double">دابل تَپ</string>
+  <string name="no_home_key">شما هیچ دکمه ای را برای \"صفحه اصلی\" مشخص نکرده اید. ممکن است دستگاه شما را غیرقابل استفاده نماید!</string>
   <!-- Slim Shortcuts -->
+  <string name="slim_shortcut_picker">اقدامات Slim</string>
+  <string name="shortcut_action_select_action">انتخاب عملکرد:</string>
   <!-- Chamber of Secrets -->
+  <string name="chamber_title">تالار اسرار</string>
+  <string name="chamber_toast">تالار اسرار باز است</string>
   <!-- Device specific settings -->
+  <string name="screen_off_gesture_settings_title">حرکات خاموش شدن صفحه نمایش</string>
   <!-- Status bar -->
+  <string name="status_bar_title">نوار وضعیت</string>
+  <string name="status_bar_style_title">سبک نوار وضعیت</string>
   <!-- Status bar - Battery Options -->
+  <string name="battery_icon_options_title">گزینه های آیکون باتری</string>
   <!-- Status bar - Battery Style -->
+  <string name="status_bar_battery_style_title">سبک وضعیت باتری</string>
+  <string name="status_bar_battery_style_circle">دایره</string>
+  <string name="status_bar_battery_style_dotted_circle">دایره نقطه چین</string>
+  <string name="status_bar_battery_style_text">متن</string>
+  <string name="status_bar_battery_style_hidden">مخفی</string>
+  <string name="status_bar_battery_style_icon_portrait">آیکون عمودی</string>
+  <string name="status_bar_battery_style_icon_landscape">آیکون افقی</string>
   <!-- Status bar - Battery percentage -->
+  <string name="status_bar_battery_percentage_title">نشان دادن درصد باتری</string>
+  <string name="status_bar_battery_percentage_dialog_title">درصد باتری</string>
+  <string name="status_bar_battery_percentage_default">پنهان (پیش فرض)</string>
+  <string name="status_bar_battery_percentage_text_inside">داخل آیکون</string>
+  <string name="status_bar_battery_percentage_text_next">کنار آیکون</string>
   <!-- Navigation bar -->
+  <string name="navigation_bar">نوار پیمایش</string>
+  <string name="navigation_settings_category">پیمایش</string>
+  <string name="navigation_bar_size_42_dp_default">42 dp (پیش فرض)</string>
+  <string name="navigation_bar_size_36_dp">36 dp</string>
+  <string name="navigation_bar_size_30_dp">30 dp</string>
+  <string name="navigation_bar_size_24_dp">24 dp</string>
+  <string name="navigation_bar_size_48_dp_default">48 dp (پیش فرض)</string>
+  <string name="navigation_bar_size_44_dp">44 dp</string>
+  <string name="navigation_bar_size_40_dp">40 dp</string>
+  <string name="navigation_bar_size_42_dp">42 dp</string>
+  <string name="navigation_bar_size_0_dp">0 dp (خاموش)</string>
+  <string name="navigation_menu_right">راست</string>
+  <string name="navigation_menu_left">چپ</string>
+  <string name="navigation_menu_both">هردو</string>
+  <string name="navigation_menu_default_jb_behavior">نمایش درخواست (پیش فرض)</string>
+  <string name="navigation_menu_never_show">نمایش نده</string>
+  <string name="navigation_menu_always_show">همیشه نمایش بده</string>
+  <string name="navbar_button_cat">دکمه های نوار پیمایش</string>
+  <string name="title_pref_menu_location">مکان منو</string>
+  <string name="summary_pref_menu_location">تمایل دارید دکمه منو در کجا ظاهر شود?</string>
+  <string name="title_pref_menu_display">دید منو</string>
+  <string name="summary_pref_menu_display">تمایل دارید دکمه منو چطور و چه زمانی ظاهر شود?</string>
+  <string name="navbar_enable_bar">فعال کردن نوار ناوبری</string>
+  <string name="navbar_enable_bar_summary">فعال کردن نوار ناوبری</string>
+  <string name="navigation_bar_height_title">ارتفاع نوار ناوبری</string>
+  <string name="navigation_bar_height_summary">ارتفاع نوار ناوبری در حالت افقی.</string>
+  <string name="navigation_bar_height_landscape_title">ارتفاع نوار ناوبری در عمودی</string>
+  <string name="navigation_bar_height_landscape_summary">ارتفاع نوار ناوبری در حالت افقی.</string>
+  <string name="navigation_bar_width_title">عرض نوار ناوبری</string>
+  <string name="navigation_bar_width_summary">ارتفاع نوار ناوبری اگر نوار کنار است.</string>
+  <string name="navbar_can_move">نمایش افقی</string>
+  <string name="navbar_can_move_summary">نوار ناوبری را در حالت افقی در پایین نمایش می دهد</string>
+  <string name="navbar_style_dimen_title">ابعاد</string>
+  <string name="navbar_style_dimen_summary">تغییر ارتفاع نوار ناوبری</string>
+  <string name="navbar_button_title">دکمه ها</string>
+  <string name="navbar_button_summary">پیکربندی دکمه ها برای نمایش در نوار ناوبری</string>
+  <string name="navbar_cat">نوار پیمایش</string>
+  <string name="navbar_dimensions_reset_message">بازیابی تمامی ابعاد واردشده به پيشفرض?</string>
+  <string name="navbar_button_style_reset_message">بازیابی تمامی سَبک های واردشده به پيشفرض?</string>
   <!-- SlimDim -->
+  <string name="dim_nav_buttons_category">SlimDim</string>
+  <string name="dim_nav_buttons_title">کم نور کردن دکمه ها بعد از غیرفعالی</string>
+  <string name="dim_nav_buttons_summary">کم نور کردن نوار پیمایش پس از غیرفعال بودن آن به مدت مشخص</string>
+  <string name="dim_nav_buttons_timeout_title">اتمام زمان قبل از کم نورسازی</string>
+  <string name="dim_nav_buttons_timeout_summary">زمان(در میلی ثانیه) انتظار پیش از کم نورسازی دکمه ها</string>
+  <string name="dim_nav_buttons_alpha_title">کم نورسازی آلفا</string>
+  <string name="dim_nav_buttons_alpha_summary">مقدار آلفا برای کم نورسازی برای</string>
+  <string name="dim_nav_buttons_animate_title">انیمیشن کم نورسازی</string>
+  <string name="dim_nav_buttons_animate_summary">انیمه کردن محوشدن آلفا</string>
+  <string name="dim_nav_buttons_animate_duration_title">مدت انیمیشن</string>
+  <string name="dim_nav_buttons_animate_duration_summary">مدت زمان (در میلی ثانیه) انیمیشن آلفا</string>
+  <string name="dim_nav_buttons_touch_anywhere_title">توجه به لمس روی کل صفحه نمایش</string>
+  <string name="dim_nav_buttons_touch_anywhere_summary_on">لمس هر قسمتی از صفحه نمایش باعث روشن شدن دکمه ها خواهد شد</string>
+  <string name="dim_nav_buttons_touch_anywhere_summary_off">تنها لمس نوار ناوبری باعث روشن شدن دکمه ها خواهد شد</string>
   <!-- Navigation bar button style -->
+  <string name="nav_bar_button_style">سبک دکمه</string>
+  <string name="nav_bar_button_style_summary">تغییر سبک دکمه نوار ناوبری</string>
+  <string name="button_transparency_title">شفافیت دکمه</string>
+  <string name="navigation_bar_icon_tint_title">رنگ دکمه</string>
+  <string name="nav_button_color_mode_title">حالت رنگ</string>
+  <string name="nav_button_color_mode_dialog_title">رنگ آمیزی</string>
+  <string name="nav_button_color_mode_summary">تغییر حالت رنگ دکمه نوارناوبری</string>
+  <string name="navigation_bar_glow_tint_title">رنگ براقیت دکمه</string>
   <!-- Icon color options -->
+  <string name="icon_color_mode_all_icons">تمام آیکون ها</string>
+  <string name="icon_color_mode_system_icons">آیکون های سیستم</string>
+  <string name="icon_color_mode_system_custom_icons">آیکون های سیستم و سفارشی</string>
   <!-- Recent panel -->
+  <string name="recent_panel_category">پنل برنامه های اخیر</string>
+  <string name="use_slim_recents_title">اخیرهای Slim</string>
+  <string name="show_running_tasks_title">فقط برنامه های در حال اجرا را نمایش بده</string>
+  <string name="recents_max_apps_title">حداکثر برنامه های مجاز</string>
+  <string name="recent_panel_scale_title">اندازه‌</string>
+  <string name="recent_panel_expanded_mode_title">حالت گسترش یافته</string>
+  <string name="recent_panel_expanded_mode_summary">حالت پیش نمایش گسترده وظایف اخیر</string>
+  <string name="recent_panel_expanded_mode_auto">خودکار (پیش فرض)</string>
+  <string name="recent_panel_expanded_mode_always">همیشه</string>
+  <string name="recent_panel_expanded_mode_never">هرگز</string>
+  <string name="recent_panel_show_topmost_title">نمایش بالاترین وظیفه</string>
+  <string name="recent_panel_show_topmost_summary">بالاترین وظیفه را از نمایش برنامه های اخیر حذف نکن</string>
+  <string name="recent_panel_bg_color_title">رنگ پس زمینه صفحه</string>
+  <string name="recent_card_bg_color_title">رنگ پس زمینه کارت</string>
+  <string name="recent_card_text_color_title">رنگ متن کارت</string>
   <!-- ATTENTION: RTL languages need to replace left with right -->
+  <string name="recent_panel_lefty_mode_title">نمایش در لبه سمت چپ</string>
+  <string name="recent_panel_lefty_mode_summary">نمایش برنامه اخیر در لبه چپ</string>
   <!-- Clock & Date options -->
+  <string name="status_bar_clock">نمایش ساعت و تاریخ</string>
+  <string name="status_bar_clock_title">سبک ساعت و تاریخ</string>
+  <string name="clock_title_enable">تراز</string>
+  <string name="clock_enabled">فعال شده</string>
+  <string name="clock_disabled">غیرفعال شده</string>
+  <string name="clock_color_title">رنگ</string>
+  <string name="status_bar_clock_style_reset">تنظیم مجدد رنگ</string>
+  <string name="status_bar_show_clock_title">نمایش ساعت و تاریخ</string>
+  <string name="status_bar_clock_color_override">استفاده از رنگ های سفارشی</string>
+  <string name="status_bar_am_pm_title">AM/PM</string>
+  <string name="status_bar_am_pm_info">ساعت 24 ساعته فعال است</string>
+  <string name="enable_clock_weekday">روز هفته</string>
+  <string name="enable_clock_weekday_summary">خلاصه روز هفته قبل از زمان</string>
+  <string name="right_clock">ساعت در راست</string>
+  <string name="center_clock">ساعت در مرکز</string>
+  <string name="left_clock">ساعت در چپ</string>
+  <string name="dont_show">عدم نمایش</string>
+  <string name="clock_date_display">تاریخ</string>
+  <string name="clock_date_display_summary">تاریخ سفارشی را قبل از ساعت نمایش بده</string>
+  <string name="clock_date_style">سبک تاریخ</string>
+  <string name="clock_date_position">موقعیت تاریخ</string>
+  <string name="clock_date_format">قالب تاریخ</string>
+  <string name="clock_date_string_edittext_title">در DateFormat به عنوان مثال باید باشد. MM/dd/yy</string>
+  <string name="clock_date_string_edittext_summary">رشته را واردکن</string>
+  <string name="am_pm_clock_normal">اندازه فونت عادی</string>
+  <string name="am_pm_clock_small">اندازه فونت کوچک</string>
+  <string name="am_pm_clock_none">عدم نمایش</string>
+  <string name="clock_date_display_none">عدم نمایش</string>
+  <string name="clock_date_display_small">اندازه فونت کوچک</string>
+  <string name="clock_date_display_normal">اندازه فونت عادی</string>
+  <string name="clock_date_right">راست از زمان</string>
+  <string name="clock_date_left">چپ از زمان</string>
+  <string name="clock_date_style_normal">عادی</string>
+  <string name="clock_date_style_lowercase">حروف کوچک</string>
+  <string name="clock_date_style_uppercase">حروف بزرگ</string>
+  <string name="clock_date_format_custom">با فرمت جاوا سفارشی</string>
   <!-- Advanced, Device specific (DeviceParts) settings  -->
+  <string name="advanced_options_settings_title">پیشرفته</string>
+  <string name="device_settings_title">تنظیمات خاص دستگاه</string>
+  <!-- Doze options -->
+  <string name="display_category_doze_options_title">نمایش محیط (چُرت) گزینه ها</string>
+  <string name="doze_settings_title">تنظيمات پيشرفته چُرت</string>
+  <string name="doze_timeout_title">وقفه پالس چُرت</string>
+  <string name="doze_wakeup_doubletap_title">دوبار لمس کنید تا دستگاه بیدار شود</string>
+  <string name="doze_wakeup_doubletap_summary_on">نیاز به دابل تَپ برای بیداری دستگاه بر روی صفحه چُرت پالس</string>
+  <string name="doze_trigger_pickup_title">نشانگر حرکتی را انتخاب کنید</string>
+  <string name="doze_trigger_pickup_summary_off">سنسور حرکت برداشتن، به عنوان یک عملکرد حرکتی عمل نخواهد کرد</string>
+  <string name="doze_trigger_sigmotion_title">نشانگر حرکت ویژه</string>
+  <string name="doze_trigger_sigmotion_summary_off">سنسور حرکت ویژه، به عنوان یک عملکرد حرکتی عمل نخواهد کرد</string>
+  <!--string name="doze_trigger_doubletap_title">Double tap trigger</string-->
+  <!--string name="doze_trigger_doubletap_summary_on">Doze pulse will be triggered by a double tap</string-->
+  <!--string name="doze_trigger_doubletap_summary_off">Double tap sensor will not be utilized as a triggering mechanism (default)</string-->
+  <string name="doze_trigger_notification_title">نشانگر اعلان</string>
+  <string name="doze_trigger_notification_summary_off">اعلان ها به عنوان نشانگراستفاده نخواهند شد</string>
+  <string name="doze_brightness_title">سطح روشنایی چُرت</string>
+  <string name="doze_brightness_summary">سطح روشنایی صفحه چُرت پالس (% حداکثر روشنایی مجاز)</string>
+  <!-- Increasing ring tone volume -->
 </resources>

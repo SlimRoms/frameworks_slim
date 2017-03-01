@@ -20,10 +20,11 @@
   <string name="disabled">Выключена</string>
   <string name="menu_save">Сохранить</string>
   <string name="menu_cancel">Отменить</string>
+  <string name="advanced_settings">Дополнительно</string>
+  <!-- Common color picker strings -->
   <!-- Slim settings screens -->
   <string name="navigation_settings_title">Навигация и кнопки</string>
   <string name="interface_settings_title">Интерфейс</string>
-  <string name="advanced_settings">Дополнительно</string>
   <string name="quick_settings">Быстрые настройки</string>
   <string name="status_bar_icons">Значки строки состояния</string>
   <!-- Navigation settings -->
@@ -236,28 +237,6 @@
   <!-- Proximity wake -->
   <string name="proximity_wake_title">Предотвращать случайное включение</string>
   <string name="proximity_wake_summary">Проверять датчик приближения перед включением экрана</string>
-  <!-- Doze options -->
-  <string name="display_category_doze_options_title">Настройки Ambient display (doze)</string>
-  <string name="doze_settings_title">Расширенные настройки Ambient Display</string>
-  <string name="doze_timeout_title">Время работы экрана</string>
-  <string name="doze_timeout_summary">Время, в течение которого экран будет включен для показа уведомления</string>
-  <string name="doze_trigger_pickup_title">Жесты включены</string>
-  <string name="doze_trigger_pickup_summary_on">Экран будет включаться от жестов</string>
-  <string name="doze_trigger_pickup_summary_off">Жесты не будут включать экран</string>
-  <string name="doze_trigger_sigmotion_title">Длинные жесты</string>
-  <string name="doze_trigger_sigmotion_summary_on">Экран будет включаться от длинных жестов</string>
-  <string name="doze_trigger_sigmotion_summary_off">Длинные жесты не включают экран</string>
-  <string name="doze_trigger_notification_title">Уведомление</string>
-  <string name="doze_trigger_notification_summary_on">Экран будет включаться при уведомлении</string>
-  <string name="doze_trigger_notification_summary_off">Уведомления не включают экран</string>
-  <string name="doze_schedule_title">Расписание включения</string>
-  <string name="doze_schedule_summary_on">Предустановленные значения длительности подсветки (обычно [1с, 10с, 30с, 60с, 120с]) будет использоваться (по умолчанию)</string>
-  <string name="doze_schedule_summary_off">Экран будет включаться от каждого уведомления</string>
-  <string name="doze_brightness_title">Уровень яркости</string>
-  <string name="doze_brightness_summary">Уровень яркости включения экрана (% от максимальной)</string>
-  <string name="doze_wakeup_doubletap_title">Двойное нажатие для пробуждения</string>
-  <string name="doze_wakeup_doubletap_summary_on">Двойное нажатие, чтобы разбудить устройство</string>
-  <string name="doze_wakeup_doubletap_summary_off">Одиночное нажатие, чтобы разбудить устройство (по умолчанию)</string>
   <!-- Advanced reboot options -->
   <string name="advanced_reboot_title">Варианты перезагрузки</string>
   <string name="advanced_reboot_dialog_title">Расширенное меню перезагрузки</string>
@@ -458,8 +437,30 @@
   <string name="clock_date_style_lowercase">Строчный</string>
   <string name="clock_date_style_uppercase">Прописной</string>
   <string name="clock_date_format_custom">Свой Java-формат</string>
-  <string name="status_bar_clock_style_reset_message">Сбросить цвет часов?</string>
   <!-- Advanced, Device specific (DeviceParts) settings  -->
   <string name="advanced_options_settings_title">Дополнительно</string>
   <string name="device_settings_title">Специальные настройки устройства</string>
+  <!-- Doze options -->
+  <string name="display_category_doze_options_title">Настройки Ambient display (doze)</string>
+  <string name="doze_settings_title">Расширенные настройки Ambient Display</string>
+  <string name="doze_timeout_title">Время работы экрана</string>
+  <string name="doze_timeout_summary">Время, в течение которого экран будет включен для показа уведомления</string>
+  <string name="doze_wakeup_doubletap_title">Двойное нажатие для пробуждения</string>
+  <string name="doze_wakeup_doubletap_summary_on">Двойное нажатие, чтобы разбудить устройство</string>
+  <string name="doze_wakeup_doubletap_summary_off">Одиночное нажатие, чтобы разбудить устройство (по умолчанию)</string>
+  <string name="doze_trigger_pickup_title">Жесты включены</string>
+  <string name="doze_trigger_pickup_summary_on">Экран будет включаться от жестов</string>
+  <string name="doze_trigger_pickup_summary_off">Жесты не будут включать экран</string>
+  <string name="doze_trigger_sigmotion_title">Длинные жесты</string>
+  <string name="doze_trigger_sigmotion_summary_on">Экран будет включаться от длинных жестов</string>
+  <string name="doze_trigger_sigmotion_summary_off">Длинные жесты не включают экран</string>
+  <!--string name="doze_trigger_doubletap_title">Double tap trigger</string-->
+  <!--string name="doze_trigger_doubletap_summary_on">Doze pulse will be triggered by a double tap</string-->
+  <!--string name="doze_trigger_doubletap_summary_off">Double tap sensor will not be utilized as a triggering mechanism (default)</string-->
+  <string name="doze_trigger_notification_title">Уведомление</string>
+  <string name="doze_trigger_notification_summary_on">Экран будет включаться при уведомлении</string>
+  <string name="doze_trigger_notification_summary_off">Уведомления не включают экран</string>
+  <string name="doze_brightness_title">Уровень яркости</string>
+  <string name="doze_brightness_summary">Уровень яркости включения экрана (% от максимальной)</string>
+  <!-- Increasing ring tone volume -->
 </resources>

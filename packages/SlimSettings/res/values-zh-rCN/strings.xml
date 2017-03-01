@@ -20,10 +20,11 @@
   <string name="disabled">已禁用</string>
   <string name="menu_save">保存</string>
   <string name="menu_cancel">取消</string>
+  <string name="advanced_settings">高级</string>
+  <!-- Common color picker strings -->
   <!-- Slim settings screens -->
   <string name="navigation_settings_title">导航栏</string>
   <string name="interface_settings_title">用户界面</string>
-  <string name="advanced_settings">高级</string>
   <string name="quick_settings">快速设置</string>
   <string name="status_bar_icons">状态栏图标</string>
   <!-- Navigation settings -->
@@ -236,28 +237,6 @@
   <!-- Proximity wake -->
   <string name="proximity_wake_title">防止意外唤醒</string>
   <string name="proximity_wake_summary">唤醒屏幕前检查距离感应器</string>
-  <!-- Doze options -->
-  <string name="display_category_doze_options_title">主动显示 (Doze) 选项</string>
-  <string name="doze_settings_title">Doze高级选项</string>
-  <string name="doze_timeout_title">Doze模式超时</string>
-  <string name="doze_timeout_summary">有新通知时屏幕亮起的时间</string>
-  <string name="doze_trigger_pickup_title">启用手势触发</string>
-  <string name="doze_trigger_pickup_summary_on">Doze模式将由手势传感器事件触发</string>
-  <string name="doze_trigger_pickup_summary_off">手势传感器将不会用作一种触发机制</string>
-  <string name="doze_trigger_sigmotion_title">重要事件触发器</string>
-  <string name="doze_trigger_sigmotion_summary_on">Doze模式将被重要动作触发传感器事件触发</string>
-  <string name="doze_trigger_sigmotion_summary_off">重要动作传感器不会用作一种触发机制</string>
-  <string name="doze_trigger_notification_title">通知触发器</string>
-  <string name="doze_trigger_notification_summary_on">Doze模式将由通知触发</string>
-  <string name="doze_trigger_notification_summary_off">通知不会用作触发器</string>
-  <string name="doze_schedule_title">Doze计划表</string>
-  <string name="doze_schedule_summary_on">使用预定义的休眠唤醒间隔 (通常为[1秒，10秒，30秒，60秒，120秒]) (默认值)</string>
-  <string name="doze_schedule_summary_off">休眠只在每次有通知时才唤醒</string>
-  <string name="doze_brightness_title">Doze模式亮度水平</string>
-  <string name="doze_brightness_summary">休眠时的屏幕亮度(最大允许亮度的%)</string>
-  <string name="doze_wakeup_doubletap_title">休眠时双击唤醒</string>
-  <string name="doze_wakeup_doubletap_summary_on">需要双击来唤醒处于doze模式的手机</string>
-  <string name="doze_wakeup_doubletap_summary_off">需要单击来唤醒处于Doze模式的手机(默认)</string>
   <!-- Advanced reboot options -->
   <string name="advanced_reboot_title">高级重启</string>
   <string name="advanced_reboot_dialog_title">高级重启菜单</string>
@@ -458,8 +437,30 @@
   <string name="clock_date_style_lowercase">小写字母</string>
   <string name="clock_date_style_uppercase">大写字母</string>
   <string name="clock_date_format_custom">输入自定义的 java 时间格式</string>
-  <string name="status_bar_clock_style_reset_message">是否重置时钟颜色？</string>
   <!-- Advanced, Device specific (DeviceParts) settings  -->
   <string name="advanced_options_settings_title">高级</string>
   <string name="device_settings_title">设备特定的设置</string>
+  <!-- Doze options -->
+  <string name="display_category_doze_options_title">主动显示 (Doze) 选项</string>
+  <string name="doze_settings_title">Doze高级选项</string>
+  <string name="doze_timeout_title">Doze模式超时</string>
+  <string name="doze_timeout_summary">有新通知时屏幕亮起的时间</string>
+  <string name="doze_wakeup_doubletap_title">休眠时双击唤醒</string>
+  <string name="doze_wakeup_doubletap_summary_on">需要双击来唤醒处于doze模式的手机</string>
+  <string name="doze_wakeup_doubletap_summary_off">需要单击来唤醒处于Doze模式的手机(默认)</string>
+  <string name="doze_trigger_pickup_title">启用手势触发</string>
+  <string name="doze_trigger_pickup_summary_on">Doze模式将由手势传感器事件触发</string>
+  <string name="doze_trigger_pickup_summary_off">手势传感器将不会用作一种触发机制</string>
+  <string name="doze_trigger_sigmotion_title">重要事件触发器</string>
+  <string name="doze_trigger_sigmotion_summary_on">Doze模式将被重要动作触发传感器事件触发</string>
+  <string name="doze_trigger_sigmotion_summary_off">重要动作传感器不会用作一种触发机制</string>
+  <!--string name="doze_trigger_doubletap_title">Double tap trigger</string-->
+  <!--string name="doze_trigger_doubletap_summary_on">Doze pulse will be triggered by a double tap</string-->
+  <!--string name="doze_trigger_doubletap_summary_off">Double tap sensor will not be utilized as a triggering mechanism (default)</string-->
+  <string name="doze_trigger_notification_title">通知触发器</string>
+  <string name="doze_trigger_notification_summary_on">Doze模式将由通知触发</string>
+  <string name="doze_trigger_notification_summary_off">通知不会用作触发器</string>
+  <string name="doze_brightness_title">Doze模式亮度水平</string>
+  <string name="doze_brightness_summary">休眠时的屏幕亮度(最大允许亮度的%)</string>
+  <!-- Increasing ring tone volume -->
 </resources>

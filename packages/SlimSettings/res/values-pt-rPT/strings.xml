@@ -20,10 +20,11 @@
   <string name="disabled">Desativado</string>
   <string name="menu_save">Guardar</string>
   <string name="menu_cancel">Rejeitar</string>
+  <string name="advanced_settings">Avançado</string>
+  <!-- Common color picker strings -->
   <!-- Slim settings screens -->
   <string name="navigation_settings_title">Navegação</string>
   <string name="interface_settings_title">Interface</string>
-  <string name="advanced_settings">Avançado</string>
   <string name="quick_settings">Definições Rápidas</string>
   <string name="status_bar_icons">Ícones da barra de estado</string>
   <!-- Navigation settings -->
@@ -143,7 +144,6 @@
   <string name="lcd_density">Densidade do LCD</string>
   <!-- Wakeup options -->
   <!-- Proximity wake -->
-  <!-- Doze options -->
   <!-- Advanced reboot options -->
   <!-- Hardware keys and lights -->
   <!-- Key backlight -->
@@ -163,4 +163,9 @@
   <!-- ATTENTION: RTL languages need to replace left with right -->
   <!-- Clock & Date options -->
   <!-- Advanced, Device specific (DeviceParts) settings  -->
+  <!-- Doze options -->
+  <!--string name="doze_trigger_doubletap_title">Double tap trigger</string-->
+  <!--string name="doze_trigger_doubletap_summary_on">Doze pulse will be triggered by a double tap</string-->
+  <!--string name="doze_trigger_doubletap_summary_off">Double tap sensor will not be utilized as a triggering mechanism (default)</string-->
+  <!-- Increasing ring tone volume -->
 </resources>

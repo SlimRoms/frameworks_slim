@@ -20,10 +20,11 @@
   <string name="disabled">Devre dışı</string>
   <string name="menu_save">Kaydet</string>
   <string name="menu_cancel">Çıkar</string>
+  <string name="advanced_settings">Gelişmiş</string>
+  <!-- Common color picker strings -->
   <!-- Slim settings screens -->
   <string name="navigation_settings_title">Navigasyon</string>
   <string name="interface_settings_title">Arayüz</string>
-  <string name="advanced_settings">Gelişmiş</string>
   <string name="quick_settings">Hızlı ayarlar</string>
   <string name="status_bar_icons">Durum çubuğu simgeleri</string>
   <!-- Navigation settings -->
@@ -236,28 +237,6 @@
   <!-- Proximity wake -->
   <string name="proximity_wake_title">Yanlış uyandırmaları önle</string>
   <string name="proximity_wake_summary">Ekranı uyandırmadan önce yakınlık sensörü kontrolü</string>
-  <!-- Doze options -->
-  <string name="display_category_doze_options_title">Ambient display seçenekleri</string>
-  <string name="doze_settings_title">Gelişmiş ortam ekranı seçenekleri</string>
-  <string name="doze_timeout_title">Ortam ekranı yanma zaman aşımı</string>
-  <string name="doze_timeout_summary">Ekranın bildirim için açık beklediği süre</string>
-  <string name="doze_trigger_pickup_title">Ele alma hareketi tetikleyici</string>
-  <string name="doze_trigger_pickup_summary_on">Cihazı elinize aldığınızda hareket sensörleri ortam ekranı modunda yanmayı tetikler</string>
-  <string name="doze_trigger_pickup_summary_off">Ele alındığında hareket sensörü tetikleme mekanizması olarak kullanılmayacak</string>
-  <string name="doze_trigger_sigmotion_title">Önemli hareket tetikleyici</string>
-  <string name="doze_trigger_sigmotion_summary_on">Doze önemli hareket sensörleriyle tetiklenir</string>
-  <string name="doze_trigger_sigmotion_summary_off">Hareket sensörü bir tetikleme mekanizması olarak kullanılmayacak</string>
-  <string name="doze_trigger_notification_title">Bildirim tetikleyicisi</string>
-  <string name="doze_trigger_notification_summary_on">Doze bildirimler ile tetiklenir</string>
-  <string name="doze_trigger_notification_summary_off">Bildirimler bir tetikleme mekanizması olarak kullanılmayacak</string>
-  <string name="doze_schedule_title">Doze zamanlaması</string>
-  <string name="doze_schedule_summary_on">Önceden tanımlanmış ortam ekranı tekrar aralıkları (normalde [1s,10s,30s,60s,120s]) kullanılacaktır (varsayılan)</string>
-  <string name="doze_schedule_summary_off">Doze yalnızca bildirim başına bir kez yanacak</string>
-  <string name="doze_brightness_title">Doze parlaklık seviyesi</string>
-  <string name="doze_brightness_summary">Doze ekran parlaklık seviyesi (% maksimum izin verilen parlaklık)</string>
-  <string name="doze_wakeup_doubletap_title">Doze bildirimlerimde cihazı uyandırmak için çift dokunun</string>
-  <string name="doze_wakeup_doubletap_summary_on">Cihazı ortam ekranında uyandırmak için ekrana çift dokunmak gerekir</string>
-  <string name="doze_wakeup_doubletap_summary_off">Cihazı ortam ekranında uyandırmak için ekrana bir kez dokunmak gerekir (varsayılan)</string>
   <!-- Advanced reboot options -->
   <string name="advanced_reboot_title">Gelişmiş yeniden başlatma</string>
   <string name="advanced_reboot_dialog_title">Gelişmiş yeniden başlatma menüsü</string>
@@ -458,8 +437,30 @@
   <string name="clock_date_style_lowercase">Küçük harf</string>
   <string name="clock_date_style_uppercase">Büyük harf</string>
   <string name="clock_date_format_custom">Özel java biçimi</string>
-  <string name="status_bar_clock_style_reset_message">Saat rengi sıfırlansın mı?</string>
   <!-- Advanced, Device specific (DeviceParts) settings  -->
   <string name="advanced_options_settings_title">Gelişmiş</string>
   <string name="device_settings_title">Belirli Cihaz Ayarları</string>
+  <!-- Doze options -->
+  <string name="display_category_doze_options_title">Ambient display seçenekleri</string>
+  <string name="doze_settings_title">Gelişmiş ortam ekranı seçenekleri</string>
+  <string name="doze_timeout_title">Ortam ekranı yanma zaman aşımı</string>
+  <string name="doze_timeout_summary">Ekranın bildirim için açık beklediği süre</string>
+  <string name="doze_wakeup_doubletap_title">Doze bildirimlerimde cihazı uyandırmak için çift dokunun</string>
+  <string name="doze_wakeup_doubletap_summary_on">Cihazı ortam ekranında uyandırmak için ekrana çift dokunmak gerekir</string>
+  <string name="doze_wakeup_doubletap_summary_off">Cihazı ortam ekranında uyandırmak için ekrana bir kez dokunmak gerekir (varsayılan)</string>
+  <string name="doze_trigger_pickup_title">Ele alma hareketi tetikleyici</string>
+  <string name="doze_trigger_pickup_summary_on">Cihazı elinize aldığınızda hareket sensörleri ortam ekranı modunda yanmayı tetikler</string>
+  <string name="doze_trigger_pickup_summary_off">Ele alındığında hareket sensörü tetikleme mekanizması olarak kullanılmayacak</string>
+  <string name="doze_trigger_sigmotion_title">Önemli hareket tetikleyici</string>
+  <string name="doze_trigger_sigmotion_summary_on">Doze önemli hareket sensörleriyle tetiklenir</string>
+  <string name="doze_trigger_sigmotion_summary_off">Hareket sensörü bir tetikleme mekanizması olarak kullanılmayacak</string>
+  <!--string name="doze_trigger_doubletap_title">Double tap trigger</string-->
+  <!--string name="doze_trigger_doubletap_summary_on">Doze pulse will be triggered by a double tap</string-->
+  <!--string name="doze_trigger_doubletap_summary_off">Double tap sensor will not be utilized as a triggering mechanism (default)</string-->
+  <string name="doze_trigger_notification_title">Bildirim tetikleyicisi</string>
+  <string name="doze_trigger_notification_summary_on">Doze bildirimler ile tetiklenir</string>
+  <string name="doze_trigger_notification_summary_off">Bildirimler bir tetikleme mekanizması olarak kullanılmayacak</string>
+  <string name="doze_brightness_title">Doze parlaklık seviyesi</string>
+  <string name="doze_brightness_summary">Doze ekran parlaklık seviyesi (% maksimum izin verilen parlaklık)</string>
+  <!-- Increasing ring tone volume -->
 </resources>

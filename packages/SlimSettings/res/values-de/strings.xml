@@ -20,10 +20,12 @@
   <string name="disabled">Deaktiviert</string>
   <string name="menu_save">Speichern</string>
   <string name="menu_cancel">Verwerfen</string>
+  <string name="advanced_settings">Weitere Einstellungen</string>
+  <!-- Common color picker strings -->
+  <string name="color_picker_reset_message">Farbe zurücksetzen?</string>
   <!-- Slim settings screens -->
   <string name="navigation_settings_title">Navigation</string>
   <string name="interface_settings_title">Benutzeroberfläche</string>
-  <string name="advanced_settings">Weitere Einstellungen</string>
   <string name="quick_settings">Schnelleinstellungen</string>
   <string name="status_bar_icons">Statusleisten-Symbole</string>
   <!-- Navigation settings -->
@@ -236,28 +238,6 @@
   <!-- Proximity wake -->
   <string name="proximity_wake_title">Unbeabsichtigtes Aufwecken verhindern</string>
   <string name="proximity_wake_summary">Vor Einschalten des Bildschirms Näherungssensor überprüfen</string>
-  <!-- Doze options -->
-  <string name="display_category_doze_options_title">Inaktivitätsbildschirm-Optionen</string>
-  <string name="doze_settings_title">Erweiterte Doze-Optionen</string>
-  <string name="doze_timeout_title">Timeout für Halbschlafimpulse</string>
-  <string name="doze_timeout_summary">Zeitdauer, in dem der Bildschrim für die Benachrichtigungsanzeige eingeschaltet bleibt</string>
-  <string name="doze_trigger_pickup_title">Auslöser durch Aufhebebewegung</string>
-  <string name="doze_trigger_pickup_summary_on">Der Doze-Puls wird durch das Hochheben des Gerätes hervorgerufen</string>
-  <string name="doze_trigger_pickup_summary_off">In-die-Hand-Nehmen wird nicht als Auslösemechanismus gewertet</string>
-  <string name="doze_trigger_sigmotion_title">Auslösung durch starke Bewegung</string>
-  <string name="doze_trigger_sigmotion_summary_on">Halbschlafimpuls wird durch starke Bewegungen ausgelöst</string>
-  <string name="doze_trigger_sigmotion_summary_off">Starke Bewegungen werden nicht als Auslösemechanismus gewertet</string>
-  <string name="doze_trigger_notification_title">Auslöser für Benachrichtigungen</string>
-  <string name="doze_trigger_notification_summary_on">Halbschlafimpuls wird durch Benachrichtigungen ausgelöst</string>
-  <string name="doze_trigger_notification_summary_off">Benachrichtigungen werden nicht als Auslöser genutzt</string>
-  <string name="doze_schedule_title">Halbschlafschema</string>
-  <string name="doze_schedule_summary_on">Standardmäßig werden voreingestellte Intervalle (normalerweise ([1s,10s,30s,60s,120s]) zur Wiederholung des Halbschlafs verwendet</string>
-  <string name="doze_schedule_summary_off">Halbschlaf wird nur einmal pro Benachrichtigung ausgelöst</string>
-  <string name="doze_brightness_title">Bildschirmhelligkeit im Halbschlaf</string>
-  <string name="doze_brightness_summary">Helligkeitsniveau des Bildschirms nach Halbschlafimpuls (in % des eingestellten Helligkeitsmaximalwertes)</string>
-  <string name="doze_wakeup_doubletap_title">Gerät durch doppeltes Tippen aus Halbschlaf aufwecken</string>
-  <string name="doze_wakeup_doubletap_summary_on">Erfordert ein doppeltes Tippen, um das Gerät aus einem Halbschlafimpuls-Bildschirm zu wecken</string>
-  <string name="doze_wakeup_doubletap_summary_off">Erfordert ein einfaches Tippen, um das Gerät aus einem Halbschlafimpuls-Bildschirm zu wecken (Standard)</string>
   <!-- Advanced reboot options -->
   <string name="advanced_reboot_title">Erweiterter Neustart</string>
   <string name="advanced_reboot_dialog_title">Erweitertes Neustartmenü</string>
@@ -458,8 +438,30 @@
   <string name="clock_date_style_lowercase">Kleinbuchstaben</string>
   <string name="clock_date_style_uppercase">Großbuchstaben</string>
   <string name="clock_date_format_custom">Benutzerdefiniertes Java-Format</string>
-  <string name="status_bar_clock_style_reset_message">Farbe der Uhr zurücksetzen?</string>
   <!-- Advanced, Device specific (DeviceParts) settings  -->
   <string name="advanced_options_settings_title">Weitere Einstellungen</string>
   <string name="device_settings_title">Gerätespezifische Einstellungen</string>
+  <!-- Doze options -->
+  <string name="display_category_doze_options_title">Inaktivitätsbildschirm-Optionen</string>
+  <string name="doze_settings_title">Erweiterte Doze-Optionen</string>
+  <string name="doze_timeout_title">Timeout für Halbschlafimpulse</string>
+  <string name="doze_timeout_summary">Zeitdauer, in dem der Bildschrim für die Benachrichtigungsanzeige eingeschaltet bleibt</string>
+  <string name="doze_wakeup_doubletap_title">Gerät durch doppeltes Tippen aus Halbschlaf aufwecken</string>
+  <string name="doze_wakeup_doubletap_summary_on">Erfordert ein doppeltes Tippen, um das Gerät aus einem Halbschlafimpuls-Bildschirm zu wecken</string>
+  <string name="doze_wakeup_doubletap_summary_off">Erfordert ein einfaches Tippen, um das Gerät aus einem Halbschlafimpuls-Bildschirm zu wecken (Standard)</string>
+  <string name="doze_trigger_pickup_title">Auslöser durch Aufhebebewegung</string>
+  <string name="doze_trigger_pickup_summary_on">Der Doze-Puls wird durch das Hochheben des Gerätes hervorgerufen</string>
+  <string name="doze_trigger_pickup_summary_off">In-die-Hand-Nehmen wird nicht als Auslösemechanismus gewertet</string>
+  <string name="doze_trigger_sigmotion_title">Auslösung durch starke Bewegung</string>
+  <string name="doze_trigger_sigmotion_summary_on">Halbschlafimpuls wird durch starke Bewegungen ausgelöst</string>
+  <string name="doze_trigger_sigmotion_summary_off">Starke Bewegungen werden nicht als Auslösemechanismus gewertet</string>
+  <!--string name="doze_trigger_doubletap_title">Double tap trigger</string-->
+  <!--string name="doze_trigger_doubletap_summary_on">Doze pulse will be triggered by a double tap</string-->
+  <!--string name="doze_trigger_doubletap_summary_off">Double tap sensor will not be utilized as a triggering mechanism (default)</string-->
+  <string name="doze_trigger_notification_title">Auslöser für Benachrichtigungen</string>
+  <string name="doze_trigger_notification_summary_on">Halbschlafimpuls wird durch Benachrichtigungen ausgelöst</string>
+  <string name="doze_trigger_notification_summary_off">Benachrichtigungen werden nicht als Auslöser genutzt</string>
+  <string name="doze_brightness_title">Bildschirmhelligkeit im Halbschlaf</string>
+  <string name="doze_brightness_summary">Helligkeitsniveau des Bildschirms nach Halbschlafimpuls (in % des eingestellten Helligkeitsmaximalwertes)</string>
+  <!-- Increasing ring tone volume -->
 </resources>

@@ -17,13 +17,96 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <!-- Labels for the WRITE_SETTINGS permission -->
+  <string name="permlab_writeSettings">muokkaa Slim järjestelmän asetuksia</string>
+  <string name="permdesc_writeSettings">Tämä käyttöoikeus sallii sovelluksen muokata järjestelmäasetuksia.</string>
   <!-- Labels for the WRITE_SECURE_SETTINGS permission -->
+  <string name="permlab_writeSecureSettings">muokkaa Slim turvallisuusjärjestelmän asetuksia</string>
+  <string name="permdesc_writeSecureSettings">Sallii sovelluksen muokata Slim järjestelmäastuksia. Ei käytössä tavallisille sovelluksille.</string>
   <!-- General Strings -->
+  <string name="reset">Tyhjennä</string>
+  <string name="disabled">Ei käytössä</string>
+  <string name="help">Ohje</string>
+  <string name="attention">Huomio</string>
+  <string name="reset_message">Palauta kaikki merkinnät oletusarvoihin?</string>
+  <string name="help_label">Ohjeet &amp; palaute</string>
+  <string name="no_home_key">Sinulla ei ole mitään näppäintä asetettuna \"Koti\" toimintoon!\n\nTämä voi tehdä laitteestasi käyttökelvottoman!</string>
+  <string name="no_back_key">Sinulla ei ole mitään näppäintä asetettuna \"Takaisin\" toimintoon!\n\nTämä voi tehdä laitteestasi käyttökelvottoman!</string>
   <!-- Settings categories -->
+  <string name="settings_header_category_personalization">Mukauttaminen</string>
   <!-- Shortcut actions -->
+  <string name="shortcut_action_none">Ei mitään</string>
+  <string name="shortcut_action_menu">Valikko</string>
+  <string name="shortcut_action_ring_vib">Hälytys/Värinä</string>
+  <string name="shortcut_action_ring_silent">Ääni/Äänetön</string>
+  <string name="shortcut_action_ring_vib_silent">Ääni/Värinä/Äänetön</string>
+  <string name="shortcut_action_media_next">Musiikki - seuraava kappale</string>
+  <string name="shortcut_action_media_play_pause">Musiikki - toista/tauko</string>
+  <string name="shortcut_action_media_previous">Musiikki - edellinen kappale</string>
+  <string name="shortcut_action_wake_device">Herätä laite</string>
+  <string name="shortcut_action_kill">Lopeta sovellus</string>
+  <string name="shortcut_action_screenshot">Näyttökuva</string>
+  <string name="shortcut_action_lastapp">Viimeisin sovellus</string>
+  <string name="shortcut_action_notifications">Ilmoitukset</string>
+  <string name="shortcut_action_qs">Pikavalikon paneeli</string>
+  <string name="shortcut_action_longpress">Pitkä painallus:</string>
+  <string name="shortcut_action_doubletap">Kaksoisnapautus:</string>
+  <string name="shortcut_action_select_action_longpress">Valitse pitkän painalluksen toiminto:</string>
+  <string name="shortcut_action_select_action_doubletap">Valitse kaksoisnapautuksen tehtävä:</string>
+  <string name="shortcut_action_select_action">Valitse toiminto:</string>
+  <string name="shortcut_action_select_action_newaction">Valitse uusi toiminto:</string>
+  <string name="shortcut_action_reset">Tyhjennä</string>
+  <string name="shortcut_action_help_pie_second_layer_delete_last_entry">Jokaisen %1$s poistaminen luettelossa poistaa toisen pie-kerroksen käytöstä kokonaan.</string>
+  <string name="shortcuts_applications">Sovellukset</string>
+  <string name="shortcuts_select_custom_app_title">Valitse mukautettu sovellus</string>
+  <string name="shortcuts_icon_picker_type">Valitse kuvaketyyppi:</string>
+  <string name="shortcuts_icon_default">Oletus</string>
+  <string name="shortcuts_icon_presets">Järjestelmän kuvakkeet</string>
+  <string name="shortcuts_icon_custom">Kuvat</string>
+  <string name="shortcuts_icon_picker_choose_icon_title">Valitse kuvake</string>
+  <string name="shortcuts_icon_picker_alarm">Hälytys</string>
+  <string name="shortcuts_icon_picker_andy">Andy</string>
+  <string name="shortcuts_icon_picker_battery">Akku</string>
+  <string name="shortcuts_icon_picker_browser">Selain</string>
+  <string name="shortcuts_icon_picker_calendar">Kalenteri</string>
+  <string name="shortcuts_icon_picker_camera">Kamera</string>
+  <string name="shortcuts_icon_picker_cloud">Pilvi</string>
+  <string name="shortcuts_icon_picker_contact">Yhteystieto</string>
+  <string name="shortcuts_icon_picker_directdial">Suorapuhelu</string>
+  <string name="shortcuts_icon_picker_directmessage">Suoraviesti</string>
+  <string name="shortcuts_icon_picker_drive">Drive</string>
+  <string name="shortcuts_icon_picker_dropbox">Dropbox</string>
+  <string name="shortcuts_icon_picker_phone">Puhelin</string>
+  <string name="shortcuts_icon_picker_package">Paketti</string>
+  <string name="shortcuts_icon_picker_pinterest">Pinterest</string>
+  <string name="shortcuts_icon_picker_play">Play</string>
+  <string name="shortcuts_icon_picker_pocket">Pocket</string>
+  <string name="shortcuts_icon_picker_quicksettings">Pika-asetukset</string>
+  <string name="shortcuts_icon_picker_rss">RSS-syöte</string>
+  <string name="shortcuts_icon_picker_sdcard">SD-kortti</string>
+  <string name="shortcuts_icon_picker_search">Haku</string>
+  <string name="shortcuts_icon_picker_sms">Viestintä</string>
+  <string name="shortcuts_icon_picker_tasks">Tehtävät</string>
+  <string name="shortcuts_icon_picker_terminal">Pääte</string>
+  <string name="shortcuts_icon_picker_transit">Siirrä</string>
+  <string name="shortcuts_icon_picker_tv">TV</string>
+  <string name="shortcuts_icon_picker_twitter">Twitter</string>
+  <string name="shortcuts_icon_picker_unlock">Avaa lukitus</string>
   <!-- Button shorcut actions -->
+  <string name="shortcut_action_back">Takaisin</string>
+  <string name="shortcut_action_app">Mukautettu sovellus</string>
+  <string name="shortcut_action_home">Koti</string>
+  <string name="shortcut_action_navbar">Navigointipalkki</string>
+  <string name="shortcut_action_ime">Avaa syöttötavan valinta</string>
+  <string name="shortcut_action_power_menu">Käynnistysvalikko</string>
+  <string name="shortcut_action_smart">Älykäs alasveto</string>
+  <string name="shortcut_action_recent">Viimeisimmät</string>
+  <string name="shortcut_action_power">Näyttö pois</string>
   <!-- Icon color options -->
   <!-- Slimseekbar -->
   <!-- Color Picker -->
   <!-- Proximity speaker -->
+  <string name="prox_auto_speaker_incall_only_summary_on">Lähtevässä puhelussa kuulija aktivoituu vasta kun vastaanottava osapuoli vastaa</string>
+  <string name="prox_auto_speaker_incall_only_summary_off">Kuuloke on aktiivinen kaikissa soittotiloissa (oletus)</string>
+  <!-- Slim Doze-->
+  <!-- Increasing ring tone volume -->
 </resources>
