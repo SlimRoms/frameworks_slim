@@ -66,8 +66,10 @@ import com.android.keyguard.KeyguardHostView.OnDismissAction;
 import com.android.systemui.AutoReinflateContainer;
 import com.android.systemui.AutoReinflateContainer.InflateListener;
 import com.android.systemui.R;
+import com.android.systemui.recents.Recents;
 import com.android.systemui.slimrecent.RecentController;
 import com.android.systemui.slimrecent.SlimScreenPinningRequest;
+import com.android.systemui.stackdivider.WindowManagerProxy;
 import com.android.systemui.statusbar.ExpandableNotificationRow;
 import com.android.systemui.statusbar.SlimNotificationGuts;
 import com.android.systemui.statusbar.StatusBarState;
@@ -77,6 +79,8 @@ import com.android.systemui.statusbar.phone.PhoneStatusBar;
 import com.android.systemui.statusbar.phone.PhoneStatusBarView;
 import com.android.systemui.statusbar.phone.SystemUIDialog;
 import com.android.systemui.statusbar.slim.SlimQuickStatusBarHeader;
+import com.android.systemui.recents.events.activity.UndockingTaskEvent;
+import com.android.systemui.recents.events.EventBus;
 
 import java.util.List;
 
@@ -497,6 +501,26 @@ public class SlimStatusBar extends PhoneStatusBar implements
     }
 
     @Override
+    protected void toggleSplitScreenMode(int metricsDockAction, int metricsUndockAction) {
+        if (mSlimRecents != null) {
+            int dockSide = WindowManagerProxy.getInstance().getDockSide();
+            if (dockSide == WindowManager.DOCKED_INVALID) {
+                mSlimRecents.startMultiWindow();
+                if (metricsDockAction != -1) {
+                    MetricsLogger.action(mContext, metricsDockAction);
+                }
+            } else {
+                EventBus.getDefault().send(new UndockingTaskEvent());
+                if (metricsUndockAction != -1) {
+                    MetricsLogger.action(mContext, metricsUndockAction);
+                }
+            }
+        } else {
+            super.toggleSplitScreenMode(metricsDockAction, metricsUndockAction);
+        }
+    }
+
+    @Override
     protected void toggleRecents() {
         if (mSlimRecents != null) {
             sendCloseSystemWindows(mContext, SYSTEM_DIALOG_REASON_RECENT_APPS);
@@ -536,9 +560,11 @@ public class SlimStatusBar extends PhoneStatusBar implements
 
         if (slimRecents) {
             mSlimRecents = new RecentController(mContext, mLayoutDirection);
+            mRecents = null;
             //mSlimRecents.setCallback(this);
             rebuildRecentsScreen();
         } else {
+            mRecents = getComponent(Recents.class);
             mSlimRecents = null;
         }
     }

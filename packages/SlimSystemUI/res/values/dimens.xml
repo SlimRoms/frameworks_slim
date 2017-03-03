@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
- * Copyright (c) 2016 SlimRoms Project
+ * Copyright (c) 2016-2017 SlimRoms Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,7 +22,7 @@
     <dimen name="slim_recents_elevation">20dp</dimen>
     <dimen name="recent_app_icon_size">48dp</dimen>
     <dimen name="recent_favorite_icon_size">18dp</dimen>
-    <dimen name="recent_thumbnail_width">198dp</dimen>
+    <dimen name="recent_thumbnail_width">190dp</dimen>
     <dimen name="recent_thumbnail_height">140dp</dimen>
     <dimen name="recent_header_width">120dp</dimen>
     <dimen name="recent_text_size">20dp</dimen>

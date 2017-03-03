@@ -191,7 +191,9 @@ public class SlimKeyButtonView extends KeyButtonView {
                 mIsLongpressed = false;
                 setPressed(true);
                 performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
-                if (mClickAction.equals(ActionConstants.ACTION_RECENTS)) {
+                if (mClickAction.equals(ActionConstants.ACTION_RECENTS)
+                        || mLongpressAction.equals(ActionConstants.ACTION_RECENTS)
+                        || mDoubleTapAction.equals(ActionConstants.ACTION_RECENTS)) {
                     mActionsManager.preloadRecentApps();
                 }
                 if (mDoubleTapPending) {
@@ -214,7 +216,9 @@ public class SlimKeyButtonView extends KeyButtonView {
                 break;
             case MotionEvent.ACTION_CANCEL:
                 setPressed(false);
-                if (mClickAction.equals(ActionConstants.ACTION_RECENTS)) {
+                if (mClickAction.equals(ActionConstants.ACTION_RECENTS)
+                        || mLongpressAction.equals(ActionConstants.ACTION_RECENTS)
+                        || mDoubleTapAction.equals(ActionConstants.ACTION_RECENTS)) {
                     mActionsManager.cancelPreloadRecentApps();
                 }
                 // hack to fix ripple getting stuck. exitHardware() starts an animation,
@@ -225,7 +229,9 @@ public class SlimKeyButtonView extends KeyButtonView {
             case MotionEvent.ACTION_UP:
                 final boolean doIt = isPressed();
                 setPressed(false);
-                if (!doIt && mClickAction.equals(ActionConstants.ACTION_RECENTS)) {
+                if (!doIt && mClickAction.equals(ActionConstants.ACTION_RECENTS)
+                        || mLongpressAction.equals(ActionConstants.ACTION_RECENTS)
+                        || mDoubleTapAction.equals(ActionConstants.ACTION_RECENTS)) {
                     mActionsManager.cancelPreloadRecentApps();
                 }
                 if (!mIsLongpressed) {
@@ -276,6 +282,9 @@ public class SlimKeyButtonView extends KeyButtonView {
     private OnClickListener mClickListener = new OnClickListener() {
         @Override
         public void onClick(View v) {
+            if (!mClickAction.equals(ActionConstants.ACTION_RECENTS)) {
+                mActionsManager.cancelPreloadRecentApps();
+            }
             Action.processAction(mContext, mClickAction, false);
             return;
         }
@@ -296,7 +305,12 @@ public class SlimKeyButtonView extends KeyButtonView {
                     b = false;
                 }
             }
-            if (b) Action.processAction(mContext, mLongpressAction, true);
+            if (b) {
+                if (!mLongpressAction.equals(ActionConstants.ACTION_RECENTS)) {
+                    mActionsManager.cancelPreloadRecentApps();
+                }
+                Action.processAction(mContext, mLongpressAction, true);
+            }
             return true;
         }
     };
@@ -307,6 +321,9 @@ public class SlimKeyButtonView extends KeyButtonView {
     }
 
     private void doubleTap() {
+        if (!mDoubleTapAction.equals(ActionConstants.ACTION_RECENTS)) {
+            mActionsManager.cancelPreloadRecentApps();
+        }
         Action.processAction(mContext, mDoubleTapAction, true);
     }
 

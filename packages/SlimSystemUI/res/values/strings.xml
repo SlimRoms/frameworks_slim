@@ -68,4 +68,8 @@
     <string name="accessibility_quick_settings_usb_tether_changed_on">USB tethering turned on</string>
     <string name="quick_settings_usb_tether_label">USB tethering</string>
 
+    <!-- Slim Recents -->
+    <string name="recents_multiwin_warning">A multiwindow session is already active.\nJust tap an app if you want to dock it now.</string>
+    <string name="recents_multiwin_nolastapp">You removed all recents, please choose an app from launcher or drawer.</string>
+
 </resources>

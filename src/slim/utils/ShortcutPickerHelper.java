@@ -18,6 +18,8 @@ package slim.utils;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.content.Intent.ShortcutIconResource;
 import android.content.pm.PackageManager;
@@ -68,6 +70,15 @@ public class ShortcutPickerHelper {
                     processShortcut(data, REQUEST_PICK_APPLICATION, REQUEST_CREATE_SHORTCUT);
                     break;
             }
+        }
+    }
+
+    public static void pickShortcut(Context context) {
+        if (context != null) {
+            ComponentName comp = new ComponentName("com.slim.settings",
+                    "com.slim.settings.activities.ShortcutPickerActivity");
+            Intent intent = new Intent(Intent.ACTION_MAIN);
+            context.startActivity(intent);
         }
     }
 

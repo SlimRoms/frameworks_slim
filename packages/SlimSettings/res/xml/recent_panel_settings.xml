@@ -80,11 +80,4 @@
             slim:defaultColor="#00ffffff"
             slim:alphaSliderEnabled="true" />
 
-        <slim.preference.colorpicker.ColorPickerPreference
-            android:dependency="use_slim_recents"
-            android:key="recent_card_text_color"
-            android:title="@string/recent_card_text_color_title"
-            slim:defaultColor="#00ffffff"
-            slim:alphaSliderEnabled="true" />
-
 </PreferenceScreen>

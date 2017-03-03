@@ -23,6 +23,7 @@ LOCAL_SRC_FILES := $(call all-java-files-under,src)
 LOCAL_SRC_FILES += $(call all-Iaidl-files-under,src)
 
 LOCAL_JAVA_LIBRARIES := \
+    android-support-v7-cardview \
     android-support-v7-preference \
     android-support-v7-recyclerview \
     android-support-annotations
