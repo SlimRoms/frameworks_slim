@@ -42,6 +42,7 @@ import android.graphics.RectF;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.ParcelFileDescriptor;
 import android.os.Process;
 import android.os.RemoteException;
@@ -60,7 +61,6 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.android.systemui.R;
 import com.android.systemui.SystemUIApplication;
@@ -203,24 +203,35 @@ public class RecentPanelView {
                     } else if (id == OPTION_MARKET) {
                         intent = getStoreIntent();
                     } else if (id == OPTION_MULTIWINDOW) {
-                        //If a multiwin session is already active, ask the user to close it
+                        boolean wasDocked = false;
                         int dockSide = WindowManagerProxy.getInstance().getDockSide();
                         if (dockSide != WindowManager.DOCKED_INVALID) {
-                            Toast mWarningToast = Toast.makeText(mContext,
-                                    R.string.recents_multiwin_warning, Toast.LENGTH_LONG);
-                            mWarningToast.show();
-                            return;
+                            try {
+                            // Resize the docked stack to fullscreen
+                            //  to disable current multiwindow mode
+                                ActivityManagerNative.getDefault().resizeStack(
+                                                    ActivityManager.StackId.DOCKED_STACK_ID,
+                                                    null, true, true, false, -1);
+                            } catch (RemoteException e) {}
+                            wasDocked = true;
                         }
-
                         ActivityOptions options = ActivityOptions.makeBasic();
                         options.setDockCreateMode(0);
                         options.setLaunchStackId(ActivityManager.StackId.DOCKED_STACK_ID);
-                        try {
-                            ActivityManagerNative.getDefault().startActivityFromRecents(
-                                    task.persistentTaskId, options.toBundle());
-                            mController.openLastApptoBottom();
-                            clearOptions();
-                        } catch (RemoteException e) {}
+                        Handler mHandler = new Handler();
+                        mHandler.postDelayed(new Runnable() {
+                            public void run() {
+                                try {
+                                    ActivityManagerNative.getDefault()
+                                            .startActivityFromRecents(task.persistentTaskId,
+                                             options.toBundle());
+                                    mController.openLastApptoBottom();
+                                    clearOptions();
+                                } catch (RemoteException e) {}
+                            }
+                        // If we disable a running multiwindow mode,
+                        //  wait a little bit before docking the new apps
+                        }, wasDocked ? 100 : 0);
                         return;
                     }
                     if (intent != null) {
@@ -412,31 +423,38 @@ public class RecentPanelView {
 
                 unwantedDrag = true; //restore the drag check
 
-                // If a multiwin session is already active, ask the user to close it
+                boolean wasDocked = false;
                 int dockSide = WindowManagerProxy.getInstance().getDockSide();
                 if (dockSide != WindowManager.DOCKED_INVALID) {
-                    Toast mWarningToast = Toast.makeText(mContext,
-                            R.string.recents_multiwin_warning, Toast.LENGTH_LONG);
-                    mWarningToast.show();
-                    return;
+                    try {
+                        // Resize the docked stack to fullscreen to disable current multiwindow mode
+                        ActivityManagerNative.getDefault().resizeStack(
+                                            ActivityManager.StackId.DOCKED_STACK_ID,
+                                            null, true, true, false, -1);
+                    } catch (RemoteException e) {}
+                    wasDocked = true;
                 }
-
                 ActivityOptions options = ActivityOptions.makeBasic();
-                /* Activity Manager let's dock the app to top or bottom dinamically,
-                with the setDockCreateMode DOCKED_STACK_CREATE_MODE_TOP_OR_LEFT is 0,
-                DOCKED_STACK_CREATE_MODE_BOTTOM_OR_RIGHT is 1. Thus if we drag down,
-                dock app to bottom, if we drag up dock app to top*/
-                options.setDockCreateMode(finalPos > initPos ? 0 : 1);
+                options.setDockCreateMode(0); //0 means dock app to top, 1 to bottom
                 options.setLaunchStackId(ActivityManager.StackId.DOCKED_STACK_ID);
-                try {
-                    ActivityManagerNative.getDefault()
-                            .startActivityFromRecents(taskid, options.toBundle());
-                    card = (RecentCard) mCardAdapter.getCard(finalPos);
-                    int newTaskid = card.task.persistentTaskId;
-                    /*after we docked our main app, on the other side of the screen we
-                    open the app we dragged the main app over*/
-                    mController.openOnDraggedApptoOtherSide(newTaskid);
-                } catch (RemoteException e) {}
+                Handler mHandler = new Handler();
+                mHandler.postDelayed(new Runnable() {
+                    public void run() {
+                        try {
+                            card = (RecentCard) mCardAdapter.getCard(finalPos);
+                            int newTaskid = card.task.persistentTaskId;
+                            ActivityManagerNative.getDefault()
+                                    .startActivityFromRecents((finalPos > initPos) ? taskid
+                                    : newTaskid, options.toBundle());
+                            /*after we docked our main app, on the other side of the screen we
+                            open the app we dragged the main app over*/
+                            mController.openOnDraggedApptoOtherSide((finalPos > initPos)
+                                    ? newTaskid : taskid);
+                        } catch (RemoteException e) {}
+                    }
+                /*if we disabled a running multiwindow mode, just wait a little bit
+                before docking the new apps*/
+                }, wasDocked ? 100 : 0);
             }
 
             @Override
@@ -953,7 +971,6 @@ public class RecentPanelView {
             final List<ActivityManager.RecentTaskInfo> recentTasks =
                     am.getRecentTasksForUser(ActivityManager.getMaxRecentTasksStatic(),
                     ActivityManager.RECENT_IGNORE_HOME_STACK_TASKS
-                            | ActivityManager.RECENT_INGORE_DOCKED_STACK_TOP_TASK
                             | ActivityManager.RECENT_INGORE_PINNED_STACK_TASKS
                             | ActivityManager.RECENT_IGNORE_UNAVAILABLE
                             | ActivityManager.RECENT_INCLUDE_PROFILES,
