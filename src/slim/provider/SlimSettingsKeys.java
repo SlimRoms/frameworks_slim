@@ -368,6 +368,12 @@ public final class SlimSettingsKeys {
         public static final String RECENT_CARD_TEXT_COLOR = "recent_card_text_color";
 
         /**
+         * Custom icon pack name to use for Slim Recents
+         * @hide
+         */
+        public static final String SLIM_RECENTS_ICON_PACK = "slim_recents_icon_pack";
+
+        /**
          * Status bar battery %
          * 0: Hide the battery percentage
          * 1: Display the battery percentage inside the icon
