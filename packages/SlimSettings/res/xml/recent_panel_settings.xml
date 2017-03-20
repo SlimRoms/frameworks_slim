@@ -80,4 +80,8 @@
             slim:defaultColor="#00ffffff"
             slim:alphaSliderEnabled="true" />
 
+        <Preference
+            android:key="slim_icon_pack"
+            android:title="@string/slim_icon_pack_title"
+            android:summary="@string/slim_icon_pack_summary" />
 </PreferenceScreen>

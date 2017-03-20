@@ -671,8 +671,8 @@ public class RecentController implements RecentPanelView.OnExitListener,
             resolver.registerContentObserver(SlimSettings.System.getUriFor(
                     SlimSettings.System.RECENT_CARD_BG_COLOR),
                     false, this, UserHandle.USER_ALL);
-            resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.SLIM_RECENTS_ICON_PACK),
+            resolver.registerContentObserver(SlimSettings.System.getUriFor(
+                    SlimSettings.System.SLIM_RECENTS_ICON_PACK),
                     false, this, UserHandle.USER_ALL);
             update();
         }
@@ -737,8 +737,8 @@ public class RecentController implements RecentPanelView.OnExitListener,
                         mContext.getResources().getColor(R.color.recent_background));
             }
 
-            String currentIconPack = Settings.System.getString(resolver,
-                Settings.System.SLIM_RECENTS_ICON_PACK);
+            String currentIconPack = SlimSettings.System.getString(resolver,
+                SlimSettings.System.SLIM_RECENTS_ICON_PACK);
             IconPackHelper.getInstance(mContext).updatePrefs(currentIconPack);
         }
     }
