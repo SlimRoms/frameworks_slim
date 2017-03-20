@@ -39,4 +39,5 @@
     <!-- ActionBar contentInsetStart -->
     <dimen name="actionbar_contentInsetStart">16dp</dimen>
 
+    <dimen name="alert_dialog_padding_material">20dp</dimen>
 </resources>
