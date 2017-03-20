@@ -384,6 +384,7 @@ public class IconPackHelper {
         mCurrentIconPack = iconPack;
         if (!TextUtils.isEmpty(iconPack) || TextUtils.isEmpty(mCurrentIconPack)){
             unloadIconPack();
+            CacheController.getInstance(mContext).clearCache();
         }
         if (!TextUtils.isEmpty(mCurrentIconPack)){
             loadIconPack();
