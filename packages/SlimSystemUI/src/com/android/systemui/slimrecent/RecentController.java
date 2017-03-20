@@ -41,6 +41,7 @@ import android.os.Handler;
 import android.os.RemoteException;
 import android.os.SystemClock;
 import android.os.UserHandle;
+import android.provider.Settings;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -639,6 +640,8 @@ public class RecentController implements RecentPanelView.OnExitListener,
         }
     };
 
+    protected static boolean shouldHidePanel = true;
+
     /**
      * Settingsobserver to take care of the user settings.
      * Either gravity or scale factor of our recent panel can change.
@@ -674,18 +677,23 @@ public class RecentController implements RecentPanelView.OnExitListener,
             resolver.registerContentObserver(SlimSettings.System.getUriFor(
                     SlimSettings.System.SLIM_RECENTS_ICON_PACK),
                     false, this, UserHandle.USER_ALL);
-            update();
-        }
-
-        @Override
-        public void onChange(boolean selfChange) {
-            super.onChange(selfChange);
+            resolver.registerContentObserver(SlimSettings.System.getUriFor(
+                    SlimSettings.System.RECENT_PANEL_FAVORITES),
+                    false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.LOCK_TO_APP_ENABLED),
+                    false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(SlimSettings.System.getUriFor(
+                    SlimSettings.System.RECENTS_MAX_APPS),
+                    false, this, UserHandle.USER_ALL);
             update();
         }
 
         public void update() {
-            // Close recent panel if it is opened.
-            hideRecents(false);
+            // Only close panel if not setting a new favorite app
+            //(see RecentPanelView handleFavoriteEntry)
+            if (shouldHidePanel) hideRecents(false);
+            shouldHidePanel = true;
 
             ContentResolver resolver = mContext.getContentResolver();
 
@@ -707,6 +715,7 @@ public class RecentController implements RecentPanelView.OnExitListener,
             if (scaleFactor != mScaleFactor) {
                 mScaleFactor = scaleFactor;
                 rebuildRecentsScreen();
+                CacheController.getInstance(mContext).clearCache();
             }
             if (mRecentPanelView != null) {
                 mRecentPanelView.setScaleFactor(mScaleFactor);
@@ -723,6 +732,15 @@ public class RecentController implements RecentPanelView.OnExitListener,
                 mRecentPanelView.setCardColor(SlimSettings.System.getIntForUser(
                     resolver, SlimSettings.System.RECENT_CARD_BG_COLOR, 0x00ffffff,
                     UserHandle.USER_CURRENT));
+                mRecentPanelView.setCurrentFavorites(SlimSettings.System.getStringForUser(
+                        resolver, SlimSettings.System.RECENT_PANEL_FAVORITES,
+                        UserHandle.USER_CURRENT));
+                mRecentPanelView.isScreenPinningEnabled(Settings.System.getIntForUser(
+                        resolver, Settings.System.LOCK_TO_APP_ENABLED, 0,
+                        UserHandle.USER_CURRENT) == 1);
+                mRecentPanelView.setMaxAppsToLoad(SlimSettings.System.getIntForUser(
+                        resolver, SlimSettings.System.RECENTS_MAX_APPS, 15,
+                        UserHandle.USER_CURRENT));
             }
 
             // Update colors in RecentPanelView
