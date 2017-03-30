@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3aa7f18b_2e83e8cd",
+        "filename": "packages/SlimSystemUI/src/com/android/systemui/slimrecent/AppIconLoader.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2017-03-30T16:30:39Z",
+      "side": 1,
+      "message": "to long",
+      "range": {
+        "startLine": 130,
+        "startChar": 16,
+        "endLine": 130,
+        "endChar": 109
+      },
+      "revId": "9ea2a2c37eeb17649f68278a8cfb740bf3f3448f",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3aa7f18b_4e88a4e7",
+        "filename": "packages/SlimSystemUI/src/com/android/systemui/slimrecent/AppIconLoader.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2017-03-30T16:30:39Z",
+      "side": 1,
+      "message": "to long",
+      "range": {
+        "startLine": 132,
+        "startChar": 20,
+        "endLine": 132,
+        "endChar": 106
+      },
+      "revId": "9ea2a2c37eeb17649f68278a8cfb740bf3f3448f",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3aa7f18b_ee6cf038",
+        "filename": "packages/SlimSystemUI/src/com/android/systemui/slimrecent/RecentController.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 693,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2017-03-30T16:30:39Z",
+      "side": 1,
+      "message": "to long",
+      "range": {
+        "startLine": 693,
+        "startChar": 12,
+        "endLine": 693,
+        "endChar": 106
+      },
+      "revId": "9ea2a2c37eeb17649f68278a8cfb740bf3f3448f",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    }
+  ]
+}
