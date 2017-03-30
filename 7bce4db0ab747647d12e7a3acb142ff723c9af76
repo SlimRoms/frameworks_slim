@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3aa7f18b_2e0c4894",
+        "filename": "packages/SlimSystemUI/src/com/android/systemui/slimrecent/IconPackHelper.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2017-03-30T16:24:32Z",
+      "side": 1,
+      "message": "to long",
+      "range": {
+        "startLine": 173,
+        "startChar": 20,
+        "endLine": 173,
+        "endChar": 103
+      },
+      "revId": "7bce4db0ab747647d12e7a3acb142ff723c9af76",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3aa7f18b_4e1184ab",
+        "filename": "packages/SlimSystemUI/src/com/android/systemui/slimrecent/IconPackHelper.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 370,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2017-03-30T16:24:32Z",
+      "side": 1,
+      "message": "to long",
+      "range": {
+        "startLine": 370,
+        "startChar": 8,
+        "endLine": 370,
+        "endChar": 101
+      },
+      "revId": "7bce4db0ab747647d12e7a3acb142ff723c9af76",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    }
+  ]
+}
