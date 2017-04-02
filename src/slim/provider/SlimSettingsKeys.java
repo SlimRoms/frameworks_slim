@@ -27,12 +27,6 @@ public final class SlimSettingsKeys {
         public static final String NAVIGATION_BAR_CONFIG = "navigation_bar_config";
 
         /**
-         * Check the proximity sensor during wakeup
-         * @hide
-         */
-        public static final String PROXIMITY_ON_WAKE = "proximity_on_wake";
-
-        /**
          * wake up when plugged or unplugged
          *
          * @hide

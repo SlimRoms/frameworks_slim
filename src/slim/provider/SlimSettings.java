@@ -793,8 +793,6 @@ public final class SlimSettings {
         }
 
         /** @hide */
-        public static final Validator PROXIMITY_ON_WAKE_VALIDATOR = sBooleanValidator;
-        /** @hide */
         public static final Validator WAKEUP_WHEN_PLUGGED_UNPLUGGED_VALIDATOR = sBooleanValidator;
         /** @hide */
         public static final Validator PROXIMITY_AUTO_SPEAKER_VALIDATOR = sBooleanValidator;
@@ -871,7 +869,6 @@ public final class SlimSettings {
         public static final Map<String, Validator> VALIDATORS =
                 new ArrayMap<String, Validator>();
         static {
-            VALIDATORS.put(PROXIMITY_ON_WAKE, PROXIMITY_ON_WAKE_VALIDATOR);
             VALIDATORS.put(WAKEUP_WHEN_PLUGGED_UNPLUGGED, WAKEUP_WHEN_PLUGGED_UNPLUGGED_VALIDATOR);
             VALIDATORS.put(PROXIMITY_AUTO_SPEAKER, PROXIMITY_AUTO_SPEAKER_VALIDATOR);
             VALIDATORS.put(PROXIMITY_AUTO_SPEAKER_DELAY, PROXIMITY_AUTO_SPEAKER_DELAY_VALIDATOR);
