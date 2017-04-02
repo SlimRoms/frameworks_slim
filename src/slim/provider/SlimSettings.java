@@ -838,6 +838,8 @@ public final class SlimSettings {
         public static final Validator DOZE_TRIGGER_NOTIFICATION_VALIDATOR = sBooleanValidator;
         /** @hide */
 //        public static final Validator DOZE_TRIGGER_DOUBLETAP_VALIDATOR = sBooleanValidator;
+        /** @hide */
+        public static final Validator PROXIMITY_ON_WAKE_VALIDATOR = sBooleanValidator;
 
         /**
          * These are all public system settings
@@ -892,6 +894,7 @@ public final class SlimSettings {
             VALIDATORS.put(DOZE_TRIGGER_SIGMOTION, DOZE_TRIGGER_SIGMOTION_VALIDATOR);
             VALIDATORS.put(DOZE_TRIGGER_NOTIFICATION, DOZE_TRIGGER_NOTIFICATION_VALIDATOR);
 //            VALIDATORS.put(DOZE_TRIGGER_DOUBLETAP, DOZE_TRIGGER_DOUBLETAP_VALIDATOR);
+            VALIDATORS.put(PROXIMITY_ON_WAKE, PROXIMITY_ON_WAKE_VALIDATOR);
         };
     }
 
