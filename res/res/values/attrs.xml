@@ -59,6 +59,9 @@
             <enum name="system" value="0" />
             <enum name="global" value="1" />
             <enum name="secure" value="2" />
+            <enum name="aosp-system" value="3" />
+            <enum name="aosp-global" value="4" />
+            <enum name="aosp-secure" value="5" />
         </attr>
         <attr name="listDependency" format="string" />
         <attr name="hidePreference" format="boolean" />
