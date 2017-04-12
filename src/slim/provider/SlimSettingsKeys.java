@@ -666,6 +666,12 @@ public final class SlimSettingsKeys {
          */
         public static final String NOTIFICATION_LIGHT_PULSE_CUSTOM_VALUES =
                 "notification_light_pulse_custom_values";
+
+        /**
+         * Double tap to sleep gesture on status bar
+         * @hide
+         */
+        public static final String DOUBLE_TAP_SLEEP_GESTURE = "double_tap_sleep_gesture";
     }
 
     public interface Secure {

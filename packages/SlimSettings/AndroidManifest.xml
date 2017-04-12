@@ -105,6 +105,21 @@
         </activity>
 
         <activity
+            android:name="com.slim.settings.activities.GestureSettingsActivity"
+            android:label="@string/gesture_settings_title"
+            android:icon="@drawable/ic_settings_interface"
+            android:theme="@style/Theme.Settings" >
+
+            <intent-filter>
+                <action android:name="com.android.settings.action.EXTRA_SETTINGS" />
+            </intent-filter>
+
+            <meta-data
+                android:name="com.android.settings.category"
+                android:value="com.android.settings.category.personalization" />
+        </activity>
+
+        <activity
             android:name="com.slim.settings.Settings$DozeSettingsActivity"
             android:label="@string/doze_settings_title"
             android:theme="@style/Theme.Settings" >
