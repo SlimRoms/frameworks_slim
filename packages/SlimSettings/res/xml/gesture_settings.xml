@@ -20,17 +20,12 @@ limitations under the License.
     android:key="slim_gesture_settings"
     android:title="@string/gesture_settings_title">
 
-    <!--<slim.preference.SlimSwitchPreference
+
+    <slim.preference.SlimSwitchPreference
         android:key="double_tap_to_wake"
         android:title="@string/tap_to_wake_title"
         android:summary="@string/tap_to_wake_summary"
         slim:slimSettingType="aosp-secure"
-        slim:hidePreference="@*android:bool/config_supportDoubleTapWake" />-->
-
-    <slim.preference.SlimActionsPreference
-        android:key="key_wake_action"
-        android:title="@string/tap_to_wake_title"
-        slim:showWake="true"
         slim:hidePreference="@*android:bool/config_supportDoubleTapWake" />
 
     <slim.preference.SlimSwitchPreference

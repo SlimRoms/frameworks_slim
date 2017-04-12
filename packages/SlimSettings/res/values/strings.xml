@@ -560,4 +560,16 @@
     <!-- Lights settings, LED notification -->
     <string name="led_notification_title">Light settings</string>
     <string name="led_notification_text">LED light enabled by settings</string>
+
+    <!-- Gestures -->
+    <string name="gesture_settings_title">Gestures</string>
+
+    <!-- Label for tap to wake setting [CHAR LIMIT=30] -->
+    <string name="tap_to_wake_title">Tap to wake</string>
+
+    <!-- Summary for take to wake setting [CHAR LIMIT=90] -->
+    <string name="tap_to_wake_summary">Double-tap anywhere on the screen to wake device</string>
+
+    <string name="double_tap_sleep_title">Double-tap to sleep</string>
+    <string name="double_tap_sleep_summary">Double-tap on the status bar to turn off the display</string>
 </resources>
