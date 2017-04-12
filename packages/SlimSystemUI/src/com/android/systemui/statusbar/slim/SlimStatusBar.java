@@ -22,6 +22,7 @@ import android.app.ActivityManager;
 import android.app.ActivityManager.RunningAppProcessInfo;
 import android.app.ActivityManagerNative;
 import android.app.IActivityManager;
+import android.app.StatusBarManager;
 import android.content.ComponentName;
 import android.content.ContentResolver;
 import android.content.Context;
@@ -43,12 +44,14 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
 import android.os.Messenger;
+import android.os.PowerManager;
 import android.os.Process;
 import android.os.RemoteException;
 import android.os.UserHandle;
 import android.service.notification.StatusBarNotification;
 import android.util.Log;
 import android.view.Display;
+import android.view.GestureDetector;
 import android.util.Slog;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -110,11 +113,11 @@ public class SlimStatusBar extends PhoneStatusBar implements
     private Display mDisplay;
     private SlimCommandQueue mSlimCommandQueue;
     private Handler mHandler = new H();
-    
+
     // for disabling the status bar
     int mDisabled1 = 0;
     int mDisabled2 = 0;
-    
+
     private int mDisabledUnmodified1;
     private int mDisabledUnmodified2;
 
@@ -124,6 +127,8 @@ public class SlimStatusBar extends PhoneStatusBar implements
     private boolean mHasNavigationBar = false;
     private boolean mNavigationBarAttached = false;
     private boolean mDisableHomeLongpress = false;
+
+    private boolean mDoubleTapToSleepEnabled;
 
     private SlimQuickStatusBarHeader mSlimQuickStatusBarHeader;
 
@@ -187,6 +192,9 @@ public class SlimStatusBar extends PhoneStatusBar implements
             resolver.registerContentObserver(SlimSettings.System.getUriFor(
                     SlimSettings.System.DIM_NAV_BUTTONS_TOUCH_ANYWHERE),
                     false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(SlimSettings.System.getUriFor(
+                    SlimSettings.System.DOUBLE_TAP_SLEEP_GESTURE),
+                    false, this, UserHandle.USER_ALL);
         }
 
         @Override
@@ -239,6 +247,12 @@ public class SlimStatusBar extends PhoneStatusBar implements
             } else if (uri.equals(SlimSettings.System.getUriFor(
                     SlimSettings.System.NAVIGATION_BAR_SHOW))) {
                 updateNavigationBarVisibility();
+            } else if (uri.equals(SlimSettings.System.getUriFor(
+                    SlimSettings.System.DOUBLE_TAP_SLEEP_GESTURE))) {
+                mDoubleTapToSleepEnabled = SlimSettings.System.getIntForUser(
+                        mContext.getContentResolver(),
+                        SlimSettings.System.DOUBLE_TAP_SLEEP_GESTURE,
+                        1, UserHandle.USER_CURRENT) == 1;
             }
         }
     }
@@ -303,16 +317,47 @@ public class SlimStatusBar extends PhoneStatusBar implements
             }
         });
 
+        GestureDetector doubleTapGesture = new GestureDetector(mContext,
+                new GestureDetector.SimpleOnGestureListener() {
+            @Override
+            public boolean onDoubleTap(MotionEvent e) {
+                PowerManager pm = (PowerManager) mContext.getSystemService(Context.POWER_SERVICE);
+                if (pm != null) {
+                    pm.goToSleep(e.getEventTime());
+                }
+                return true;
+            }
+        });
+
+        mNotificationPanel.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (mDoubleTapToSleepEnabled) {
+                    doubleTapGesture.onTouchEvent(event);
+                }
+                return false;
+            }
+        });
+
+        mStatusBarView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (mDoubleTapToSleepEnabled) {
+                    doubleTapGesture.onTouchEvent(event);
+                }
+                return false;
+            }
+        });
+
         return mStatusBarView;
     }
-    
+
     /**
      * State is one or more of the DISABLE constants from StatusBarManager.
      */
     @Override
     public void disable(int state1, int state2, boolean animate) {
         super.disable(state1, state2, animate);
-        animate &= mStatusBarWindowState != WINDOW_STATE_HIDDEN;
         mDisabledUnmodified1 = state1;
         mDisabledUnmodified2 = state2;
         state1 = adjustDisableFlags(state1);
@@ -323,7 +368,7 @@ public class SlimStatusBar extends PhoneStatusBar implements
         final int old2 = mDisabled2;
         final int diff2 = state2 ^ old2;
         mDisabled2 = state2;
-        
+
         if ((diff1 & StatusBarManager.DISABLE_SYSTEM_INFO) != 0) {
             if ((state1 & StatusBarManager.DISABLE_SYSTEM_INFO) != 0) {
                 mSlimIconController.hideSystemIconArea(animate);
@@ -336,7 +381,7 @@ public class SlimStatusBar extends PhoneStatusBar implements
             boolean visible = (state1 & StatusBarManager.DISABLE_CLOCK) == 0;
             mSlimIconController.setClockVisibility(visible);
         }
-        
+
         if ((diff1 & (StatusBarManager.DISABLE_HOME
                         | StatusBarManager.DISABLE_RECENT
                         | StatusBarManager.DISABLE_BACK
@@ -344,7 +389,7 @@ public class SlimStatusBar extends PhoneStatusBar implements
             // the nav bar will take care of these
             if (mSlimNavigationBarView != null) mSlimNavigationBarView.setDisabledFlags(state1);
         }
-        
+
         if ((diff1 & StatusBarManager.DISABLE_NOTIFICATION_ICONS) != 0) {
             if ((state1 & StatusBarManager.DISABLE_NOTIFICATION_ICONS) != 0) {
                 mSlimIconController.hideNotificationIconArea(animate);

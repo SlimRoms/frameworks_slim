@@ -528,6 +528,11 @@ public final class SlimSettingsKeys {
          */
         public static final String PROXIMITY_ON_WAKE = "proximity_on_wake";
 
+        /**
+         * Double tap to sleep gesture on status bar
+         * @hide
+         */
+        public static final String DOUBLE_TAP_SLEEP_GESTURE = "double_tap_sleep_gesture";
     }
 
     public interface Secure {
