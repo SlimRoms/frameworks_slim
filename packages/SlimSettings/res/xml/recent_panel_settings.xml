@@ -15,7 +15,7 @@
 -->
 
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:settings="http://schemas.android.com/apk/res/com.android.settings"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:slim="http://schemas.android.com/apk/res/slim"
         android:title="@string/recent_panel_category">
 
@@ -70,14 +70,12 @@
             android:dependency="use_slim_recents"
             android:key="recent_panel_bg_color"
             android:title="@string/recent_panel_bg_color_title"
-            slim:defaultColor="#00ffffff"
-            slim:alphaSliderEnabled="true" />
+            app:defaultColor="#00ffffff" />
 
         <slim.preference.colorpicker.ColorPickerPreference
             android:dependency="use_slim_recents"
             android:key="recent_card_bg_color"
             android:title="@string/recent_card_bg_color_title"
-            slim:defaultColor="#00ffffff"
-            slim:alphaSliderEnabled="true" />
+            app:defaultColor="#00ffffff" />
 
 </PreferenceScreen>

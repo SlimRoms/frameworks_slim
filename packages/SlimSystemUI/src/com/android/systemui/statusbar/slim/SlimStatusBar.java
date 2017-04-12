@@ -110,6 +110,13 @@ public class SlimStatusBar extends PhoneStatusBar implements
     private Display mDisplay;
     private SlimCommandQueue mSlimCommandQueue;
     private Handler mHandler = new H();
+    
+    // for disabling the status bar
+    int mDisabled1 = 0;
+    int mDisabled2 = 0;
+    
+    private int mDisabledUnmodified1;
+    private int mDisabledUnmodified2;
 
     private SlimStatusBarIconController mSlimIconController;
     private SlimScreenPinningRequest mSlimScreenPinningRequest;
@@ -297,6 +304,54 @@ public class SlimStatusBar extends PhoneStatusBar implements
         });
 
         return mStatusBarView;
+    }
+    
+    /**
+     * State is one or more of the DISABLE constants from StatusBarManager.
+     */
+    @Override
+    public void disable(int state1, int state2, boolean animate) {
+        super.disable(state1, state2, animate);
+        animate &= mStatusBarWindowState != WINDOW_STATE_HIDDEN;
+        mDisabledUnmodified1 = state1;
+        mDisabledUnmodified2 = state2;
+        state1 = adjustDisableFlags(state1);
+        final int old1 = mDisabled1;
+        final int diff1 = state1 ^ old1;
+        mDisabled1 = state1;
+
+        final int old2 = mDisabled2;
+        final int diff2 = state2 ^ old2;
+        mDisabled2 = state2;
+        
+        if ((diff1 & StatusBarManager.DISABLE_SYSTEM_INFO) != 0) {
+            if ((state1 & StatusBarManager.DISABLE_SYSTEM_INFO) != 0) {
+                mSlimIconController.hideSystemIconArea(animate);
+            } else {
+                mSlimIconController.showSystemIconArea(animate);
+            }
+        }
+
+        if ((diff1 & StatusBarManager.DISABLE_CLOCK) != 0) {
+            boolean visible = (state1 & StatusBarManager.DISABLE_CLOCK) == 0;
+            mSlimIconController.setClockVisibility(visible);
+        }
+        
+        if ((diff1 & (StatusBarManager.DISABLE_HOME
+                        | StatusBarManager.DISABLE_RECENT
+                        | StatusBarManager.DISABLE_BACK
+                        | StatusBarManager.DISABLE_SEARCH)) != 0) {
+            // the nav bar will take care of these
+            if (mSlimNavigationBarView != null) mSlimNavigationBarView.setDisabledFlags(state1);
+        }
+        
+        if ((diff1 & StatusBarManager.DISABLE_NOTIFICATION_ICONS) != 0) {
+            if ((state1 & StatusBarManager.DISABLE_NOTIFICATION_ICONS) != 0) {
+                mSlimIconController.hideNotificationIconArea(animate);
+            } else {
+                mSlimIconController.showNotificationIconArea(animate);
+            }
+        }
     }
 
     @Override
