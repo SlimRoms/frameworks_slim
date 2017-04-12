@@ -19,6 +19,7 @@ package slim.preference;
 
 import android.content.Context;
 import android.os.UserHandle;
+import android.provider.Settings;
 import android.util.Log;
 
 import android.support.v7.preference.ListPreference;
@@ -36,6 +37,9 @@ public class SlimPreferenceManager {
     public static final int SLIM_SYSTEM_SETTING = 0;
     public static final int SLIM_GLOBAL_SETTING = 1;
     public static final int SLIM_SECURE_SETTING = 2;
+    public static final int AOSP_SYSTEM_SETTING = 3;
+    public static final int AOSP_GLOBAL_SETTING = 4;
+    public static final int AOSP_SECURE_SETTING = 5;
 
     private static SlimPreferenceManager INSTANCE;
 
@@ -101,6 +105,12 @@ public class SlimPreferenceManager {
                 return SLIM_GLOBAL_SETTING;
             case SLIM_SECURE_SETTING:
                 return SLIM_SECURE_SETTING;
+            case AOSP_SYSTEM_SETTING:
+                return AOSP_SYSTEM_SETTING;
+            case AOSP_GLOBAL_SETTING:
+                return AOSP_GLOBAL_SETTING;
+            case AOSP_SECURE_SETTING:
+                return AOSP_SECURE_SETTING;
             default:
                 return SLIM_SYSTEM_SETTING;
         }
@@ -115,6 +125,14 @@ public class SlimPreferenceManager {
             case SLIM_SECURE_SETTING:
                 return SlimSettings.Secure.getIntForUser(context.getContentResolver(), key,
                         def, UserHandle.USER_CURRENT);
+            case AOSP_SYSTEM_SETTING:
+                return Settings.System.getIntForUser(context.getContentResolver(), key, def,
+                        UserHandle.USER_CURRENT);
+            case AOSP_GLOBAL_SETTING:
+                return Settings.Global.getInt(context.getContentResolver(), key, def);
+            case AOSP_SECURE_SETTING:
+                return Settings.Secure.getIntForUser(context.getContentResolver(), key, def,
+                        UserHandle.USER_CURRENT);
             default:
                 return SlimSettings.System.getIntForUser(context.getContentResolver(), key,
                         def, UserHandle.USER_CURRENT);
@@ -128,6 +146,17 @@ public class SlimPreferenceManager {
                 break;
             case SLIM_SECURE_SETTING:
                 SlimSettings.Secure.putIntForUser(context.getContentResolver(), key, val,
+                        UserHandle.USER_CURRENT);
+                break;
+            case AOSP_SYSTEM_SETTING:
+                Settings.System.putIntForUser(context.getContentResolver(), key, val,
+                        UserHandle.USER_CURRENT);
+                break;
+            case AOSP_GLOBAL_SETTING:
+                Settings.Global.putInt(context.getContentResolver(), key, val);
+                break;
+            case AOSP_SECURE_SETTING:
+                Settings.Secure.putIntForUser(context.getContentResolver(), key, val,
                         UserHandle.USER_CURRENT);
                 break;
             default:
@@ -146,6 +175,14 @@ public class SlimPreferenceManager {
             case SLIM_SECURE_SETTING:
                 return SlimSettings.Secure.getStringForUser(context.getContentResolver(), key,
                         UserHandle.USER_CURRENT);
+            case AOSP_SYSTEM_SETTING:
+                return Settings.System.getStringForUser(context.getContentResolver(), key,
+                        UserHandle.USER_CURRENT);
+            case AOSP_GLOBAL_SETTING:
+                return Settings.Global.getString(context.getContentResolver(), key);
+            case AOSP_SECURE_SETTING:
+                return Settings.Secure.getStringForUser(context.getContentResolver(), key,
+                        UserHandle.USER_CURRENT);
             default:
                 return SlimSettings.System.getStringForUser(context.getContentResolver(), key,
                         UserHandle.USER_CURRENT);
@@ -162,6 +199,17 @@ public class SlimPreferenceManager {
                 SlimSettings.Secure.putStringForUser(context.getContentResolver(), key, val,
                         UserHandle.USER_CURRENT);
                 break;
+            case AOSP_SYSTEM_SETTING:
+                Settings.System.putStringForUser(context.getContentResolver(), key, val,
+                        UserHandle.USER_CURRENT);
+                break;
+            case AOSP_GLOBAL_SETTING:
+                Settings.Global.putString(context.getContentResolver(), key, val);
+                break;
+            case AOSP_SECURE_SETTING:
+                Settings.Secure.putStringForUser(context.getContentResolver(), key, val,
+                        UserHandle.USER_CURRENT);
+                break;
             default:
                 SlimSettings.System.putStringForUser(context.getContentResolver(), key, val,
                         UserHandle.USER_CURRENT);
@@ -175,6 +223,14 @@ public class SlimPreferenceManager {
                 return SlimSettings.Global.getString(context.getContentResolver(), key) != null;
             case SLIM_SECURE_SETTING:
                 return SlimSettings.Secure.getStringForUser(context.getContentResolver(), key,
+                        UserHandle.USER_CURRENT) != null;
+            case AOSP_SYSTEM_SETTING:
+                return Settings.System.getStringForUser(context.getContentResolver(), key,
+                        UserHandle.USER_CURRENT) != null;
+            case AOSP_GLOBAL_SETTING:
+                return Settings.Global.getString(context.getContentResolver(), key) != null;
+            case AOSP_SECURE_SETTING:
+                return Settings.Secure.getStringForUser(context.getContentResolver(), key,
                         UserHandle.USER_CURRENT) != null;
             default:
                 return SlimSettings.System.getStringForUser(context.getContentResolver(), key,
