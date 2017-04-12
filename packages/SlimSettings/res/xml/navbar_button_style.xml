@@ -17,14 +17,14 @@
 <PreferenceScreen
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:slim="http://schemas.android.com/apk/res/slim"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:title="@string/nav_bar_button_style">
 
     <slim.preference.colorpicker.ColorPickerPreference
          android:key="navigation_bar_button_tint"
          android:title="@string/navigation_bar_icon_tint_title"
-         slim:defaultColor="#ffffffff"
-         slim:listDependency="navigation_bar_button_tint_mode:3"
-         slim:alphaSliderEnabled="true" />
+         app:defaultColor="#ffffffff"
+         slim:listDependency="navigation_bar_button_tint_mode:3" />
 
     <slim.preference.SlimListPreference
          android:entries="@array/icon_color_mode_entries"
@@ -37,7 +37,6 @@
     <slim.preference.colorpicker.ColorPickerPreference
          android:key="navigation_bar_glow_tint"
          android:title="@string/navigation_bar_glow_tint_title"
-         slim:defaultColor="#ffffffff"
-         slim:alphaSliderEnabled="true" />
+         app:defaultColor="#ffffffff" />
 
 </PreferenceScreen>

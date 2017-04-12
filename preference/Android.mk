@@ -31,7 +31,8 @@ LOCAL_STATIC_ANDROID_LIBRARIES := \
 LOCAL_SHARED_ANDROID_LIBRARIES := \
     android-support-v7-preference \
     android-support-v7-recyclerview \
-    android-support-v14-preference
+    android-support-v14-preference \
+    color-picker
 LOCAL_JAVA_LIBRARIES := \
     org.slim.framework
 LOCAL_JAR_EXCLUDE_FILES := none

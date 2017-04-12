@@ -1,6 +1,5 @@
 /*
- * Copyright (C) 2011 Sergey Margaritov
- * Copyright (C) 2013-2017 SlimRoms Project
+ * Copyright (C) 2017 SlimRoms Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -39,24 +38,10 @@ import org.slim.framework.internal.R;
 import slim.preference.SlimPreferenceManager;
 import slim.utils.AttributeHelper;
 
-/**
- * A preference type that allows a user to choose a time
- *
- * @author Sergey Margaritov
- */
-public class ColorPickerPreference extends Preference implements
-        Preference.OnPreferenceClickListener, ColorPickerDialog.OnColorChangedListener {
+public class ColorPickerPreference extends com.enrico.colorpicker.ColorPickerPreference {
 
-    View mView;
-    ColorPickerDialog mDialog;
-    LinearLayout widgetFrameView;
-    private int mValue = Color.BLACK;
-    private float mDensity = 0;
-    private boolean mAlphaSliderEnabled = false;
-    private int mDefaultColor = Color.WHITE;
+    private int mDefaultColor;
     private int mSettingType;
-
-    private EditText mEditText;
 
     private SlimPreferenceManager mSlimPreferenceManager = SlimPreferenceManager.get();
     private String mListDependency;
@@ -77,31 +62,13 @@ public class ColorPickerPreference extends Preference implements
         init(context, attrs);
     }
 
-    @Override
-    protected Object onGetDefaultValue(TypedArray a, int index) {
-        return a.getInt(index, Color.BLACK);
-    }
-
-    public int getDefaultColor() {
-        return mDefaultColor;
-    }
-
-    @Override
-    protected void onSetInitialValue(boolean restoreValue, Object defaultValue) {
-        onColorChanged(restoreValue ? getPersistedInt(mValue) : (Integer) defaultValue);
-    }
-
     private void init(Context context, AttributeSet attrs) {
-        mDensity = getContext().getResources().getDisplayMetrics().density;
-        setOnPreferenceClickListener(this);
         if (attrs != null) {
             AttributeHelper a =
                     new AttributeHelper(context, attrs, slim.R.styleable.ColorPickerPreference);
 
             mDefaultColor = a.getInt(slim.R.styleable.ColorPickerPreference_defaultColor,
                     Color.WHITE);
-            mAlphaSliderEnabled = a.getBoolean(
-                    slim.R.styleable.ColorPickerPreference_alphaSliderEnabled, false);
 
             a = new AttributeHelper(context, attrs, slim.R.styleable.SlimPreference);
 
@@ -143,126 +110,8 @@ public class ColorPickerPreference extends Preference implements
         }
     }
 
-    @Override
-    public void onBindViewHolder(PreferenceViewHolder holder) {
-        mView = holder.itemView;
-        super.onBindViewHolder(holder);
-
-        widgetFrameView = (LinearLayout) holder.findViewById(android.R.id.widget_frame);
-
-        setPreviewColor();
-    }
-
-    private void setPreviewColor() {
-        if (mView == null)
-            return;
-
-        ImageView iView = new ImageView(getContext());
-        LinearLayout widgetFrameView = ((LinearLayout) mView
-                .findViewById(android.R.id.widget_frame));
-        if (widgetFrameView == null)
-            return;
-
-        widgetFrameView.setVisibility(View.VISIBLE);
-        widgetFrameView.setPadding(
-                widgetFrameView.getPaddingLeft(),
-                widgetFrameView.getPaddingTop(),
-                (int) (mDensity * 8),
-                widgetFrameView.getPaddingBottom()
-                );
-        // remove already create preview image
-        int count = widgetFrameView.getChildCount();
-        if (count > 0) {
-            widgetFrameView.removeViews(0, count);
-        }
-        widgetFrameView.addView(iView);
-        widgetFrameView.setMinimumWidth(0);
-        iView.setBackgroundDrawable(new AlphaPatternDrawable((int) (5 * mDensity)));
-        iView.setImageBitmap(getPreviewBitmap());
-    }
-
-    private Bitmap getPreviewBitmap() {
-        int d = (int) (mDensity * 31); // 30dip
-        int color = mValue;
-        Bitmap bm = Bitmap.createBitmap(d, d, Config.ARGB_8888);
-        int w = bm.getWidth();
-        int h = bm.getHeight();
-        int c = color;
-        for (int i = 0; i < w; i++) {
-            for (int j = i; j < h; j++) {
-                c = (i <= 1 || j <= 1 || i >= w - 2 || j >= h - 2) ? Color.GRAY : color;
-                bm.setPixel(i, j, c);
-                if (i != j) {
-                    bm.setPixel(j, i, c);
-                }
-            }
-        }
-
-        return bm;
-    }
-
-    @Override
-    public void onColorChanged(int color) {
-        if (isPersistent()) {
-            persistInt(color);
-        }
-        mValue = color;
-        setPreviewColor();
-        try {
-            getOnPreferenceChangeListener().onPreferenceChange(this, color);
-        } catch (NullPointerException e) {
-        }
-        try {
-            mEditText.setText(Integer.toString(color, 16));
-        } catch (NullPointerException e) {
-        }
-        handleSetSummary();
-    }
-
-    public void handleSetSummary() {
-        if (mValue == mDefaultColor || mValue == -2) {
-            setSummary(getContext().getResources()
-                    .getString(org.slim.framework.internal.R.string.default_string));
-        } else {
-            setSummary(String.format("#%08x", (0xffffffff & mValue)));
-        }
-    }
-
-    public boolean onPreferenceClick(Preference preference) {
-        showDialog(null);
-        return false;
-    }
-
-    protected void showDialog(Bundle state) {
-        mDialog = new ColorPickerDialog(getContext(), mValue);
-        mDialog.setOnColorChangedListener(this);
-        if (mAlphaSliderEnabled) {
-            mDialog.setAlphaSliderVisible(true);
-        }
-        if (state != null) {
-            mDialog.onRestoreInstanceState(state);
-        }
-        mDialog.show();
-    }
-
-
-    /**
-     * Toggle Alpha Slider visibility (by default it's disabled)
-     *
-     * @param enable
-     */
-    public void setAlphaSliderEnabled(boolean enable) {
-        mAlphaSliderEnabled = enable;
-    }
-
-    /**
-     * For custom purposes. Not used by ColorPickerPreferrence
-     *
-     * set color preview value from outside
-     * @author kufikugel
-     */
-    public void setNewPreviewColor(int color) {
-        onColorChanged(color);
+    public int getDefaultColor() {
+        return mDefaultColor;
     }
 
     /**
@@ -325,62 +174,6 @@ public class ColorPickerPreference extends Preference implements
         }
 
         return Color.argb(alpha, red, green, blue);
-    }
-
-    @Override
-    protected Parcelable onSaveInstanceState() {
-        final Parcelable superState = super.onSaveInstanceState();
-        if (mDialog == null || !mDialog.isShowing()) {
-            return superState;
-        }
-
-        final SavedState myState = new SavedState(superState);
-        myState.dialogBundle = mDialog.onSaveInstanceState();
-        return myState;
-    }
-
-    @Override
-    protected void onRestoreInstanceState(Parcelable state) {
-        if (state == null || !(state instanceof SavedState)) {
-            // Didn't save state for us in onSaveInstanceState
-            super.onRestoreInstanceState(state);
-            return;
-        }
-
-        SavedState myState = (SavedState) state;
-        super.onRestoreInstanceState(myState.getSuperState());
-        showDialog(myState.dialogBundle);
-    }
-
-    private static class SavedState extends BaseSavedState {
-        Bundle dialogBundle;
-
-        public SavedState(Parcel source) {
-            super(source);
-            dialogBundle = source.readBundle();
-        }
-
-        @Override
-        public void writeToParcel(Parcel dest, int flags) {
-            super.writeToParcel(dest, flags);
-            dest.writeBundle(dialogBundle);
-        }
-
-        public SavedState(Parcelable superState) {
-            super(superState);
-        }
-
-        @SuppressWarnings("unused")
-        public static final Parcelable.Creator<SavedState> CREATOR =
-                new Parcelable.Creator<SavedState>() {
-            public SavedState createFromParcel(Parcel in) {
-                return new SavedState(in);
-            }
-
-            public SavedState[] newArray(int size) {
-                return new SavedState[size];
-            }
-        };
     }
 
     @Override
