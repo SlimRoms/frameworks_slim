@@ -159,7 +159,7 @@ public class SlimPreferenceFragment extends SettingsPreferenceFragment {
                                 Preference pref = prefScreen.getPreference(i);
                                 if (pref instanceof ColorPickerPreference) {
                                     ColorPickerPreference cpp = (ColorPickerPreference) pref;
-                                    cpp.onColorChanged(cpp.getDefaultColor());
+                                    cpp.colorPicked(cpp.getDefaultColor());
                                 }
                             }
                         }
