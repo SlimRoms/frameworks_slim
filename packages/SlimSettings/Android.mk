@@ -29,7 +29,8 @@ LOCAL_STATIC_JAVA_LIBRARIES := \
     android-support-v14-preference \
     android-support-v7-recyclerview \
     jsr305 \
-    slim-preference
+    slim-preference \
+    color-picker
 
 LOCAL_SRC_FILES := $(call all-java-files-under, src)
 
@@ -39,10 +40,12 @@ LOCAL_RESOURCE_DIR := \
     frameworks/support/v14/preference/res \
     frameworks/support/v7/appcompat/res \
     frameworks/support/v7/recyclerview/res \
-    frameworks/slim/preference/res
+    frameworks/slim/preference/res \
+    frameworks/opt/color-picker/cpl/src/main/res
 
 LOCAL_AAPT_FLAGS := --auto-add-overlay \
-    --extra-packages android.support.v7.preference:android.support.v14.preference:android.support.v7.appcompat:android.support.v7.recyclerview:org.slim.preference
+    --extra-packages android.support.v7.preference:android.support.v14.preference:android.support.v7.appcompat:android.support.v7.recyclerview \
+    --extra-packages org.slim.preference:com.enrico.colorpicker
 
 LOCAL_CERTIFICATE := platform
 LOCAL_PACKAGE_NAME := SlimSettings
