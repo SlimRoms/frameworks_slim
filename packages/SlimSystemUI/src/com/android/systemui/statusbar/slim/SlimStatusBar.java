@@ -22,6 +22,7 @@ import android.app.ActivityManager;
 import android.app.ActivityManager.RunningAppProcessInfo;
 import android.app.ActivityManagerNative;
 import android.app.IActivityManager;
+import android.app.StatusBarManager;
 import android.content.ComponentName;
 import android.content.ContentResolver;
 import android.content.Context;
@@ -43,12 +44,14 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
 import android.os.Messenger;
+import android.os.PowerManager;
 import android.os.Process;
 import android.os.RemoteException;
 import android.os.UserHandle;
 import android.service.notification.StatusBarNotification;
 import android.util.Log;
 import android.view.Display;
+import android.view.GestureDetector;
 import android.util.Slog;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -118,6 +121,9 @@ public class SlimStatusBar extends PhoneStatusBar implements
     private boolean mNavigationBarAttached = false;
     private boolean mDisableHomeLongpress = false;
 
+    private boolean mDoubleTapToSleepEnabled;
+    private int mStatusBarHeaderHeight;
+
     private SlimQuickStatusBarHeader mSlimQuickStatusBarHeader;
 
     private int mDensity;
@@ -180,6 +186,9 @@ public class SlimStatusBar extends PhoneStatusBar implements
             resolver.registerContentObserver(SlimSettings.System.getUriFor(
                     SlimSettings.System.DIM_NAV_BUTTONS_TOUCH_ANYWHERE),
                     false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(SlimSettings.System.getUriFor(
+                    SlimSettings.System.DOUBLE_TAP_SLEEP_GESTURE),
+                    false, this, UserHandle.USER_ALL);
         }
 
         @Override
@@ -232,6 +241,12 @@ public class SlimStatusBar extends PhoneStatusBar implements
             } else if (uri.equals(SlimSettings.System.getUriFor(
                     SlimSettings.System.NAVIGATION_BAR_SHOW))) {
                 updateNavigationBarVisibility();
+            } else if (uri.equals(SlimSettings.System.getUriFor(
+                    SlimSettings.System.DOUBLE_TAP_SLEEP_GESTURE))) {
+                mDoubleTapToSleepEnabled = SlimSettings.System.getIntForUser(
+                        mContext.getContentResolver(),
+                        SlimSettings.System.DOUBLE_TAP_SLEEP_GESTURE,
+                        1, UserHandle.USER_CURRENT) == 1;
             }
         }
     }
@@ -244,6 +259,9 @@ public class SlimStatusBar extends PhoneStatusBar implements
 
         mDisplay = ((WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE))
                 .getDefaultDisplay();
+
+        mStatusBarHeaderHeight = mContext.getResources().getDimensionPixelSize(
+                R.dimen.status_bar_header_height);
 
         updateNavigationBarVisibility();
         updateRecents();
@@ -293,6 +311,40 @@ public class SlimStatusBar extends PhoneStatusBar implements
                 mSlimQuickStatusBarHeader.getActivityStarter().startActivity(
                         intent, true /* dismissShade */);
                 return true;
+            }
+        });
+
+        GestureDetector doubleTapGesture = new GestureDetector(mContext,
+                new GestureDetector.SimpleOnGestureListener() {
+            @Override
+            public boolean onDoubleTap(MotionEvent e) {
+                PowerManager pm = (PowerManager) mContext.getSystemService(Context.POWER_SERVICE);
+                if (pm != null) {
+                    pm.goToSleep(e.getEventTime());
+                }
+                return true;
+            }
+        });
+
+        mNotificationPanel.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (mDoubleTapToSleepEnabled &&
+                        event.getY() < mStatusBarHeaderHeight) {
+                    doubleTapGesture.onTouchEvent(event);
+                }
+                return false;
+            }
+        });
+
+        mStatusBarView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (mDoubleTapToSleepEnabled &&
+                        event.getY() < mStatusBarHeaderHeight) {
+                    doubleTapGesture.onTouchEvent(event);
+                }
+                return false;
             }
         });
 
