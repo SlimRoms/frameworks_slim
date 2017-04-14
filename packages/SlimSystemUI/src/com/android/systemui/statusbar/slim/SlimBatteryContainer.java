@@ -32,12 +32,12 @@ import com.android.systemui.R;
 import com.android.systemui.statusbar.policy.BatteryController;
 
 import slim.provider.SlimSettings;
+import slim.utils.SettingsHelper;
 
 public class SlimBatteryContainer extends LinearLayout implements
-        BatteryController.BatteryStateChangeCallback {
+        BatteryController.BatteryStateChangeCallback, SettingsHelper.OnSettingsChangeListener {
 
     private BatteryController mBatteryController;
-    private BatterySettingsObserver mBatteryObserver;
     private SlimBatteryMeterView mBattery;
     private View mSpacer;
     private TextView mBatteryLevel;
@@ -49,10 +49,13 @@ public class SlimBatteryContainer extends LinearLayout implements
     private boolean mBatteryIsCharging;
     private int mBatteryChargeLevel;
 
+    public static final Uri[] SETTINGS_URIS = {
+        SlimSettings.Secure.getUriFor(SlimSettings.Secure.STATUS_BAR_BATTERY_PERCENT),
+        SlimSettings.Secure.getUriFor(SlimSettings.Secure.STATUS_BAR_BATTERY_STYLE)
+    };
+
     public SlimBatteryContainer(Context context, AttributeSet attrs) {
         super(context, attrs);
-
-        mBatteryObserver = new BatterySettingsObserver(new Handler());
     }
 
     @Override
@@ -72,7 +75,7 @@ public class SlimBatteryContainer extends LinearLayout implements
         if (mBatteryController != null) {
             mBatteryController.removeStateChangedCallback(this);
         }
-        mBatteryObserver.unObserve();
+        SettingsHelper.get(mContext).stopWatching(this);
 
         mAttached = false;
     }
@@ -83,7 +86,7 @@ public class SlimBatteryContainer extends LinearLayout implements
         if (mBatteryController != null) {
             mBatteryController.addStateChangedCallback(this);
         }
-        mBatteryObserver.observe();
+        SettingsHelper.get(mContext).startWatching(this, SETTINGS_URIS);
         mAttached = true;
     }
 
@@ -152,30 +155,9 @@ public class SlimBatteryContainer extends LinearLayout implements
         }
     }
 
-    private final class BatterySettingsObserver extends ContentObserver {
-        BatterySettingsObserver(Handler handler) {
-            super(handler);
-        }
-
-        void observe() {
-            ContentResolver resolver = getContext().getContentResolver();
-
-            resolver.registerContentObserver(SlimSettings.Secure.getUriFor(
-                    SlimSettings.Secure.STATUS_BAR_BATTERY_PERCENT),
-                    false, this, UserHandle.USER_ALL);
-            resolver.registerContentObserver(SlimSettings.Secure.getUriFor(
-                    SlimSettings.Secure.STATUS_BAR_BATTERY_STYLE),
-                    false, this, UserHandle.USER_ALL);
-        }
-
-        void unObserve() {
-            getContext().getContentResolver().unregisterContentObserver(this);
-        }
-
-        @Override
-        public void onChange(boolean selfChange, Uri uri) {
-            updateSettings();
-        }
+    @Override
+    public void onSettingsChanged(Uri settingsUri) {
+        updateSettings();
     }
 
     public void setDarkIntensity(float darkIntensity) {
