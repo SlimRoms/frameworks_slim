@@ -18,8 +18,10 @@ package com.android.systemui;
 import android.content.Context;
 
 import com.android.systemui.SystemUIFactory;
+import com.android.systemui.statusbar.phone.NotificationIconAreaController;
 import com.android.systemui.statusbar.phone.PhoneStatusBar;
 import com.android.systemui.statusbar.phone.QSTileHost;
+import com.android.systemui.statusbar.slim.SlimNotificationIconAreaController;
 import com.android.systemui.statusbar.slim.SlimQSTileHost;
 import com.android.systemui.statusbar.phone.StatusBarIconController;
 import com.android.systemui.statusbar.phone.StatusBarKeyguardViewManager;
@@ -57,4 +59,9 @@ public class SlimSystemUIFactory extends SystemUIFactory {
                 iconController, nextAlarmController);
     }
 
+    @Override
+    public NotificationIconAreaController createNotificationIconAreaController(Context context,
+            PhoneStatusBar phonestatusBar) {
+        return new SlimNotificationIconAreaController(context, phonestatusBar);
+    }
 }
