@@ -97,4 +97,19 @@ public class SlimStatusBarIconController {
     private void applyIconTint() {
         mSlimBattery.setDarkIntensity(mDarkIntensity);
     }
+
+    public void hideSystemIconArea(boolean animate) {
+    }
+
+    public void showSystemIconArea(boolean animate) {
+    }
+
+    public void hideNotificationIconArea(boolean animate) {
+    }
+
+    public void showNotificationIconArea(boolean animate) {
+    }
+
+    public void setClockVisibility(boolean visible) {
+    }
 }
