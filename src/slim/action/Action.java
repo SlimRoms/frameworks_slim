@@ -255,21 +255,21 @@ public class Action {
             } else if (action.equals(ActionConstants.ACTION_VIB_SILENT)) {
                 AudioManager am = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
                 if (am != null && ActivityManagerNative.isSystemReady()) {
+                    Vibrator vib = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
                     if (am.getRingerMode() == AudioManager.RINGER_MODE_NORMAL) {
                         am.setRingerMode(AudioManager.RINGER_MODE_VIBRATE);
-                        Vibrator vib = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
                         if (vib != null) {
-                            vib.vibrate(50);
+                            vib.vibrate(new long[] { 0, 50, 500, 50 }, -1);
                         }
                     } else if (am.getRingerMode() == AudioManager.RINGER_MODE_VIBRATE) {
                         am.setRingerMode(AudioManager.RINGER_MODE_SILENT);
+                        if (vib != null) {
+                            vib.vibrate(50);
+                        }
                     } else {
                         am.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
-                        ToneGenerator tg = new ToneGenerator(
-                                AudioManager.STREAM_NOTIFICATION,
-                                (int)(ToneGenerator.MAX_VOLUME * 0.85));
-                        if (tg != null) {
-                            tg.startTone(ToneGenerator.TONE_PROP_BEEP);
+                        if (vib != null) {
+                            vib.vibrate(new long[] { 0, 50, 500, 50, 500, 50 }, -1);
                         }
                     }
                 }
@@ -333,6 +333,10 @@ public class Action {
             SlimActionsManager actionsManager, boolean isKeyguardShowing) {
         if (intent == null) {
             return;
+        }
+        PowerManager pm = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
+        if (!pm.isScreenOn()) {
+            pm.wakeUp(SystemClock.uptimeMillis());
         }
         if (isKeyguardShowing) {
             // Have keyguard show the bouncer and launch the activity if the user succeeds.
