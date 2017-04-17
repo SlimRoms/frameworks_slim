@@ -389,7 +389,7 @@ public class HardwareKeysSettings extends SettingsPreferenceFragment implements
         }
 
         if (action.startsWith("**")) {
-            preference.setSummary(ActionHelper.getActionDescription(getActivity(), action));
+            preference.setSummary(mActionsArray.getActionDescription(action));
         } else {
             preference.setSummary(AppHelper.getFriendlyNameForUri(
                     getActivity(), getActivity().getPackageManager(), action));
