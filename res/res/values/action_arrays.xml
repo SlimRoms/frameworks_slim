@@ -156,8 +156,8 @@
         <item>@string/shortcut_action_media_next</item>
         <item>@string/shortcut_action_media_play_pause</item>
         <item>@string/shortcut_action_media_previous</item>
-        <item>@string/shortcut_action_ring_silent</item>
-        <item>@string/shortcut_action_ring_vib</item>
+        <!--<item>@string/shortcut_action_ring_silent</item>-->
+        <!--<item>@string/shortcut_action_ring_vib</item>-->
         <item>@string/shortcut_action_ring_vib_silent</item>
         <item>@string/shortcut_action_wake_device</item>
         <item>@string/shortcut_action_doze_pulse</item>
@@ -189,14 +189,30 @@
         <item>**media_next**</item>
         <item>**media_play_pause**</item>
         <item>**media_previous**</item>
-        <item>**ring_silent**</item>
-        <item>**ring_vib**</item>
+        <!--<item>**ring_silent**</item>-->
+        <!--<item>**ring_vib**</item>-->
         <item>**ring_vib_silent**</item>
         <item>**wake_device**</item>
         <item>**doze_pulse**</item>
         <!--<item>**nav_bar**</item>-->
         <item>**split_screen**</item>
         <item>**null**</item>
+    </string-array>
+
+    <string-array name="screen_off_actions_to_exclude" translatable="false">
+        <item>**back**</item>
+        <item>**home**</item>
+        <item>**recents**</item>
+        <item>**menu**</item>
+        <item>**kill**</item>
+        <item>**lastapp**</item>
+        <item>**ime**</item>
+        <item>**power**</item>
+        <item>**power_menu**</item>
+        <item>**notifications**</item>
+        <item>**settings_panel**</item>
+        <item>**screenshot**</item>
+        <item>**split_screen**</item>
     </string-array>
 
     <!-- Icon color options -->

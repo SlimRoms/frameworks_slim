@@ -18,6 +18,7 @@ package slim.action;
 
 import android.content.Context;
 
+import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -55,10 +56,16 @@ public class ActionsArray {
         List<String> finalEntries = new ArrayList<>();
         List<String> finalValues = new ArrayList<>();
 
+        String[] screenOffExclude = context.getResources().getStringArray(
+                org.slim.framework.internal.R.array.screen_off_actions_to_exclude);
+        List<String> screenOffActionsExclude = Arrays.asList(screenOffExclude);
         for (int i = 0; i < initialValues.length; i++) {
             if (!showNone && ActionConstants.ACTION_NULL.equals(initialValues[i])
                     || !showWake && ActionConstants.ACTION_WAKE_DEVICE.equals(initialValues[i])
                     || !showWake && ActionConstants.ACTION_DOZE_PULSE.equals(initialValues[i])) {
+                continue;
+            } else if (screenOffActionsExclude != null
+                    && screenOffActionsExclude.contains(initialValues[i])) {
                 continue;
             } else if (actionsToExclude != null && actionsToExclude.contains(initialValues[i])) {
                 continue;
