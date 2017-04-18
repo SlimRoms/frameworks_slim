@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-     Copyright (C) 2013-2016 SlimRoms Project
+     Copyright (C) 2013-2017 SlimRoms Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -32,6 +32,12 @@
     <dimen name="fab_press_translation_z">9dp</dimen>
 
     <dimen name="settings_side_margin">0dip</dimen>
+
+    <!-- Dashboard padding in its container -->
+    <dimen name="dashboard_padding_start">0dp</dimen>
+    <dimen name="dashboard_padding_end">0dp</dimen>
+    <dimen name="dashboard_padding_top">0dp</dimen>
+    <dimen name="dashboard_padding_bottom">0dp</dimen>
 
     <!-- ActionBar height -->
     <dimen name="actionbar_size">56dip</dimen>
