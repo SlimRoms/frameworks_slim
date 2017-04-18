@@ -1,0 +1,395 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1aa4ed85_920242b3",
+        "filename": "packages/SlimSettings/res/drawable-nodpi/ic_settings_reset.xml",
+        "patchSetId": 7
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2017-04-18T20:10:24Z",
+      "side": 1,
+      "message": "Where was this from? Licensing wise",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 38
+      },
+      "revId": "7ba53ae1d67635d890f4094c917e374083afcbaf",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1aa4ed85_b2ff3eaa",
+        "filename": "packages/SlimSettings/res/layout/preference_icon.xml",
+        "patchSetId": 7
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2017-04-18T20:10:24Z",
+      "side": 1,
+      "message": "dead space",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 2
+      },
+      "revId": "7ba53ae1d67635d890f4094c917e374083afcbaf",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1aa4ed85_522cca4a",
+        "filename": "packages/SlimSettings/res/layout/preference_icon.xml",
+        "patchSetId": 7
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2017-04-18T20:10:24Z",
+      "side": 1,
+      "message": "dead space",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 2
+      },
+      "revId": "7ba53ae1d67635d890f4094c917e374083afcbaf",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1aa4ed85_7231c6a1",
+        "filename": "packages/SlimSettings/res/layout/pulse_time_item.xml",
+        "patchSetId": 7
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2017-04-18T20:10:24Z",
+      "side": 1,
+      "message": "Where from, licensing?",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 38
+      },
+      "revId": "7ba53ae1d67635d890f4094c917e374083afcbaf",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1aa4ed85_12265269",
+        "filename": "packages/SlimSettings/res/values/arrays.xml",
+        "patchSetId": 7
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2017-04-18T20:10:24Z",
+      "side": 1,
+      "message": "2017",
+      "range": {
+        "startLine": 3,
+        "startChar": 24,
+        "endLine": 3,
+        "endChar": 28
+      },
+      "revId": "7ba53ae1d67635d890f4094c917e374083afcbaf",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1aa4ed85_322b4e32",
+        "filename": "packages/SlimSettings/res/values/dimens.xml",
+        "patchSetId": 7
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2017-04-18T20:10:24Z",
+      "side": 1,
+      "message": "2017",
+      "range": {
+        "startLine": 3,
+        "startChar": 24,
+        "endLine": 3,
+        "endChar": 28
+      },
+      "revId": "7ba53ae1d67635d890f4094c917e374083afcbaf",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1aa4ed85_d21f5a08",
+        "filename": "packages/SlimSettings/res/values/strings.xml",
+        "patchSetId": 7
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2017-04-18T20:10:24Z",
+      "side": 1,
+      "message": "2017",
+      "range": {
+        "startLine": 3,
+        "startChar": 24,
+        "endLine": 3,
+        "endChar": 28
+      },
+      "revId": "7ba53ae1d67635d890f4094c917e374083afcbaf",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1aa4ed85_f21cd615",
+        "filename": "packages/SlimSettings/src/com/slim/settings/Settings.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2017-04-18T20:10:24Z",
+      "side": 1,
+      "message": "licensing",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 26
+      },
+      "revId": "7ba53ae1d67635d890f4094c917e374083afcbaf",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1aa4ed85_9219e224",
+        "filename": "packages/SlimSettings/src/com/slim/settings/notificationlight/ApplicationLightPreference.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2017-04-18T20:10:24Z",
+      "side": 1,
+      "message": "trailing space",
+      "range": {
+        "startLine": 194,
+        "startChar": 97,
+        "endLine": 194,
+        "endChar": 98
+      },
+      "revId": "7ba53ae1d67635d890f4094c917e374083afcbaf",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1aa4ed85_f2ca966d",
+        "filename": "packages/SlimSettings/src/com/slim/settings/notificationlight/BatteryLightSettings.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2017-04-18T20:10:24Z",
+      "side": 1,
+      "message": "trailing space",
+      "range": {
+        "startLine": 127,
+        "startChar": 70,
+        "endLine": 127,
+        "endChar": 71
+      },
+      "revId": "7ba53ae1d67635d890f4094c917e374083afcbaf",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1aa4ed85_92c7a264",
+        "filename": "packages/SlimSettings/src/com/slim/settings/notificationlight/LightSettingsDialog.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 246,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2017-04-18T20:10:24Z",
+      "side": 1,
+      "message": "to long",
+      "range": {
+        "startLine": 246,
+        "startChar": 8,
+        "endLine": 246,
+        "endChar": 104
+      },
+      "revId": "7ba53ae1d67635d890f4094c917e374083afcbaf",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1aa4ed85_b2c41e60",
+        "filename": "packages/SlimSettings/src/com/slim/settings/notificationlight/LightSettingsDialog.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2017-04-18T20:10:24Z",
+      "side": 1,
+      "message": "to long",
+      "range": {
+        "startLine": 266,
+        "startChar": 8,
+        "endLine": 266,
+        "endChar": 110
+      },
+      "revId": "7ba53ae1d67635d890f4094c917e374083afcbaf",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1aa4ed85_52a12aa8",
+        "filename": "packages/SlimSettings/src/com/slim/settings/notificationlight/LightSettingsDialog.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 353,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2017-04-18T20:10:24Z",
+      "side": 1,
+      "message": "to long",
+      "range": {
+        "startLine": 353,
+        "startChar": 8,
+        "endLine": 353,
+        "endChar": 101
+      },
+      "revId": "7ba53ae1d67635d890f4094c917e374083afcbaf",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1aa4ed85_12abb28a",
+        "filename": "packages/SlimSettings/src/com/slim/settings/notificationlight/NotificationLightSettings.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 405,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2017-04-18T20:10:24Z",
+      "side": 1,
+      "message": "to long",
+      "range": {
+        "startLine": 405,
+        "startChar": 0,
+        "endLine": 405,
+        "endChar": 101
+      },
+      "revId": "7ba53ae1d67635d890f4094c917e374083afcbaf",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1aa4ed85_72a6a6c3",
+        "filename": "packages/SlimSettings/src/com/slim/settings/notificationlight/NotificationLightSettings.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 406,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2017-04-18T20:10:24Z",
+      "side": 1,
+      "message": "to long",
+      "range": {
+        "startLine": 406,
+        "startChar": 0,
+        "endLine": 406,
+        "endChar": 103
+      },
+      "revId": "7ba53ae1d67635d890f4094c917e374083afcbaf",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1aa4ed85_32b02ef4",
+        "filename": "packages/SlimSettings/src/com/slim/settings/notificationlight/NotificationLightSettings.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 412,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2017-04-18T20:10:24Z",
+      "side": 1,
+      "message": "to long",
+      "range": {
+        "startLine": 412,
+        "startChar": 0,
+        "endLine": 412,
+        "endChar": 101
+      },
+      "revId": "7ba53ae1d67635d890f4094c917e374083afcbaf",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1aa4ed85_b29bbe71",
+        "filename": "services/src/org/slim/service/SlimLightsService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 286,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2017-04-18T20:10:24Z",
+      "side": 1,
+      "message": "dead space",
+      "range": {
+        "startLine": 286,
+        "startChar": 0,
+        "endLine": 286,
+        "endChar": 2
+      },
+      "revId": "7ba53ae1d67635d890f4094c917e374083afcbaf",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    }
+  ]
+}
