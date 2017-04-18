@@ -90,7 +90,7 @@
         <activity
             android:name="com.slim.settings.activities.GestureSettingsActivity"
             android:label="@string/gesture_settings_title"
-            android:icon="@drawable/ic_settings_interface"
+            android:icon="@drawable/ic_settings_gestures"
             android:theme="@style/Theme.Settings" >
 
             <intent-filter>
