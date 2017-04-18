@@ -33,6 +33,12 @@
 
     <dimen name="settings_side_margin">0dip</dimen>
 
+    <!-- Dashboard padding in its container -->
+    <dimen name="dashboard_padding_start">0dp</dimen>
+    <dimen name="dashboard_padding_end">0dp</dimen>
+    <dimen name="dashboard_padding_top">0dp</dimen>
+    <dimen name="dashboard_padding_bottom">0dp</dimen>
+
     <!-- ActionBar height -->
     <dimen name="actionbar_size">56dip</dimen>
 
