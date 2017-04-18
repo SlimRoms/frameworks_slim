@@ -13,4 +13,8 @@
 
 <resources>
     <dimen name="settings_side_margin">64dp</dimen>
+
+    <!-- Dashboard padding in its container -->
+    <dimen name="dashboard_padding_start">80dp</dimen>
+    <dimen name="dashboard_padding_end">80dp</dimen>
 </resources>
