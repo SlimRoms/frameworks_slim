@@ -24,10 +24,9 @@
 
     <!-- battery must be padded below to match assets -->
     <com.android.systemui.statusbar.slim.SlimBatteryMeterView android:id="@+id/slim_battery"
-        android:layout_height="14.5dp"
-        android:layout_width="9.5dp"
-        android:visibility="gone"
-        android:layout_marginBottom="@dimen/battery_margin_bottom"/>
+        android:layout_height="@dimen/status_bar_battery_icon_height"
+        android:layout_width="@dimen/status_bar_battery_icon_width"
+        android:visibility="gone" />
 
     <View
         android:id="@+id/battery_batterytext_spacer"
