@@ -48,6 +48,7 @@ LOCAL_AAPT_FLAGS := --auto-add-overlay \
     --extra-packages org.slim.preference:com.enrico.colorpicker
 
 LOCAL_CERTIFICATE := platform
+LOCAL_PRIVILEGED_MODULE := true
 LOCAL_PACKAGE_NAME := SlimSettings
 LOCAL_PROGUARD_ENABLED:= disabled
 

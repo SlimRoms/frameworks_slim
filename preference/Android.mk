@@ -15,6 +15,12 @@
 
 LOCAL_PATH := $(call my-dir)
 
+slim-preference_static_libraries := \
+    android-support-v7-preference \
+    android-support-v7-recyclerview \
+    android-support-v14-preference \
+    color-picker
+
 include $(CLEAR_VARS)
 LOCAL_USE_AAPT2 := true
 LOCAL_MODULE := slim-preference-res
@@ -28,11 +34,7 @@ LOCAL_MODULE := slim-preference
 LOCAL_SRC_FILES := $(call all-java-files-under,src)
 LOCAL_STATIC_ANDROID_LIBRARIES := \
     slim-preference-res
-LOCAL_SHARED_ANDROID_LIBRARIES := \
-    android-support-v7-preference \
-    android-support-v7-recyclerview \
-    android-support-v14-preference \
-    color-picker
+LOCAL_SHARED_ANDROID_LIBRARIES := $(slim-preference_static_libraries)
 LOCAL_JAVA_LIBRARIES := \
     org.slim.framework
 LOCAL_JAR_EXCLUDE_FILES := none
