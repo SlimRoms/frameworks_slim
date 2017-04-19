@@ -28,7 +28,7 @@
         android:label="SlimSettings" >
 
         <activity
-            android:name="com.slim.settings.activities.InterfaceSettingsActivity"
+            android:name="com.slim.settings.Settings$InterfaceSettingsActivity"
             android:label="@string/interface_settings_title"
             android:icon="@drawable/ic_settings_interface"
             android:theme="@style/Theme.Settings" >
@@ -41,10 +41,18 @@
                 android:name="com.android.settings.category"
                 android:value="com.android.settings.category.personalization" />
 
+            <meta-data
+                android:name="com.slim.settings.FRAGMENT_CLASS"
+                android:value="com.slim.settings.fragments.SlimPreferenceFragment" />
+
+            <meta-data
+                android:name="com.slim.settings.PREFERENCE_XML"
+                android:value="slim_interface_settings" />
+
         </activity>
 
         <activity
-            android:name="com.slim.settings.activities.NavigationSettingsActivity"
+            android:name="com.slim.settings.Settings$NavigationSettingsActivity"
             android:label="@string/navigation_settings_title"
             android:icon="@drawable/ic_settings_navigation"
             android:theme="@style/Theme.Settings" >
@@ -56,6 +64,15 @@
             <meta-data
                 android:name="com.android.settings.category"
                 android:value="com.android.settings.category.personalization" />
+
+            <meta-data
+                android:name="com.slim.settings.FRAGMENT_CLASS"
+                android:value="com.slim.settings.fragments.SlimPreferenceFragment" />
+
+            <meta-data
+                android:name="com.slim.settings.PREFERENCE_XML"
+                android:value="slim_navigation_settings" />
+
 
         </activity>
 
@@ -69,7 +86,7 @@
                 <action android:name="slim.settings.NOTIFICATION_LIGHT_SETTINGS" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
-            <meta-data android:name="com.android.settings.FRAGMENT_CLASS"
+            <meta-data android:name="com.slim.settings.FRAGMENT_CLASS"
                 android:value="com.slim.settings.notificationlight.NotificationLightSettings" />
         </activity>
 
@@ -88,13 +105,18 @@
         </activity>
 
         <activity
-            android:name="com.slim.settings.activities.DozeSettingsActivity"
+            android:name="com.slim.settings.Settings$DozeSettingsActivity"
             android:label="@string/doze_settings_title"
             android:theme="@style/Theme.Settings" >
 
             <intent-filter>
                 <action android:name="com.slim.settings.action.DOZE_SETTINGS" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
+
+            <meta-data
+                android:name="com.slim.settings.FRAGMENT_CLASS"
+                android:value="com.slim.settings.fragments.DozeSettingsFragment" />
 
         </activity>
 
@@ -105,7 +127,16 @@
 
             <intent-filter>
                 <action android:name="com.slim.settings.action.PROXIMITY_AUTO_SPEAKER_SETTINGS" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
+
+            <meta-data
+                android:name="com.slim.settings.FRAGMENT_CLASS"
+                android:value="com.slim.settings.fragments.SlimPreferenceFragment" />
+
+            <meta-data
+                android:name="com.slim.settings.PREFERENCE_XML"
+                android:value="prox_auto_speaker" />
 
         </activity>
 
