@@ -10,35 +10,36 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:settings="http://schemas.android.com/apk/res/com.android.settings"
-        xmlns:slim="http://schemas.android.com/apk/res/slim"
-            android:key="prox_auto_speaker_options"
-            android:title="@slim:string/display_category_prox_auto_speaker_title" >
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:settings="http://schemas.android.com/apk/res/com.android.settings"
+    xmlns:slim="http://schemas.android.com/apk/res/slim"
+    android:key="prox_auto_speaker_options"
+    android:title="@slim:string/display_category_prox_auto_speaker_title" >
 
-        <slim.preference.SlimSwitchPreference
-            android:key="prox_auto_speaker"
-            android:title="@slim:string/prox_auto_speaker_title"
-            android:summary="@slim:string/prox_auto_speaker_summary"
-            android:defaultValue="false" />
+    <slim.preference.SlimSwitchPreference
+        android:key="prox_auto_speaker"
+        android:title="@slim:string/prox_auto_speaker_title"
+        android:summary="@slim:string/prox_auto_speaker_summary"
+        android:defaultValue="false" />
 
-        <slim.preference.SlimSeekBarPreference
-            android:key="prox_auto_speaker_delay"
-            android:title="@slim:string/prox_auto_speaker_delay_title"
-            android:summary="@slim:string/prox_auto_speaker_delay_summary"
-            android:dependency="prox_auto_speaker"
-            slim:defaultValue="100"
-            slim:useMilliSeconds="true"
-            slim:interval="1"
-            slim:minValue="100"
-            slim:multiplyValue="100" />
+    <slim.preference.SlimSeekBarPreference
+        android:key="prox_auto_speaker_delay"
+        android:title="@slim:string/prox_auto_speaker_delay_title"
+        android:summary="@slim:string/prox_auto_speaker_delay_summary"
+        android:dependency="prox_auto_speaker"
+        slim:defaultValue="100"
+        slim:useMilliSeconds="true"
+        slim:interval="1"
+        slim:minValue="100"
+        slim:multiplyValue="100" />
 
-        <slim.preference.SlimSwitchPreference
-            android:key="prox_auto_speaker_incall_only"
-            android:title="@slim:string/prox_auto_speaker_incall_only_title"
-            android:summaryOff="@slim:string/prox_auto_speaker_incall_only_summary_off"
-            android:summaryOn="@slim:string/prox_auto_speaker_incall_only_summary_on"
-            android:defaultValue="false"
-            android:dependency="prox_auto_speaker" />
+    <slim.preference.SlimSwitchPreference
+        android:key="prox_auto_speaker_incall_only"
+        android:title="@slim:string/prox_auto_speaker_incall_only_title"
+        android:summaryOff="@slim:string/prox_auto_speaker_incall_only_summary_off"
+        android:summaryOn="@slim:string/prox_auto_speaker_incall_only_summary_on"
+        android:defaultValue="false"
+        android:dependency="prox_auto_speaker" />
 
 </PreferenceScreen>

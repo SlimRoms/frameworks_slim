@@ -141,9 +141,6 @@
   <!--Slim Slider layout @hide -->
   <public type="layout" name="slider_preference" id="0x02090000" />
 
-  <!-- ColorPickerDialog @hide -->
-  <public type="layout" name="dialog_color_picker" id="0x02090001" />
-
   <!--Slim Slider v2 layout @hide -->
   <public type="layout" name="slim_seek_bar_preference_v2" id="0x02090002" />
 
