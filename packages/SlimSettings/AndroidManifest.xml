@@ -28,10 +28,17 @@
         android:label="SlimSettings" >
 
         <activity
-            android:name="com.slim.settings.activities.InterfaceSettingsActivity"
+            android:name=".SettingsActivity"
+            android:label="SlimSettings"
+            android:icon="@android:drawable/sym_def_app_icon"
+            android:theme="@style/Theme.Settings" />
+
+        <activity-alias
+            android:name="InterfaceSettingsActivity"
             android:label="@string/interface_settings_title"
             android:icon="@drawable/ic_settings_interface"
-            android:theme="@style/Theme.Settings" >
+            android:theme="@style/Theme.Settings"
+            android:targetActivity="SettingsActivity">
 
             <intent-filter>
                 <action android:name="com.android.settings.action.EXTRA_SETTINGS" />
@@ -41,13 +48,22 @@
                 android:name="com.android.settings.category"
                 android:value="com.android.settings.category.personalization" />
 
-        </activity>
+            <meta-data
+                android:name="com.slim.settings.FRAGMENT_CLASS"
+                android:value="com.slim.settings.fragments.SlimPreferenceFragment" />
 
-        <activity
-            android:name="com.slim.settings.activities.NavigationSettingsActivity"
+            <meta-data
+                android:name="com.slim.settings.PREFERENCE_XML"
+                android:value="slim_interface_settings" />
+
+        </activity-alias>
+
+        <activity-alias
+            android:name="NavigationSettingsActivity"
             android:label="@string/navigation_settings_title"
             android:icon="@drawable/ic_settings_navigation"
-            android:theme="@style/Theme.Settings" >
+            android:theme="@style/Theme.Settings"
+            android:targetActivity="SettingsActivity">
 
             <intent-filter>
                 <action android:name="com.android.settings.action.EXTRA_SETTINGS" />
@@ -57,29 +73,55 @@
                 android:name="com.android.settings.category"
                 android:value="com.android.settings.category.personalization" />
 
-        </activity>
+            <meta-data
+                android:name="com.slim.settings.FRAGMENT_CLASS"
+                android:value="com.slim.settings.fragments.SlimPreferenceFragment" />
 
-        <activity
-            android:name="com.slim.settings.activities.DozeSettingsActivity"
+            <meta-data
+                android:name="com.slim.settings.PREFERENCE_XML"
+                android:value="slim_navigation_settings" />
+
+
+        </activity-alias>
+
+        <activity-alias
+            android:name="DozeSettingsActivity"
             android:label="@string/doze_settings_title"
-            android:theme="@style/Theme.Settings" >
+            android:icon="@drawable/ic_settings_interface"
+            android:theme="@style/Theme.Settings"
+            android:targetActivity="SettingsActivity">
 
             <intent-filter>
                 <action android:name="com.slim.settings.action.DOZE_SETTINGS" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
 
-        </activity>
+            <meta-data
+                android:name="com.slim.settings.FRAGMENT_CLASS"
+                android:value="com.slim.settings.fragments.DozeSettingsFragment" />
 
-        <activity
-            android:name="com.slim.settings.activities.ProxAutoSpeakerActivity"
+        </activity-alias>
+
+        <activity-alias
+            android:name="ProxAutoSpeakerActivity"
             android:label="@slim:string/prox_auto_speaker_title"
-            android:theme="@style/Theme.Settings" >
+            android:theme="@style/Theme.Settings"
+            android:targetActivity="SettingsActivity">
 
             <intent-filter>
                 <action android:name="com.slim.settings.action.PROXIMITY_AUTO_SPEAKER_SETTINGS" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
 
-        </activity>
+            <meta-data
+                android:name="com.slim.settings.FRAGMENT_CLASS"
+                android:value="com.slim.settings.fragments.SlimPreferenceFragment" />
+
+            <meta-data
+                android:name="com.slim.settings.PREFERENCE_XML"
+                android:value="prox_auto_speaker" />
+
+        </activity-alias>
 
         <activity android:name=".SubSettings"
                 android:theme="@style/Theme.Settings"
