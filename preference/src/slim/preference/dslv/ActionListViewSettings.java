@@ -116,6 +116,7 @@ public class ActionListViewSettings extends ListFragment implements
 
     private boolean mAdditionalFragmentAttached;
     private String mAdditionalFragment;
+    private String mFragmentPrefXML;
     private View mDivider;
 
     private int mPendingIndex = -1;
@@ -200,6 +201,7 @@ public class ActionListViewSettings extends ListFragment implements
         mActionMode = getArguments().getInt("actionMode", NAV_BAR);
         mMaxAllowedActions = getArguments().getInt("maxAllowedActions", DEFAULT_MAX_ACTION_NUMBER);
         mAdditionalFragment = getArguments().getString("fragment", null);
+        mFragmentPrefXML = getArguments().getString("fragment_pref_xml", null);
         mActionValuesKey = getArguments().getString("actionValues", "shortcut_action_values");
         mActionEntriesKey = getArguments().getString("actionEntries", "shortcut_action_entries");
         mDisableLongpress = getArguments().getBoolean("disableLongpress", false);
@@ -349,10 +351,16 @@ public class ActionListViewSettings extends ListFragment implements
     }
 
     private void loadAdditionalFragment() {
-        if (mAdditionalFragment != null && !mAdditionalFragment.isEmpty()) {
+        Log.d("TEST", "fragment - " + mAdditionalFragment);
+        Log.d("TEST", "pref xml - " + mFragmentPrefXML);
+        if (!TextUtils.isEmpty(mAdditionalFragment)) {
             try {
-                Class<?> classAdditionalFragment = Class.forName(mAdditionalFragment);
-                Fragment fragment = (Fragment) classAdditionalFragment.newInstance();
+                Fragment fragment = Fragment.instantiate(getContext(), mAdditionalFragment);
+                if (!TextUtils.isEmpty(mFragmentPrefXML)) {
+                    Bundle b = new Bundle();
+                    b.putString("preference_xml", mFragmentPrefXML);
+                    fragment.setArguments(b);
+                }
                 getFragmentManager().beginTransaction()
                     .replace(R.id.fragment_container, fragment).commit();
                 if (mDivider != null) {
