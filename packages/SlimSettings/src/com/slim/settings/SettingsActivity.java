@@ -25,6 +25,7 @@ import android.os.Bundle;
 import android.support.v7.preference.Preference;
 import android.support.v14.preference.PreferenceFragment;
 import android.support.v7.preference.PreferenceScreen;
+import android.text.TextUtils;
 import android.view.MenuItem;
 
 import com.slim.settings.Utils;
@@ -35,9 +36,12 @@ public class SettingsActivity extends SettingsDrawerActivity implements
         PreferenceFragment.OnPreferenceStartScreenCallback {
 
     public static final String META_DATA_KEY_FRAGMENT_CLASS =
-        "com.android.settings.FRAGMENT_CLASS";
+            "com.slim.settings.FRAGMENT_CLASS";
+    public static final String META_DATA_KEY_PREFRERENCE_XML =
+            "com.slim.settings.PREFERENCE_XML";
 
     private String mFragmentClass;
+    private String mPreferenceXML;
 
     private boolean mHomeUp = false;
 
@@ -81,6 +85,7 @@ public class SettingsActivity extends SettingsDrawerActivity implements
                     PackageManager.GET_META_DATA);
             if (ai == null || ai.metaData == null) return;
             mFragmentClass = ai.metaData.getString(META_DATA_KEY_FRAGMENT_CLASS);
+            mPreferenceXML = ai.metaData.getString(META_DATA_KEY_PREFRERENCE_XML);
         } catch (PackageManager.NameNotFoundException e) {
         }
     }
@@ -138,6 +143,11 @@ public class SettingsActivity extends SettingsDrawerActivity implements
     }
 
     public Bundle getFragmentBundle() {
+        if (!TextUtils.isEmpty(mPreferenceXML)) {
+            Bundle b = new Bundle();
+            b.putString("preference_xml", mPreferenceXML);
+            return b;
+        }
         return null;
     }
 }
