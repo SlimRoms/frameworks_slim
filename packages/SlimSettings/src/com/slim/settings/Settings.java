@@ -20,5 +20,9 @@ public class Settings extends SettingsActivity {
 
     public static class NotificationLightSettingsActivity extends SettingsActivity {}
     public static class BatteryLightSettingsActivity extends SettingsActivity {}
+    public static class InterfaceSettingsActivity extends SettingsActivity {}
+    public static class NavigationSettingsActivity extends SettingsActivity {}
+    public static class DozeSettingsActivity extends SettingsActivity {}
+    public static class ProxAutoSpeakerActivity extends SettingsActivity {}
 
 }
