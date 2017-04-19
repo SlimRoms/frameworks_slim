@@ -19,10 +19,14 @@ package com.slim.settings;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.content.Intent;
+import android.content.pm.ActivityInfo;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.v7.preference.Preference;
 import android.support.v14.preference.PreferenceFragment;
 import android.support.v7.preference.PreferenceScreen;
+import android.text.TextUtils;
 import android.view.MenuItem;
 
 import com.slim.settings.Utils;
@@ -32,21 +36,61 @@ public class SettingsActivity extends SettingsDrawerActivity implements
         PreferenceFragment.OnPreferenceStartFragmentCallback,
         PreferenceFragment.OnPreferenceStartScreenCallback {
 
+    public static final String META_DATA_KEY_FRAGMENT_CLASS =
+            "com.slim.settings.FRAGMENT_CLASS";
+    public static final String META_DATA_KEY_PREFRERENCE_XML =
+            "com.slim.settings.PREFERENCE_XML";
+
+    public static final String EXTRA_SHOW_FRAGMENT = ":settings:show_fragment";
+    public static final String EXTRA_SHOW_FRAGMENT_ARGUMENTS = ":settings:show_fragment_args";
+    public static final String EXTRA_SHOW_FRAGMENT_TITLE = ":settings:show_fragment_title";
+    public static final String EXTRA_FRAGMENT_ARG_KEY = ":settings:fragment_args_key";
+    public static final String EXTRA_SHOW_FRAGMENT_TITLE_RESID =
+            ":settings:show_fragment_title_resid";
+
+    private String mFragmentClass;
+    private String mPreferenceXML;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        getMetaData();
+
         Fragment fragment = getFragment();
+        String fragmentClass = getIntent().getStringExtra(EXTRA_SHOW_FRAGMENT);
+        if (mFragmentClass != null) {
+            fragment = Fragment.instantiate(this, mFragmentClass);
+        } else if (fragmentClass != null) {
+            fragment = Fragment.instantiate(this, fragmentClass);
+        }
+
+        Bundle fragmentArgs = getIntent().getBundleExtra(EXTRA_SHOW_FRAGMENT_ARGUMENTS);
+        if (fragmentArgs == null) {
+            fragmentArgs = getFragmentBundle();
+        } else if (!TextUtils.isEmpty(mPreferenceXML)) {
+            fragmentArgs.putString("preference_xml", mPreferenceXML);
+        }
         if (fragment != null) {
             FragmentTransaction transaction = getFragmentManager().beginTransaction();
-            if (getFragmentBundle() != null) {
-                fragment.setArguments(getFragmentBundle());
-            }
+            fragment.setArguments(fragmentArgs);
             transaction.replace(R.id.content_frame, fragment);
             transaction.commit();
-            showMenuIcon();
         }
         getActionBar().setDisplayHomeAsUpEnabled(true);
+
+        setTitle(getIntent());
+    }
+
+    private void getMetaData() {
+        try {
+            ActivityInfo ai = getPackageManager().getActivityInfo(getComponentName(),
+                    PackageManager.GET_META_DATA);
+            if (ai == null || ai.metaData == null) return;
+            mFragmentClass = ai.metaData.getString(META_DATA_KEY_FRAGMENT_CLASS);
+            mPreferenceXML = ai.metaData.getString(META_DATA_KEY_PREFRERENCE_XML);
+        } catch (PackageManager.NameNotFoundException e) {
+        }
     }
 
     @Override
@@ -102,6 +146,21 @@ public class SettingsActivity extends SettingsDrawerActivity implements
     }
 
     public Bundle getFragmentBundle() {
-        return null;
+        if (!TextUtils.isEmpty(mPreferenceXML)) {
+            Bundle b = new Bundle();
+            b.putString("preference_xml", mPreferenceXML);
+            return b;
+        }
+        return new Bundle();
+    }
+
+    private void setTitle(Intent intent) {
+        final int titleResId = intent.getIntExtra(EXTRA_SHOW_FRAGMENT_TITLE_RESID, -1);
+        if (titleResId > 0) {
+            setTitle(getResources().getString(titleResId));
+        } else {
+            String title = intent.getStringExtra(EXTRA_SHOW_FRAGMENT_TITLE);
+            setTitle(title != null ? title : getTitle());
+        }
     }
 }
