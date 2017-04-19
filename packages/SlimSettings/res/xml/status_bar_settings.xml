@@ -43,7 +43,7 @@
     </PreferenceCategory>-->
 
     <PreferenceCategory
-            android:title="@string/battery_icon_options_title">
+        android:title="@string/battery_icon_options_title">
 
         <slim.preference.SlimListPreference
             android:key="status_bar_battery_style"

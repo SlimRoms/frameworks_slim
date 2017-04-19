@@ -19,63 +19,63 @@
         xmlns:slim="http://schemas.android.com/apk/res/slim"
         android:title="@string/recent_panel_category">
 
-        <slim.preference.SlimSwitchPreference
-            android:key="use_slim_recents"
-            android:title="@string/use_slim_recents_title"
-            android:defaultValue="true" />
+    <slim.preference.SlimSwitchPreference
+        android:key="use_slim_recents"
+        android:title="@string/use_slim_recents_title"
+        android:defaultValue="true" />
 
-        <slim.preference.SlimSwitchPreference
-            android:dependency="use_slim_recents"
-            android:key="show_running_tasks"
-            android:title="@string/show_running_tasks_title"
-            android:defaultValue="false" />
+    <slim.preference.SlimSwitchPreference
+        android:dependency="use_slim_recents"
+        android:key="show_running_tasks"
+        android:title="@string/show_running_tasks_title"
+        android:defaultValue="false" />
 
-        <slim.preference.SlimSeekBarPreference
-            android:dependency="use_slim_recents"
-            android:key="recents_max_apps"
-            android:title="@string/recents_max_apps_title"
-            slim:minValue="5"
-            slim:defaultValue="@slim:integer/slim_recents_max_apps_default"
-            slim:usePercentage="false" />
+    <slim.preference.SlimSeekBarPreference
+        android:dependency="use_slim_recents"
+        android:key="recents_max_apps"
+        android:title="@string/recents_max_apps_title"
+        slim:minValue="5"
+        slim:defaultValue="@slim:integer/slim_recents_max_apps_default"
+        slim:usePercentage="false" />
 
-        <slim.preference.SlimListPreference
-            android:dependency="use_slim_recents"
-            android:key="recent_panel_expanded_mode"
-            android:entries="@array/recent_panel_expanded_mode_entries"
-            android:entryValues="@array/recent_panel_expanded_mode_values"
-            android:title="@string/recent_panel_expanded_mode_title"
-            android:summary="@string/recent_panel_expanded_mode_summary" />
+    <slim.preference.SlimListPreference
+        android:dependency="use_slim_recents"
+        android:key="recent_panel_expanded_mode"
+        android:entries="@array/recent_panel_expanded_mode_entries"
+        android:entryValues="@array/recent_panel_expanded_mode_values"
+        android:title="@string/recent_panel_expanded_mode_title"
+        android:summary="@string/recent_panel_expanded_mode_summary" />
 
-        <slim.preference.SlimSwitchPreference
-            android:dependency="use_slim_recents"
-            android:key="recent_panel_lefty_mode"
-            android:title="@string/recent_panel_lefty_mode_title"
-            android:summary="@string/recent_panel_lefty_mode_summary" />
+    <slim.preference.SlimSwitchPreference
+        android:dependency="use_slim_recents"
+        android:key="recent_panel_lefty_mode"
+        android:title="@string/recent_panel_lefty_mode_title"
+        android:summary="@string/recent_panel_lefty_mode_summary" />
 
-        <slim.preference.SlimSwitchPreference
-            android:dependency="use_slim_recents"
-            android:key="recent_panel_show_topmost"
-            android:title="@string/recent_panel_show_topmost_title"
-            android:summary="@string/recent_panel_show_topmost_summary" />
+    <slim.preference.SlimSwitchPreference
+        android:dependency="use_slim_recents"
+        android:key="recent_panel_show_topmost"
+        android:title="@string/recent_panel_show_topmost_title"
+        android:summary="@string/recent_panel_show_topmost_summary" />
 
-        <slim.preference.SlimSeekBarPreference
-            android:dependency="use_slim_recents"
-            android:key="recent_panel_scale_factor"
-            android:title="@string/recent_panel_scale_title"
-            slim:interval="5"
-            slim:defaultValue="100"
-            slim:minValue="60" />
+    <slim.preference.SlimSeekBarPreference
+        android:dependency="use_slim_recents"
+        android:key="recent_panel_scale_factor"
+        android:title="@string/recent_panel_scale_title"
+        slim:interval="5"
+        slim:defaultValue="100"
+        slim:minValue="60" />
 
-        <slim.preference.colorpicker.ColorPickerPreference
-            android:dependency="use_slim_recents"
-            android:key="recent_panel_bg_color"
-            android:title="@string/recent_panel_bg_color_title"
-            app:defaultColor="#00ffffff" />
+    <slim.preference.colorpicker.ColorPickerPreference
+        android:dependency="use_slim_recents"
+        android:key="recent_panel_bg_color"
+        android:title="@string/recent_panel_bg_color_title"
+        app:defaultColor="#00ffffff" />
 
-        <slim.preference.colorpicker.ColorPickerPreference
-            android:dependency="use_slim_recents"
-            android:key="recent_card_bg_color"
-            android:title="@string/recent_card_bg_color_title"
-            app:defaultColor="#00ffffff" />
+    <slim.preference.colorpicker.ColorPickerPreference
+        android:dependency="use_slim_recents"
+        android:key="recent_card_bg_color"
+        android:title="@string/recent_card_bg_color_title"
+        app:defaultColor="#00ffffff" />
 
 </PreferenceScreen>
