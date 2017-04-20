@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1aa4ed85_b8e39d32",
+        "filename": "packages/SlimSettings/AndroidManifest.xml",
+        "patchSetId": 8
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2017-04-20T15:30:03Z",
+      "side": 1,
+      "message": "gestures",
+      "range": {
+        "startLine": 119,
+        "startChar": 61,
+        "endLine": 119,
+        "endChar": 76
+      },
+      "revId": "e0619c39bfd2f88d43e62f12e538ceb297db7351",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    }
+  ]
+}
