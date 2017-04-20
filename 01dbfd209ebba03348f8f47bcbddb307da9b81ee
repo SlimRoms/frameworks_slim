@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1aa4ed85_d8f8d9c6",
+        "filename": "packages/SlimSettings/res/values-sw720dp-land/dimens.xml",
+        "patchSetId": 11
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2017-04-20T23:50:31Z",
+      "side": 1,
+      "message": "OCD newline",
+      "range": {
+        "startLine": 16,
+        "startChar": 4,
+        "endLine": 16,
+        "endChar": 47
+      },
+      "revId": "01dbfd209ebba03348f8f47bcbddb307da9b81ee",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1aa4ed85_38148df4",
+        "filename": "packages/SlimSettings/res/values/dimens.xml",
+        "patchSetId": 11
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2017-04-20T23:50:31Z",
+      "side": 1,
+      "message": "2017",
+      "range": {
+        "startLine": 3,
+        "startChar": 24,
+        "endLine": 3,
+        "endChar": 28
+      },
+      "revId": "01dbfd209ebba03348f8f47bcbddb307da9b81ee",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1aa4ed85_180f51e3",
+        "filename": "packages/SlimSettings/res/values/themes.xml",
+        "patchSetId": 11
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2017-04-20T23:50:31Z",
+      "side": 1,
+      "message": "2017",
+      "range": {
+        "startLine": 2,
+        "startChar": 19,
+        "endLine": 2,
+        "endChar": 23
+      },
+      "revId": "01dbfd209ebba03348f8f47bcbddb307da9b81ee",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    }
+  ]
+}
