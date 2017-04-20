@@ -35,9 +35,12 @@ import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.BatteryManager;
+import android.os.BatteryProperties;
 import android.os.Binder;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.IBatteryPropertiesListener;
+import android.os.IBatteryPropertiesRegistrar;
 import android.os.IBinder;
 import android.os.RemoteException;
 import android.os.ServiceManager;
@@ -72,7 +75,7 @@ import java.util.Map;
 
 public class SlimLightsService extends SlimSystemService {
 
-    private static final String TAG = "SlimLightsSevice";
+    private static final String TAG = "SlimLightsService";
     private static final boolean DEBUG = true;
 
     private Context mContext;
@@ -115,9 +118,7 @@ public class SlimLightsService extends SlimSystemService {
     private INotificationManager mNoMan;
     private SlimNotificationListener mListener;
 
-    private int mBatteryLevel;
-    private boolean mCharging;
-    private int mMaxChargingCurrent;
+    private BatteryProperties mBatteryProps;
 
     class NotificationLedValues {
         public int color;
@@ -137,8 +138,7 @@ public class SlimLightsService extends SlimSystemService {
                 com.android.internal.R.integer.config_lowBatteryWarningLevel);
         mMultiColorLed = context.getResources().getBoolean(
                 org.slim.framework.internal.R.bool.config_multiColorBatteryLed);
-        mChargingFastThreshold = context.getResources().getInteger(
-                org.slim.framework.internal.R.integer.config_chargingFastThreshold);
+        mChargingFastThreshold = getChargingFastThreshold(context);
         mDefaultNotificationColor = context.getResources().getColor(
                 com.android.internal.R.color.config_defaultNotificationColor);
         mDefaultNotificationLedOff = context.getResources().getInteger(
@@ -172,6 +172,15 @@ public class SlimLightsService extends SlimSystemService {
             e.printStackTrace();
         }
 
+        IBinder b = ServiceManager.getService("batteryproperties");
+        final IBatteryPropertiesRegistrar batteryPropertiesRegistrar =
+                IBatteryPropertiesRegistrar.Stub.asInterface(b);
+        try {
+            batteryPropertiesRegistrar.registerListener(new BatteryListener());
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+
         //publishBinderService(SlimServiceConstants.SLIM_LIGHTS_SERVICE, mService);
     }
 
@@ -188,12 +197,8 @@ public class SlimLightsService extends SlimSystemService {
         if (phase == PHASE_BOOT_COMPLETED) {
             new SettingsObserver(new Handler()).observe();
 
-            IntentFilter filter = new IntentFilter();
-            filter.addAction(Intent.ACTION_BATTERY_CHANGED);
-            mContext.registerReceiver(new SlimBatteryListener(), filter);
-
             // register for various Intents
-            filter = new IntentFilter();
+            IntentFilter filter = new IntentFilter();
             filter.addAction(Intent.ACTION_SCREEN_ON);
             filter.addAction(Intent.ACTION_SCREEN_OFF);
             filter.addAction(TelephonyManager.ACTION_PHONE_STATE_CHANGED);
@@ -409,22 +414,46 @@ public class SlimLightsService extends SlimSystemService {
 
     private void handleBatteryLight() {
         synchronized (mLock) {
+            final int level = mBatteryProps.batteryLevel;
+            final int status = mBatteryProps.batteryStatus;
+
+            if (DEBUG) {
+                Slog.d(TAG, "Update batteryLights: "
+                        + "mChargingFastThreshold=" + mChargingFastThreshold
+                        + ", maxChargingCurrent=" + mBatteryProps.maxChargingCurrent
+                        + ", maxChargingVoltage" + mBatteryProps.maxChargingVoltage
+                        + ", chargerAcOnline=" + mBatteryProps.chargerAcOnline
+                        + ", chargerUsbOnline=" + mBatteryProps.chargerUsbOnline
+                        + ", chargerWirelessOnline=" + mBatteryProps.chargerWirelessOnline
+                        + ", batteryStatus=" + mBatteryProps.batteryStatus
+                        + ", batteryHealth=" + mBatteryProps.batteryHealth
+                        + ", batteryPresent=" + mBatteryProps.batteryPresent
+                        + ", batteryLevel=" + mBatteryProps.batteryLevel
+                        + ", batteryTechnology=" + mBatteryProps.batteryTechnology
+                        + ", batteryVoltage=" + mBatteryProps.batteryVoltage
+                        + ", batteryTemperature=" + mBatteryProps.batteryTemperature);
+            }
+
+            final int maxChargingMicroWatt = (mBatteryProps.maxChargingCurrent / 1000)
+                    * (mBatteryProps.maxChargingVoltage / 1000);
+
             if (!mBatteryLightEnabled) {
                 mBatteryLight.turnOff();
-            } else if (mBatteryLevel < mLowBatteryWarningLevel) {
-                if (mCharging) {
-                    mBatteryLight.setColor(mBatteryLowARGB);
-                } else if (mLedPulseEnabled) {
-                    mBatteryLight.setFlashing(mBatteryLowARGB, Light.LIGHT_FLASH_TIMED,
-                            mBatteryLedOn, mBatteryLedOff);
-                }
-            } else if (mCharging) {
-                if (mBatteryLevel >= 90) {
-                    mBatteryLight.setColor(mBatteryFullARGB);
-                } else if (mMaxChargingCurrent > mChargingFastThreshold) {
+            } else if (status == BatteryManager.BATTERY_STATUS_CHARGING) {
+                if (maxChargingMicroWatt > mChargingFastThreshold) {
                     mBatteryLight.setColor(mBatteryMediumFastARGB);
                 } else {
                     mBatteryLight.setColor(mBatteryMediumARGB);
+                }
+            } else if (status == BatteryManager.BATTERY_STATUS_FULL) {
+                mBatteryLight.setColor(mBatteryFullARGB);
+            } else if (level < mLowBatteryWarningLevel) {
+                if (status == BatteryManager.BATTERY_STATUS_CHARGING) {
+                    mBatteryLight.setColor(mBatteryLowARGB);
+                } else if (mLedPulseEnabled) {
+                    // LED blinking requested
+                    mBatteryLight.setFlashing(mBatteryLowARGB, Light.LIGHT_FLASH_TIMED,
+                            mBatteryLedOn, mBatteryLedOff);
                 }
             } else {
                 mBatteryLight.turnOff();
@@ -432,27 +461,23 @@ public class SlimLightsService extends SlimSystemService {
         }
     }
 
-    private class SlimBatteryListener extends BroadcastReceiver {
+    private void updateBatteryProps(BatteryProperties props) {
+        synchronized (mLock) {
+            mBatteryProps = props;
+            handleBatteryLight();
+        }
+    }
 
+    private final class BatteryListener extends IBatteryPropertiesListener.Stub {
         @Override
-        public void onReceive(Context context, Intent intent) {
-            final String action = intent.getAction();
-            if (action.equals(Intent.ACTION_BATTERY_CHANGED)) {
-                mBatteryLevel = (int)(100f
-                        * intent.getIntExtra(BatteryManager.EXTRA_LEVEL, 0)
-                        / intent.getIntExtra(BatteryManager.EXTRA_SCALE, 100));
-                final int status = intent.getIntExtra(BatteryManager.EXTRA_STATUS,
-                        BatteryManager.BATTERY_STATUS_UNKNOWN);
-                boolean charged = status == BatteryManager.BATTERY_STATUS_FULL;
-                mCharging = status == BatteryManager.BATTERY_STATUS_CHARGING;
-
-                mMaxChargingCurrent = intent.getIntExtra(
-                        BatteryManager.EXTRA_MAX_CHARGING_CURRENT, 0);
-
-                handleBatteryLight();
+        public void batteryPropertiesChanged(BatteryProperties props) {
+            final long identity = Binder.clearCallingIdentity();
+            try {
+                SlimLightsService.this.updateBatteryProps(props);
+            } finally {
+                Binder.restoreCallingIdentity(identity);
             }
         }
-
     }
 
     private void handleNotificationPosted(StatusBarNotification sbn,
@@ -569,6 +594,22 @@ public class SlimLightsService extends SlimSystemService {
 
     private StatusBarNotification[] getActiveNotifications() {
         return getActiveNotifications(null);
+    }
+
+    private int getChargingFastThreshold(Context context) {
+        String packageName = "com.android.systemui";
+        String configName = "config_chargingFastThreshold";
+        try {
+            Resources systemUiRes =
+                    context.getPackageManager().getResourcesForApplication(packageName);
+            int resId = systemUiRes.getIdentifier(configName, "integer", packageName);
+            if (resId > 0) {
+                return systemUiRes.getInteger(resId);
+            }
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        return 0;
     }
 
     private StatusBarNotification[] getActiveNotifications(String... keys) {
