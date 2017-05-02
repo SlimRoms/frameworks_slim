@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8049a230_de81c7af",
+        "filename": "packages/SlimSettings/AndroidManifest.xml",
+        "patchSetId": 13
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1000053
+      },
+      "writtenOn": "2017-05-02T02:05:09Z",
+      "side": 1,
+      "message": "com.slim.settings",
+      "range": {
+        "startLine": 137,
+        "startChar": 0,
+        "endLine": 137,
+        "endChar": 73
+      },
+      "revId": "cc4724def86308255e9d0d4617434819c92f164e",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f7a3c722_c057b352",
+        "filename": "packages/SlimSettings/AndroidManifest.xml",
+        "patchSetId": 13
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1000053
+      },
+      "writtenOn": "2017-05-02T02:05:09Z",
+      "side": 1,
+      "message": "com.slim.settings",
+      "range": {
+        "startLine": 152,
+        "startChar": 0,
+        "endLine": 152,
+        "endChar": 73
+      },
+      "revId": "cc4724def86308255e9d0d4617434819c92f164e",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    }
+  ]
+}
