@@ -511,6 +511,18 @@ public final class SlimSettingsKeys {
 //        public static final String DOZE_TRIGGER_DOUBLETAP = "doze_trigger_doubletap";
 
         /**
+         * Use hand wave as doze pulse triggers
+         * @hide
+         */
+        public static final String DOZE_TRIGGER_HAND_WAVE = "doze_trigger_hand_wave";
+
+        /**
+         * Use out of pocket as doze pulse triggers
+         * @hide
+         */
+        public static final String DOZE_TRIGGER_POCKET = "doze_trigger_pocket";
+
+        /**
          * Whether the phone ringtone should be played in an increasing manner
          * @hide
          */

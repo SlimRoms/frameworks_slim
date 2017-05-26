@@ -503,6 +503,12 @@
     <!--string name="doze_trigger_doubletap_title">Double tap trigger</string-->
     <!--string name="doze_trigger_doubletap_summary_on">Doze pulse will be triggered by a double tap</string-->
     <!--string name="doze_trigger_doubletap_summary_off">Double tap sensor will not be utilized as a triggering mechanism (default)</string-->
+    <string name="doze_trigger_hand_wave_title">Hand wave gesture trigger</string>
+    <string name="doze_trigger_hand_wave_summary_on">Doze pulse will be triggered by a hand wave gesture (default)</string>
+    <string name="doze_trigger_hand_wave_summary_off">Hand wave gesture will not be utilized as a triggering mechanism</string>
+    <string name="doze_trigger_pocket_title">Pocket mode gesture trigger</string>
+    <string name="doze_trigger_pocket_summary_on">Doze pulse will be triggered when taking device out of pocket (default)</string>
+    <string name="doze_trigger_pocket_summary_off">Taking device out of pocket will not be utilized as a triggering mechanism</string>
     <string name="doze_trigger_notification_title">Notification trigger</string>
     <string name="doze_trigger_notification_summary_on">Doze pulse will be triggered by notifications (default)</string>
     <string name="doze_trigger_notification_summary_off">Notifications will not be utilized as a trigger</string>
