@@ -833,6 +833,8 @@ public final class SlimSettings {
         /** @hide */
         public static final Validator DOZE_TRIGGER_PICKUP_VALIDATOR = sBooleanValidator;
         /** @hide */
+        public static final Validator DOZE_TRIGGER_TILT_VALIDATOR = sBooleanValidator;
+        /** @hide */
         public static final Validator DOZE_TRIGGER_SIGMOTION_VALIDATOR = sBooleanValidator;
         /** @hide */
         public static final Validator DOZE_TRIGGER_NOTIFICATION_VALIDATOR = sBooleanValidator;
@@ -891,6 +893,7 @@ public final class SlimSettings {
             VALIDATORS.put(DOZE_BRIGHTNESS, DOZE_BRIGHTNESS_VALIDATOR);
             VALIDATORS.put(DOZE_WAKEUP_DOUBLETAP, DOZE_WAKEUP_DOUBLETAP_VALIDATOR);
             VALIDATORS.put(DOZE_TRIGGER_PICKUP, DOZE_TRIGGER_PICKUP_VALIDATOR);
+            VALIDATORS.put(DOZE_TRIGGER_TILT, DOZE_TRIGGER_TILT_VALIDATOR);
             VALIDATORS.put(DOZE_TRIGGER_SIGMOTION, DOZE_TRIGGER_SIGMOTION_VALIDATOR);
             VALIDATORS.put(DOZE_TRIGGER_NOTIFICATION, DOZE_TRIGGER_NOTIFICATION_VALIDATOR);
 //            VALIDATORS.put(DOZE_TRIGGER_DOUBLETAP, DOZE_TRIGGER_DOUBLETAP_VALIDATOR);

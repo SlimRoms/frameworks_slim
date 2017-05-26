@@ -83,6 +83,13 @@
             android:persistent="false" />
 
     <SwitchPreference
+            android:key="doze_trigger_tilt"
+            android:title="@string/doze_trigger_tilt_title"
+            android:summaryOn="@string/doze_trigger_tilt_summary_on"
+            android:summaryOff="@string/doze_trigger_tilt_summary_off"
+            android:persistent="false" />
+
+    <SwitchPreference
             android:key="doze_trigger_sigmotion"
             android:title="@string/doze_trigger_sigmotion_title"
             android:summaryOn="@string/doze_trigger_sigmotion_summary_on"
