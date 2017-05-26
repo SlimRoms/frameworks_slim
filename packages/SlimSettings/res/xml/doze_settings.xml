@@ -104,6 +104,20 @@
             android:persistent="false" /-->
 
     <SwitchPreference
+            android:key="doze_trigger_hand_wave"
+            android:title="@string/doze_trigger_hand_wave_title"
+            android:summaryOn="@string/doze_trigger_hand_wave_summary_on"
+            android:summaryOff="@string/doze_trigger_hand_wave_summary_off"
+            android:persistent="false" />
+
+    <SwitchPreference
+            android:key="doze_trigger_pocket"
+            android:title="@string/doze_trigger_pocket_title"
+            android:summaryOn="@string/doze_trigger_pocket_summary_on"
+            android:summaryOff="@string/doze_trigger_pocket_summary_off"
+            android:persistent="false" />
+
+    <SwitchPreference
             android:key="doze_trigger_notification"
             android:title="@string/doze_trigger_notification_title"
             android:summaryOn="@string/doze_trigger_notification_summary_on"
