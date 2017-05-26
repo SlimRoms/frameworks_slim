@@ -487,6 +487,12 @@ public final class SlimSettingsKeys {
         public static final String DOZE_TRIGGER_PICKUP = "doze_trigger_pickup";
 
         /**
+         * Use tilt gesture sensor as doze pulse trigger
+         * @hide
+         */
+        public static final String DOZE_TRIGGER_TILT = "doze_trigger_tilt";
+
+        /**
          * Use significant motion sensor as doze pulse trigger
          * @hide
          */
