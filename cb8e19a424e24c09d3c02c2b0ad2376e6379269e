@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "697f19b0_f2e3ea98",
+        "filename": "packages/SlimSettings/src/com/slim/settings/fragments/DozeSettingsFragment.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2017-05-27T22:28:39Z",
+      "side": 1,
+      "message": "2013-2017",
+      "range": {
+        "startLine": 2,
+        "startChar": 17,
+        "endLine": 2,
+        "endChar": 21
+      },
+      "revId": "cb8e19a424e24c09d3c02c2b0ad2376e6379269e",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    }
+  ]
+}
