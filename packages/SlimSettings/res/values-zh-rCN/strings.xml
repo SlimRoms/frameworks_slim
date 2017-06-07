@@ -22,6 +22,7 @@
   <string name="menu_cancel">取消</string>
   <string name="advanced_settings">高级</string>
   <!-- Common color picker strings -->
+  <string name="color_picker_reset_message">重置颜色？</string>
   <!-- Slim settings screens -->
   <string name="navigation_settings_title">导航栏</string>
   <string name="interface_settings_title">用户界面</string>
@@ -396,7 +397,6 @@
   <string name="recent_panel_show_topmost_summary">最近任务视图中不排除顶层任务应用</string>
   <string name="recent_panel_bg_color_title">面板背景颜色</string>
   <string name="recent_card_bg_color_title">卡片背景颜色</string>
-  <string name="recent_card_text_color_title">卡片的文本颜色</string>
   <!-- ATTENTION: RTL languages need to replace left with right -->
   <string name="recent_panel_lefty_mode_title">显示在左边缘</string>
   <string name="recent_panel_lefty_mode_summary">在屏幕左侧显示最近应用程序列表</string>
@@ -443,8 +443,14 @@
   <!-- Doze options -->
   <string name="display_category_doze_options_title">主动显示 (Doze) 选项</string>
   <string name="doze_settings_title">Doze高级选项</string>
+  <string name="doze_fade_in_pickup_title">Doze渐入(拿起设备)</string>
+  <string name="doze_fade_in_pickup_summary">当拿起设备时消息提醒的屏幕渐入效果时长(默认100)</string>
+  <string name="doze_fade_in_doubletap_title">Doze渐入(双击屏幕)</string>
+  <string name="doze_fade_in_doubletap_summary">当双击屏幕时消息提醒的屏幕渐入效果时长(默认900)</string>
   <string name="doze_timeout_title">Doze模式超时</string>
   <string name="doze_timeout_summary">有新通知时屏幕亮起的时间</string>
+  <string name="doze_fade_out_title">Doze渐出</string>
+  <string name="doze_fade_out_summary">显示消息提醒后的屏幕渐出时长(默认600)</string>
   <string name="doze_wakeup_doubletap_title">休眠时双击唤醒</string>
   <string name="doze_wakeup_doubletap_summary_on">需要双击来唤醒处于doze模式的手机</string>
   <string name="doze_wakeup_doubletap_summary_off">需要单击来唤醒处于Doze模式的手机(默认)</string>
@@ -463,4 +469,7 @@
   <string name="doze_brightness_title">Doze模式亮度水平</string>
   <string name="doze_brightness_summary">休眠时的屏幕亮度(最大允许亮度的%)</string>
   <!-- Increasing ring tone volume -->
+  <string name="increasing_ring_volume_option_title">铃声音量渐强</string>
+  <string name="increasing_ring_min_volume_title">初始音量</string>
+  <string name="increasing_ring_ramp_up_time_title">铃声渐强时长</string>
 </resources>

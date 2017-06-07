@@ -396,7 +396,6 @@
   <string name="recent_panel_show_topmost_summary">Nie wykluczaj aktualnie używanej aplikacji</string>
   <string name="recent_panel_bg_color_title">Kolor tła panelu</string>
   <string name="recent_card_bg_color_title">Kolor tła karty</string>
-  <string name="recent_card_text_color_title">Kolor tekstu w karcie</string>
   <!-- ATTENTION: RTL languages need to replace left with right -->
   <string name="recent_panel_lefty_mode_title">Pokaż na lewej krawędzi ekranu</string>
   <string name="recent_panel_lefty_mode_summary">Wyświetlaj panel ostatnich aplikacji z lewej strony</string>

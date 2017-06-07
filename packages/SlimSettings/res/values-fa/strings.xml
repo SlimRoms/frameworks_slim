@@ -395,7 +395,6 @@
   <string name="recent_panel_show_topmost_summary">بالاترین وظیفه را از نمایش برنامه های اخیر حذف نکن</string>
   <string name="recent_panel_bg_color_title">رنگ پس زمینه صفحه</string>
   <string name="recent_card_bg_color_title">رنگ پس زمینه کارت</string>
-  <string name="recent_card_text_color_title">رنگ متن کارت</string>
   <!-- ATTENTION: RTL languages need to replace left with right -->
   <string name="recent_panel_lefty_mode_title">نمایش در لبه سمت چپ</string>
   <string name="recent_panel_lefty_mode_summary">نمایش برنامه اخیر در لبه چپ</string>

@@ -397,7 +397,6 @@
   <string name="recent_panel_show_topmost_summary">Non escludere l\'app in primo piano nel pannello delle app recenti</string>
   <string name="recent_panel_bg_color_title">Colore di sfondo del pannello</string>
   <string name="recent_card_bg_color_title">Colore di sfondo delle schede</string>
-  <string name="recent_card_text_color_title">Colore del testo delle schede</string>
   <!-- ATTENTION: RTL languages need to replace left with right -->
   <string name="recent_panel_lefty_mode_title">Visualizza sul bordo sinistro</string>
   <string name="recent_panel_lefty_mode_summary">Mostra il pannello delle app recenti sul lato sinistro</string>
@@ -444,8 +443,14 @@
   <!-- Doze options -->
   <string name="display_category_doze_options_title">Opzioni Ambient Display</string>
   <string name="doze_settings_title">Opzioni avanzate doze</string>
+  <string name="doze_fade_in_pickup_title">Doze impulso fade in (pick-up)</string>
+  <string name="doze_fade_in_pickup_summary">Imposta il tempo in cui lo schermo deve rimanere accesso per visualizzare le notifiche (default 100)</string>
+  <string name="doze_fade_in_doubletap_title">Doze impulso fade in (pick-up)</string>
+  <string name="doze_fade_in_doubletap_summary">Imposta il tempo in cui lo schermo deve rimanere accesso per visualizzare le notifiche (default 900)</string>
   <string name="doze_timeout_title">Regola il tempo di frequenza di Doze</string>
   <string name="doze_timeout_summary">Imposta il tempo in cui lo schermo deve rimanere accesso per visualizzare le notifiche</string>
+  <string name="doze_fade_out_title">Regola il tempo di frequenza di Doze</string>
+  <string name="doze_fade_out_summary">Imposta il tempo in cui lo schermo deve rimanere accesso per visualizzare le notifiche (default 600)</string>
   <string name="doze_wakeup_doubletap_title">Doppio tocco per attivare il dispositivo</string>
   <string name="doze_wakeup_doubletap_summary_on">Richiede un doppio tocco per riattivare il dispositivo sullo schermo ad un impulso di doze</string>
   <string name="doze_wakeup_doubletap_summary_off">Richiede un singolo tocco per riattivare il dispositivo sullo schermo ad un impulso di doze (predefinito)</string>

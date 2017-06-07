@@ -112,7 +112,6 @@
   <string name="recent_panel_show_topmost_summary">最近使ったアプリで最上位のものを除外しません</string>
   <string name="recent_panel_bg_color_title">パネルの背景色</string>
   <string name="recent_card_bg_color_title">カードの背景色</string>
-  <string name="recent_card_text_color_title">カードのテキストカラー</string>
   <!-- ATTENTION: RTL languages need to replace left with right -->
   <string name="recent_panel_lefty_mode_title">左端に表示</string>
   <string name="recent_panel_lefty_mode_summary">画面左に最近使ったアプリパネルを表示</string>

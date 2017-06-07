@@ -20,7 +20,9 @@
   <string name="disabled">Pois käytöstä</string>
   <string name="menu_save">Tallenna</string>
   <string name="menu_cancel">Hylkää</string>
+  <string name="advanced_settings">Lisäasetukset</string>
   <!-- Common color picker strings -->
+  <string name="color_picker_reset_message">Palauta väri?</string>
   <!-- Slim settings screens -->
   <string name="navigation_settings_title">Navigointi</string>
   <string name="interface_settings_title">Käyttöliittymä</string>
@@ -56,6 +58,20 @@
   <string name="app_ops_summaries_receive_sms">vastaanota tekstiviesti</string>
   <string name="app_ops_summaries_receive_emergency_sms">vastaanota hätätekstiviestejä</string>
   <string name="app_ops_summaries_receive_mms">vastaanota multimediaviestejä</string>
+  <string name="app_ops_summaries_receive_wap_push">vastaanota WAP push-viestejä</string>
+  <string name="app_ops_summaries_send_sms">lähetä tekstiviestejä</string>
+  <string name="app_ops_summaries_read_icc_sms">lue ICC tekstiviestejä</string>
+  <string name="app_ops_summaries_write_icc_sms">kirjoita ICC tekstiviestejä</string>
+  <string name="app_ops_summaries_modify_settings">muokkaa asetuksia</string>
+  <string name="app_ops_summaries_draw_on_top">piirrä päälle</string>
+  <string name="app_ops_summaries_access_notifications">pääsy ilmoituksiin</string>
+  <string name="app_ops_summaries_camera">kamera</string>
+  <string name="app_ops_summaries_record_audio">tallenna ääntä</string>
+  <string name="app_ops_summaries_play_audio">toista ääntä</string>
+  <string name="app_ops_summaries_read_clipboard">lue leikepöytä</string>
+  <string name="app_ops_summaries_modify_clipboard">muokkaa leikepöytää</string>
+  <string name="app_ops_summaries_media_buttons">mediapainikkeet</string>
+  <string name="app_ops_summaries_audio_focus">äänen kohdistus</string>
   <string name="app_ops_summaries_master_volume">pää-äänenvoimakkuus</string>
   <string name="app_ops_summaries_voice_volume">äänen voimakkuus</string>
   <string name="app_ops_summaries_ring_volume">soittoäänen voimakkuus</string>
@@ -75,6 +91,16 @@
   <string name="app_ops_summaries_assist_screenshot">apukuvakaappaus</string>
   <string name="app_ops_summaries_read_phone_state">lue puhelimen tila</string>
   <string name="app_ops_summaries_add_voicemail">lisää vastaaja</string>
+  <string name="app_ops_summaries_use_sip">käytä SIP</string>
+  <string name="app_ops_summaries_make_call">soita puhelu</string>
+  <string name="app_ops_summaries_use_fingerprint">käytä sormenjälkeä</string>
+  <string name="app_ops_summaries_use_body_sensors">käytä kehon antureita</string>
+  <string name="app_ops_summaries_read_cell_broadcasts">lue hätätilalähetyksiä</string>
+  <string name="app_ops_summaries_mock_location">esitä sijaintia</string>
+  <string name="app_ops_summaries_read_external_storage">lue ulkoista tallennustilaa</string>
+  <string name="app_ops_summaries_write_external_storage">kirjoita ulkoiseen tallennustilaan</string>
+  <string name="app_ops_summaries_turn_screen_on">avaa näyttö</string>
+  <string name="app_ops_summaries_get_accounts">lue tilejä</string>
   <!-- User display names for app ops codes - extension of AOSP -->
   <string name="app_ops_labels_modify_calendar">Muokkaa kalenteria</string>
   <string name="app_ops_labels_wifi_scan">Wi-Fi-haku</string>

@@ -147,6 +147,8 @@
   <string name="shortcut_action_torch">Фонарик</string>
   <string name="shortcut_action_voice_search">Голосовой поиск</string>
   <string name="shortcut_action_nowontap">Google Now / Now on Tap</string>
+  <string name="shortcut_action_split_screen">Разделение экрана</string>
+  <string name="shortcut_action_doze_pulse">Doze-пульсация</string>
   <!-- Icon color options -->
   <string name="icon_color_mode_all_icons">Все значки</string>
   <string name="icon_color_mode_system_icons">Системные значки</string>
@@ -160,6 +162,21 @@
   <string name="set">Задать</string>
   <string name="color_default">По умолчанию</string>
   <!-- Proximity speaker -->
+  <string name="display_category_prox_auto_speaker_title">Настройки громкой связи</string>
+  <string name="prox_auto_speaker_options">Датчик приближения и громкая связь</string>
+  <string name="prox_auto_speaker_title">Автоматическое выключение громкой связи при приближении</string>
+  <string name="prox_auto_speaker_summary">Автоматически включать громкую связь, когда устройство убирается от лица</string>
+  <string name="prox_auto_speaker_delay_title">Задержка включения громкой связи</string>
+  <string name="prox_auto_speaker_delay_summary">Пауза до момента активации громкой связи</string>
+  <string name="prox_auto_speaker_incall_only_title">Только во время вызова</string>
+  <string name="prox_auto_speaker_incall_only_summary_on">При исходящих звонках функция активируется только после ответа на вызов</string>
+  <string name="prox_auto_speaker_incall_only_summary_off">Функция активна при любых вызовах (по умолчанию)</string>
   <!-- Slim Doze-->
+  <string name="display_category_doze_options_title">Настройки запрета спящего режима</string>
+  <string name="doze_settings_title">Расширенные настройки Doze</string>
   <!-- Increasing ring tone volume -->
+  <string name="increasing_ring_volume_option_title">Возрастающая громкость звонка</string>
+  <string name="increasing_ring_min_volume_title">Начальная громкость</string>
+  <string name="increasing_ring_ramp_up_time_title">Время увеличения</string>
+  <!-- Proximity wake -->
 </resources>

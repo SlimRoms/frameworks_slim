@@ -22,6 +22,7 @@
   <string name="menu_cancel">Descartar</string>
   <string name="advanced_settings">Avanzados</string>
   <!-- Common color picker strings -->
+  <string name="color_picker_reset_message">¿Restablecer color?</string>
   <!-- Slim settings screens -->
   <string name="navigation_settings_title">Navegación</string>
   <string name="interface_settings_title">Interfaz</string>
@@ -396,7 +397,6 @@
   <string name="recent_panel_show_topmost_summary">No excluir tareas superiores en la vista de recientes</string>
   <string name="recent_panel_bg_color_title">Color de fondo del panel</string>
   <string name="recent_card_bg_color_title">Color de fondo de la tarjeta</string>
-  <string name="recent_card_text_color_title">Color de texto de la tarjeta</string>
   <!-- ATTENTION: RTL languages need to replace left with right -->
   <string name="recent_panel_lefty_mode_title">Mostrar en el borde izquierdo</string>
   <string name="recent_panel_lefty_mode_summary">Mostrar panel de aplicaciones recientes en el borde izquierdo</string>
@@ -443,8 +443,14 @@
   <!-- Doze options -->
   <string name="display_category_doze_options_title">Opciones de pantalla ambiente(doze)</string>
   <string name="doze_settings_title">Opciones avanzadas de doze</string>
+  <string name="doze_fade_in_pickup_title">Pantalla ambiente (al levantar)</string>
+  <string name="doze_fade_in_pickup_summary">Tiempo que la pantalla se queda encendida con las notificaciones (por defecto 100)</string>
+  <string name="doze_fade_in_doubletap_title">Pantalla ambiente (doble toque)</string>
+  <string name="doze_fade_in_doubletap_summary">Tiempo que la pantalla se queda encendida con las notificaciones (por defecto 900)</string>
   <string name="doze_timeout_title">Tiempo de espera doze</string>
   <string name="doze_timeout_summary">Tiempo que la pantalla se queda encendida con las notificaciones</string>
+  <string name="doze_fade_out_title">Tiempo de espera doze</string>
+  <string name="doze_fade_out_summary">Tiempo que la pantalla se queda encendida con las notificaciones (por defecto 600)</string>
   <string name="doze_wakeup_doubletap_title">Pulse dos veces para activar doze</string>
   <string name="doze_wakeup_doubletap_summary_on">Requiere una doble pulsación para activar el dispositivo en una pantalla de pulso en doze</string>
   <string name="doze_wakeup_doubletap_summary_off">Requiere un simple toque para activar el dispositivo en una pantalla de pulso de doze (por defecto)</string>
@@ -463,5 +469,7 @@
   <string name="doze_brightness_title">Nivel de brillo de Doze</string>
   <string name="doze_brightness_summary">Nivel de brillo de pantalla con Doze en modo Pulse (% del brillo máximo permitido)</string>
   <!-- Increasing ring tone volume -->
-  <string name="increasing_ring_min_volume_title">Volúmen inicial</string>
+  <string name="increasing_ring_volume_option_title">Volumen de timbre ascendente</string>
+  <string name="increasing_ring_min_volume_title">Volumen inicial</string>
+  <string name="increasing_ring_ramp_up_time_title">Tiempo de incremento</string>
 </resources>

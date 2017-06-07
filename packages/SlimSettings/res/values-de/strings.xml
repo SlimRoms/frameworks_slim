@@ -260,7 +260,7 @@
   <string name="backlight_summary_enabled_with_timeout">Aktiviert für <xliff:g id="timeout">%s</xliff:g></string>
   <string name="backlight_summary_enabled">Aktiviert</string>
   <!-- Hardware keys -->
-  <string name="enable_hw_keys_title">Aktiviert Hardware-Tasten</string>
+  <string name="enable_hw_keys_title">Hardware-Tasten aktivieren</string>
   <string name="button_keys_title">Hardware-Tasten</string>
   <string name="keys_bindings_title">Tastenbelegung</string>
   <string name="keys_enable_custom_title">Benutzerdefinierte Aktionen aktivieren</string>
@@ -358,14 +358,14 @@
   <string name="dim_nav_buttons_category">SlimDim</string>
   <string name="dim_nav_buttons_title">Tasten bei Inaktivität dimmen</string>
   <string name="dim_nav_buttons_summary">Navigationsleisten-Tasten dimmen, nachdem sie eine bestimmte Zeit nicht verwendet wurden</string>
-  <string name="dim_nav_buttons_timeout_title">Tastenbeleuchtung dimmen nach</string>
+  <string name="dim_nav_buttons_timeout_title">Timeout vor dem Dimmen</string>
   <string name="dim_nav_buttons_timeout_summary">Zeitdauer (in Millisekunden), nach der die Tasten gedimmt werden</string>
   <string name="dim_nav_buttons_alpha_title">Alpha-Wert</string>
   <string name="dim_nav_buttons_alpha_summary">Alpha-Wert, um den die Tasten gedimmt werden</string>
-  <string name="dim_nav_buttons_animate_title">Dimmeranimation</string>
+  <string name="dim_nav_buttons_animate_title">Dimmanimation</string>
   <string name="dim_nav_buttons_animate_summary">Das Abblenden animieren</string>
   <string name="dim_nav_buttons_animate_duration_title">Dauer der Animation</string>
-  <string name="dim_nav_buttons_animate_duration_summary">Dauer der Dimmeranimation (in Millisekunden)</string>
+  <string name="dim_nav_buttons_animate_duration_summary">Dauer der Dimmanimaiton (in Millisekdunden)</string>
   <string name="dim_nav_buttons_touch_anywhere_title">Alle Bildschirmberührungen registrieren</string>
   <string name="dim_nav_buttons_touch_anywhere_summary_on">Jede Bildschirmberührung macht das Dimmen der Tasten rückgängig</string>
   <string name="dim_nav_buttons_touch_anywhere_summary_off">Nur Berührungen der Navigationsleiste machen das Dimmen der Tasten rückgängig</string>
@@ -397,7 +397,6 @@
   <string name="recent_panel_show_topmost_summary">Aktuell verwendete App in den Verlauf einschließen</string>
   <string name="recent_panel_bg_color_title">Hintergrundfarbe der Ansicht</string>
   <string name="recent_card_bg_color_title">Hintergrundfarbe der Karte</string>
-  <string name="recent_card_text_color_title">Textfarbe der Karte</string>
   <!-- ATTENTION: RTL languages need to replace left with right -->
   <string name="recent_panel_lefty_mode_title">Am linken Rand anzeigen</string>
   <string name="recent_panel_lefty_mode_summary">Anwendungsverlauf am linken Rand anzeigen</string>
@@ -464,4 +463,7 @@
   <string name="doze_brightness_title">Bildschirmhelligkeit im Halbschlaf</string>
   <string name="doze_brightness_summary">Helligkeitsniveau des Bildschirms nach Halbschlafimpuls (in % des eingestellten Helligkeitsmaximalwertes)</string>
   <!-- Increasing ring tone volume -->
+  <string name="increasing_ring_volume_option_title">Ansteigende Klingeltonlautstärke</string>
+  <string name="increasing_ring_min_volume_title">Anfangslautstärke</string>
+  <string name="increasing_ring_ramp_up_time_title">Anstiegszeit</string>
 </resources>

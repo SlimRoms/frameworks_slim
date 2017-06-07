@@ -55,6 +55,21 @@
   <string name="shortcut_action_select_action">Valitse toiminto:</string>
   <string name="shortcut_action_select_action_newaction">Valitse uusi toiminto:</string>
   <string name="shortcut_action_reset">Tyhjennä</string>
+  <string name="shortcut_action_add">Lisää</string>
+  <string name="shortcut_action_reset_message">Palauta kaikki merkinnät oletusarvoihin?</string>
+  <string name="shortcut_action_max">Merkintöjen enimmäiskoko on saavutettu</string>
+  <string name="shortcut_action_warning">Varoitus</string>
+  <string name="shortcut_action_warning_message">Viimeisintä merkintää ei voida poistaa</string>
+  <string name="shortcut_action_required_warning_message">Tarvittavia painikkeita ei voi poistaa</string>
+  <string name="shortcut_action_disable_message">Poistettu käytöstä\nLisää merkintä laittaaksesi tämä asetus päälle</string>
+  <string name="shortcut_image_not_valid">Valittu sovellus ei palauttanut kelvollista kuvaketta tai ei tue kuvanrajausta. Käytä toista sovellusta.</string>
+  <string name="shortcut_duplicate_entry">Valittua toimintoa ei voida lisätä kahdesti</string>
+  <string name="shortcut_action_help_shortcut">pikakuvake</string>
+  <string name="shortcut_action_help_button">painike</string>
+  <string name="shortcut_action_help_app">sovellus</string>
+  <string name="shortcut_action_help_icon">, samalla ikonin valitseminen tuo esiin muokkausasetukset</string>
+  <string name="shortcut_action_help_main">Lisätäksesi %1$s, valitse \"Lisää\". Kun %1$s on lisätty, rivin valinta muuttaa kohteen%2$s\n\nPoistaaksesi %1$s, pyyhkäise riviä vaakasuoraan vasemmalle tai oikealle. Listan %1$s järjestely tapahtuu vetämällä pystysuunnassa vasemmalla olevaa ankkuria.\n\nPalataksesi oletusarvoihin, valitse \"Palauta\".</string>
+  <string name="shortcut_action_help_delete_last_entry">Jokaisen %1$s poistaminen luettelossa poistaa ominaisuuden käytöstä kokonaan.</string>
   <string name="shortcut_action_help_pie_second_layer_delete_last_entry">Jokaisen %1$s poistaminen luettelossa poistaa toisen pie-kerroksen käytöstä kokonaan.</string>
   <string name="shortcuts_applications">Sovellukset</string>
   <string name="shortcuts_select_custom_app_title">Valitse mukautettu sovellus</string>
@@ -75,6 +90,17 @@
   <string name="shortcuts_icon_picker_directmessage">Suoraviesti</string>
   <string name="shortcuts_icon_picker_drive">Drive</string>
   <string name="shortcuts_icon_picker_dropbox">Dropbox</string>
+  <string name="shortcuts_icon_picker_email">Sähköposti</string>
+  <string name="shortcuts_icon_picker_email2">Vaihtoehtoinen Sähköposti</string>
+  <string name="shortcuts_icon_picker_evernote">Evernote</string>
+  <string name="shortcuts_icon_picker_facebook">Facebook</string>
+  <string name="shortcuts_icon_picker_favorite">Suosikki</string>
+  <string name="shortcuts_icon_picker_file_browser">Tiedostoselain</string>
+  <string name="shortcuts_icon_picker_file_browser2">Vaihtoehtoinen tiedostoselain</string>
+  <string name="shortcuts_icon_picker_fitness">Fitness</string>
+  <string name="shortcuts_icon_picker_gallery">Kuvat</string>
+  <string name="shortcuts_icon_picker_gears">Gears</string>
+  <string name="shortcuts_icon_picker_google_small">Google</string>
   <string name="shortcuts_icon_picker_phone">Puhelin</string>
   <string name="shortcuts_icon_picker_package">Paketti</string>
   <string name="shortcuts_icon_picker_pinterest">Pinterest</string>
@@ -101,6 +127,7 @@
   <string name="shortcut_action_smart">Älykäs alasveto</string>
   <string name="shortcut_action_recent">Viimeisimmät</string>
   <string name="shortcut_action_power">Näyttö pois</string>
+  <string name="shortcut_action_assist">Etsi</string>
   <!-- Icon color options -->
   <!-- Slimseekbar -->
   <!-- Color Picker -->
@@ -109,4 +136,5 @@
   <string name="prox_auto_speaker_incall_only_summary_off">Kuuloke on aktiivinen kaikissa soittotiloissa (oletus)</string>
   <!-- Slim Doze-->
   <!-- Increasing ring tone volume -->
+  <!-- Proximity wake -->
 </resources>

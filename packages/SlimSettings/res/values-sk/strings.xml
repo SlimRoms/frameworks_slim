@@ -397,7 +397,6 @@
   <string name="recent_panel_show_topmost_summary">Neylučovať aktuálne v zozname nedávnych aplikácií</string>
   <string name="recent_panel_bg_color_title">Farba pozadia panelu</string>
   <string name="recent_card_bg_color_title">Farba pozadia karty</string>
-  <string name="recent_card_text_color_title">Farba textu karty</string>
   <!-- ATTENTION: RTL languages need to replace left with right -->
   <string name="recent_panel_lefty_mode_title">Zobraziť pri ľavom okraji</string>
   <string name="recent_panel_lefty_mode_summary">Zobraziť panel nedávnych aplikácií pri ľavom okraji</string>

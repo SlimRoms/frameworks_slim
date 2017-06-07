@@ -397,7 +397,6 @@
   <string name="recent_panel_show_topmost_summary">Να μην εξαιρούνται οι κορυφαίες εργασίες στην προβολή των πρόσφατων εφαρμογών</string>
   <string name="recent_panel_bg_color_title">Χρώμα φόντου του πίνακα πλακιδίων</string>
   <string name="recent_card_bg_color_title">Χρώμα φόντου κάρτας πλακιδίων</string>
-  <string name="recent_card_text_color_title">Χρώμα κειμένου κάρτας πλακιδίων</string>
   <!-- ATTENTION: RTL languages need to replace left with right -->
   <string name="recent_panel_lefty_mode_title">Εμφάνιση στο αριστερό άκρο</string>
   <string name="recent_panel_lefty_mode_summary">Εμφάνιση του πίνακα πρόσφατων εφαρμογών στο αριστερό άκρο</string>

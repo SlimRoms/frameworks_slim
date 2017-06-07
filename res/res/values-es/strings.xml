@@ -148,6 +148,7 @@
   <string name="shortcut_action_voice_search">Búsqueda por voz</string>
   <string name="shortcut_action_nowontap">Google Now/ Now on Tap</string>
   <string name="shortcut_action_split_screen">Pantalla dividida</string>
+  <string name="shortcut_action_doze_pulse">Pantalla ambiente</string>
   <!-- Icon color options -->
   <string name="icon_color_mode_all_icons">Todos los íconos</string>
   <string name="icon_color_mode_system_icons">Íconos del sistema</string>
@@ -174,5 +175,11 @@
   <string name="prox_auto_speaker_incall_only_summary_on">En llamadas salientes, el altavoz solo se activará cuando la otra persona conteste</string>
   <string name="prox_auto_speaker_incall_only_summary_off">El altavoz estará activo durante cualquier estado de la llamada (por defecto)</string>
   <!-- Slim Doze-->
+  <string name="display_category_doze_options_title">Opciones de pantalla ambiente (doze)</string>
+  <string name="doze_settings_title">Opciones avanzadas de pantalla ambiente</string>
   <!-- Increasing ring tone volume -->
+  <string name="increasing_ring_volume_option_title">Volumen de timbre ascendente</string>
+  <string name="increasing_ring_min_volume_title">Volumen inicial</string>
+  <string name="increasing_ring_ramp_up_time_title">Tiempo de incremento</string>
+  <!-- Proximity wake -->
 </resources>

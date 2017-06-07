@@ -354,7 +354,6 @@
   <string name="recent_panel_expanded_mode_always">항상</string>
   <string name="recent_panel_expanded_mode_never">표시 안함</string>
   <string name="recent_panel_show_topmost_title">최상위 작업 표시</string>
-  <string name="recent_card_text_color_title">카드 텍스트 크기</string>
   <!-- ATTENTION: RTL languages need to replace left with right -->
   <!-- Clock & Date options -->
   <string name="clock_title_enable">정렬</string>

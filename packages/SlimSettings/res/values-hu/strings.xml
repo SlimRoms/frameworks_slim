@@ -397,7 +397,6 @@
   <string name="recent_panel_show_topmost_summary">Ne zárja ki a legmagasabb tevékenységet az előzmények nézetben</string>
   <string name="recent_panel_bg_color_title">Panel háttérszíne</string>
   <string name="recent_card_bg_color_title">Kártya háttérszíne</string>
-  <string name="recent_card_text_color_title">Kártya szövegszíne</string>
   <!-- ATTENTION: RTL languages need to replace left with right -->
   <string name="recent_panel_lefty_mode_title">Bal oldalon jelenítse meg</string>
   <string name="recent_panel_lefty_mode_summary">Az előzmények panelt a bal oldalon jelenítse meg</string>

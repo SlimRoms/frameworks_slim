@@ -397,7 +397,6 @@
   <string name="recent_panel_show_topmost_summary">不要將最上層的應用程式排除在「總覽」畫面之外</string>
   <string name="recent_panel_bg_color_title">面板背景顏色</string>
   <string name="recent_card_bg_color_title">卡片背景顏色</string>
-  <string name="recent_card_text_color_title">卡片文字顏色</string>
   <!-- ATTENTION: RTL languages need to replace left with right -->
   <string name="recent_panel_lefty_mode_title">顯示在左側</string>
   <string name="recent_panel_lefty_mode_summary">在螢幕左側顯示「總覽」面板</string>

@@ -32,6 +32,7 @@
   <string name="no_home_key">У вас немає кнопки, призначеної для дії \"Додому\"! \n\nЦе може зробити ваш пристрій непридатним для користування!</string>
   <string name="no_back_key">У вас немає кнопки, призначеної для дії «Назад»! \n\nЦе може зробити ваш пристрій непридатним для користування!</string>
   <!-- Settings categories -->
+  <string name="settings_header_category_personalization">Персоналізація</string>
   <!-- Shortcut actions -->
   <string name="shortcut_action_none">Не вказано</string>
   <string name="shortcut_action_menu">Меню</string>
@@ -146,6 +147,8 @@
   <string name="shortcut_action_torch">Ліхтарик</string>
   <string name="shortcut_action_voice_search">Голосовий пошук</string>
   <string name="shortcut_action_nowontap">Google Now / Now on Tap</string>
+  <string name="shortcut_action_split_screen">Розділення екрана</string>
+  <string name="shortcut_action_doze_pulse">Doze-пульсація</string>
   <!-- Icon color options -->
   <string name="icon_color_mode_all_icons">Усі іконки</string>
   <string name="icon_color_mode_system_icons">Системні іконки</string>
@@ -162,6 +165,12 @@
   <string name="set">Встановити</string>
   <string name="color_default">Типовий</string>
   <!-- Proximity speaker -->
+  <string name="prox_auto_speaker_incall_only_title">Тільки під час дзвінка</string>
   <!-- Slim Doze-->
+  <string name="doze_settings_title">Додаткові опції Doze</string>
   <!-- Increasing ring tone volume -->
+  <string name="increasing_ring_volume_option_title">Наростаюча гучність дзвінка</string>
+  <string name="increasing_ring_min_volume_title">Початкова гучність</string>
+  <string name="increasing_ring_ramp_up_time_title">Час збільшення</string>
+  <!-- Proximity wake -->
 </resources>

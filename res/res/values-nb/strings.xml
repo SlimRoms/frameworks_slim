@@ -17,6 +17,7 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <!-- Labels for the WRITE_SETTINGS permission -->
+  <string name="permlab_writeSettings">endre Slim systeminnstillinger</string>
   <!-- Labels for the WRITE_SECURE_SETTINGS permission -->
   <!-- General Strings -->
   <!-- Settings categories -->
@@ -28,4 +29,5 @@
   <!-- Proximity speaker -->
   <!-- Slim Doze-->
   <!-- Increasing ring tone volume -->
+  <!-- Proximity wake -->
 </resources>

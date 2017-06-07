@@ -148,6 +148,7 @@
   <string name="shortcut_action_voice_search">Ricerca vocale</string>
   <string name="shortcut_action_nowontap">Google Now/Now on Tap</string>
   <string name="shortcut_action_split_screen">Dividi schermo</string>
+  <string name="shortcut_action_doze_pulse">Impulso di Doze</string>
   <!-- Icon color options -->
   <string name="icon_color_mode_all_icons">Tutte le icone</string>
   <string name="icon_color_mode_system_icons">Icone di sistema</string>
@@ -180,4 +181,5 @@
   <string name="increasing_ring_volume_option_title">Suoneria incrementale</string>
   <string name="increasing_ring_min_volume_title">Volume di partenza</string>
   <string name="increasing_ring_ramp_up_time_title">Tempo di aumento</string>
+  <!-- Proximity wake -->
 </resources>

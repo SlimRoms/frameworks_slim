@@ -235,14 +235,66 @@
   <string name="backlight_timeout_title">Verlichting timeout</string>
   <string name="backlight_timeout_unlimited">Niet uitschakelen</string>
   <!-- Hardware keys -->
+  <string name="keys_camera_press_title">Camera-knop</string>
+  <string name="keys_action_long">Lang indrukken</string>
   <!-- Slim Shortcuts -->
+  <string name="slim_shortcut_picker">Slim Actions</string>
+  <string name="shortcut_action_select_action">Kies actie:</string>
   <!-- Chamber of Secrets -->
+  <string name="chamber_title">Kamer van geheimen</string>
+  <string name="chamber_toast">De kamer van geheimen is geopend</string>
   <!-- Device specific settings -->
+  <string name="screen_off_gesture_settings_title">Scherm-uit gebaren</string>
   <!-- Status bar -->
+  <string name="status_bar_title">Statusbar</string>
+  <string name="status_bar_style_title">Stijl statusbar</string>
   <!-- Status bar - Battery Options -->
+  <string name="battery_icon_options_title">Pictogramopties voor de batterij</string>
   <!-- Status bar - Battery Style -->
+  <string name="status_bar_battery_style_title">Stijl batterijstatus</string>
+  <string name="status_bar_battery_style_circle">Cirkel</string>
+  <string name="status_bar_battery_style_dotted_circle">Gestippelde cirkel</string>
+  <string name="status_bar_battery_style_text">Tekst</string>
+  <string name="status_bar_battery_style_hidden">Verborgen</string>
+  <string name="status_bar_battery_style_icon_portrait">Pictogram portret</string>
+  <string name="status_bar_battery_style_icon_landscape">Pictogram landschap</string>
   <!-- Status bar - Battery percentage -->
+  <string name="status_bar_battery_percentage_title">Geef batterijpercentage weer</string>
+  <string name="status_bar_battery_percentage_dialog_title">Batterij percentage</string>
+  <string name="status_bar_battery_percentage_default">Verborgen (standaard)</string>
+  <string name="status_bar_battery_percentage_text_inside">In het pictogram</string>
+  <string name="status_bar_battery_percentage_text_next">Naast het pictogram</string>
   <!-- Navigation bar -->
+  <string name="navigation_bar">Navigatiebalk</string>
+  <string name="navigation_settings_category">Navigatie</string>
+  <string name="navigation_bar_size_42_dp_default">42 dp (standaard)</string>
+  <string name="navigation_bar_size_36_dp">36 dp</string>
+  <string name="navigation_bar_size_30_dp">30 dp</string>
+  <string name="navigation_bar_size_24_dp">24 dp</string>
+  <string name="navigation_bar_size_48_dp_default">48 dp (standaard)</string>
+  <string name="navigation_bar_size_44_dp">44 dp</string>
+  <string name="navigation_bar_size_40_dp">40 dp</string>
+  <string name="navigation_bar_size_42_dp">42 dp</string>
+  <string name="navigation_bar_size_0_dp">0 dp (uitgeschakeld)</string>
+  <string name="navigation_menu_right">Rechts</string>
+  <string name="navigation_menu_left">Links</string>
+  <string name="navigation_menu_both">Allebei</string>
+  <string name="navigation_menu_default_jb_behavior">Toon op verzoek (standaard)</string>
+  <string name="navigation_menu_never_show">Nooit weergeven</string>
+  <string name="navigation_menu_always_show">Altijd weergeven</string>
+  <string name="navbar_button_cat">Navigatiebalk knoppen</string>
+  <string name="title_pref_menu_location">Menu locatie</string>
+  <string name="summary_pref_menu_location">Waar wilt u de menu knoppen laten verschijnen?</string>
+  <string name="title_pref_menu_display">Zichtbaarheid menu</string>
+  <string name="summary_pref_menu_display">Hoe en wanneer wil je dat de menu knoppen getoond worden?</string>
+  <string name="navbar_enable_bar">Navigatiebalk inschakelen</string>
+  <string name="navbar_enable_bar_summary">De navigatiebalk inschakelen</string>
+  <string name="navigation_bar_height_title">Hoogte navigatiebalk</string>
+  <string name="navigation_bar_height_summary">Hoogte navigatiebalk in portretmodus.</string>
+  <string name="navigation_bar_height_landscape_title">Hoogte navigatiebalk in landschapsmodus</string>
+  <string name="navigation_bar_height_landscape_summary">Hoogte navigatiebalk wanneer in landschapsmodus.</string>
+  <string name="navigation_bar_width_title">Breedte navigatiebalk</string>
+  <string name="navigation_bar_width_summary">Navigatiebalk hoogte als de balk langs een kant is.</string>
   <!-- SlimDim -->
   <!-- Navigation bar button style -->
   <!-- Icon color options -->

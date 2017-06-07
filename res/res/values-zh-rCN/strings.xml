@@ -148,6 +148,7 @@
   <string name="shortcut_action_voice_search">语音搜索</string>
   <string name="shortcut_action_nowontap">Google Now / Now on Tap</string>
   <string name="shortcut_action_split_screen">分屏</string>
+  <string name="shortcut_action_doze_pulse">主动显示</string>
   <!-- Icon color options -->
   <string name="icon_color_mode_all_icons">所有图标</string>
   <string name="icon_color_mode_system_icons">系统图标</string>
@@ -174,5 +175,11 @@
   <string name="prox_auto_speaker_incall_only_summary_on">拨出电话时，传感器在对方接听后才激活</string>
   <string name="prox_auto_speaker_incall_only_summary_off">传感器在通话状态始终激活（默认）</string>
   <!-- Slim Doze-->
+  <string name="display_category_doze_options_title">主动显示 (Doze) 选项</string>
+  <string name="doze_settings_title">高级 Doze 选项</string>
   <!-- Increasing ring tone volume -->
+  <string name="increasing_ring_volume_option_title">铃声音量渐强</string>
+  <string name="increasing_ring_min_volume_title">初始音量</string>
+  <string name="increasing_ring_ramp_up_time_title">增强时间</string>
+  <!-- Proximity wake -->
 </resources>

@@ -22,6 +22,7 @@
   <string name="menu_cancel">Annuler</string>
   <string name="advanced_settings">Paramètres avancés</string>
   <!-- Common color picker strings -->
+  <string name="color_picker_reset_message">Réinitialiser la couleur ?</string>
   <!-- Slim settings screens -->
   <string name="navigation_settings_title">Navigation</string>
   <string name="interface_settings_title">Interface</string>
@@ -42,22 +43,22 @@
   <string name="app_ops_summaries_fine_location">localisation précise</string>
   <string name="app_ops_summaries_gps">GPS</string>
   <string name="app_ops_summaries_vibrate">vibreur</string>
-  <string name="app_ops_summaries_read_contacts">voir les contacts</string>
+  <string name="app_ops_summaries_read_contacts">lire les contacts</string>
   <string name="app_ops_summaries_modify_contacts">modifier les contacts</string>
   <string name="app_ops_summaries_read_call_log">lire le journal d\'appels</string>
   <string name="app_ops_summaries_modify_call_log">modifier le journal d\'appels</string>
   <string name="app_ops_summaries_read_calendar">accéder à l\'agenda</string>
   <string name="app_ops_summaries_modify_calendar">modifier l\'agenda</string>
-  <string name="app_ops_summaries_wifi_scan">Scanner le Wi-Fi</string>
-  <string name="app_ops_summaries_notification">notification/Toast</string>
-  <string name="app_ops_summaries_cell_scan">détection du réseau mobile</string>
-  <string name="app_ops_summaries_call_phone">appeler</string>
-  <string name="app_ops_summaries_read_sms">voir les SMS</string>
+  <string name="app_ops_summaries_wifi_scan">Recherche du Wi-Fi</string>
+  <string name="app_ops_summaries_notification">notification/pop-up</string>
+  <string name="app_ops_summaries_cell_scan">recherche de réseau mobile</string>
+  <string name="app_ops_summaries_call_phone">appel téléphonique</string>
+  <string name="app_ops_summaries_read_sms">lire les SMS</string>
   <string name="app_ops_summaries_write_sms">écrire un SMS</string>
   <string name="app_ops_summaries_receive_sms">recevoir des SMS</string>
   <string name="app_ops_summaries_receive_emergency_sms">recevoir des SMS d\'urgence</string>
   <string name="app_ops_summaries_receive_mms">recevoir des MMS</string>
-  <string name="app_ops_summaries_receive_wap_push">recevoir des messages push WAP</string>
+  <string name="app_ops_summaries_receive_wap_push">recevoir des messages WAP push</string>
   <string name="app_ops_summaries_send_sms">envoyer des SMS</string>
   <string name="app_ops_summaries_read_icc_sms">lire les SMS de l\'ICC</string>
   <string name="app_ops_summaries_write_icc_sms">écrire des SMS de l\'ICC</string>
@@ -67,7 +68,7 @@
   <string name="app_ops_summaries_camera">appareil photo</string>
   <string name="app_ops_summaries_record_audio">enregistrement sonore</string>
   <string name="app_ops_summaries_play_audio">lire le fichier audio</string>
-  <string name="app_ops_summaries_read_clipboard">voir le presse-papiers</string>
+  <string name="app_ops_summaries_read_clipboard">lire le presse-papiers</string>
   <string name="app_ops_summaries_modify_clipboard">modifier le presse-papiers</string>
   <string name="app_ops_summaries_media_buttons">boutons médias</string>
   <string name="app_ops_summaries_audio_focus">focus audio</string>
@@ -80,13 +81,14 @@
   <string name="app_ops_summaries_bluetooth_volume">volume Bluetooth</string>
   <string name="app_ops_summaries_keep_awake">maintenir activé</string>
   <string name="app_ops_summaries_monitor_location">surveiller la localisation</string>
-  <string name="app_ops_summaries_monitor_high_power_location">surveiller les requêtes de localisation qui nécessitent une quantité d\'énergie importante</string>
+  <string name="app_ops_summaries_monitor_high_power_location">surveiller les requêtes de localisation qui consomment beaucoup d\'énergie</string>
   <string name="app_ops_summaries_get_usage_stats">obtenir des statistiques d\'utilisation</string>
   <string name="app_ops_summaries_mute_unmute_microphone">activer/désactiver le microphone</string>
-  <string name="app_ops_summaries_toast_window">afficher les info-bulles</string>
+  <string name="app_ops_summaries_toast_window">afficher les popups</string>
   <string name="app_ops_summaries_project_media">projet média</string>
   <string name="app_ops_summaries_activate_vpn">activer le VPN</string>
   <string name="app_ops_summaries_write_wallpaper">définir le fond d\'écran</string>
+  <string name="app_ops_summaries_assist_structure">assistance à la stucture</string>
   <string name="app_ops_summaries_assist_screenshot">aide à la capture d\'écran</string>
   <string name="app_ops_summaries_read_phone_state">accéder à l\'état du téléphone</string>
   <string name="app_ops_summaries_add_voicemail">ajouter un message vocal</string>
@@ -95,16 +97,17 @@
   <string name="app_ops_summaries_use_fingerprint">utiliser les empreintes digitales</string>
   <string name="app_ops_summaries_use_body_sensors">utiliser les capteurs corporels</string>
   <string name="app_ops_summaries_read_cell_broadcasts">lire les diffusions cellulaires</string>
-  <string name="app_ops_summaries_mock_location">position fictive</string>
+  <string name="app_ops_summaries_mock_location">localisation fictive</string>
   <string name="app_ops_summaries_read_external_storage">lire le stockage externe</string>
   <string name="app_ops_summaries_write_external_storage">écrire sur le stockage externe</string>
   <string name="app_ops_summaries_turn_screen_on">allumer l\'écran</string>
+  <string name="app_ops_summaries_get_accounts">obtenir des comptes</string>
   <string name="app_ops_summaries_toggle_wifi">activer/désactiver le Wi-Fi</string>
   <string name="app_ops_summaries_toggle_bluetooth">activer/désactiver le Bluetooth</string>
   <string name="app_ops_summaries_start_at_boot">lancer au démarrage</string>
   <string name="app_ops_summaries_toggle_nfc">activer/désactiver la NFC</string>
   <string name="app_ops_summaries_toggle_mobile_data">activer/désactiver les données mobiles</string>
-  <string name="app_ops_summaries_superuser">accès root</string>
+  <string name="app_ops_summaries_superuser">accès Super-utilisateur</string>
   <!-- User display names for app ops codes - extension of AOSP -->
   <string name="app_ops_labels_coarse_location">Localisation approximative</string>
   <string name="app_ops_labels_fine_location">Localisation précise</string>
@@ -116,16 +119,16 @@
   <string name="app_ops_labels_modify_call_log">Modifier le journal d\'appels</string>
   <string name="app_ops_labels_read_calendar">Lire le calendrier</string>
   <string name="app_ops_labels_modify_calendar">Modifier le calendrier</string>
-  <string name="app_ops_labels_wifi_scan">Scanner le Wi-Fi</string>
-  <string name="app_ops_labels_notification">Notification/Bulle d\'info</string>
-  <string name="app_ops_labels_cell_scan">Scan du réseau cellulaire</string>
+  <string name="app_ops_labels_wifi_scan">Recherche du Wi-Fi</string>
+  <string name="app_ops_labels_notification">Notification/pop-up</string>
+  <string name="app_ops_labels_cell_scan">Recherche de réseau mobile</string>
   <string name="app_ops_labels_call_phone">Appeler un téléphone</string>
   <string name="app_ops_labels_read_sms">Lire les SMS</string>
   <string name="app_ops_labels_write_sms">Écrire un SMS</string>
-  <string name="app_ops_labels_receive_sms">Recevoir les SMS</string>
-  <string name="app_ops_labels_receive_emergency_sms">Recevoir les SMS d\'urgence</string>
-  <string name="app_ops_labels_receive_mms">Recevoir les MMS</string>
-  <string name="app_ops_labels_receive_wap_push">Recevoir les push WAP</string>
+  <string name="app_ops_labels_receive_sms">Recevoir des SMS</string>
+  <string name="app_ops_labels_receive_emergency_sms">Recevoir des SMS d\'urgence</string>
+  <string name="app_ops_labels_receive_mms">Recevoir des MMS</string>
+  <string name="app_ops_labels_receive_wap_push">Recevoir les message WAP push</string>
   <string name="app_ops_labels_send_sms">Envoyer un SMS</string>
   <string name="app_ops_labels_read_icc_sms">Lire les SMS de l\'ICC</string>
   <string name="app_ops_labels_write_icc_sms">Écrire des SMS de l\'ICC</string>
@@ -148,12 +151,14 @@
   <string name="app_ops_labels_bluetooth_volume">Volume du Bluetooth</string>
   <string name="app_ops_labels_keep_awake">Maintenir activé</string>
   <string name="app_ops_labels_monitor_location">Surveiller la localisation</string>
-  <string name="app_ops_labels_monitor_high_power_location">Surveiller les requêtes de localisation qui nécessitent une quantité d\'énergie importante</string>
+  <string name="app_ops_labels_monitor_high_power_location">Surveiller les requêtes de localisation qui consomment beaucoup d\'énergie</string>
   <string name="app_ops_labels_get_usage_stats">Obtenir des statistiques d\'utilisation</string>
   <string name="app_ops_labels_mute_unmute_microphone">Activer/désactiver le microphone</string>
+  <string name="app_ops_labels_toast_window">Afficher les popups</string>
   <string name="app_ops_labels_project_media">Projet multimédia</string>
   <string name="app_ops_labels_activate_vpn">Activer le VPN</string>
   <string name="app_ops_labels_write_wallpaper">Définir comme fond d\'écran</string>
+  <string name="app_ops_labels_assist_structure">Assistance à la structure</string>
   <string name="app_ops_labels_assist_screenshot">Aide à la capture d\'écran</string>
   <string name="app_ops_labels_read_phone_state">Accéder à l\'état du téléphone</string>
   <string name="app_ops_labels_add_voicemail">Ajouter un message vocal</string>
@@ -166,6 +171,7 @@
   <string name="app_ops_labels_read_external_storage">Lire le stockage externe</string>
   <string name="app_ops_labels_write_external_storage">Écrire sur le stockage externe</string>
   <string name="app_ops_labels_turn_screen_on">Allumer l\'écran</string>
+  <string name="app_ops_labels_get_accounts">Obtenir des comptes</string>
   <string name="app_ops_labels_change_wifi">Activer/désactiver le Wi-Fi</string>
   <string name="app_ops_labels_toggle_bluetooth">Activer/désactiver le Bluetooth</string>
   <string name="app_ops_labels_start_at_boot">Lancer au démarrage</string>
@@ -173,7 +179,7 @@
   <string name="app_ops_labels_toggle_mobile_data">Activer/désactiver les données mobiles</string>
   <string name="app_ops_labels_superuser">Accès Super-utilisateur</string>
   <!-- App ops permissions -->
-  <string name="app_ops_permissions_allowed">Autorisées</string>
+  <string name="app_ops_permissions_allowed">Autorisé</string>
   <string name="app_ops_permissions_ignored">Ignoré</string>
   <string name="app_ops_permissions_always_ask">Toujours demander</string>
   <!-- App ops detail -->
@@ -182,7 +188,7 @@
   <string name="app_ops_ignored_count">Refusé <xliff:g id="count" example="2 times">%s</xliff:g></string>
   <string name="app_ops_both_count">Autorisé <xliff:g id="count">%1$s</xliff:g>, refusé <xliff:g id="count">%2$s</xliff:g></string>
   <!-- App ops menu options -->
-  <string name="app_ops_show_user_apps">Montrer les applications utilisateur</string>
+  <string name="app_ops_show_user_apps">Afficher les applications utilisateur</string>
   <string name="app_ops_show_system_apps">Afficher les applications système</string>
   <string name="app_ops_reset_counters">Réinitialiser le compteur des autorisés/refusés</string>
   <string name="app_ops_reset_confirm_title">Confirmer la réinitialisation des compteurs</string>
@@ -193,20 +199,21 @@
   <string name="privacy_guard_switch_label">Activer la protection des données</string>
   <string name="privacy_guard_dlg_title">Activer la protection des données ?</string>
   <string name="privacy_guard_dlg_text">Quand la protection des données est activée, l\'application n\'est pas en mesure d\'accéder aux données personnelles tel que les contacts, les messages, la localisation ou le journal d\'appels.</string>
-  <string name="privacy_guard_dlg_system_app_text">Lorsque vous activez la protection des données pour une application intégrée, l\'application ne sera pas en mesure d\'accéder ou de fournir des données à caractère personnel. Cela peut avoir des conséquences sur d\'autres applications.</string>
+  <string name="privacy_guard_dlg_system_app_text">Lorsque vous activez la protection des données pour une application système, l\'application ne sera pas en mesure d\'accéder ou de fournir des données à caractère personnel. Cela peut avoir des conséquences sur d\'autres applications.</string>
   <string name="privacy_guard_default_title">Activé par défaut</string>
   <string name="privacy_guard_default_summary">Activer par défaut pour les applications nouvellement installées</string>
   <string name="privacy_guard_manager_title">Protection des données</string>
   <string name="privacy_guard_manager_summary">Gérer les applications qui ont accès à vos données personnelles</string>
-  <string name="privacy_guard_no_user_apps">Aucune application installée</string>
+  <string name="privacy_guard_no_user_apps">Aucune application n\'est installée</string>
   <string name="privacy_guard_help_title">Aide</string>
   <string name="privacy_guard_reset_title">Réinitialiser</string>
   <string name="privacy_guard_reset_text">Réinitialiser les autorisations ?</string>
+  <string name="privacy_guard_help_text">Dans cet écran, vous pouvez choisir les applications dont la protection des données doit être actif en tapotant simplement sur celles-ci. Les applications sélectionnées ne pourront pas accéder à vos données personnelles telles que les contacts, les messages ou les journaux d\'appels. Un appui long sur l\'entrée d\'une application donne accès à des informations détaillées de l\'application.\n\nLes applications intégrées ne sont pas affichées par défaut mais peuvent être révélées en sélectionnant l\'option de menu correspondante.</string>
   <string name="privacy_guard_manager_show_system_apps">Afficher les applications système</string>
-  <string name="privacy_guard_advanced_settings_title">Avancé</string>
+  <string name="privacy_guard_advanced_settings_title">Avancée</string>
   <!-- Setting checkbox title for root access -->
-  <string name="root_access">Accès Root</string>
-  <string name="root_access_warning_title">Autoriser l\'accès Root ?</string>
+  <string name="root_access">Accès Super-utilisateur</string>
+  <string name="root_access_warning_title">Autoriser l\'accès Super-utilisateur?</string>
   <string name="root_access_warning_message">Permettre aux applications d\'accéder au mode Super-utilisateur est très dangereux et peut compromettre la sécurité de votre appareil!</string>
   <string name="root_access_none">Désactivé</string>
   <string name="root_access_apps">Applications uniquement</string>
@@ -215,7 +222,7 @@
   <!-- Memory -->
   <string name="memory_startup_apps_title">Applications lancées au démarrage</string>
   <!-- About phone screen, Slim version -->
-  <string name="slim_version_title">Version Slim</string>
+  <string name="slim_version_title">Slim version</string>
   <string name="slim_version_default">Inconnu</string>
   <!-- Display & Lights screen, setting options for LCD density -->
   <string name="lcd_density">Densité de l\'écran LCD</string>
@@ -227,23 +234,27 @@
   <!-- Wakeup options -->
   <string name="display_category_wakeup_options_title">Options de réveil</string>
   <string name="wakeup_when_plugged_unplugged_title">Réveil lors de la charge</string>
-  <string name="wakeup_when_plugged_unplugged_summary">Réveiller l\'appareil si le chargeur est branché/débranché.</string>
+  <string name="wakeup_when_plugged_unplugged_summary">Réveiller l\'appareil si le chargeur est branché/débranché</string>
   <!-- Proximity wake -->
   <string name="proximity_wake_title">Empêcher le réveil accidentel</string>
-  <string name="proximity_wake_summary">Utiliser le capteur de proximité pour prévenir les réveils accidentels de l\'écran</string>
+  <string name="proximity_wake_summary">Contrôle l\'état du capteur de proximité avant de sortir de veille l\'écran</string>
   <!-- Advanced reboot options -->
   <string name="advanced_reboot_title">Redémarrage avancé</string>
   <string name="advanced_reboot_dialog_title">Menu de redémarrage avancé</string>
   <string name="advanced_reboot_disabled">Désactivé</string>
-  <string name="advanced_reboot_hide_on_keyguard">Masquer sur écran verrouillé</string>
+  <string name="advanced_reboot_hide_on_keyguard">Masquer sur l’écran de verrouillage</string>
   <string name="advanced_reboot_show_always">Toujours afficher</string>
   <!-- Hardware keys and lights -->
   <string name="hardware_keys_enable_title">Activer les boutons physiques</string>
   <string name="hardware_keys_enable_summary">Activer/Désactiver les boutons physiques</string>
+  <string name="hardware_keys_lights_enable_title">Paramètres de rétro-éclairage des boutons physiques</string>
   <!-- Key backlight -->
   <string name="settings_reset_button">Réinitialiser</string>
+  <string name="button_backlight_enabled">Rétroéclairage des boutons</string>
+  <string name="keyboard_backlight_enabled">Rétroéclairage du clavier</string>
   <string name="button_backlight_seekbar_title">Luminosité des boutons</string>
   <string name="keyboard_backlight_seekbar_title">Luminosité du clavier</string>
+  <string name="backlight_timeout_title">Durée du rétroéclairage</string>
   <string name="backlight_timeout_unlimited">Ne pas éteindre</string>
   <string name="backlight_summary_disabled">Désactivé</string>
   <string name="backlight_summary_enabled_with_timeout">Activé pendant <xliff:g id="timeout">%s</xliff:g></string>
@@ -283,20 +294,23 @@
   <string name="chamber_title">Chambre des secrets</string>
   <string name="chamber_toast">La chambre des secrets a été ouverte</string>
   <!-- Device specific settings -->
+  <string name="screen_off_gesture_settings_title">Personnalisation des Gestes « Écran éteint »</string>
   <!-- Status bar -->
   <string name="status_bar_title">Barre d\'état</string>
   <string name="status_bar_style_title">Style de la barre d’État</string>
   <!-- Status bar - Battery Options -->
   <string name="battery_icon_options_title">Options de l\'icône de batterie</string>
   <!-- Status bar - Battery Style -->
+  <string name="status_bar_battery_style_title">Style de la batterie</string>
   <string name="status_bar_battery_style_circle">Cercle</string>
   <string name="status_bar_battery_style_dotted_circle">Cercle en pointillé</string>
   <string name="status_bar_battery_style_text">Texte</string>
-  <string name="status_bar_battery_style_hidden">Masqué</string>
-  <string name="status_bar_battery_style_icon_portrait">Icône vertical</string>
-  <string name="status_bar_battery_style_icon_landscape">Icône horizontal</string>
+  <string name="status_bar_battery_style_hidden">Masquée</string>
+  <string name="status_bar_battery_style_icon_portrait">Verticale</string>
+  <string name="status_bar_battery_style_icon_landscape">Horizontale</string>
   <!-- Status bar - Battery percentage -->
   <string name="status_bar_battery_percentage_title">Afficher le pourcentage de la batterie</string>
+  <string name="status_bar_battery_percentage_dialog_title">Pourcentage de batterie</string>
   <string name="status_bar_battery_percentage_default">Masquée (par défaut)</string>
   <string name="status_bar_battery_percentage_text_inside">Dans l\'icône</string>
   <string name="status_bar_battery_percentage_text_next">À côté de l\'icône</string>
@@ -312,20 +326,26 @@
   <string name="navigation_bar_size_40_dp">40 dp</string>
   <string name="navigation_bar_size_42_dp">42 dp</string>
   <string name="navigation_bar_size_0_dp">0 dp (Masquée)</string>
-  <string name="navigation_menu_right">À Droite</string>
+  <string name="navigation_menu_right">À droite</string>
   <string name="navigation_menu_left">À gauche</string>
   <string name="navigation_menu_both">Les deux</string>
   <string name="navigation_menu_default_jb_behavior">Afficher sur demande (par défaut)</string>
   <string name="navigation_menu_never_show">Ne jamais afficher</string>
   <string name="navigation_menu_always_show">Toujours afficher</string>
   <string name="navbar_button_cat">Boutons de la barre de navigation</string>
+  <string name="title_pref_menu_location">Préférence d\'affichage du Menu</string>
+  <string name="summary_pref_menu_location">Où voulez-vous que les boutons de menu apparaissent?</string>
   <string name="title_pref_menu_display">Visibilité du Menu</string>
+  <string name="summary_pref_menu_display">Quand et comment voulez-vous que les boutons du menu apparaissent ?</string>
   <string name="navbar_enable_bar">Activer la barre de navigation</string>
+  <string name="navbar_enable_bar_summary">Active la barre de navigation</string>
   <string name="navigation_bar_height_title">Hauteur de la barre navigation</string>
-  <string name="navigation_bar_height_summary">Hauteur de la barre de navigation en mode portrait.</string>
+  <string name="navigation_bar_height_summary">Hauteur de la barre de navigation en mode portrait</string>
   <string name="navigation_bar_height_landscape_title">Hauteur de la barre de navigation en mode paysage</string>
+  <string name="navigation_bar_height_landscape_summary">Hauteur de la barre de navigation dans le mode paysage</string>
   <string name="navigation_bar_width_title">Largeur de la barre de navigation</string>
-  <string name="navigation_bar_width_summary">Hauteur de la barre de navigation si elle est sur un côté.</string>
+  <string name="navigation_bar_width_summary">Hauteur de la barre de navigation si elle est sur un côté</string>
+  <string name="navbar_can_move">Basculer en mode paysage</string>
   <string name="navbar_can_move_summary">Afficher la barre de navigation en bas de l\'écran en mode paysage</string>
   <string name="navbar_style_dimen_title">Dimensions</string>
   <string name="navbar_style_dimen_summary">Modifier la hauteur de la barre de navigation</string>
@@ -338,10 +358,10 @@
   <string name="dim_nav_buttons_category">SlimDim</string>
   <string name="dim_nav_buttons_title">Estomper les boutons après inactivité</string>
   <string name="dim_nav_buttons_summary">Estomper les boutons de la barre de navigation après un temps définit d\'inactivité sur celui-ci</string>
-  <string name="dim_nav_buttons_timeout_title">Temps avant estompage</string>
-  <string name="dim_nav_buttons_timeout_summary">Temps (en millisecondes) d\'attente avant l\'estompage des boutons</string>
+  <string name="dim_nav_buttons_timeout_title">Délai avant estompage</string>
+  <string name="dim_nav_buttons_timeout_summary">Délai (en millisecondes) d\'attente avant l\'estompage des boutons</string>
   <string name="dim_nav_buttons_alpha_title">Niveau d\'estompage</string>
-  <string name="dim_nav_buttons_alpha_summary">Niveau d\'estompage appliqué aux boutons</string>
+  <string name="dim_nav_buttons_alpha_summary">Niveau d\'estompage appliquer aux boutons</string>
   <string name="dim_nav_buttons_animate_title">Animation d\'estompage</string>
   <string name="dim_nav_buttons_animate_summary">Animer l\'estompage en fondu</string>
   <string name="dim_nav_buttons_animate_duration_title">Durée de l\'animation</string>
@@ -355,27 +375,35 @@
   <string name="button_transparency_title">Transparence du bouton</string>
   <string name="navigation_bar_icon_tint_title">Couleur du bouton</string>
   <string name="nav_button_color_mode_title">Mode de coloration</string>
+  <string name="nav_button_color_mode_dialog_title">Colorer</string>
   <string name="nav_button_color_mode_summary">Changer le mode de coloration des boutons de la barre de navigation</string>
+  <string name="navigation_bar_glow_tint_title">Couleur du halo de lumière des boutons</string>
   <!-- Icon color options -->
   <string name="icon_color_mode_all_icons">Toutes les icônes</string>
   <string name="icon_color_mode_system_icons">Icônes système</string>
+  <string name="icon_color_mode_system_custom_icons">Système et icônes personnalisées</string>
   <!-- Recent panel -->
   <string name="recent_panel_category">Panneau d\'applications récentes</string>
+  <string name="use_slim_recents_title">Slim recents</string>
   <string name="show_running_tasks_title">Afficher uniquement les applications en cours d\'exécution</string>
   <string name="recents_max_apps_title">Nombre maximal d\'applications autorisées</string>
   <string name="recent_panel_scale_title">Taille</string>
+  <string name="recent_panel_expanded_mode_title">Mode étendu</string>
   <string name="recent_panel_expanded_mode_summary">Mode d\'aperçu des applications récentes</string>
   <string name="recent_panel_expanded_mode_auto">Automatique (Par défaut)</string>
   <string name="recent_panel_expanded_mode_always">Toujours</string>
   <string name="recent_panel_expanded_mode_never">Jamais</string>
+  <string name="recent_panel_show_topmost_title">Afficher la tâche en cours</string>
+  <string name="recent_panel_show_topmost_summary">Ne pas exclure la tâche au premier plan dans la vue récente</string>
   <string name="recent_panel_bg_color_title">Couleur arrière-plan du panneau</string>
-  <string name="recent_card_text_color_title">Couleur du texte de la carte</string>
+  <string name="recent_card_bg_color_title">Couleur d\'arrière-plan de la carte</string>
   <!-- ATTENTION: RTL languages need to replace left with right -->
   <string name="recent_panel_lefty_mode_title">Afficher du côté gauche</string>
   <string name="recent_panel_lefty_mode_summary">Affiche le panneau d\'applications récentes sur le coté gauche de l\'écran</string>
   <!-- Clock & Date options -->
   <string name="status_bar_clock">Apparence de l\'horloge et de la date</string>
   <string name="status_bar_clock_title">Style de l\'horloge et de la date</string>
+  <string name="clock_title_enable">Position</string>
   <string name="clock_enabled">Activé</string>
   <string name="clock_disabled">Désactivé</string>
   <string name="clock_color_title">Couleur</string>
@@ -408,15 +436,29 @@
   <string name="clock_date_style_normal">Normal</string>
   <string name="clock_date_style_lowercase">Minuscule</string>
   <string name="clock_date_style_uppercase">Majuscule</string>
+  <string name="clock_date_format_custom">Format personnalisé</string>
   <!-- Advanced, Device specific (DeviceParts) settings  -->
   <string name="advanced_options_settings_title">Options avancées</string>
   <string name="device_settings_title">Paramètres spécifiques de l\'appareil</string>
   <!-- Doze options -->
-  <string name="display_category_doze_options_title">Options de (sommeil) de l\'affichage adaptatif</string>
-  <string name="doze_settings_title">Options de sommeil avancées</string>
+  <string name="display_category_doze_options_title">Options de l\'affichage adaptatif (veille)</string>
+  <string name="doze_settings_title">Options de veille avancées</string>
+  <string name="doze_fade_in_pickup_title">Démarrage de Doze ( prise en main)</string>
+  <string name="doze_fade_in_pickup_summary">Durée de l\'affichage des notifications \"push\" à la prise en main (100 par défaut)</string>
+  <string name="doze_fade_in_doubletap_title">Démarrage de Doze (doubletap)</string>
+  <string name="doze_fade_in_doubletap_summary">Durée de l\'affichage des notifications \"push\" après un doubletap (900 par défaut)</string>
+  <string name="doze_timeout_title">Délai d\'activation de Doze</string>
+  <string name="doze_timeout_summary">Durée d\'allumage de l\'écran pour l\'affichage des notifications \"push\" (6000 par défaut)</string>
+  <string name="doze_fade_out_title">Délai d\'arrêt de Doze</string>
+  <string name="doze_fade_out_summary">Durée d\'arrêt de l\'affichage des notifications \"push\" (par défaut 600)</string>
   <string name="doze_wakeup_doubletap_title">Double appui pour sortir de veille l\'appareil</string>
-  <string name="doze_wakeup_doubletap_summary_on">Nécessiter un double-appui pour sortir l\'appareil de veille</string>
-  <string name="doze_wakeup_doubletap_summary_off">Nécessiter un appui simple pour sortir l\'appareil de veille (par défaut)</string>
+  <string name="doze_wakeup_doubletap_summary_on">Exiger un double appui pour sortir l\'appareil de veille</string>
+  <string name="doze_wakeup_doubletap_summary_off">Exiger un appui simple pour sortir l\'appareil de veille (par défaut)</string>
+  <string name="doze_trigger_pickup_title">Geste de déclenchement de prise en main</string>
+  <string name="doze_trigger_pickup_summary_on">Déclenchement de Doze par des évènements de prise en main grâce aux capteurs de mouvements (par défaut)</string>
+  <string name="doze_trigger_pickup_summary_off">Les capteurs de mouvements de prise en main ne seront pas utilisés comme déclencheurs</string>
+  <string name="doze_trigger_sigmotion_title">Déclenchement par mouvement important</string>
+  <string name="doze_trigger_sigmotion_summary_on">Doze est déclenchée par des événements de capteur de mouvement important (par défaut)</string>
   <string name="doze_trigger_sigmotion_summary_off">L\'impulsion ne sera pas déclenchée par des mouvements importants</string>
   <!--string name="doze_trigger_doubletap_title">Double tap trigger</string-->
   <!--string name="doze_trigger_doubletap_summary_on">Doze pulse will be triggered by a double tap</string-->
@@ -427,4 +469,7 @@
   <string name="doze_brightness_title">Niveau de luminosité de l\'affichage en mode Veille</string>
   <string name="doze_brightness_summary">Luminosité de l\'affichage en mode Veille (% de la luminosité maximale)</string>
   <!-- Increasing ring tone volume -->
+  <string name="increasing_ring_volume_option_title">Volume de sonnerie progressive</string>
+  <string name="increasing_ring_min_volume_title">Volume de départ</string>
+  <string name="increasing_ring_ramp_up_time_title">Durée de progression</string>
 </resources>

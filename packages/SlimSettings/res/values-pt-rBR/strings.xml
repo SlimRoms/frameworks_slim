@@ -396,7 +396,6 @@
   <string name="recent_panel_show_topmost_summary">Incluir o aplicativo em uso na exibição de aplicativos recentes</string>
   <string name="recent_panel_bg_color_title">Cor de fundo do painel</string>
   <string name="recent_card_bg_color_title">Cor de fundo dos cartões</string>
-  <string name="recent_card_text_color_title">Cor do texto dos cartões</string>
   <!-- ATTENTION: RTL languages need to replace left with right -->
   <string name="recent_panel_lefty_mode_title">Mostrar na borda esquerda</string>
   <string name="recent_panel_lefty_mode_summary">Mostrar painel de aplicativos recentes na borda esquerda</string>

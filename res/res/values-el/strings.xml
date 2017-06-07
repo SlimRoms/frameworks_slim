@@ -178,4 +178,5 @@
   <string name="increasing_ring_volume_option_title">Αυξανόμενη ένταση κουδουνίσματος</string>
   <string name="increasing_ring_min_volume_title">Αρχική ένταση</string>
   <string name="increasing_ring_ramp_up_time_title">Χρονικό διάστημα αύξησης</string>
+  <!-- Proximity wake -->
 </resources>

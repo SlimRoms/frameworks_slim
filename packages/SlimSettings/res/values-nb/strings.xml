@@ -17,10 +17,27 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <!-- Common strings -->
+  <string name="disabled">Deaktivert</string>
+  <string name="menu_save">Lagre</string>
+  <string name="menu_cancel">Forkast</string>
+  <string name="advanced_settings">Avansert</string>
   <!-- Common color picker strings -->
+  <string name="color_picker_reset_message">Tilbakestille farge?</string>
   <!-- Slim settings screens -->
+  <string name="navigation_settings_title">Navigasjon</string>
+  <string name="interface_settings_title">Grensesnitt</string>
+  <string name="quick_settings">Hurtiginnstillinger</string>
+  <string name="status_bar_icons">Statuslinjeikoner</string>
   <!-- Navigation settings -->
+  <string name="navigation_settings_options_title">Navigasjonsalternativer</string>
   <!-- Names of categories of app ops tabs - extension of AOSP -->
+  <string name="app_ops_categories_location">Sted</string>
+  <string name="app_ops_categories_personal">Personlig</string>
+  <string name="app_ops_categories_messaging">Meldinger</string>
+  <string name="app_ops_categories_media">Media</string>
+  <string name="app_ops_categories_device">Enhet</string>
+  <string name="app_ops_categories_bootup">Oppstart</string>
+  <string name="app_ops_categories_su">Superuser</string>
   <!-- User display names for app ops codes - extension of AOSP -->
   <!-- User display names for app ops codes - extension of AOSP -->
   <!-- App ops permissions -->

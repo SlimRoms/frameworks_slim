@@ -148,6 +148,7 @@
   <string name="shortcut_action_voice_search">Sesli arama</string>
   <string name="shortcut_action_nowontap">Google Now / Now on Tap</string>
   <string name="shortcut_action_split_screen">Bölünmüş ekran</string>
+  <string name="shortcut_action_doze_pulse">Ekranı Uyandırma</string>
   <!-- Icon color options -->
   <string name="icon_color_mode_all_icons">Tüm simgeler</string>
   <string name="icon_color_mode_system_icons">Sistem simgeleri</string>
@@ -171,5 +172,11 @@
   <string name="prox_auto_speaker_incall_only_summary_on">Giden aramalarda dinleyici sadece alıcı taraf cevapladıktan sonra aktif hale gelecektir</string>
   <string name="prox_auto_speaker_incall_only_summary_off">Dinleyici, çağrı cevapladığı durumda etkin olacak (varsayılan)</string>
   <!-- Slim Doze-->
+  <string name="display_category_doze_options_title">Ortam ekranı (uyku) seçenekleri</string>
+  <string name="doze_settings_title">Gelişmiş ortam ekranı(uyku) seçenekleri</string>
   <!-- Increasing ring tone volume -->
+  <string name="increasing_ring_volume_option_title">Artan zil sesi</string>
+  <string name="increasing_ring_min_volume_title">Başlangıç sesi</string>
+  <string name="increasing_ring_ramp_up_time_title">Yükselme süresi</string>
+  <!-- Proximity wake -->
 </resources>

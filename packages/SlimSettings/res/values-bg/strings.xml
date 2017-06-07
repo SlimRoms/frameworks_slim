@@ -17,45 +17,451 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <!-- Common strings -->
+  <string name="disabled">Деактивирано</string>
+  <string name="menu_save">Запази</string>
+  <string name="menu_cancel">Отхвърли</string>
+  <string name="advanced_settings">Разширени настройки</string>
   <!-- Common color picker strings -->
+  <string name="color_picker_reset_message">Възстановяване на цвят?</string>
   <!-- Slim settings screens -->
+  <string name="navigation_settings_title">Навигация</string>
+  <string name="interface_settings_title">Интерфейс</string>
+  <string name="quick_settings">Бързи настройки</string>
+  <string name="status_bar_icons">Икони на лентата за състоянието</string>
   <!-- Navigation settings -->
+  <string name="navigation_settings_options_title">Опции за навигация</string>
   <!-- Names of categories of app ops tabs - extension of AOSP -->
+  <string name="app_ops_categories_location">Местоположение</string>
+  <string name="app_ops_categories_personal">Лични</string>
+  <string name="app_ops_categories_messaging">Съобщения</string>
+  <string name="app_ops_categories_media">Медия</string>
+  <string name="app_ops_categories_device">Устройство</string>
+  <string name="app_ops_categories_bootup">Зареждане</string>
+  <string name="app_ops_categories_su">Superuser</string>
   <!-- User display names for app ops codes - extension of AOSP -->
+  <string name="app_ops_summaries_coarse_location">приблизително местоположение</string>
+  <string name="app_ops_summaries_fine_location">точно местоположение</string>
+  <string name="app_ops_summaries_gps">GPS</string>
+  <string name="app_ops_summaries_vibrate">вибрира</string>
+  <string name="app_ops_summaries_read_contacts">прочети контакти</string>
+  <string name="app_ops_summaries_modify_contacts">промяна на контакти</string>
+  <string name="app_ops_summaries_read_call_log">четене на регистъра с повикванията</string>
+  <string name="app_ops_summaries_modify_call_log">промяна на регистъра с повикванията</string>
+  <string name="app_ops_summaries_read_calendar">четене на календара</string>
+  <string name="app_ops_summaries_modify_calendar">промяна на календара</string>
+  <string name="app_ops_summaries_wifi_scan">Wi-Fi сканиране</string>
+  <string name="app_ops_summaries_notification">уведомление/pop-ups</string>
+  <string name="app_ops_summaries_cell_scan">сканиране за мрежа</string>
+  <string name="app_ops_summaries_call_phone">телефонно набиране</string>
+  <string name="app_ops_summaries_read_sms">прочетете SMS</string>
+  <string name="app_ops_summaries_write_sms">напишете SMS</string>
+  <string name="app_ops_summaries_receive_sms">получен SMS</string>
+  <string name="app_ops_summaries_receive_emergency_sms">получен спешен SMS</string>
+  <string name="app_ops_summaries_receive_mms">получен MMS</string>
+  <string name="app_ops_summaries_receive_wap_push">получен WAP push</string>
+  <string name="app_ops_summaries_send_sms">изпрати SMS</string>
+  <string name="app_ops_summaries_read_icc_sms">прочетете ICC SMS</string>
+  <string name="app_ops_summaries_write_icc_sms">напишете ICC SMS</string>
+  <string name="app_ops_summaries_modify_settings">промяна на настройките</string>
+  <string name="app_ops_summaries_draw_on_top">изтегли догоре</string>
+  <string name="app_ops_summaries_access_notifications">достъп до уведомления</string>
+  <string name="app_ops_summaries_camera">камера</string>
+  <string name="app_ops_summaries_record_audio">записване на звук</string>
+  <string name="app_ops_summaries_play_audio">изпълнение на аудио</string>
+  <string name="app_ops_summaries_read_clipboard">четене на клипборда</string>
+  <string name="app_ops_summaries_modify_clipboard">промяна на клипборда</string>
+  <string name="app_ops_summaries_media_buttons">мултимедийни бутони</string>
+  <string name="app_ops_summaries_audio_focus">аудио фокус</string>
+  <string name="app_ops_summaries_master_volume">основен контрол на звука</string>
+  <string name="app_ops_summaries_voice_volume">сила на звука при разговор</string>
+  <string name="app_ops_summaries_ring_volume">силата на звука при звънене</string>
+  <string name="app_ops_summaries_media_volume">сила на звука за мултимедия</string>
+  <string name="app_ops_summaries_alarm_volume">сила на звука за аларма</string>
+  <string name="app_ops_summaries_notification_volume">сила на звука за уведомление</string>
+  <string name="app_ops_summaries_bluetooth_volume">сила на звука за bluetooth устройства</string>
+  <string name="app_ops_summaries_keep_awake">дръж буден</string>
+  <string name="app_ops_summaries_monitor_location">монитор за местоположение</string>
+  <string name="app_ops_summaries_monitor_high_power_location">монитор за точно местоположение</string>
+  <string name="app_ops_summaries_get_usage_stats">вземи статистика за използване</string>
+  <string name="app_ops_summaries_mute_unmute_microphone">изключен/включен микрофон</string>
+  <string name="app_ops_summaries_toast_window">показване на pop-ups</string>
+  <string name="app_ops_summaries_project_media">медиен проект</string>
+  <string name="app_ops_summaries_activate_vpn">активиране на VPN</string>
+  <string name="app_ops_summaries_write_wallpaper">запишете тапет</string>
+  <string name="app_ops_summaries_assist_structure">подпомагане на структура</string>
+  <string name="app_ops_summaries_assist_screenshot">подпомагане на заснемане на екрана</string>
+  <string name="app_ops_summaries_read_phone_state">прочетете състоянието на телефона</string>
+  <string name="app_ops_summaries_add_voicemail">добавяне на гласова поща</string>
+  <string name="app_ops_summaries_use_sip">използвай SIP</string>
+  <string name="app_ops_summaries_make_call">направете повикване</string>
+  <string name="app_ops_summaries_use_fingerprint">използвай пръстов отпечатък</string>
+  <string name="app_ops_summaries_use_body_sensors">използвай сензорите за тяло</string>
+  <string name="app_ops_summaries_read_cell_broadcasts">регистрирай излъчването на антенна клетка</string>
+  <string name="app_ops_summaries_mock_location">неистинско местоположение</string>
+  <string name="app_ops_summaries_read_external_storage">прочети външната памет</string>
+  <string name="app_ops_summaries_write_external_storage">запиши на външната памет</string>
+  <string name="app_ops_summaries_turn_screen_on">включване на екрана</string>
+  <string name="app_ops_summaries_get_accounts">вземи акаунти</string>
+  <string name="app_ops_summaries_toggle_wifi">активирай/деактивирай Wi-Fi</string>
+  <string name="app_ops_summaries_toggle_bluetooth">активиране/деактивиране Блутуут</string>
+  <string name="app_ops_summaries_start_at_boot">изпълнява се при стартиране</string>
+  <string name="app_ops_summaries_toggle_nfc">активиране/деактивиране NFC</string>
+  <string name="app_ops_summaries_toggle_mobile_data">активиране/деактивиране на мобилни данни</string>
+  <string name="app_ops_summaries_superuser">root достъп</string>
   <!-- User display names for app ops codes - extension of AOSP -->
+  <string name="app_ops_labels_coarse_location">Приблизително местоположение</string>
+  <string name="app_ops_labels_fine_location">Точно местоположение</string>
+  <string name="app_ops_labels_gps">GPS</string>
+  <string name="app_ops_labels_vibrate">Вибриране</string>
+  <string name="app_ops_labels_read_contacts">Прочети контакти</string>
+  <string name="app_ops_labels_modify_contacts">Промяна на контакти</string>
+  <string name="app_ops_labels_read_call_log">Четене на регистъра с повикванията</string>
+  <string name="app_ops_labels_modify_call_log">Промяна на регистъра с повикванията</string>
+  <string name="app_ops_labels_read_calendar">Прочети календар</string>
+  <string name="app_ops_labels_modify_calendar">Промяна на календара</string>
+  <string name="app_ops_labels_wifi_scan">Wi-Fi сканиране</string>
+  <string name="app_ops_labels_notification">Уведомление/съобщение</string>
+  <string name="app_ops_labels_cell_scan">Сканиране на клетка</string>
+  <string name="app_ops_labels_call_phone">Телефонно набиране</string>
+  <string name="app_ops_labels_read_sms">Прочетете SMS</string>
+  <string name="app_ops_labels_write_sms">Напишете SMS</string>
+  <string name="app_ops_labels_receive_sms">Получен SMS</string>
+  <string name="app_ops_labels_receive_emergency_sms">Получен спешен SMS</string>
+  <string name="app_ops_labels_receive_mms">Получен MMS</string>
+  <string name="app_ops_labels_receive_wap_push">Получен WAP push</string>
+  <string name="app_ops_labels_send_sms">Изпрати SMS</string>
+  <string name="app_ops_labels_read_icc_sms">Прочетете ICC SMS</string>
+  <string name="app_ops_labels_write_icc_sms">Напишете ICC SMS</string>
+  <string name="app_ops_labels_modify_settings">Промяна на настройките</string>
+  <string name="app_ops_labels_draw_on_top">Изтегли догоре</string>
+  <string name="app_ops_labels_access_notifications">Достъп до уведомления</string>
+  <string name="app_ops_labels_camera">Камера</string>
+  <string name="app_ops_labels_record_audio">Записване на звук</string>
+  <string name="app_ops_labels_play_audio">Изпълнение на аудио</string>
+  <string name="app_ops_labels_read_clipboard">Прочети клипборда</string>
+  <string name="app_ops_labels_modify_clipboard">Промяна на клипборда</string>
+  <string name="app_ops_labels_media_buttons">Мултимедийни бутони</string>
+  <string name="app_ops_labels_audio_focus">Аудио фокус</string>
+  <string name="app_ops_labels_master_volume">Основен контрол на звука</string>
+  <string name="app_ops_labels_voice_volume">Сила на звука при разговор</string>
+  <string name="app_ops_labels_ring_volume">Силата на звука при звънене</string>
+  <string name="app_ops_labels_media_volume">Сила на звука за мултимедия</string>
+  <string name="app_ops_labels_alarm_volume">Сила на звука за аларма</string>
+  <string name="app_ops_labels_notification_volume">Сила на звука за уведомление</string>
+  <string name="app_ops_labels_bluetooth_volume">Сила на звука за bluetooth устройства</string>
+  <string name="app_ops_labels_keep_awake">Дръж буден</string>
+  <string name="app_ops_labels_monitor_location">Монитор за местоположение</string>
+  <string name="app_ops_labels_monitor_high_power_location">Монитор за точно местоположение</string>
+  <string name="app_ops_labels_get_usage_stats">Вземи статистика за използване</string>
+  <string name="app_ops_labels_mute_unmute_microphone">Изключен/включен микрофон</string>
+  <string name="app_ops_labels_toast_window">Показване на pop-ups</string>
+  <string name="app_ops_labels_project_media">Медиен проект</string>
+  <string name="app_ops_labels_activate_vpn">Активиране на VPN</string>
+  <string name="app_ops_labels_write_wallpaper">Запишете тапет</string>
+  <string name="app_ops_labels_assist_structure">Подпомагане на структура</string>
+  <string name="app_ops_labels_assist_screenshot">Подпомагане на заснемане на екрана</string>
+  <string name="app_ops_labels_read_phone_state">Прочетете състоянието на телефона</string>
+  <string name="app_ops_labels_add_voicemail">Добавяне на гласова поща</string>
+  <string name="app_ops_labels_use_sip">Използвай SIP</string>
+  <string name="app_ops_labels_make_call">Направете повикване</string>
+  <string name="app_ops_labels_use_fingerprint">Използвай пръстов отпечатък</string>
+  <string name="app_ops_labels_use_body_sensors">Използвай сензорите за тяло</string>
+  <string name="app_ops_labels_read_cell_broadcasts">Регистрирай излъчването на антенна клетка</string>
+  <string name="app_ops_labels_mock_location">Неистинско местоположение</string>
+  <string name="app_ops_labels_read_external_storage">Прочети външната памет</string>
+  <string name="app_ops_labels_write_external_storage">Запиши на външната памет</string>
+  <string name="app_ops_labels_turn_screen_on">Включване на екрана</string>
+  <string name="app_ops_labels_get_accounts">Вземи акаунти</string>
+  <string name="app_ops_labels_change_wifi">Активирай/деактивирай Wi-Fi</string>
+  <string name="app_ops_labels_toggle_bluetooth">Активиране/деактивиране Блутуут</string>
+  <string name="app_ops_labels_start_at_boot">Изпълнява се при стартиране</string>
+  <string name="app_ops_labels_toggle_nfc">Активиране/деактивиране NFC</string>
+  <string name="app_ops_labels_toggle_mobile_data">Активиране/деактивиране на мобилни данни</string>
+  <string name="app_ops_labels_superuser">Root достъп</string>
   <!-- App ops permissions -->
+  <string name="app_ops_permissions_allowed">Разрешено</string>
+  <string name="app_ops_permissions_ignored">Игнорирани</string>
+  <string name="app_ops_permissions_always_ask">Винаги питай</string>
   <!-- App ops detail -->
+  <string name="app_ops_entry_summary"><xliff:g id="op">%1$s </xliff:g> (използван <xliff:g id="count">%2$s </xliff:g>)</string>
+  <string name="app_ops_allowed_count">Разрешени <xliff:g id="count" example="2 times">%s </xliff:g></string>
+  <string name="app_ops_ignored_count">Забранени <xliff:g id="count" example="2 times">%s </xliff:g></string>
+  <string name="app_ops_both_count">Разрешени <xliff:g id="count">%1$s </xliff:g>, забранени <xliff:g id="count">%2$s </xliff:g></string>
   <!-- App ops menu options -->
+  <string name="app_ops_show_user_apps">Покажи потребителски приложения</string>
+  <string name="app_ops_show_system_apps">Покажи вградените приложения</string>
+  <string name="app_ops_reset_counters">Нулиране на позволи/забрани броячи</string>
+  <string name="app_ops_reset_confirm_title">Потвърдете нулирането на броячите</string>
+  <string name="app_ops_reset_confirm_mesg">Наистина ли желаете да нулирате броячите?</string>
   <!-- Privacy Settings Header item -->
+  <string name="privacy_settings_title">Поверителност</string>
   <!-- Privacy Guard -->
+  <string name="privacy_guard_switch_label">Активирай \"Защитен режим\"</string>
+  <string name="privacy_guard_dlg_title">Да активирам ли \"Защитен режим\"?</string>
+  <string name="privacy_guard_dlg_text">Когато \"Защитен режим\" е активиран, приложението няма да има достъп до лични данни, контакти, съобщения или история на обаждания.</string>
+  <string name="privacy_guard_dlg_system_app_text">Когато активирате \"Защитен режим\" за вградено приложение, то няма да има достъп до личните данни и не може да предоставя такива. Това може да доведе до проблемна работа на други приложения.</string>
+  <string name="privacy_guard_default_title">Активирано по подразбиране</string>
+  <string name="privacy_guard_default_summary">Активира защитен режим за нови приложения</string>
+  <string name="privacy_guard_manager_title">Защитен режим</string>
+  <string name="privacy_guard_manager_summary">Управлявайте кои приложения да имат достъп до вашите лични данни</string>
+  <string name="privacy_guard_no_user_apps">Няма инсталирани приложения</string>
+  <string name="privacy_guard_help_title">Помощ</string>
+  <string name="privacy_guard_reset_title">Начално състояние</string>
+  <string name="privacy_guard_reset_text">Нулиране на разрешенията?</string>
+  <string name="privacy_guard_help_text">В този раздел, можете да изберете приложенията, които ще работят в защитен режим, като кликнете върху тях. Избраните приложения няма да имат достъп до лични данни, като контакти, съобщения или регистъра на повикванията. Продължително натискане отваря подробности относно разрешенията.\n\n Системните приложения по подразбиране са скрити. За да ги покажете отидете в разширените настройки и изберете съответните елементи от менюто.</string>
+  <string name="privacy_guard_manager_show_system_apps">Покажи вградените приложения</string>
+  <string name="privacy_guard_advanced_settings_title">Разширени настройки</string>
   <!-- Setting checkbox title for root access -->
+  <string name="root_access">Root достъп</string>
+  <string name="root_access_warning_title">Позволи root достъп?</string>
+  <string name="root_access_warning_message">Разрешаването на приложения да придобиват root достъп е много опасно и може да застраши сигурността на вашата система!</string>
+  <string name="root_access_none">Деактивирано</string>
+  <string name="root_access_apps">Само за приложения</string>
+  <string name="root_access_adb">Само за ADB</string>
+  <string name="root_access_all">За приложения и ADB</string>
   <!-- Memory -->
+  <string name="memory_startup_apps_title">Приложения стартиращи със старта на телефона</string>
   <!-- About phone screen, Slim version -->
+  <string name="slim_version_title">Slim версия</string>
+  <string name="slim_version_default">Неизвестен</string>
   <!-- Display & Lights screen, setting options for LCD density -->
+  <string name="lcd_density">Плътност на LCD</string>
+  <string name="dialog_title_lcd_density">Плътност на LCD</string>
+  <string name="lcd_density_value_format">%d DPI</string>
+  <string name="lcd_density_default_value_format">%d DPI (по подразбиране)</string>
+  <string name="restarting_ui">Рестартиране на UI\u2026</string>
+  <string name="lcd_density_prompt_message">Някои приложения може да не функционират в нестандартни dpi.\n\n Това ще рестартира телефона.</string>
   <!-- Wakeup options -->
+  <string name="display_category_wakeup_options_title">Опции за събуждане</string>
+  <string name="wakeup_when_plugged_unplugged_title">Събуди при зареждане</string>
+  <string name="wakeup_when_plugged_unplugged_summary">Събуди устройство, ако зарядното устройство е включено/изключено.</string>
   <!-- Proximity wake -->
+  <string name="proximity_wake_title">Предотвратяване на случайно събуждане</string>
+  <string name="proximity_wake_summary">Провери сензора за близост преди събуждане на екрана</string>
   <!-- Advanced reboot options -->
+  <string name="advanced_reboot_title">Разширено рестартиране</string>
+  <string name="advanced_reboot_dialog_title">Меню за разширено рестартиране</string>
+  <string name="advanced_reboot_disabled">Деактивирай</string>
+  <string name="advanced_reboot_hide_on_keyguard">Скрий при заключен екран</string>
+  <string name="advanced_reboot_show_always">Показвай винаги</string>
   <!-- Hardware keys and lights -->
+  <string name="hardware_keys_enable_title">Разреши хардуерни бутони</string>
+  <string name="hardware_keys_enable_summary">Разрешаване/забраняване на хардуерни бутони</string>
+  <string name="hardware_keys_lights_enable_title">Настройки за осветление на хардуерните бутони</string>
   <!-- Key backlight -->
+  <string name="settings_reset_button">Начално състояние</string>
+  <string name="button_backlight_enabled">Осветяване на бутоните</string>
+  <string name="keyboard_backlight_enabled">Осветяване на клавиатурата</string>
+  <string name="button_backlight_seekbar_title">Яркост на бутоните</string>
+  <string name="keyboard_backlight_seekbar_title">Яркост на клавиатурата</string>
+  <string name="backlight_timeout_title">Време за изчакване на осветлението</string>
+  <string name="backlight_timeout_unlimited">Не изключвай</string>
+  <string name="backlight_summary_disabled">Деактивирано</string>
+  <string name="backlight_summary_enabled_with_timeout">Разрешен за <xliff:g id="timeout">%s </xliff:g></string>
+  <string name="backlight_summary_enabled">Разрешено</string>
   <!-- Hardware keys -->
+  <string name="enable_hw_keys_title">Разреши хардуерни бутони</string>
+  <string name="button_keys_title">Хардуерни бутони</string>
+  <string name="keys_bindings_title">Действия на клавиши</string>
+  <string name="keys_enable_custom_title">Разреши потребителски дефинирани действия</string>
+  <string name="keys_enable_custom_summary">Разреши потребителски дефинирани действия на хардуерните бутони</string>
+  <string name="keys_back_press_title">Клавиш назад</string>
+  <string name="keys_back_long_press_title">Клавиш назад (задържане)</string>
+  <string name="keys_back_double_tap_title">Клавиш назад (двоен клик)</string>
+  <string name="keys_home_press_title">Клавиш Home</string>
+  <string name="keys_home_long_press_title">Клавиш Home (задържане)</string>
+  <string name="keys_home_double_tap_title">Клавиш Home (двоен клик)</string>
+  <string name="keys_menu_press_title">Клавиш Меню</string>
+  <string name="keys_menu_long_press_title">Клавиш Меню (задържане)</string>
+  <string name="keys_menu_double_tap_title">Клавиш Меню (двоен клик)</string>
+  <string name="keys_assist_press_title">Клавиш за търсене</string>
+  <string name="keys_assist_long_press_title">Клавиш за търсене (задържане)</string>
+  <string name="keys_assist_double_tap_title">Клавиш за търсене (двоен клик)</string>
+  <string name="keys_app_switch_press_title">Клавиш за превключване на приложения</string>
+  <string name="keys_app_switch_long_press_title">Клавиш за превключване на приложения (задържане)</string>
+  <string name="keys_app_switch_double_tap_title">Клавиш за превключване на приложения (двоен клик)</string>
+  <string name="keys_camera_press_title">Клавиша за камера</string>
+  <string name="keys_camera_long_press_title">Клавиша за камера (задържане)</string>
+  <string name="keys_camera_double_tap_title">Клавиша за камера (двоен клик)</string>
+  <string name="keys_action_normal">Нормален клик</string>
+  <string name="keys_action_long">Задържане</string>
+  <string name="keys_action_double">Двоен клик</string>
+  <string name="no_home_key">Вие нямате присвоен бутон \"Home\"! \n\nТова може да направи вашето устройство неизползваемо!</string>
   <!-- Slim Shortcuts -->
+  <string name="slim_shortcut_picker">Slim действия</string>
+  <string name="shortcut_action_select_action">Изберете действие:</string>
   <!-- Chamber of Secrets -->
+  <string name="chamber_title">Стаята на тайните</string>
+  <string name="chamber_toast">Стаята на тайните е отворена</string>
   <!-- Device specific settings -->
+  <string name="screen_off_gesture_settings_title">Жестове за изключване на екрана</string>
   <!-- Status bar -->
+  <string name="status_bar_title">Лентата на състоянието</string>
+  <string name="status_bar_style_title">Стил на лентата на състоянието</string>
   <!-- Status bar - Battery Options -->
+  <string name="battery_icon_options_title">Опции за икона на батерията</string>
   <!-- Status bar - Battery Style -->
+  <string name="status_bar_battery_style_title">Стил за статус на батерията</string>
+  <string name="status_bar_battery_style_circle">Кръг</string>
+  <string name="status_bar_battery_style_dotted_circle">Пунктиран кръг</string>
+  <string name="status_bar_battery_style_text">Текст</string>
+  <string name="status_bar_battery_style_hidden">Скрито</string>
+  <string name="status_bar_battery_style_icon_portrait">Вертикална икона</string>
+  <string name="status_bar_battery_style_icon_landscape">Хоризонтална икона</string>
   <!-- Status bar - Battery percentage -->
+  <string name="status_bar_battery_percentage_title">Покажи проценти на батерията</string>
+  <string name="status_bar_battery_percentage_dialog_title">Заряд на батерията в проценти</string>
+  <string name="status_bar_battery_percentage_default">Скрити (по подразбиране)</string>
+  <string name="status_bar_battery_percentage_text_inside">В иконата</string>
+  <string name="status_bar_battery_percentage_text_next">До иконата</string>
   <!-- Navigation bar -->
+  <string name="navigation_bar">Навигационна лента</string>
+  <string name="navigation_settings_category">Навигация</string>
+  <string name="navigation_bar_size_42_dp_default">42 dp (по подразбиране)</string>
+  <string name="navigation_bar_size_36_dp">36 dp</string>
+  <string name="navigation_bar_size_30_dp">30 dp</string>
+  <string name="navigation_bar_size_24_dp">24 dp</string>
+  <string name="navigation_bar_size_48_dp_default">48 dp (по подразбиране)</string>
+  <string name="navigation_bar_size_44_dp">44 dp</string>
+  <string name="navigation_bar_size_40_dp">40 dp</string>
+  <string name="navigation_bar_size_42_dp">42 dp</string>
+  <string name="navigation_bar_size_0_dp">0 dp (Изкл.)</string>
+  <string name="navigation_menu_right">Вдясно</string>
+  <string name="navigation_menu_left">Вляво</string>
+  <string name="navigation_menu_both">И двете</string>
+  <string name="navigation_menu_default_jb_behavior">Покажи по заявка (по подразбиране)</string>
+  <string name="navigation_menu_never_show">Никога не показвай</string>
+  <string name="navigation_menu_always_show">Винаги показвай</string>
+  <string name="navbar_button_cat">Бутоните от лентата за навигация</string>
+  <string name="title_pref_menu_location">Местоположение на менюто</string>
+  <string name="summary_pref_menu_location">Къде искате да се появят бутоните на менюто?</string>
+  <string name="title_pref_menu_display">Видимост на менюто</string>
+  <string name="summary_pref_menu_display">Как и кога искате да се появят бутоните на менюто?</string>
+  <string name="navbar_enable_bar">Активиране на лентата за навигация</string>
+  <string name="navbar_enable_bar_summary">Активиране на лентата за навигация</string>
+  <string name="navigation_bar_height_title">Височина на лентата за навигация</string>
+  <string name="navigation_bar_height_summary">Височина на лентата за навигация при портрет.</string>
+  <string name="navigation_bar_height_landscape_title">Височина на лентата за навигация при пейзаж</string>
+  <string name="navigation_bar_height_landscape_summary">Височина на лентата за навигация при пейзаж.</string>
+  <string name="navigation_bar_width_title">Широчина на лентата за навигация</string>
+  <string name="navigation_bar_width_summary">Височината на навигационния бар когато се намира отстрани.</string>
+  <string name="navbar_can_move">Покажи при пейзаж</string>
+  <string name="navbar_can_move_summary">Навигационния бар се показва от долу при пейзаж</string>
+  <string name="navbar_style_dimen_title">Размери</string>
+  <string name="navbar_style_dimen_summary">Промяна на височината на навигационна лента</string>
+  <string name="navbar_button_title">Бутони</string>
+  <string name="navbar_button_summary">Конфигуриране на бутоните които да се показват в лентата за навигация</string>
+  <string name="navbar_cat">Навигационна лента</string>
+  <string name="navbar_dimensions_reset_message">Възстановяване на всички размери по подразбиране?</string>
+  <string name="navbar_button_style_reset_message">Възстановяване на всички стилове по подразбиране?</string>
   <!-- SlimDim -->
+  <string name="dim_nav_buttons_category">Slim замъгляване</string>
+  <string name="dim_nav_buttons_title">Замъгляване на бутоните след бездействие</string>
+  <string name="dim_nav_buttons_summary">Замъглява бутоните в навигационната лента след бездействие за определено време</string>
+  <string name="dim_nav_buttons_timeout_title">Изчакване преди замъгляване</string>
+  <string name="dim_nav_buttons_timeout_summary">Време (в милисекунди), да се изчака, преди замъгляване на бутоните</string>
+  <string name="dim_nav_buttons_alpha_title">Алфа на замъгляване</string>
+  <string name="dim_nav_buttons_alpha_summary">Алфа стойност за замъгляване на бутоните</string>
+  <string name="dim_nav_buttons_animate_title">Анимация за замъгляване</string>
+  <string name="dim_nav_buttons_animate_summary">Анимиране на алфа избледняване</string>
+  <string name="dim_nav_buttons_animate_duration_title">Продължителност на анимация</string>
+  <string name="dim_nav_buttons_animate_duration_summary">Продължителност (в милисекунди) на алфа анимация</string>
+  <string name="dim_nav_buttons_touch_anywhere_title">Следи за докосвания по целия екран</string>
+  <string name="dim_nav_buttons_touch_anywhere_summary_on">Докосване някъде по екрана ще предизвика бутоните да се покажат</string>
+  <string name="dim_nav_buttons_touch_anywhere_summary_off">Единствено докосване на навигационната лента ще предизвика бутоните да се покажат</string>
   <!-- Navigation bar button style -->
+  <string name="nav_bar_button_style">Стил на бутон</string>
+  <string name="nav_bar_button_style_summary">Промяна на стила на бутоните на лентата за навигация</string>
+  <string name="button_transparency_title">Прозрачност на бутоните</string>
+  <string name="navigation_bar_icon_tint_title">Цвят на бутоните</string>
+  <string name="nav_button_color_mode_title">Цветен режим</string>
+  <string name="nav_button_color_mode_dialog_title">Оцвети</string>
+  <string name="nav_button_color_mode_summary">Промяна на цвета на бутоните на лентата за навигация</string>
+  <string name="navigation_bar_glow_tint_title">Светещия цвят на бутоните</string>
   <!-- Icon color options -->
+  <string name="icon_color_mode_all_icons">Всички икони</string>
+  <string name="icon_color_mode_system_icons">Системни икони</string>
+  <string name="icon_color_mode_system_custom_icons">Системни и персонализирани икони</string>
   <!-- Recent panel -->
+  <string name="recent_panel_category">Панел с последните приложения</string>
+  <string name="use_slim_recents_title">Slim скорошни</string>
+  <string name="show_running_tasks_title">Покажи само активните приложения</string>
+  <string name="recents_max_apps_title">Максимално разрешени приложения</string>
+  <string name="recent_panel_scale_title">Размер</string>
+  <string name="recent_panel_expanded_mode_title">Разширен режим</string>
+  <string name="recent_panel_expanded_mode_summary">Режим преглед на последните задачи</string>
+  <string name="recent_panel_expanded_mode_auto">Автоматично (по подразбиране)</string>
+  <string name="recent_panel_expanded_mode_always">Винаги</string>
+  <string name="recent_panel_expanded_mode_never">Никога</string>
+  <string name="recent_panel_show_topmost_title">Покажи най-използванта задача</string>
+  <string name="recent_panel_show_topmost_summary">Не изключвай най-използванта задача в прегледа</string>
+  <string name="recent_panel_bg_color_title">Цвят за фон на панела</string>
+  <string name="recent_card_bg_color_title">Цвят за фон на картата</string>
   <!-- ATTENTION: RTL languages need to replace left with right -->
+  <string name="recent_panel_lefty_mode_title">Покажи в левия ъгъл</string>
+  <string name="recent_panel_lefty_mode_summary">Покажи панел на последните приложения в левия ъгъл</string>
   <!-- Clock & Date options -->
+  <string name="status_bar_clock">Изглед на часовник и дата</string>
+  <string name="status_bar_clock_title">Стил на часовник и дата</string>
+  <string name="clock_title_enable">Подравняване</string>
+  <string name="clock_enabled">Разрешено</string>
+  <string name="clock_disabled">Деактивирано</string>
+  <string name="clock_color_title">Цвят</string>
+  <string name="status_bar_clock_style_reset">Възстановяване на цвят</string>
+  <string name="status_bar_show_clock_title">Показване на часовника и датата</string>
+  <string name="status_bar_clock_color_override">Използвайте цвят по избор</string>
+  <string name="status_bar_am_pm_title">AM/PM</string>
+  <string name="status_bar_am_pm_info">Включен 24-часов формат за време</string>
+  <string name="enable_clock_weekday">Ден от седмицата</string>
+  <string name="enable_clock_weekday_summary">Съкратено денят от седмицата преди часът</string>
+  <string name="right_clock">Часовник вдясно</string>
+  <string name="center_clock">Часовник в центъра</string>
+  <string name="left_clock">Часовник в ляво</string>
+  <string name="dont_show">Не показвай</string>
+  <string name="clock_date_display">Дата</string>
+  <string name="clock_date_display_summary">Покажи персонализирана дата преди часовника</string>
+  <string name="clock_date_style">Стил на датата</string>
+  <string name="clock_date_position">Позиция на датата</string>
+  <string name="clock_date_format">Формат на датата</string>
+  <string name="clock_date_string_edittext_title">Трябва да е във формат за дата например. ММ/дд/гг</string>
+  <string name="clock_date_string_edittext_summary">Въведете низ</string>
+  <string name="am_pm_clock_normal">Нормален размер на шрифта</string>
+  <string name="am_pm_clock_small">Малък размер на шрифта</string>
+  <string name="am_pm_clock_none">Не показвай</string>
+  <string name="clock_date_display_none">Не показвай</string>
+  <string name="clock_date_display_small">Малък размер на шрифта</string>
+  <string name="clock_date_display_normal">Нормален размер на шрифта</string>
+  <string name="clock_date_right">Вдясно от времето</string>
+  <string name="clock_date_left">Вляво от времето</string>
+  <string name="clock_date_style_normal">Нормален</string>
+  <string name="clock_date_style_lowercase">Малки букви</string>
+  <string name="clock_date_style_uppercase">Големи букви</string>
+  <string name="clock_date_format_custom">Потребителски формат на java</string>
   <!-- Advanced, Device specific (DeviceParts) settings  -->
+  <string name="advanced_options_settings_title">Разширени настройки</string>
+  <string name="device_settings_title">Специфични настройки на устройството</string>
   <!-- Doze options -->
+  <string name="display_category_doze_options_title">Опции за обкръжаващия дисплей (дрямка)</string>
+  <string name="doze_settings_title">Разширени настройки за дрямка</string>
+  <string name="doze_fade_in_pickup_title">Разкриване на Дремещото пулсиране (при вдигане)</string>
+  <string name="doze_fade_in_pickup_summary">Време за пулс на известие, когато вдигнете телефона (по подразбиране е 100)</string>
+  <string name="doze_fade_in_doubletap_title">Разкритие на Дремещо пулсиране (двойно натискане)</string>
+  <string name="doze_fade_in_doubletap_summary">Време за пулс на известие при двойно натискане (по подразбиране е 900)</string>
+  <string name="doze_timeout_title">Време за изчакване на Дремещото пулсиране</string>
+  <string name="doze_timeout_summary">Времето за което екрана остава включен при пулс на известие (по подразбиране е 6000)</string>
+  <string name="doze_fade_out_title">Избледняване на Дремещото пулсиране</string>
+  <string name="doze_fade_out_summary">Времето след което екрана избледнява при пулс на известие (по подразбиране е 600)</string>
+  <string name="doze_wakeup_doubletap_title">Събуждане след двойно натискане при дрямка</string>
   <!--string name="doze_trigger_doubletap_title">Double tap trigger</string-->
   <!--string name="doze_trigger_doubletap_summary_on">Doze pulse will be triggered by a double tap</string-->
   <!--string name="doze_trigger_doubletap_summary_off">Double tap sensor will not be utilized as a triggering mechanism (default)</string-->
+  <string name="doze_trigger_notification_title">Спусък за известие</string>
+  <string name="doze_trigger_notification_summary_on">Дремещо пулсиране ще бъде задействан от известия (по подразбиране)</string>
+  <string name="doze_trigger_notification_summary_off">Известията няма да бъдат използвани като спусък</string>
+  <string name="doze_brightness_title">Яркост на Дремещото пулсиране</string>
+  <string name="doze_brightness_summary">Яркостта на екрана при Дремещо пулсиране (% от максимално позволената яркост)</string>
   <!-- Increasing ring tone volume -->
+  <string name="increasing_ring_volume_option_title">Увеличаване силата на звука при звънене</string>
+  <string name="increasing_ring_min_volume_title">Начална сила на звука</string>
+  <string name="increasing_ring_ramp_up_time_title">Време за увеличение</string>
 </resources>

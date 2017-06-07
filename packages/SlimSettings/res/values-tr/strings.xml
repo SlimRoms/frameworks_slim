@@ -22,6 +22,7 @@
   <string name="menu_cancel">Çıkar</string>
   <string name="advanced_settings">Gelişmiş</string>
   <!-- Common color picker strings -->
+  <string name="color_picker_reset_message">Rengi Sıfırla?</string>
   <!-- Slim settings screens -->
   <string name="navigation_settings_title">Navigasyon</string>
   <string name="interface_settings_title">Arayüz</string>
@@ -396,7 +397,6 @@
   <string name="recent_panel_show_topmost_summary">Son uygulamalar görünümünde en üstte ki görevi dışlama</string>
   <string name="recent_panel_bg_color_title">Panel arka plan rengi</string>
   <string name="recent_card_bg_color_title">Kart arka plan rengi</string>
-  <string name="recent_card_text_color_title">Kart metin rengi</string>
   <!-- ATTENTION: RTL languages need to replace left with right -->
   <string name="recent_panel_lefty_mode_title">Sol kenarda göster</string>
   <string name="recent_panel_lefty_mode_summary">Sol kenarda son uygulamalar panelini göster</string>
@@ -443,8 +443,14 @@
   <!-- Doze options -->
   <string name="display_category_doze_options_title">Ambient display seçenekleri</string>
   <string name="doze_settings_title">Gelişmiş ortam ekranı seçenekleri</string>
+  <string name="doze_fade_in_pickup_title">Soldurarak azaltma(seç)</string>
+  <string name="doze_fade_in_pickup_summary">Seçili Bildirimin ekranda solma süresini belirtme(varsayılan 100)</string>
+  <string name="doze_fade_in_doubletap_title">Soldurarak azaltma modu(çift tıklama)</string>
+  <string name="doze_fade_in_doubletap_summary">Seçili Bildirimin çift tıklamayla ekranda solma süresini belirtme(varsayılan 900)</string>
   <string name="doze_timeout_title">Ortam ekranı yanma zaman aşımı</string>
   <string name="doze_timeout_summary">Ekranın bildirim için açık beklediği süre</string>
+  <string name="doze_fade_out_title">Ortam ekranı karartma</string>
+  <string name="doze_fade_out_summary">Bildirim sonrası ekranda karartma süresini belirt(varsayılan 600)</string>
   <string name="doze_wakeup_doubletap_title">Doze bildirimlerimde cihazı uyandırmak için çift dokunun</string>
   <string name="doze_wakeup_doubletap_summary_on">Cihazı ortam ekranında uyandırmak için ekrana çift dokunmak gerekir</string>
   <string name="doze_wakeup_doubletap_summary_off">Cihazı ortam ekranında uyandırmak için ekrana bir kez dokunmak gerekir (varsayılan)</string>
@@ -463,4 +469,7 @@
   <string name="doze_brightness_title">Doze parlaklık seviyesi</string>
   <string name="doze_brightness_summary">Doze ekran parlaklık seviyesi (% maksimum izin verilen parlaklık)</string>
   <!-- Increasing ring tone volume -->
+  <string name="increasing_ring_volume_option_title">Artan zil sesi</string>
+  <string name="increasing_ring_min_volume_title">Başlanğıç sesi</string>
+  <string name="increasing_ring_ramp_up_time_title">Yükseliş süresi</string>
 </resources>

@@ -22,6 +22,7 @@
   <string name="menu_cancel">Відкинути</string>
   <string name="advanced_settings">Розширені параметри</string>
   <!-- Common color picker strings -->
+  <string name="color_picker_reset_message">Скинути колір?</string>
   <!-- Slim settings screens -->
   <string name="navigation_settings_title">Навігація</string>
   <string name="interface_settings_title">Інтерфейс</string>
@@ -396,7 +397,6 @@
   <string name="recent_panel_show_topmost_summary">Не виключати найважливіші задачі зі списку недавніх</string>
   <string name="recent_panel_bg_color_title">Колір тла панелі</string>
   <string name="recent_card_bg_color_title">Колір тла картки</string>
-  <string name="recent_card_text_color_title">Колір тексту картки</string>
   <!-- ATTENTION: RTL languages need to replace left with right -->
   <string name="recent_panel_lefty_mode_title">Показати на лівому краю</string>
   <string name="recent_panel_lefty_mode_summary">Показати панель останніх програм на лівому краю</string>
@@ -445,6 +445,7 @@
   <string name="doze_settings_title">Додаткові опції doze</string>
   <string name="doze_timeout_title">Тривалість пульсації Doze</string>
   <string name="doze_timeout_summary">Час, протягом якого екран залишається увімкненим для пульсуючих сповіщень</string>
+  <string name="doze_fade_out_title">Тривалість пульсації Doze</string>
   <string name="doze_wakeup_doubletap_title">Натисніть двічі щоб розбудити пристрій</string>
   <string name="doze_wakeup_doubletap_summary_on">Вимагати подвійного дотику на екрані Doze для прокидання пристрою</string>
   <string name="doze_wakeup_doubletap_summary_off">Вимагати дотику на екрані Doze для прокидання пристрою (типово)</string>
@@ -463,4 +464,7 @@
   <string name="doze_brightness_title">Рівень яскравості Doze</string>
   <string name="doze_brightness_summary">Рівень яскравості екрана при пульсації (% від максимально допустимої яскравості)</string>
   <!-- Increasing ring tone volume -->
+  <string name="increasing_ring_volume_option_title">Наростаюча гучність дзвінка</string>
+  <string name="increasing_ring_min_volume_title">Початкова гучність</string>
+  <string name="increasing_ring_ramp_up_time_title">Час збільшення</string>
 </resources>

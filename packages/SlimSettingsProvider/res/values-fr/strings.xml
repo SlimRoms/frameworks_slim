@@ -19,5 +19,5 @@
 -->
 <resources>
   <!-- Name of the activity for Settings storage. -->
-  <string name="app_label">Stockage des paramètres Slim</string>
+  <string name="app_label">Paramètres de stockage « Slim »</string>
 </resources>

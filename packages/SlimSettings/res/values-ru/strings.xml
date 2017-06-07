@@ -22,6 +22,7 @@
   <string name="menu_cancel">Отменить</string>
   <string name="advanced_settings">Дополнительно</string>
   <!-- Common color picker strings -->
+  <string name="color_picker_reset_message">Сбросить цвет?</string>
   <!-- Slim settings screens -->
   <string name="navigation_settings_title">Навигация и кнопки</string>
   <string name="interface_settings_title">Интерфейс</string>
@@ -396,7 +397,6 @@
   <string name="recent_panel_show_topmost_summary">Показывать последнее приложение в списке недавних</string>
   <string name="recent_panel_bg_color_title">Цвет фона панели</string>
   <string name="recent_card_bg_color_title">Цвет фона карточки</string>
-  <string name="recent_card_text_color_title">Цвет текста карточки</string>
   <!-- ATTENTION: RTL languages need to replace left with right -->
   <string name="recent_panel_lefty_mode_title">Показывать у левого края</string>
   <string name="recent_panel_lefty_mode_summary">Показывать панель недавних приложений у левого края</string>
@@ -443,8 +443,14 @@
   <!-- Doze options -->
   <string name="display_category_doze_options_title">Настройки Ambient display (doze)</string>
   <string name="doze_settings_title">Расширенные настройки Ambient Display</string>
+  <string name="doze_fade_in_pickup_title">Doze-пульсация при поднятии устройства</string>
+  <string name="doze_fade_in_pickup_summary">Время, в течение которого экран будет включен для показа уведомления после поднятия (по умолчанию 100)</string>
+  <string name="doze_fade_in_doubletap_title">Doze-пульсация при двойном нажатии</string>
+  <string name="doze_fade_in_doubletap_summary">Время, в течение которого экран будет включен для показа уведомления после двойного нажатия (по умолчанию 900)</string>
   <string name="doze_timeout_title">Время работы экрана</string>
   <string name="doze_timeout_summary">Время, в течение которого экран будет включен для показа уведомления</string>
+  <string name="doze_fade_out_title">Продолжительность Doze-пульсации</string>
+  <string name="doze_fade_out_summary">Время, в течение которого экран будет включен для показа уведомления (по умолчанию 600)</string>
   <string name="doze_wakeup_doubletap_title">Двойное нажатие для пробуждения</string>
   <string name="doze_wakeup_doubletap_summary_on">Двойное нажатие, чтобы разбудить устройство</string>
   <string name="doze_wakeup_doubletap_summary_off">Одиночное нажатие, чтобы разбудить устройство (по умолчанию)</string>
@@ -463,4 +469,7 @@
   <string name="doze_brightness_title">Уровень яркости</string>
   <string name="doze_brightness_summary">Уровень яркости включения экрана (% от максимальной)</string>
   <!-- Increasing ring tone volume -->
+  <string name="increasing_ring_volume_option_title">Возрастающая громкость звонка</string>
+  <string name="increasing_ring_min_volume_title">Начальная громкость</string>
+  <string name="increasing_ring_ramp_up_time_title">Время увеличения</string>
 </resources>

@@ -178,4 +178,5 @@
   <string name="increasing_ring_volume_option_title">Zvyšovanie hlasitosti zvonenia</string>
   <string name="increasing_ring_min_volume_title">Počiatočná hlasitosť</string>
   <string name="increasing_ring_ramp_up_time_title">Doba zvyšovania</string>
+  <!-- Proximity wake -->
 </resources>
