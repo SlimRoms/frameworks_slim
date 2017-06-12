@@ -407,13 +407,18 @@ public class SlimNavigationBarView extends NavigationBarView {
         int i = mContext.getResources().getDimensionPixelSize(R.dimen.navigation_key_width);
         v.setLayoutParams(getLayoutParams(landscape, i));
 
+        Drawable d = null;
+
         if (clickAction.equals(ActionConstants.ACTION_BACK)) {
             v.setId(R.id.back);
             v.setLongClickCallback(mCallback);
+            d = mContext.getDrawable(R.drawable.ic_sysbar_back);
         } else if (clickAction.equals(ActionConstants.ACTION_HOME)) {
             v.setId(R.id.home);
+            d = mContext.getDrawable(R.drawable.ic_sysbar_home);
         } else if (clickAction.equals(ActionConstants.ACTION_RECENTS)) {
             v.setId(R.id.recent_apps);
+            d = mContext.getDrawable(R.drawable.ic_sysbar_recent);
         } else {
             int buttonId = v.generateViewId();
             v.setId(buttonId);
@@ -444,7 +449,11 @@ public class SlimNavigationBarView extends NavigationBarView {
             mAppIsBinded = true;
         }
 
-        Drawable d = ActionHelper.getActionIconImage(mContext, clickAction, iconUri);
+        if (d == null || (iconUri != null && !iconUri.equals(ActionConstants.ICON_EMPTY))) {
+            d = ActionHelper.getActionIconImage(mContext, clickAction, iconUri);
+        } else {
+            colorize = false;
+        }
 
         if (d != null) {
             d.mutate();
