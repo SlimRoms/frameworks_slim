@@ -283,18 +283,18 @@ public class SlimStatusBar extends PhoneStatusBar implements
         mSlimScreenPinningRequest = new SlimScreenPinningRequest(mContext);
 
         mSlimQuickStatusBarHeader = (SlimQuickStatusBarHeader) mHeader;
-        mSlimQuickStatusBarHeader.setOnLongClickListener(new View.OnLongClickListener() {
+        /*mSlimQuickStatusBarHeader.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
-            public boolean onLongClick(View v) {
+            public boolean onLongClick(View view) {
+                Log.d("TEST", "v - " + view.getClass().getName());
                 Intent intent = new Intent(Intent.ACTION_MAIN);
                 intent.setClassName("com.android.settings",
                         "com.android.settings.Settings$NotificationStationActivity");
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                mSlimQuickStatusBarHeader.getActivityStarter().startActivity(
-                        intent, true /* dismissShade */);
+                startActivity(intent, true);
                 return true;
             }
-        });
+        });*/
 
         return mStatusBarView;
     }
