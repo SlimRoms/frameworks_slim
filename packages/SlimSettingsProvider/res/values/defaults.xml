@@ -17,5 +17,6 @@
  */
 -->
 <resources>
-
+    <string name="def_protected_component_managers" translatable="false">
+            com.android.settings|com.android.launcher3|org.slim.SlimSettings|org.slim.framework</string>
 </resources>
