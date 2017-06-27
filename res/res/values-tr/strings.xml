@@ -179,4 +179,6 @@
   <string name="increasing_ring_min_volume_title">Başlangıç sesi</string>
   <string name="increasing_ring_ramp_up_time_title">Yükselme süresi</string>
   <!-- Proximity wake -->
+  <string name="proximity_wake_title">Yanlış uyandırmaları önle</string>
+  <string name="proximity_wake_summary">Ekranı uyandırmadan önce yakınlık sensörü kontrolü</string>
 </resources>

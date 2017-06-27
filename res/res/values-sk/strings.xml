@@ -179,4 +179,6 @@
   <string name="increasing_ring_min_volume_title">Počiatočná hlasitosť</string>
   <string name="increasing_ring_ramp_up_time_title">Doba zvyšovania</string>
   <!-- Proximity wake -->
+  <string name="proximity_wake_title">Zabrániť nechcenému prebudeniu</string>
+  <string name="proximity_wake_summary">Kontrolovať snímač priblíženia pre zabránenie nechcenému prebudeniu</string>
 </resources>

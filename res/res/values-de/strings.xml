@@ -146,6 +146,7 @@
   <string name="shortcut_action_torch">Taschenlampe</string>
   <string name="shortcut_action_voice_search">Sprachsuche</string>
   <string name="shortcut_action_nowontap">Google Now / Now on Tap</string>
+  <string name="shortcut_action_split_screen">Geteilter Bildschirm</string>
   <!-- Icon color options -->
   <string name="icon_color_mode_all_icons">Alle Symbole</string>
   <string name="icon_color_mode_system_icons">Systemsymbole</string>
@@ -162,7 +163,11 @@
   <string name="set">Einstellen</string>
   <string name="color_default">Standard</string>
   <!-- Proximity speaker -->
+  <string name="prox_auto_speaker_summary">Freisprecheinrichtung einschalten, wenn das Gerät vom Gesicht entfernt wird</string>
+  <string name="prox_auto_speaker_delay_summary">Zeitverzögerung bis der Lautsprecher aktiviert wird</string>
+  <string name="prox_auto_speaker_incall_only_title">Nur während eines Anrufs</string>
   <!-- Slim Doze-->
   <!-- Increasing ring tone volume -->
   <!-- Proximity wake -->
+  <string name="proximity_wake_title">Unbeabsichtigtes Aufwecken verhindern</string>
 </resources>

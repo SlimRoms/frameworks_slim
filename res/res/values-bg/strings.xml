@@ -148,6 +148,7 @@
   <string name="shortcut_action_voice_search">Гласово търсене</string>
   <string name="shortcut_action_nowontap">Google Now / Now on Tap</string>
   <string name="shortcut_action_split_screen">Раздели екрана</string>
+  <string name="shortcut_action_doze_pulse">Дремещо пулсиране</string>
   <!-- Icon color options -->
   <string name="icon_color_mode_all_icons">Всички икони</string>
   <string name="icon_color_mode_system_icons">Системни икони</string>

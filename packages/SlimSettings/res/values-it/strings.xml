@@ -457,12 +457,16 @@
   <string name="doze_trigger_pickup_title">Risveglia il dispositivo quando viene sollevato</string>
   <string name="doze_trigger_pickup_summary_on">Lo schermo si riattiva quando il dispositivo viene sollevato</string>
   <string name="doze_trigger_pickup_summary_off">Lo schermo non si riattiva quando il dispositivo viene sollevato</string>
+  <string name="doze_trigger_tilt_title">Attivazione gesto sollevamento</string>
+  <string name="doze_trigger_tilt_summary_on">Lo schermo si riattiva quando il dispositivo viene mosso significativamente</string>
+  <string name="doze_trigger_tilt_summary_off">Il sensore gesto di sollevamento non sarà utilizzato come un meccanismo di attivazione</string>
   <string name="doze_trigger_sigmotion_title">Attivazione movimento significativo</string>
   <string name="doze_trigger_sigmotion_summary_on">Lo schermo si riattiva quando il dispositivo viene mosso significativamente</string>
   <string name="doze_trigger_sigmotion_summary_off">Lo schermo non si riattiva quando il dispositivo viene mosso significativamente</string>
   <!--string name="doze_trigger_doubletap_title">Double tap trigger</string-->
   <!--string name="doze_trigger_doubletap_summary_on">Doze pulse will be triggered by a double tap</string-->
   <!--string name="doze_trigger_doubletap_summary_off">Double tap sensor will not be utilized as a triggering mechanism (default)</string-->
+  <string name="doze_trigger_hand_wave_summary_on">Doze verrà attivato da un gesto della mano (predefinito)</string>
   <string name="doze_trigger_notification_title">Attivazione notifica</string>
   <string name="doze_trigger_notification_summary_on">Riattiva lo schermo quando si ricevono notifiche</string>
   <string name="doze_trigger_notification_summary_off">Le notifiche non riattiveranno gli eventi</string>
