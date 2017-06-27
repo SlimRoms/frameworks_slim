@@ -457,19 +457,28 @@
   <string name="doze_trigger_pickup_title">Ele alma hareketi tetikleyici</string>
   <string name="doze_trigger_pickup_summary_on">Cihazı elinize aldığınızda hareket sensörleri ortam ekranı modunda yanmayı tetikler</string>
   <string name="doze_trigger_pickup_summary_off">Ele alındığında hareket sensörü tetikleme mekanizması olarak kullanılmayacak</string>
+  <string name="doze_trigger_tilt_title">Ele alma hareketi tetikleyici</string>
+  <string name="doze_trigger_tilt_summary_on">Cihazı elinize aldığınızda hareket sensörleri ortam ekranı modunu tetikler (varsayılan)</string>
+  <string name="doze_trigger_tilt_summary_off">Yan yatırma hareketi sensörü bir etkinleştirme tertibatı olarak kullanılmayacak</string>
   <string name="doze_trigger_sigmotion_title">Önemli hareket tetikleyici</string>
   <string name="doze_trigger_sigmotion_summary_on">Doze önemli hareket sensörleriyle tetiklenir</string>
   <string name="doze_trigger_sigmotion_summary_off">Hareket sensörü bir tetikleme mekanizması olarak kullanılmayacak</string>
   <!--string name="doze_trigger_doubletap_title">Double tap trigger</string-->
   <!--string name="doze_trigger_doubletap_summary_on">Doze pulse will be triggered by a double tap</string-->
   <!--string name="doze_trigger_doubletap_summary_off">Double tap sensor will not be utilized as a triggering mechanism (default)</string-->
+  <string name="doze_trigger_hand_wave_title">El sallama hareketi etkinleştiricisi</string>
+  <string name="doze_trigger_hand_wave_summary_on">Doze bildirimler bir el sallama hareketi ile etkinleştirilecek (varsayılan)</string>
+  <string name="doze_trigger_hand_wave_summary_off">El sallama harekete bir etkinleştirme tertibatı olarak kullanılmayacak</string>
+  <string name="doze_trigger_pocket_title">Cep modu hareketi etkinleştiricisi</string>
+  <string name="doze_trigger_pocket_summary_on">Dozu bildirimler cihaz cepten çıkarılırken etkinleştirilecek (varsayılan)</string>
+  <string name="doze_trigger_pocket_summary_off">Cihazı cepten çıkarmak bir etkinleştirme tertibatı olarak kullanılmayacak</string>
   <string name="doze_trigger_notification_title">Bildirim tetikleyicisi</string>
   <string name="doze_trigger_notification_summary_on">Doze bildirimler ile tetiklenir</string>
   <string name="doze_trigger_notification_summary_off">Bildirimler bir tetikleme mekanizması olarak kullanılmayacak</string>
   <string name="doze_brightness_title">Doze parlaklık seviyesi</string>
   <string name="doze_brightness_summary">Doze ekran parlaklık seviyesi (% maksimum izin verilen parlaklık)</string>
   <!-- Increasing ring tone volume -->
-  <string name="increasing_ring_volume_option_title">Artan zil sesi</string>
-  <string name="increasing_ring_min_volume_title">Başlanğıç sesi</string>
+  <string name="increasing_ring_volume_option_title">Artan zil sesi seviyesi</string>
+  <string name="increasing_ring_min_volume_title">Başlangıç ses seviyesi</string>
   <string name="increasing_ring_ramp_up_time_title">Yükseliş süresi</string>
 </resources>

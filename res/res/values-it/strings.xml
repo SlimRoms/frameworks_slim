@@ -182,4 +182,6 @@
   <string name="increasing_ring_min_volume_title">Volume di partenza</string>
   <string name="increasing_ring_ramp_up_time_title">Tempo di aumento</string>
   <!-- Proximity wake -->
+  <string name="proximity_wake_title">Previeni i risvegli accidentali</string>
+  <string name="proximity_wake_summary">Controlla il sensore di prossimità prima di accendere lo schermo</string>
 </resources>
