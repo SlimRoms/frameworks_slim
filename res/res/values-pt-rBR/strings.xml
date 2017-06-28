@@ -148,6 +148,7 @@
   <string name="shortcut_action_voice_search">Pesquisa por voz</string>
   <string name="shortcut_action_nowontap">Google Now / Now on Tap</string>
   <string name="shortcut_action_split_screen">Dividir a tela</string>
+  <string name="shortcut_action_doze_pulse">Pulso Doze</string>
   <!-- Icon color options -->
   <string name="icon_color_mode_all_icons">Todos os ícones</string>
   <string name="icon_color_mode_system_icons">Ícones de sistema</string>
@@ -174,6 +175,13 @@
   <string name="prox_auto_speaker_incall_only_summary_on">Em chamadas sendo realizadas, o alto-falante só ficará ativo após a outra parte responder</string>
   <string name="prox_auto_speaker_incall_only_summary_off">Alto-falante viva-voz ficará ativo durante toda a chamada (padrão)</string>
   <!-- Slim Doze-->
+  <string name="display_category_doze_options_title">Opções da tela ambiente (doze)</string>
+  <string name="doze_settings_title">Doze: Opções avançadas</string>
   <!-- Increasing ring tone volume -->
+  <string name="increasing_ring_volume_option_title">Aumento gradativo do volume do toque</string>
+  <string name="increasing_ring_min_volume_title">Volume inicial</string>
+  <string name="increasing_ring_ramp_up_time_title">Intervalo de aumento</string>
   <!-- Proximity wake -->
+  <string name="proximity_wake_title">Impedir que a tela se ligue acidentalmente</string>
+  <string name="proximity_wake_summary">Verificar o sensor de proximidade antes de despertar a tela</string>
 </resources>

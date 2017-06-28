@@ -179,4 +179,6 @@
   <string name="increasing_ring_min_volume_title">起始音量</string>
   <string name="increasing_ring_ramp_up_time_title">漸強時間</string>
   <!-- Proximity wake -->
+  <string name="proximity_wake_title">防止意外喚醒</string>
+  <string name="proximity_wake_summary">喚醒螢幕前檢查距離感應器</string>
 </resources>

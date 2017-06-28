@@ -19,8 +19,22 @@
   <!-- Labels for the WRITE_SETTINGS permission -->
   <!-- Labels for the WRITE_SECURE_SETTINGS permission -->
   <!-- General Strings -->
+  <string name="reset">Sıfırla</string>
+  <string name="disabled">Deaktivdir</string>
+  <string name="help">Kömək</string>
+  <string name="attention">Diqqət</string>
+  <string name="reset_message">Bütün qeydlər ilkin vəziyyətə qaytarılsın mı?</string>
+  <string name="help_label">Yardım &amp; Əks əlaqə</string>
   <!-- Settings categories -->
+  <string name="settings_header_category_personalization">Özəlləşdirmə</string>
   <!-- Shortcut actions -->
+  <string name="shortcut_action_none">Heç biri</string>
+  <string name="shortcut_action_menu">Menyu</string>
+  <string name="shortcut_action_ring_vib">Zəng/Vibrasiya</string>
+  <string name="shortcut_action_ring_silent">Zəng/Səssiz</string>
+  <string name="shortcut_action_ring_vib_silent">Zəng/Vibrasiya/Səssiz</string>
+  <string name="shortcut_action_media_next">Musiqi - növbəti mahnı</string>
+  <string name="shortcut_action_media_play_pause">Musiqi - başlat/saxla</string>
   <!-- Button shorcut actions -->
   <!-- Icon color options -->
   <!-- Slimseekbar -->

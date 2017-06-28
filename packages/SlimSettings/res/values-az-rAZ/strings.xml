@@ -17,12 +17,112 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <!-- Common strings -->
+  <string name="disabled">Deaktivdir</string>
+  <string name="menu_save">Saxla</string>
+  <string name="menu_cancel">Yoxsay</string>
+  <string name="advanced_settings">Ətraflı</string>
   <!-- Common color picker strings -->
+  <string name="color_picker_reset_message">Rəngi sıfırla?</string>
   <!-- Slim settings screens -->
+  <string name="navigation_settings_title">Naviqasiya</string>
+  <string name="interface_settings_title">İnterfeys</string>
+  <string name="quick_settings">Sürətli parametrlər</string>
+  <string name="status_bar_icons">Vəziyyət çubuğu ikonları</string>
   <!-- Navigation settings -->
+  <string name="navigation_settings_options_title">Naviqasiya Parametrləri</string>
   <!-- Names of categories of app ops tabs - extension of AOSP -->
+  <string name="app_ops_categories_location">Məkan</string>
+  <string name="app_ops_categories_personal">Şəxsi</string>
+  <string name="app_ops_categories_messaging">Mesaşlaşma</string>
+  <string name="app_ops_categories_media">Media</string>
+  <string name="app_ops_categories_device">Cihaz</string>
+  <string name="app_ops_categories_bootup">Açılış</string>
+  <string name="app_ops_categories_su">Super İstifadәçi</string>
   <!-- User display names for app ops codes - extension of AOSP -->
+  <string name="app_ops_summaries_coarse_location">təxmini yer</string>
+  <string name="app_ops_summaries_fine_location">dəqiq yer</string>
+  <string name="app_ops_summaries_gps">GPS</string>
+  <string name="app_ops_summaries_vibrate">titrəmə</string>
+  <string name="app_ops_summaries_read_contacts">şəxsləri oxu</string>
+  <string name="app_ops_summaries_modify_contacts">şəxslərə düzəliş et</string>
+  <string name="app_ops_summaries_read_call_log">zəng qeydini oxu</string>
+  <string name="app_ops_summaries_modify_call_log">zəng qeydinə düzəliş et</string>
+  <string name="app_ops_summaries_read_calendar">təqvimi oxu</string>
+  <string name="app_ops_summaries_modify_calendar">təqvimə düzəliş et</string>
+  <string name="app_ops_summaries_wifi_scan">Wi-Fi axtarışı</string>
+  <string name="app_ops_summaries_notification">bildiriş/tost</string>
+  <string name="app_ops_summaries_cell_scan">şəbəkə axtarışı</string>
+  <string name="app_ops_summaries_call_phone">zəng etmə</string>
+  <string name="app_ops_summaries_read_sms">SMS oxuma</string>
+  <string name="app_ops_summaries_write_sms">SMS yazma</string>
+  <string name="app_ops_summaries_receive_sms">SMS qəbul etmə</string>
+  <string name="app_ops_summaries_receive_emergency_sms">təcili SMS qəbul etmə</string>
+  <string name="app_ops_summaries_receive_mms">MMS qəbul etmə</string>
+  <string name="app_ops_summaries_receive_wap_push">WAP push qəbul etmək</string>
+  <string name="app_ops_summaries_send_sms">SMS göndərmə</string>
+  <string name="app_ops_summaries_read_icc_sms">ICC SMS oxuma</string>
+  <string name="app_ops_summaries_write_icc_sms">ICC SMS yazma</string>
+  <string name="app_ops_summaries_modify_settings">tənzimləmələri dəyişdirmə</string>
+  <string name="app_ops_summaries_draw_on_top">ən üsttə göstərmə</string>
+  <string name="app_ops_summaries_access_notifications">bildirişlərə müraciət</string>
+  <string name="app_ops_summaries_camera">Kamera</string>
+  <string name="app_ops_summaries_record_audio">səs yaz</string>
+  <string name="app_ops_summaries_play_audio">səs oynatma</string>
+  <string name="app_ops_summaries_read_clipboard">lövhəni oxuma</string>
+  <string name="app_ops_summaries_modify_clipboard">lövhəyə düzəliş etmə</string>
+  <string name="app_ops_summaries_media_buttons">media düymələri</string>
+  <string name="app_ops_summaries_audio_focus">səs fokusu</string>
   <!-- User display names for app ops codes - extension of AOSP -->
+  <string name="app_ops_labels_read_sms">SMS oxuma</string>
+  <string name="app_ops_labels_write_sms">SMS yazma</string>
+  <string name="app_ops_labels_receive_sms">SMS qəbul et</string>
+  <string name="app_ops_labels_receive_emergency_sms">təcili SMS qəbul etmə</string>
+  <string name="app_ops_labels_receive_mms">MMS qəbul et</string>
+  <string name="app_ops_labels_receive_wap_push">WAP push qəbul etmək</string>
+  <string name="app_ops_labels_send_sms">SMS göndər</string>
+  <string name="app_ops_labels_read_icc_sms">ICC SMS oxuma</string>
+  <string name="app_ops_labels_write_icc_sms">ICC SMS yazma</string>
+  <string name="app_ops_labels_modify_settings">Tənzimləmələrə düzəliş et</string>
+  <string name="app_ops_labels_draw_on_top">Ən üsttə göstərmə</string>
+  <string name="app_ops_labels_access_notifications">Bildirişlərə müraciət</string>
+  <string name="app_ops_labels_camera">Kamera</string>
+  <string name="app_ops_labels_record_audio">Səs yaz</string>
+  <string name="app_ops_labels_play_audio">Səs oynat</string>
+  <string name="app_ops_labels_read_clipboard">Lövhəni oxu</string>
+  <string name="app_ops_labels_modify_clipboard">Lövhəyə düzəliş et</string>
+  <string name="app_ops_labels_media_buttons">Media düymələri</string>
+  <string name="app_ops_labels_audio_focus">Səs fokusu</string>
+  <string name="app_ops_labels_master_volume">Əsas səs</string>
+  <string name="app_ops_labels_voice_volume">Danışıq səsi</string>
+  <string name="app_ops_labels_ring_volume">Zəngin səsi</string>
+  <string name="app_ops_labels_media_volume">Media səsi</string>
+  <string name="app_ops_labels_alarm_volume">Zəngli saat səsi</string>
+  <string name="app_ops_labels_notification_volume">Bildiriş səsi</string>
+  <string name="app_ops_labels_bluetooth_volume">Bluetooth səsi</string>
+  <string name="app_ops_labels_keep_awake">Oyaq saxla</string>
+  <string name="app_ops_labels_monitor_location">Yeri izlə</string>
+  <string name="app_ops_labels_monitor_high_power_location">Yüksək güc yerini izlə</string>
+  <string name="app_ops_labels_get_usage_stats">İstifadə statistikalarını al</string>
+  <string name="app_ops_labels_mute_unmute_microphone">Mikrofonu aç/bağla</string>
+  <string name="app_ops_labels_toast_window">Bildiriş göstər</string>
+  <string name="app_ops_labels_project_media">Medianı əks etdir</string>
+  <string name="app_ops_labels_activate_vpn">VPN\'ni aktivetmə</string>
+  <string name="app_ops_labels_write_wallpaper">Divar kağızını yaz</string>
+  <string name="app_ops_labels_assist_structure">Asistan strukturu</string>
+  <string name="app_ops_labels_assist_screenshot">Ekran görüntüsü asistanı</string>
+  <string name="app_ops_labels_read_phone_state">Telefonun vəziyyətinə bax</string>
+  <string name="app_ops_labels_add_voicemail">Səs mesajı əlavə et</string>
+  <string name="app_ops_labels_use_sip">SİP-dən istifadə et</string>
+  <string name="app_ops_labels_make_call">Zəng et</string>
+  <string name="app_ops_labels_use_fingerprint">Barmaq izindən istifadə et</string>
+  <string name="app_ops_labels_use_body_sensors">Korpus sensorlarından istifadə et</string>
+  <string name="app_ops_labels_read_cell_broadcasts">Mobil yayımlarını oxu</string>
+  <string name="app_ops_labels_mock_location">Saxta mövqe</string>
+  <string name="app_ops_labels_read_external_storage">Xarici yaddaşı oxu</string>
+  <string name="app_ops_labels_write_external_storage">Xarici yaddaşa yaz</string>
+  <string name="app_ops_labels_turn_screen_on">Ekranı aç</string>
+  <string name="app_ops_labels_get_accounts">Hesabları əldə et</string>
+  <string name="app_ops_labels_change_wifi">Wi-Fi aktiv et</string>
   <!-- App ops permissions -->
   <!-- App ops detail -->
   <!-- App ops menu options -->
@@ -34,9 +134,20 @@
   <!-- Display & Lights screen, setting options for LCD density -->
   <!-- Wakeup options -->
   <!-- Proximity wake -->
+  <string name="proximity_wake_title">Təsadüfi oyanmaların qarşısını al</string>
   <!-- Advanced reboot options -->
   <!-- Hardware keys and lights -->
   <!-- Key backlight -->
+  <string name="settings_reset_button">Sıfırla</string>
+  <string name="button_backlight_enabled">Düymələri işıqlandır</string>
+  <string name="keyboard_backlight_enabled">Klaviaturanı işıqlandır</string>
+  <string name="button_backlight_seekbar_title">Düymə parlaqlığı</string>
+  <string name="keyboard_backlight_seekbar_title">Klaviatura parlaqlığı</string>
+  <string name="backlight_timeout_title">Aydınlatma fasiləsi</string>
+  <string name="backlight_timeout_unlimited">Bağlama</string>
+  <string name="backlight_summary_disabled">Deaktivdir</string>
+  <string name="backlight_summary_enabled_with_timeout"><xliff:g id="timeout">%s</xliff:g> üçün fəaldır</string>
+  <string name="backlight_summary_enabled">Aktiv</string>
   <!-- Hardware keys -->
   <!-- Slim Shortcuts -->
   <!-- Chamber of Secrets -->
@@ -44,15 +155,68 @@
   <!-- Status bar -->
   <!-- Status bar - Battery Options -->
   <!-- Status bar - Battery Style -->
+  <string name="status_bar_battery_style_hidden">Gizli</string>
+  <string name="status_bar_battery_style_icon_portrait">Şaquli ikon</string>
+  <string name="status_bar_battery_style_icon_landscape">Üfüqi ikon</string>
   <!-- Status bar - Battery percentage -->
+  <string name="status_bar_battery_percentage_title">Batareya faizini göstər</string>
+  <string name="status_bar_battery_percentage_dialog_title">Batareya faizi</string>
+  <string name="status_bar_battery_percentage_default">Gizli(susmaya görə)</string>
+  <string name="status_bar_battery_percentage_text_inside">İkon içində</string>
+  <string name="status_bar_battery_percentage_text_next">İkonun yanında</string>
   <!-- Navigation bar -->
+  <string name="navigation_bar">Naviqasiya paneli</string>
+  <string name="navigation_settings_category">Naviqasiya</string>
+  <string name="navigation_bar_size_42_dp_default">42 dp (standart)</string>
+  <string name="navigation_bar_size_36_dp">36 dp</string>
+  <string name="navigation_bar_size_30_dp">30 dp</string>
+  <string name="navigation_bar_size_24_dp">24 dp</string>
+  <string name="navigation_bar_size_48_dp_default">48 dp (standart)</string>
+  <string name="navigation_bar_size_44_dp">44 dp</string>
+  <string name="navigation_bar_size_40_dp">40 dp</string>
+  <string name="navigation_bar_size_42_dp">42 dp</string>
+  <string name="navigation_bar_size_0_dp">0 dp (bağlı)</string>
+  <string name="navigation_menu_right">Sağ</string>
+  <string name="navigation_menu_left">Sol</string>
+  <string name="navigation_menu_both">Hər ikisi</string>
+  <string name="navigation_menu_never_show">Heç vaxt göstərmə</string>
+  <string name="navigation_menu_always_show">Həmişə göstər</string>
+  <string name="navbar_button_cat">Naviqasiya paneli düymələri</string>
+  <string name="navbar_enable_bar">Naviqasiya panelini aktivləşdir</string>
+  <string name="navbar_enable_bar_summary">Naviqasiya panelini aktivləşdir</string>
+  <string name="navbar_style_dimen_title">Ölçülər</string>
+  <string name="navbar_button_title">Düymələr</string>
+  <string name="navbar_cat">Naviqasiya paneli</string>
   <!-- SlimDim -->
   <!-- Navigation bar button style -->
   <!-- Icon color options -->
   <!-- Recent panel -->
+  <string name="recent_panel_expanded_mode_always">Hər zaman</string>
+  <string name="recent_panel_expanded_mode_never">Heç vaxt</string>
   <!-- ATTENTION: RTL languages need to replace left with right -->
   <!-- Clock & Date options -->
+  <string name="clock_title_enable">Sürətləndirmə</string>
+  <string name="clock_enabled">Aktiv</string>
+  <string name="clock_disabled">Deaktivdir</string>
+  <string name="clock_color_title">Rəng</string>
+  <string name="status_bar_clock_style_reset">Rəngi sıfırla</string>
+  <string name="status_bar_am_pm_title">AM/PM</string>
+  <string name="status_bar_am_pm_info">24 saat forması aktivləşdirildi</string>
+  <string name="enable_clock_weekday">Həftənin günü</string>
+  <string name="clock_date_display">Tarix</string>
+  <string name="clock_date_style">Tarix stili</string>
+  <string name="clock_date_position">Tarix yeri</string>
+  <string name="clock_date_format">Tarix formatı</string>
+  <string name="clock_date_string_edittext_title">Tarix formatı AA/gg/ii və s. olmalıdır</string>
+  <string name="clock_date_string_edittext_summary">Sıra daxil edin</string>
+  <string name="clock_date_right">Saatın sağında</string>
+  <string name="clock_date_left">Saatın solunda</string>
+  <string name="clock_date_style_normal">Normal</string>
+  <string name="clock_date_style_lowercase">Balaca hərf</string>
+  <string name="clock_date_style_uppercase">Böyük hərf</string>
+  <string name="clock_date_format_custom">Xüsusi java formatı</string>
   <!-- Advanced, Device specific (DeviceParts) settings  -->
+  <string name="advanced_options_settings_title">Qabaqcıl</string>
   <!-- Doze options -->
   <!--string name="doze_trigger_doubletap_title">Double tap trigger</string-->
   <!--string name="doze_trigger_doubletap_summary_on">Doze pulse will be triggered by a double tap</string-->
