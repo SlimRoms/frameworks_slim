@@ -32,7 +32,7 @@
   <string name="navigation_settings_options_title">Options de navigation</string>
   <!-- Names of categories of app ops tabs - extension of AOSP -->
   <string name="app_ops_categories_location">Localisation</string>
-  <string name="app_ops_categories_personal">Personnelles</string>
+  <string name="app_ops_categories_personal">Personnel</string>
   <string name="app_ops_categories_messaging">Messages</string>
   <string name="app_ops_categories_media">Médias</string>
   <string name="app_ops_categories_device">Appareil</string>
@@ -66,7 +66,7 @@
   <string name="app_ops_summaries_draw_on_top">dessiner au premier plan</string>
   <string name="app_ops_summaries_access_notifications">accéder aux notifications</string>
   <string name="app_ops_summaries_camera">appareil photo</string>
-  <string name="app_ops_summaries_record_audio">enregistrement sonore</string>
+  <string name="app_ops_summaries_record_audio">enregistrement audio</string>
   <string name="app_ops_summaries_play_audio">lire le fichier audio</string>
   <string name="app_ops_summaries_read_clipboard">lire le presse-papiers</string>
   <string name="app_ops_summaries_modify_clipboard">modifier le presse-papiers</string>
@@ -122,7 +122,7 @@
   <string name="app_ops_labels_wifi_scan">Recherche du Wi-Fi</string>
   <string name="app_ops_labels_notification">Notification/pop-up</string>
   <string name="app_ops_labels_cell_scan">Recherche de réseau mobile</string>
-  <string name="app_ops_labels_call_phone">Appeler un téléphone</string>
+  <string name="app_ops_labels_call_phone">Appel téléphonique</string>
   <string name="app_ops_labels_read_sms">Lire les SMS</string>
   <string name="app_ops_labels_write_sms">Écrire un SMS</string>
   <string name="app_ops_labels_receive_sms">Recevoir des SMS</string>
@@ -361,7 +361,7 @@
   <string name="dim_nav_buttons_timeout_title">Délai avant estompage</string>
   <string name="dim_nav_buttons_timeout_summary">Délai (en millisecondes) d\'attente avant l\'estompage des boutons</string>
   <string name="dim_nav_buttons_alpha_title">Niveau d\'estompage</string>
-  <string name="dim_nav_buttons_alpha_summary">Niveau d\'estompage appliquer aux boutons</string>
+  <string name="dim_nav_buttons_alpha_summary">Niveau d\'estompage des boutons</string>
   <string name="dim_nav_buttons_animate_title">Animation d\'estompage</string>
   <string name="dim_nav_buttons_animate_summary">Animer l\'estompage en fondu</string>
   <string name="dim_nav_buttons_animate_duration_title">Durée de l\'animation</string>
@@ -457,12 +457,21 @@
   <string name="doze_trigger_pickup_title">Geste de déclenchement de prise en main</string>
   <string name="doze_trigger_pickup_summary_on">Déclenchement de Doze par des évènements de prise en main grâce aux capteurs de mouvements (par défaut)</string>
   <string name="doze_trigger_pickup_summary_off">Les capteurs de mouvements de prise en main ne seront pas utilisés comme déclencheurs</string>
+  <string name="doze_trigger_tilt_title">Déclenchement à la prise en main</string>
+  <string name="doze_trigger_tilt_summary_on">L\'affichage des notifications sera déclenché à la prise en main (par défaut)</string>
+  <string name="doze_trigger_tilt_summary_off">Les capteurs de mouvement ne déclencheront pas l\'affichage des notifications sur l\'écran</string>
   <string name="doze_trigger_sigmotion_title">Déclenchement par mouvement important</string>
   <string name="doze_trigger_sigmotion_summary_on">Doze est déclenchée par des événements de capteur de mouvement important (par défaut)</string>
   <string name="doze_trigger_sigmotion_summary_off">L\'impulsion ne sera pas déclenchée par des mouvements importants</string>
   <!--string name="doze_trigger_doubletap_title">Double tap trigger</string-->
   <!--string name="doze_trigger_doubletap_summary_on">Doze pulse will be triggered by a double tap</string-->
   <!--string name="doze_trigger_doubletap_summary_off">Double tap sensor will not be utilized as a triggering mechanism (default)</string-->
+  <string name="doze_trigger_hand_wave_title">Déclenchement par un geste de la main</string>
+  <string name="doze_trigger_hand_wave_summary_on">L\'affichage des notifications sera déclenché par un geste de la main (par défaut)</string>
+  <string name="doze_trigger_hand_wave_summary_off">L\'affichage des notifications ne sera pas déclenché par un geste de la main</string>
+  <string name="doze_trigger_pocket_title">Mode poche</string>
+  <string name="doze_trigger_pocket_summary_on">L\'affichage des notifications sera déclenché en sortant le téléphone de votre poche (par défaut)</string>
+  <string name="doze_trigger_pocket_summary_off">L\'affichage des notifications ne sera pas déclenché en sortant le téléphone de votre poche</string>
   <string name="doze_trigger_notification_title">Déclencheur de notification</string>
   <string name="doze_trigger_notification_summary_on">L\'impulsion sera déclenchée par les notifications</string>
   <string name="doze_trigger_notification_summary_off">L\'impulsion ne sera pas déclenchée par les notifications</string>

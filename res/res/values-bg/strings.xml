@@ -173,4 +173,6 @@
   <string name="increasing_ring_min_volume_title">Начална сила на звука</string>
   <string name="increasing_ring_ramp_up_time_title">Време за увеличение</string>
   <!-- Proximity wake -->
+  <string name="proximity_wake_title">Предотвратяване на случайно събуждане</string>
+  <string name="proximity_wake_summary">Провери сензора за близост преди събуждане на екрана</string>
 </resources>

@@ -82,7 +82,7 @@
   <string name="shortcuts_icon_picker_andy">Andy</string>
   <string name="shortcuts_icon_picker_battery">Batterie</string>
   <string name="shortcuts_icon_picker_browser">Navigateur</string>
-  <string name="shortcuts_icon_picker_calendar">Calendrier</string>
+  <string name="shortcuts_icon_picker_calendar">Agenda</string>
   <string name="shortcuts_icon_picker_camera">Appareil photo</string>
   <string name="shortcuts_icon_picker_cloud">Cloud</string>
   <string name="shortcuts_icon_picker_contact">Contact</string>
@@ -179,4 +179,6 @@
   <string name="increasing_ring_min_volume_title">Volume de départ</string>
   <string name="increasing_ring_ramp_up_time_title">Durée de progression</string>
   <!-- Proximity wake -->
+  <string name="proximity_wake_title">Empêcher le réveil accidentel</string>
+  <string name="proximity_wake_summary">Utiliser le capteur de proximité pour prévenir les réveils accidentels de l\'écran</string>
 </resources>

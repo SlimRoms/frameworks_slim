@@ -457,12 +457,17 @@
   <string name="doze_trigger_pickup_title">Жесты включены</string>
   <string name="doze_trigger_pickup_summary_on">Экран будет включаться от жестов</string>
   <string name="doze_trigger_pickup_summary_off">Жесты не будут включать экран</string>
+  <string name="doze_trigger_tilt_title">Переключатель жеста наклона</string>
+  <string name="doze_trigger_tilt_summary_on">Экран будет включаться при использовании жестов</string>
+  <string name="doze_trigger_tilt_summary_off">Жесты не будут включать экран</string>
   <string name="doze_trigger_sigmotion_title">Длинные жесты</string>
   <string name="doze_trigger_sigmotion_summary_on">Экран будет включаться от длинных жестов</string>
   <string name="doze_trigger_sigmotion_summary_off">Длинные жесты не включают экран</string>
   <!--string name="doze_trigger_doubletap_title">Double tap trigger</string-->
   <!--string name="doze_trigger_doubletap_summary_on">Doze pulse will be triggered by a double tap</string-->
   <!--string name="doze_trigger_doubletap_summary_off">Double tap sensor will not be utilized as a triggering mechanism (default)</string-->
+  <string name="doze_trigger_hand_wave_title">Триггер датчика движения</string>
+  <string name="doze_trigger_hand_wave_summary_on">Экран будет включаться при жесте рукой над экраном (по умолчанию)</string>
   <string name="doze_trigger_notification_title">Уведомление</string>
   <string name="doze_trigger_notification_summary_on">Экран будет включаться при уведомлении</string>
   <string name="doze_trigger_notification_summary_off">Уведомления не включают экран</string>

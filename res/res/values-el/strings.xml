@@ -179,4 +179,6 @@
   <string name="increasing_ring_min_volume_title">Αρχική ένταση</string>
   <string name="increasing_ring_ramp_up_time_title">Χρονικό διάστημα αύξησης</string>
   <!-- Proximity wake -->
+  <string name="proximity_wake_title">Πρόληψη ακούσιας αφύπνισης</string>
+  <string name="proximity_wake_summary">Έλεγχος του αισθητήρα εγγύτητας για την αφύπνιση της οθόνης</string>
 </resources>
