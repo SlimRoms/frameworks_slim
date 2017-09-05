@@ -179,4 +179,6 @@
   <string name="increasing_ring_min_volume_title">Начальная громкость</string>
   <string name="increasing_ring_ramp_up_time_title">Время увеличения</string>
   <!-- Proximity wake -->
+  <string name="proximity_wake_title">Предотвращать случайное пробуждение</string>
+  <string name="proximity_wake_summary">Проверять датчик приближения перед включением экрана</string>
 </resources>

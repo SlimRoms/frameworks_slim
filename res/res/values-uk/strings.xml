@@ -165,12 +165,23 @@
   <string name="set">Встановити</string>
   <string name="color_default">Типовий</string>
   <!-- Proximity speaker -->
+  <string name="display_category_prox_auto_speaker_title">Налаштування датчика наближення</string>
+  <string name="prox_auto_speaker_options">Налаштування датчика наближення</string>
+  <string name="prox_auto_speaker_title">Увімкнення гучного зв\'язку за датчиком наближення</string>
+  <string name="prox_auto_speaker_summary">Автоматично вмикати гучний зв\'язок коли пристрій віддалено від обличчя</string>
+  <string name="prox_auto_speaker_delay_title">Затримка сенсора наближення</string>
+  <string name="prox_auto_speaker_delay_summary">Затримка активації гучного зв\'язку</string>
   <string name="prox_auto_speaker_incall_only_title">Тільки під час дзвінка</string>
+  <string name="prox_auto_speaker_incall_only_summary_on">При вихідних дзвінках функція активується тільки після відповіді співрозмовника</string>
+  <string name="prox_auto_speaker_incall_only_summary_off">Функція активна при будь-яких викликах (типово)</string>
   <!-- Slim Doze-->
+  <string name="display_category_doze_options_title">Параметри активного дисплею (doze)</string>
   <string name="doze_settings_title">Додаткові опції Doze</string>
   <!-- Increasing ring tone volume -->
   <string name="increasing_ring_volume_option_title">Наростаюча гучність дзвінка</string>
   <string name="increasing_ring_min_volume_title">Початкова гучність</string>
   <string name="increasing_ring_ramp_up_time_title">Час збільшення</string>
   <!-- Proximity wake -->
+  <string name="proximity_wake_title">Запобігання випадковому пробудженню</string>
+  <string name="proximity_wake_summary">Перевірити датчик наближення перед пробудженням</string>
 </resources>

@@ -148,6 +148,7 @@
   <string name="shortcut_action_voice_search">Wyszukiwanie głosowe</string>
   <string name="shortcut_action_nowontap">Google Now / Now przy tapnięciu</string>
   <string name="shortcut_action_split_screen">Podziel ekran</string>
+  <string name="shortcut_action_doze_pulse">Puls Doze</string>
   <!-- Icon color options -->
   <string name="icon_color_mode_all_icons">Wszystkie ikony</string>
   <string name="icon_color_mode_system_icons">Ikony systemowe</string>
@@ -166,7 +167,21 @@
   <!-- Proximity speaker -->
   <string name="display_category_prox_auto_speaker_title">Ustawienia czujnika zbliżeniowego dla głośnika</string>
   <string name="prox_auto_speaker_options">Opcje czujnika zbliżeniowego dla głośnika</string>
+  <string name="prox_auto_speaker_title">Automatyczny głośnik zbliżeniowy</string>
+  <string name="prox_auto_speaker_summary">Włącz głośnik gdy telefon zostanie oddalony od twarzy</string>
+  <string name="prox_auto_speaker_delay_title">Opóźnienie reakcji czujnika zbliżeniowego</string>
+  <string name="prox_auto_speaker_delay_summary">Czas opóźnienia przed aktywacją głośnika</string>
+  <string name="prox_auto_speaker_incall_only_title">Tylko podczas rozmowy</string>
+  <string name="prox_auto_speaker_incall_only_summary_on">Dla połączeń wychodzących, detektor będzie aktywny tylko po odebraniu rozmowy</string>
+  <string name="prox_auto_speaker_incall_only_summary_off">Detektor będzie aktywny dla wszystkich rodzajów połączeń gdy jest w użyciu (domyślnie)</string>
   <!-- Slim Doze-->
+  <string name="display_category_doze_options_title">Opcje wyświetlania Ambient display (Doze)</string>
+  <string name="doze_settings_title">Zaawansowane opcje drzemki (Doze)</string>
   <!-- Increasing ring tone volume -->
+  <string name="increasing_ring_volume_option_title">Narastająca głośność dzwonka</string>
+  <string name="increasing_ring_min_volume_title">Głośność początkowa</string>
+  <string name="increasing_ring_ramp_up_time_title">Czas podgłaśniania dzwonka</string>
   <!-- Proximity wake -->
+  <string name="proximity_wake_title">Zapobieganie przypadkowemu wybudzeniu</string>
+  <string name="proximity_wake_summary">Sprawdź czujnik zbliżeniowy przed wybudzeniem ekranu</string>
 </resources>

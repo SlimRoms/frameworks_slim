@@ -22,6 +22,7 @@
   <string name="menu_cancel">Odrzuć</string>
   <string name="advanced_settings">Opcje zaawansowane</string>
   <!-- Common color picker strings -->
+  <string name="color_picker_reset_message">Przywrócić domyślny kolor?</string>
   <!-- Slim settings screens -->
   <string name="navigation_settings_title">Nawigacja</string>
   <string name="interface_settings_title">Interfejs</string>
@@ -442,24 +443,42 @@
   <!-- Doze options -->
   <string name="display_category_doze_options_title">Opcje wyświetlania Ambient display (drzemka)</string>
   <string name="doze_settings_title">Zaawansowane opcje drzemki</string>
+  <string name="doze_fade_in_pickup_title">Rozjaśnianie doze (podniesienie)</string>
+  <string name="doze_fade_in_pickup_summary">Czas przez jaki ekran pozostaje włączony po otrzymaniu powiadomienia (domyślnie 100)</string>
+  <string name="doze_fade_in_doubletap_title">Rozjaśnianie Doze (podwójne stuknięcie)</string>
+  <string name="doze_fade_in_doubletap_summary">Czas przez jaki ekran rozjaśnia się po podwójnym stuknięciu, po otrzymaniu powiadomienia (domyślnie 900)</string>
   <string name="doze_timeout_title">Drzemka limitu czasu powiadomień</string>
   <string name="doze_timeout_summary">Czas przez jaki ekran pozostaje włączony po otrzymaniu powiadomienia</string>
+  <string name="doze_fade_out_title">Zanikanie doze</string>
+  <string name="doze_fade_out_summary">Czas przez jaki ekran zanika po otrzymaniu powiadomienia (domyślnie 600)</string>
   <string name="doze_wakeup_doubletap_title">Podwójne dotknięcie wybudzi urządzenie</string>
   <string name="doze_wakeup_doubletap_summary_on">Wymaga dwukrotnego stuknięcia do obudzenia urządzenia na ekranie pulsu drzemki</string>
   <string name="doze_wakeup_doubletap_summary_off">Wymaga stuknięcia do obudzenia urządzenia na ekranie pulsu drzemki</string>
   <string name="doze_trigger_pickup_title">Gest podnoszenia</string>
   <string name="doze_trigger_pickup_summary_on">Drzemka impulsu powiadomień aktywuje się poprzez gest podczas podnoszenia</string>
   <string name="doze_trigger_pickup_summary_off">Czujnik gestu nie będzie wykorzystywany jako mechanizm uruchamiający</string>
+  <string name="doze_trigger_tilt_title">Gest podnoszenia</string>
+  <string name="doze_trigger_tilt_summary_on">Puls Doze będzie wyzwalany przez gest przechylenia urządzenia (domyślnie)</string>
+  <string name="doze_trigger_tilt_summary_off">Czujnik pochylenia nie będzie wykorzystywany jako mechanizm uruchamiający</string>
   <string name="doze_trigger_sigmotion_title">Znaczący ruch uruchamiający</string>
   <string name="doze_trigger_sigmotion_summary_on">Impulsy powiadomień będą uruchamiane przez znaczące akcje czujnika ruchu</string>
   <string name="doze_trigger_sigmotion_summary_off">Czujnik znaczącego ruchu nie będzie wykorzystywany jako mechanizm uruchamiający</string>
   <!--string name="doze_trigger_doubletap_title">Double tap trigger</string-->
   <!--string name="doze_trigger_doubletap_summary_on">Doze pulse will be triggered by a double tap</string-->
   <!--string name="doze_trigger_doubletap_summary_off">Double tap sensor will not be utilized as a triggering mechanism (default)</string-->
+  <string name="doze_trigger_hand_wave_title">Wyzwalacz gestu machnięcia ręki</string>
+  <string name="doze_trigger_hand_wave_summary_on">Puls Doze będzie wyzwalany przez gest machnięcia ręki (domyślnie)</string>
+  <string name="doze_trigger_hand_wave_summary_off">Machnięcie ręką nie będzie wykorzystywane jako mechanizm uruchamiający</string>
+  <string name="doze_trigger_pocket_title">Gest podnoszenia w trybie kieszonkowym</string>
+  <string name="doze_trigger_pocket_summary_on">Puls Doze będzie wyzwalany kiedy urządzenie zostanie wyciągnięte z kieszeni (domyślnie)</string>
+  <string name="doze_trigger_pocket_summary_off">Wyjęcie urządzenia z kieszeni nie będzie wykorzystywane jako mechanizm uruchamiający</string>
   <string name="doze_trigger_notification_title">Uruchamianie powiadomieniami</string>
   <string name="doze_trigger_notification_summary_on">Impulsy powiadomień będą uruchamiane przez powiadomienia</string>
   <string name="doze_trigger_notification_summary_off">Powiadomienia nie będą wykorzystywane do uruchamiania</string>
   <string name="doze_brightness_title">Poziom jasności dla drzemki</string>
   <string name="doze_brightness_summary">Poziom jasności dla impulsów ekranu drzemki (% maksymalnej dozwolonej jasności)</string>
   <!-- Increasing ring tone volume -->
+  <string name="increasing_ring_volume_option_title">Narastająca głośność dzwonka</string>
+  <string name="increasing_ring_min_volume_title">Głośność początkowa</string>
+  <string name="increasing_ring_ramp_up_time_title">Czas podgłaśniania dzwonka</string>
 </resources>

@@ -21,8 +21,30 @@
   <string name="permdesc_writeSettings">Permite que uma aplicação modifique as definições do sistema Slim.</string>
   <!-- Labels for the WRITE_SECURE_SETTINGS permission -->
   <!-- General Strings -->
+  <string name="reset">Repor</string>
+  <string name="disabled">Desativado</string>
+  <string name="help">Ajuda</string>
+  <string name="attention">Atenção</string>
+  <string name="help_label">Ajuda e comentários</string>
   <!-- Settings categories -->
+  <string name="settings_header_category_personalization">Personalização</string>
   <!-- Shortcut actions -->
+  <string name="shortcut_action_none">Nenhum</string>
+  <string name="shortcut_action_menu">Menu</string>
+  <string name="shortcut_action_ring_vib">Tocar/Vibrar</string>
+  <string name="shortcut_action_ring_silent">Tocar/Silêncio</string>
+  <string name="shortcut_action_ring_vib_silent">Tocar/Vibrar/Silêncio</string>
+  <string name="shortcut_action_media_next">Música - próxima faixa</string>
+  <string name="shortcut_action_media_play_pause">Música - reproduzir/pausar</string>
+  <string name="shortcut_action_media_previous">Música - faixa anterior</string>
+  <string name="shortcut_action_wake_device">Ligar o dispositivo</string>
+  <string name="shortcut_action_kill">Fechar aplicação</string>
+  <string name="shortcut_action_screenshot">Captura de ecrã</string>
+  <string name="shortcut_action_lastapp">Última aplicação</string>
+  <string name="shortcut_action_notifications">Notificações</string>
+  <string name="shortcut_action_add">Adicionar</string>
+  <string name="shortcuts_icon_picker_camera">Câmara</string>
+  <string name="shortcuts_icon_picker_cloud">Nuvem</string>
   <!-- Button shorcut actions -->
   <!-- Icon color options -->
   <!-- Slimseekbar -->

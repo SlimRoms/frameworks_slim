@@ -238,11 +238,19 @@
   <string name="proximity_wake_title">실수로 화면 켜기 방지</string>
   <string name="proximity_wake_summary">화면을 켜기 전에 근접 센서 확인</string>
   <!-- Advanced reboot options -->
+  <string name="advanced_reboot_title">고급 재시작</string>
+  <string name="advanced_reboot_dialog_title">고급 재시작 메뉴</string>
   <string name="advanced_reboot_disabled">사용 안함</string>
   <string name="advanced_reboot_hide_on_keyguard">잠금 화면에서는 숨기기</string>
   <string name="advanced_reboot_show_always">항상 표시</string>
   <!-- Hardware keys and lights -->
+  <string name="hardware_keys_enable_title">물리키 활성화</string>
+  <string name="hardware_keys_enable_summary">물리키 활성/비활성</string>
+  <string name="hardware_keys_lights_enable_title">물리 키 조명 설정</string>
   <!-- Key backlight -->
+  <string name="settings_reset_button">초기화</string>
+  <string name="button_backlight_seekbar_title">버튼 밝기</string>
+  <string name="keyboard_backlight_seekbar_title">키보드 밝기</string>
   <!-- Hardware keys -->
   <string name="button_keys_title">하드웨어 버튼</string>
   <string name="keys_bindings_title">키 활동</string>
@@ -255,6 +263,8 @@
   <string name="keys_home_long_press_title">홈 키 (길게 누르기)</string>
   <string name="keys_home_double_tap_title">홈 키 (두번 누르기)</string>
   <string name="keys_menu_press_title">Menu key</string>
+  <string name="keys_menu_long_press_title">메뉴 키 (길게 누르기)</string>
+  <string name="keys_menu_double_tap_title">메뉴 키 (두번 누르기)</string>
   <string name="keys_assist_press_title">검색 키</string>
   <string name="keys_assist_long_press_title">검색 키 (길게 누르기)</string>
   <string name="keys_assist_double_tap_title">검색 키 (두번 누르기)</string>

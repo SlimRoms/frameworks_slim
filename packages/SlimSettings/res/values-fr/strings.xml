@@ -448,7 +448,7 @@
   <string name="doze_fade_in_doubletap_title">Démarrage de Doze (doubletap)</string>
   <string name="doze_fade_in_doubletap_summary">Durée de l\'affichage des notifications \"push\" après un doubletap (900 par défaut)</string>
   <string name="doze_timeout_title">Délai d\'activation de Doze</string>
-  <string name="doze_timeout_summary">Durée d\'allumage de l\'écran pour l\'affichage des notifications \"push\" (6000 par défaut)</string>
+  <string name="doze_timeout_summary">Durée d\'activation de l\'écran lors de la réception de notification push (par défaut 6000)</string>
   <string name="doze_fade_out_title">Délai d\'arrêt de Doze</string>
   <string name="doze_fade_out_summary">Durée d\'arrêt de l\'affichage des notifications \"push\" (par défaut 600)</string>
   <string name="doze_wakeup_doubletap_title">Double appui pour sortir de veille l\'appareil</string>

@@ -17,15 +17,147 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <!-- Labels for the WRITE_SETTINGS permission -->
+  <string name="permlab_writeSettings">keisti Slim sistemos nustatymus</string>
+  <string name="permdesc_writeSettings">Leisti programėlei keisti Slim sistemos nustatymus.</string>
   <!-- Labels for the WRITE_SECURE_SETTINGS permission -->
+  <string name="permlab_writeSecureSettings">keisti Slim saugumo sistemos nustatymus</string>
+  <string name="permdesc_writeSecureSettings">Ledžia programėlei keisti Slim sistemos saugos nustatymus. Netinkama naudoti normalioms programėlėms.</string>
   <!-- General Strings -->
+  <string name="reset">Atstatyti</string>
+  <string name="disabled">Išjungta</string>
+  <string name="help">Pagalba</string>
+  <string name="attention">Dėmesio</string>
+  <string name="reset_message">Iš naujo nustatyti visus įrašus pagal nutylėjimą?</string>
+  <string name="help_label">Pagalba &amp; atsiliepimai</string>
   <!-- Settings categories -->
+  <string name="settings_header_category_personalization">Personalizavimas</string>
   <!-- Shortcut actions -->
+  <string name="shortcut_action_none">Nieko nėra</string>
+  <string name="shortcut_action_menu">Meniu</string>
+  <string name="shortcut_action_ring_vib">Skambinti/Vibruoti</string>
+  <string name="shortcut_action_ring_silent">Skambėti/Tylėti</string>
+  <string name="shortcut_action_ring_vib_silent">Skambėti/Vibruoti/Tylėti</string>
+  <string name="shortcut_action_media_next">Muzika - sekanti daina</string>
+  <string name="shortcut_action_media_play_pause">Muzika - paleisti/sustabdyti</string>
+  <string name="shortcut_action_media_previous">Muzika - ankstesnė daina</string>
+  <string name="shortcut_action_wake_device">Pažadinti įrenginį</string>
+  <string name="shortcut_action_kill">Uždaryti programą</string>
+  <string name="shortcut_action_screenshot">Ekranvaizdis</string>
+  <string name="shortcut_action_lastapp">Paskutinė programa</string>
+  <string name="shortcut_action_notifications">Pranešimai</string>
+  <string name="shortcut_action_qs">Greitųjų nustatymų panelė</string>
+  <string name="shortcut_action_longpress">Ilgas paspaudimas:</string>
+  <string name="shortcut_action_doubletap">Dvigubas bakstelėjimas:</string>
+  <string name="shortcut_action_select_action_longpress">Pasirinkite ilgo paspaudimo veiksmą:</string>
+  <string name="shortcut_action_select_action_doubletap">Pasirinkite dukart bakstelėjimo veiksmą:</string>
+  <string name="shortcut_action_select_action">Pasirinkite veiksmą:</string>
+  <string name="shortcut_action_select_action_newaction">Pasirinkite naują veiksmą:</string>
+  <string name="shortcut_action_reset">Atstatyti</string>
+  <string name="shortcut_action_add">Pridėti</string>
+  <string name="shortcut_action_reset_message">Iš naujo nustatyti visus įrašus pagal nutylėjimą?</string>
+  <string name="shortcut_action_max">Pasiektas maksimalus įrašų dydis</string>
+  <string name="shortcut_action_warning">Įspėjimas</string>
+  <string name="shortcut_action_help_shortcut">nuoroda</string>
+  <string name="shortcut_action_help_button">mygtukas</string>
+  <string name="shortcut_action_help_app">programėlė</string>
+  <string name="shortcuts_applications">Programėlės</string>
+  <string name="shortcuts_select_custom_app_title">Pasirinkite programėlę</string>
+  <string name="shortcuts_icon_picker_type">Pasirinkite piktogramą tipą:</string>
+  <string name="shortcuts_icon_default">Numatytasis</string>
+  <string name="shortcuts_icon_presets">Sistemos piktogramos</string>
+  <string name="shortcuts_icon_custom">Galerija</string>
+  <string name="shortcuts_icon_picker_choose_icon_title">Pasirinkite piktogramą</string>
+  <string name="shortcuts_icon_picker_alarm">Žadintuvas</string>
+  <string name="shortcuts_icon_picker_andy">Andy</string>
+  <string name="shortcuts_icon_picker_battery">Baterija</string>
+  <string name="shortcuts_icon_picker_browser">Naršyklė</string>
+  <string name="shortcuts_icon_picker_calendar">Kalendorius</string>
+  <string name="shortcuts_icon_picker_camera">Kamera</string>
+  <string name="shortcuts_icon_picker_cloud">Debesis</string>
+  <string name="shortcuts_icon_picker_contact">Kontaktai</string>
+  <string name="shortcuts_icon_picker_directdial">Tiesioginis skambutis</string>
+  <string name="shortcuts_icon_picker_directmessage">Tiesioginis pranešimas</string>
+  <string name="shortcuts_icon_picker_drive">Diskas</string>
+  <string name="shortcuts_icon_picker_dropbox">Dropbox</string>
+  <string name="shortcuts_icon_picker_email">El. paštas</string>
+  <string name="shortcuts_icon_picker_email2">El. paštas pavaduotojas</string>
+  <string name="shortcuts_icon_picker_evernote">Evernote</string>
+  <string name="shortcuts_icon_picker_facebook">Facebook</string>
+  <string name="shortcuts_icon_picker_favorite">Mėgstamiausi</string>
+  <string name="shortcuts_icon_picker_file_browser">Failų naršyklė</string>
+  <string name="shortcuts_icon_picker_file_browser2">Failų naršyklės alternatyvos</string>
+  <string name="shortcuts_icon_picker_fitness">Fitnesas</string>
+  <string name="shortcuts_icon_picker_gallery">Galerija</string>
+  <string name="shortcuts_icon_picker_gears">Pavaros</string>
+  <string name="shortcuts_icon_picker_google_small">Google</string>
+  <string name="shortcuts_icon_picker_gplus">Google Plus</string>
+  <string name="shortcuts_icon_picker_gtalk">Hangouts</string>
+  <string name="shortcuts_icon_picker_help">Pagalba</string>
+  <string name="shortcuts_icon_picker_joystick">Vairalazdė</string>
+  <string name="shortcuts_icon_picker_key">Raktai/paskyros</string>
+  <string name="shortcuts_icon_picker_laptop">Nešiojamas kompiuteris</string>
+  <string name="shortcuts_icon_picker_notes">Pastabos</string>
+  <string name="shortcuts_icon_picker_luggage">Kelionės</string>
+  <string name="shortcuts_icon_picker_maps">Žemėlapiai</string>
+  <string name="shortcuts_icon_picker_market">Parduotuvė</string>
+  <string name="shortcuts_icon_picker_movie">Filmai</string>
+  <string name="shortcuts_icon_picker_music">Muzika</string>
+  <string name="shortcuts_icon_picker_nav">Navigacija</string>
+  <string name="shortcuts_icon_picker_phone">Telefonas</string>
+  <string name="shortcuts_icon_picker_package">Paketas</string>
+  <string name="shortcuts_icon_picker_pinterest">Pinterest</string>
+  <string name="shortcuts_icon_picker_play">Žaisti</string>
+  <string name="shortcuts_icon_picker_pocket">Kišenė</string>
+  <string name="shortcuts_icon_picker_quicksettings">Greitieji nustatymai</string>
+  <string name="shortcuts_icon_picker_rss">RSS sklaidos kanalas</string>
+  <string name="shortcuts_icon_picker_sdcard">SDCard</string>
+  <string name="shortcuts_icon_picker_search">Paieška</string>
+  <string name="shortcuts_icon_picker_sms">Pranešimai</string>
+  <string name="shortcuts_icon_picker_tasks">Užduotys</string>
+  <string name="shortcuts_icon_picker_terminal">Terminalas</string>
+  <string name="shortcuts_icon_picker_transit">Perėjimas</string>
+  <string name="shortcuts_icon_picker_tv">TV</string>
+  <string name="shortcuts_icon_picker_twitter">Twitter</string>
+  <string name="shortcuts_icon_picker_unlock">Atrakinti</string>
   <!-- Button shorcut actions -->
+  <string name="shortcut_action_back">Grįžti</string>
+  <string name="shortcut_action_app">Pasirinktinę taikomąją programą</string>
+  <string name="shortcut_action_home">Pradžia</string>
+  <string name="shortcut_action_navbar">Naršymo juosta</string>
+  <string name="shortcut_action_ime">Atidaryti IME perjungiklį</string>
+  <string name="shortcut_action_power_menu">Išjungimo meniu</string>
+  <string name="shortcut_action_smart">Protingas atvartas</string>
+  <string name="shortcut_action_recent">Paskutiniai</string>
+  <string name="shortcut_action_power">Ekranas išjungtas</string>
+  <string name="shortcut_action_camera">Kamera</string>
+  <string name="shortcut_action_assist">Paieška</string>
+  <string name="shortcut_action_search">Ieškoti programėlėje</string>
+  <string name="shortcut_action_theme_switch">Temos perjungiklis</string>
+  <string name="shortcut_action_torch">Žibintuvėlis</string>
+  <string name="shortcut_action_voice_search">Paieška balsu</string>
+  <string name="shortcut_action_nowontap">Google Now / Now bakstelėjus</string>
+  <string name="shortcut_action_split_screen">Padalinti ekraną</string>
+  <string name="shortcut_action_doze_pulse">Doze pulsas</string>
   <!-- Icon color options -->
+  <string name="icon_color_mode_all_icons">Visos piktogramos</string>
+  <string name="icon_color_mode_system_icons">Sistemos piktogramos</string>
+  <string name="icon_color_mode_system_custom_icons">Sistemos ir vartotojo piktogramos</string>
   <!-- Slimseekbar -->
+  <string name="default_string">Numatytas</string>
   <!-- Color Picker -->
+  <string name="dialog_color_picker">Spalvų parinkiklis</string>
+  <string name="press_color_to_apply">Paspauskite ant spalvos, kad nustatyti</string>
+  <string name="hex">Hex:</string>
+  <string name="set">Nustayti</string>
+  <string name="color_default">Numatytas</string>
   <!-- Proximity speaker -->
+  <string name="display_category_prox_auto_speaker_title">Artumo garsiakalbio parinktys</string>
+  <string name="prox_auto_speaker_options">Artumo garsiakalbio nustatymai</string>
+  <string name="prox_auto_speaker_title">Automatinis artumo garsiakalbis</string>
+  <string name="prox_auto_speaker_summary">Įjungti garsiakalbį, kai įrenginys pašalinamas nuo veido</string>
+  <string name="prox_auto_speaker_delay_title">Artumo garsiakalbio užvėlynimas</string>
+  <string name="prox_auto_speaker_delay_summary">Laikui, kol garsiakalbis bus suaktyvintas</string>
+  <string name="prox_auto_speaker_incall_only_title">Tik skambučio metu</string>
   <!-- Slim Doze-->
   <!-- Increasing ring tone volume -->
   <!-- Proximity wake -->
