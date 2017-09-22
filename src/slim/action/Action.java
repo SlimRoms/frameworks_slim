@@ -138,10 +138,12 @@ public class Action {
                     for (final String cameraId : cameraManager.getCameraIdList()) {
                         CameraCharacteristics characteristics =
                             cameraManager.getCameraCharacteristics(cameraId);
+                        Boolean f = characteristics.get(CameraCharacteristics.FLASH_INFO_AVAILABLE);
                         int orient = characteristics.get(CameraCharacteristics.LENS_FACING);
-                        if (orient == CameraCharacteristics.LENS_FACING_BACK) {
+                        if (f && orient == CameraCharacteristics.LENS_FACING_BACK) {
                             cameraManager.setTorchMode(cameraId, !sTorchEnabled);
                             sTorchEnabled = !sTorchEnabled;
+                            break;
                         }
                     }
                 } catch (CameraAccessException e) {
