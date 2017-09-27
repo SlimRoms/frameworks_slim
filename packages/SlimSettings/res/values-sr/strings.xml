@@ -21,8 +21,41 @@
   <!-- Slim settings screens -->
   <!-- Navigation settings -->
   <!-- Names of categories of app ops tabs - extension of AOSP -->
+  <string name="app_ops_categories_media">Медији</string>
+  <string name="app_ops_categories_device">Уређај</string>
   <!-- User display names for app ops codes - extension of AOSP -->
+  <string name="app_ops_summaries_gps">GPS</string>
+  <string name="app_ops_summaries_vibrate">вибрација</string>
+  <string name="app_ops_summaries_read_contacts">прочитај контакте</string>
+  <string name="app_ops_summaries_modify_contacts">мењање контаката</string>
+  <string name="app_ops_summaries_read_call_log">прочитај евиденцију позива</string>
+  <string name="app_ops_summaries_modify_call_log">мењање евиденције позива</string>
+  <string name="app_ops_summaries_read_calendar">читање календара</string>
+  <string name="app_ops_summaries_modify_calendar">мењање календара</string>
+  <string name="app_ops_summaries_wifi_scan">Скенирање Wi-Fi мрежа</string>
+  <string name="app_ops_summaries_read_sms">читање SMS порука</string>
+  <string name="app_ops_summaries_write_sms">писање SMS порука</string>
+  <string name="app_ops_summaries_receive_sms">пријем SMS порука</string>
+  <string name="app_ops_summaries_receive_emergency_sms">пријем хитних SMS порука</string>
+  <string name="app_ops_summaries_receive_mms">пријем MMS порука</string>
+  <string name="app_ops_summaries_receive_wap_push">прими WAP push</string>
+  <string name="app_ops_summaries_send_sms">слање SMS порука</string>
+  <string name="app_ops_summaries_read_icc_sms">читање ICC SMS порука</string>
+  <string name="app_ops_summaries_write_icc_sms">писање ICC SMS порука</string>
+  <string name="app_ops_summaries_modify_settings">мењање подешавања</string>
+  <string name="app_ops_summaries_access_notifications">приступ обавештењима</string>
+  <string name="app_ops_summaries_camera">камера</string>
+  <string name="app_ops_summaries_record_audio">сними аудио</string>
+  <string name="app_ops_summaries_play_audio">пусти аудио</string>
+  <string name="app_ops_summaries_read_clipboard">прочитај привремену меморију</string>
+  <string name="app_ops_summaries_modify_clipboard">модификуј привремену меморију</string>
+  <string name="app_ops_summaries_media_buttons">дугмићи за медије</string>
   <!-- User display names for app ops codes - extension of AOSP -->
+  <string name="app_ops_labels_cell_scan">Претрага мобилних мрежа</string>
+  <string name="app_ops_labels_call_phone">Телефонски позив</string>
+  <string name="app_ops_labels_read_sms">Читање SMS порука</string>
+  <string name="app_ops_labels_write_sms">Писање SMS порука</string>
+  <string name="app_ops_labels_receive_sms">Прими SMS</string>
   <!-- App ops permissions -->
   <!-- App ops detail -->
   <!-- App ops menu options -->
