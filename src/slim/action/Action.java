@@ -100,7 +100,7 @@ public class Action {
                 isKeyguardSecure = windowManagerService.isKeyguardSecure();
             } catch (RemoteException e) {
             }
-            
+
             PowerManager pm = context.getSystemService(PowerManager.class);
 
             // process the actions
@@ -342,18 +342,18 @@ public class Action {
         if (intent == null) {
             return;
         }
-        
+
         if (pm != null && !pm.isInteractive()) {
             pm.wakeUp(SystemClock.uptimeMillis());
         }
-        
+
         if (isKeyguardShowing) {
             // Have keyguard show the bouncer and launch the activity if the user succeeds.
             actionsManager.showCustomIntentAfterKeyguard(intent);
         } else {
             // otherwise let us do it here
             try {
-                WindowManagerGlobal.getWindowManagerService().dismissKeyguard();
+                WindowManagerGlobal.getWindowManagerService().dismissKeyguard(null);
             } catch (RemoteException e) {
                 Log.w("Action", "Error dismissing keyguard", e);
             }
