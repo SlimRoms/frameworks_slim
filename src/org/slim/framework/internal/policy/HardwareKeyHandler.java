@@ -858,13 +858,13 @@ public class HardwareKeyHandler {
             owningUid = android.os.Process.myUid();
             owningPackage = mContext.getOpPackageName();
         }
-        if (pattern.length == 1) {
+//        if (pattern.length == 1) {
             // One-shot vibration
-            mVibrator.vibrate(owningUid, owningPackage, pattern[0], VIBRATION_ATTRIBUTES);
-        } else {
+//            mVibrator.vibrate(owningUid, owningPackage, pattern[0], VIBRATION_ATTRIBUTES);
+//        } else {
             // Pattern vibration
-            mVibrator.vibrate(owningUid, owningPackage, pattern, -1, VIBRATION_ATTRIBUTES);
-        }
+//            mVibrator.vibrate(owningUid, owningPackage, pattern, -1, VIBRATION_ATTRIBUTES);
+//        }
         return true;
     }
 }
