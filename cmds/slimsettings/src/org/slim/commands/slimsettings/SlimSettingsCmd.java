@@ -18,7 +18,8 @@ package org.slim.commands.slimsettings;
 
 import android.app.ActivityManagerNative;
 import android.app.IActivityManager;
-import android.app.IActivityManager.ContentProviderHolder;
+import android.app.ContentProviderHolder;
+import android.content.ContentResolver;
 import android.content.IContentProvider;
 import android.database.Cursor;
 import android.net.Uri;
@@ -200,8 +201,10 @@ public final class SlimSettingsCmd {
             return lines;
         }
         try {
-            final Cursor cursor = provider.query(resolveCallingPackage(), uri, null, null, null,
-                    null, null);
+            Bundle queryArgs = ContentResolver.createSqlQueryBundle(
+                        null, null, null);
+            final Cursor cursor = provider.query(resolveCallingPackage(),
+                    uri, null, queryArgs, null);
             try {
                 while (cursor != null && cursor.moveToNext()) {
                     lines.add(cursor.getString(1) + "=" + cursor.getString(2));
