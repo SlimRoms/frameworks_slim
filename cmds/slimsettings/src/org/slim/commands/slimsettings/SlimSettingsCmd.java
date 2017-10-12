@@ -18,7 +18,7 @@ package org.slim.commands.slimsettings;
 
 import android.app.ActivityManagerNative;
 import android.app.IActivityManager;
-import android.app.IActivityManager.ContentProviderHolder;
+import android.app.ContentProviderHolder;
 import android.content.IContentProvider;
 import android.database.Cursor;
 import android.net.Uri;
