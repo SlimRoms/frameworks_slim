@@ -64,7 +64,6 @@ import com.android.systemui.R;
 import com.android.systemui.statusbar.phone.NavigationBarView;
 import com.android.systemui.statusbar.policy.DeadZone;
 import com.android.systemui.statusbar.slim.SlimKeyButtonView;
-import com.android.systemui.statusbar.phone.SlimNavigationBarTransitions;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -98,7 +97,6 @@ public class SlimNavigationBarView extends NavigationBarView {
     private boolean mLayoutTransitionsEnabled = true;
 
     private DeadZone mDeadZone;
-    private final SlimNavigationBarTransitions mBarTransitions;
 
     private int mRippleColor;
 
@@ -235,9 +233,9 @@ public class SlimNavigationBarView extends NavigationBarView {
                 mFadeOut.cancel();
             }
             mIsDim = false;
-            if (!getBarTransitions().getLightsOut()) {
-                navButtons.setAlpha(mOriginalAlpha);
-            }
+            //if (!getBarTransitions().getLightsOut()) {
+            //    navButtons.setAlpha(mOriginalAlpha);
+            //}
         }
     }
 
@@ -272,14 +270,12 @@ public class SlimNavigationBarView extends NavigationBarView {
 
         mKgm = (KeyguardManager)
                 mContext.getSystemService(Context.KEYGUARD_SERVICE);
-
-        mBarTransitions = new SlimNavigationBarTransitions(this);
     }
 
-    @Override
+    /*@Override
     public SlimNavigationBarTransitions getBarTransitions() {
         return mBarTransitions;
-    }
+    }*/
 
     @Override
     protected void onAttachedToWindow() {
@@ -524,8 +520,8 @@ public class SlimNavigationBarView extends NavigationBarView {
     private LayoutParams getLayoutParams(boolean landscape, int dp) {
         float px = dp * getResources().getDisplayMetrics().density;
         return landscape ?
-                new LayoutParams(LayoutParams.MATCH_PARENT, dp, 1f) :
-                new LayoutParams(dp, LayoutParams.MATCH_PARENT, 1f);
+                new LayoutParams(LayoutParams.MATCH_PARENT, dp) :
+                new LayoutParams(dp, LayoutParams.MATCH_PARENT);
     }
 
     private LayoutParams getSeparatorLayoutParams(boolean landscape) {
@@ -645,7 +641,7 @@ public class SlimNavigationBarView extends NavigationBarView {
           //  return true;
         //}
         if (mDeadZone != null && event.getAction() == MotionEvent.ACTION_OUTSIDE) {
-            mDeadZone.poke(event);
+           // mDeadZone.poke(event);
         }
         return super.onTouchEvent(event);
     }
@@ -744,7 +740,7 @@ public class SlimNavigationBarView extends NavigationBarView {
         mDeadZone = (DeadZone) getCurrentView().findViewById(R.id.deadzone);
 
         // force the low profile & disabled states into compliance
-        mBarTransitions.init();
+       // mBarTransitions.init();
         setDisabledFlags(mDisabledFlags, true /* force */);
         setMenuVisibility(mShowMenu, true /* force */);
 
@@ -919,7 +915,7 @@ public class SlimNavigationBarView extends NavigationBarView {
     private Runnable mNavButtonDimmer = new Runnable() {
         @Override
         public void run() {
-            if (getBarTransitions().getLightsOut()) return;
+           // if (getBarTransitions().getLightsOut()) return;
             mIsHandlerCallbackActive = false;
             final ViewGroup navButtons = getNavButtons();
             if (navButtons != null && !mIsDim) {

@@ -61,10 +61,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.internal.logging.MetricsLogger;
-import com.android.internal.logging.MetricsProto.MetricsEvent;
+import com.android.internal.logging.nano.MetricsProto.MetricsEvent;
 import com.android.keyguard.KeyguardHostView.OnDismissAction;
 import com.android.systemui.AutoReinflateContainer;
 import com.android.systemui.AutoReinflateContainer.InflateListener;
+import com.android.systemui.Dependency;
+import com.android.systemui.SysUiServiceProvider;
 import com.android.systemui.R;
 import com.android.systemui.recents.Recents;
 import com.android.systemui.slimrecent.RecentController;
@@ -75,10 +77,10 @@ import com.android.systemui.statusbar.SlimNotificationGuts;
 import com.android.systemui.statusbar.StatusBarState;
 import com.android.systemui.statusbar.phone.SlimNavigationBarView;
 import com.android.systemui.statusbar.phone.NavigationBarView;
-import com.android.systemui.statusbar.phone.PhoneStatusBar;
+import com.android.systemui.statusbar.phone.StatusBar;
 import com.android.systemui.statusbar.phone.PhoneStatusBarView;
 import com.android.systemui.statusbar.phone.SystemUIDialog;
-import com.android.systemui.statusbar.slim.SlimQuickStatusBarHeader;
+import com.android.systemui.statusbar.policy.BatteryController;
 import com.android.systemui.recents.events.activity.UndockingTaskEvent;
 import com.android.systemui.recents.events.EventBus;
 
@@ -95,7 +97,7 @@ import static com.android.systemui.statusbar.phone.BarTransitions.MODE_TRANSLUCE
 import static com.android.systemui.statusbar.phone.BarTransitions.MODE_TRANSPARENT;
 import static com.android.systemui.statusbar.phone.BarTransitions.MODE_WARNING;
 
-public class SlimStatusBar extends PhoneStatusBar implements
+public class SlimStatusBar extends StatusBar implements
         SlimCommandQueue.Callbacks {
 
     private static final String TAG = SlimStatusBar.class.getSimpleName();
@@ -104,12 +106,12 @@ public class SlimStatusBar extends PhoneStatusBar implements
     protected static final int MSG_TOGGLE_KILL_APP = 11002;
     protected static final int MSG_TOGGLE_SCREENSHOT = 11003;
 
-    private PhoneStatusBarView mStatusBarView;
     private SlimNavigationBarView mSlimNavigationBarView;
     private RecentController mSlimRecents;
     private Display mDisplay;
     private SlimCommandQueue mSlimCommandQueue;
     private Handler mHandler = new H();
+    private BatteryController mBatteryController;
 
     private SlimStatusBarIconController mSlimIconController;
     private SlimScreenPinningRequest mSlimScreenPinningRequest;
@@ -117,8 +119,6 @@ public class SlimStatusBar extends PhoneStatusBar implements
     private boolean mHasNavigationBar = false;
     private boolean mNavigationBarAttached = false;
     private boolean mDisableHomeLongpress = false;
-
-    private SlimQuickStatusBarHeader mSlimQuickStatusBarHeader;
 
     private int mDensity;
 
@@ -208,11 +208,11 @@ public class SlimStatusBar extends PhoneStatusBar implements
                     SlimSettings.System.MENU_VISIBILITY))) {
                 if (mSlimNavigationBarView != null) {
                     mSlimNavigationBarView.recreateNavigationBar();
-                    prepareNavigationBarView();
+                    //prepareNavigationBarView();
                 }
             } else if (uri.equals(SlimSettings.System.getUriFor(
                     SlimSettings.System.NAVIGATION_BAR_CAN_MOVE))) {
-                prepareNavigationBarView();
+                //prepareNavigationBarView();
             } else if (uri.equals(SlimSettings.System.getUriFor(
                     SlimSettings.System.DIM_NAV_BUTTONS))
                 || uri.equals(SlimSettings.System.getUriFor(
@@ -245,6 +245,8 @@ public class SlimStatusBar extends PhoneStatusBar implements
         mDisplay = ((WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE))
                 .getDefaultDisplay();
 
+        mBatteryController = Dependency.get(BatteryController.class);
+
         updateNavigationBarVisibility();
         updateRecents();
 
@@ -258,54 +260,23 @@ public class SlimStatusBar extends PhoneStatusBar implements
     }
 
     @Override
-    protected PhoneStatusBarView makeStatusBarView() {
-        mStatusBarView = super.makeStatusBarView();
+    protected void makeStatusBarView() {
+        super.makeStatusBarView();
 
-        AutoReinflateContainer batteryContainer = (AutoReinflateContainer)
-                mStatusBarView.findViewById(R.id.slim_reinflate_battery_container);
-        if (batteryContainer != null) {
-            batteryContainer.addInflateListener(new InflateListener() {
-                @Override
-                public void onInflated(View v) {
-                    SlimBatteryContainer container = (SlimBatteryContainer)
-                            v.findViewById(R.id.slim_battery_container);
-                    if (container != null && mBatteryController != null) {
-                        container.setBatteryController(mBatteryController);
-                    }
-                }
-            });
-        }
+        mSlimIconController = new SlimStatusBarIconController(mContext, mStatusBarWindow, this);
 
-        mSlimIconController = new SlimStatusBarIconController(mContext, mStatusBarView, this);
-
-        mStatusBarView.findViewById(R.id.battery).setVisibility(View.GONE);
+        //mStatusBarWindow.findViewById(R.id.battery).setVisibility(View.GONE);
 
         mSlimScreenPinningRequest = new SlimScreenPinningRequest(mContext);
-
-        mSlimQuickStatusBarHeader = (SlimQuickStatusBarHeader) mHeader;
-        /*mSlimQuickStatusBarHeader.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View view) {
-                Log.d("TEST", "v - " + view.getClass().getName());
-                Intent intent = new Intent(Intent.ACTION_MAIN);
-                intent.setClassName("com.android.settings",
-                        "com.android.settings.Settings$NotificationStationActivity");
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent, true);
-                return true;
-            }
-        });*/
-
-        return mStatusBarView;
     }
 
-    @Override
+    /*@Override
     public void showScreenPinningRequest(int taskId, boolean allowCancel) {
         hideRecents(false, false);
         mSlimScreenPinningRequest.showPrompt(taskId, allowCancel);
-    }
+    }*/
 
-    @Override
+    /*@Override
     protected void createNavigationBarView(Context context) {
         if (mSlimNavigationBarView == null) {
             mSlimNavigationBarView = (SlimNavigationBarView)
@@ -334,7 +305,7 @@ public class SlimStatusBar extends PhoneStatusBar implements
         if (mNavigationBarView != mSlimNavigationBarView) {
             mNavigationBarView = mSlimNavigationBarView;
         }
-    }
+    }*/
 
     private void updateNavigationBarVisibility() {
         final int showByDefault = mContext.getResources().getBoolean(
@@ -344,8 +315,8 @@ public class SlimStatusBar extends PhoneStatusBar implements
                     UserHandle.USER_CURRENT) == 1;
 
         if (mHasNavigationBar) {
-            addNavigationBar();
-            mSlimScreenPinningRequest.setSlimNavigationBarView(mSlimNavigationBarView);
+            //addNavigationBar();
+            //mSlimScreenPinningRequest.setSlimNavigationBarView(mSlimNavigationBarView);
         } else {
             if (mNavigationBarAttached) {
                 mNavigationBarAttached = false;
@@ -355,14 +326,14 @@ public class SlimStatusBar extends PhoneStatusBar implements
         }
     }
 
-    @Override
+    /*@Override
     protected void prepareNavigationBarView() {
-        mSlimNavigationBarView.reorient();
+        mSlimNavigationBarView.reorient();*/
 
         //View home = mSlimNavigationBarView.getHomeButton().getCurrentView();
         //View recents = mSlimNavigationBarView.getRecentsButton();
 
-        mSlimNavigationBarView.setPinningCallback(mLongClickCallback);
+        //mSlimNavigationBarView.setPinningCallback(mLongClickCallback);
 
         /*if (recents != null) {
             recents.setOnClickListener(mRecentsClickListener);
@@ -372,10 +343,10 @@ public class SlimStatusBar extends PhoneStatusBar implements
             home.setOnTouchListener(mHomeActionListener);
         }*/
 
-        mAssistManager.onConfigurationChanged();
-    }
+        //mAssistManager.onConfigurationChanged();
+    //}
 
-    @Override
+    /*@Override
     protected void addNavigationBar() {
         if (DEBUG) Log.v(TAG, "addNavigationBar: about to add " + mSlimNavigationBarView);
         if (mSlimNavigationBarView == null) {
@@ -390,9 +361,9 @@ public class SlimStatusBar extends PhoneStatusBar implements
                 mWindowManager.addView(mSlimNavigationBarView, getNavigationBarLayoutParams());
             } catch (Exception e) {}
         }
-    }
+    }*/
 
-    @Override
+    /*@Override
     protected void repositionNavigationBar() {
         if (mSlimNavigationBarView == null
                 || !mSlimNavigationBarView.isAttachedToWindow()) return;
@@ -400,7 +371,7 @@ public class SlimStatusBar extends PhoneStatusBar implements
         prepareNavigationBarView();
 
         mWindowManager.updateViewLayout(mSlimNavigationBarView, getNavigationBarLayoutParams());
-    }
+    }*/
 
     private WindowManager.LayoutParams getNavigationBarLayoutParams() {
         WindowManager.LayoutParams lp = new WindowManager.LayoutParams(
@@ -423,15 +394,15 @@ public class SlimStatusBar extends PhoneStatusBar implements
         return lp;
     }
 
-    @Override
+    /*@Override
     public void setSystemUiVisibility(int vis, int fullscreenStackVis, int dockedStackVis,
             int mask, Rect fullscreenStackBounds, Rect dockedStackBounds) {
-        final int oldVal = mSystemUiVisibility;
+        final int oldVal = 0;
         final int newVal = (oldVal&~mask | vis&mask);
         final int diff = newVal ^ oldVal;
 
         if (diff != 0) {
-            final int sbMode = computeBarMode(oldVal, newVal, mStatusBarView.getBarTransitions(),
+            final int sbMode = computeBarMode(oldVal, newVal, mStatusBarWindow.getBarTransitions(),
                     View.STATUS_BAR_TRANSIENT, View.STATUS_BAR_TRANSLUCENT,
                     View.STATUS_BAR_TRANSPARENT);
             final boolean sbModeChanged = sbMode != -1;
@@ -440,11 +411,7 @@ public class SlimStatusBar extends PhoneStatusBar implements
                         || sbMode == MODE_LIGHTS_OUT_TRANSPARENT);
                 boolean allowLight = isTransparentBar;
                 boolean light = (vis & View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR) != 0;
-                boolean animate = true;/*mFingerprintUnlockController == null
-                        || (mFingerprintUnlockController.getMode()
-                                != FingerprintUnlockController.MODE_WAKE_AND_UNLOCK_PULSING
-                        && mFingerprintUnlockController.getMode()
-                                != FingerprintUnlockController.MODE_WAKE_AND_UNLOCK);*/
+                boolean animate = true;
 
                 mSlimIconController.setIconsDark(allowLight && light, animate);
             }
@@ -452,7 +419,7 @@ public class SlimStatusBar extends PhoneStatusBar implements
 
         super.setSystemUiVisibility(vis, fullscreenStackVis, dockedStackVis, mask,
                 fullscreenStackBounds, dockedStackBounds);
-    }
+    }*/
 
     @Override
     protected void onConfigurationChanged(Configuration newConfig) {
@@ -482,7 +449,7 @@ public class SlimStatusBar extends PhoneStatusBar implements
             if (activityManager.isInLockTaskMode()) {
                 activityManager.stopSystemLockTaskMode();
                 // When exiting refresh disabled flags.
-                mSlimNavigationBarView.setDisabledFlags(mDisabled1, true);
+                //mSlimNavigationBarView.setDisabledFlags(mDisabled1, true);
                 return true;
             }
         } catch (RemoteException e) {
@@ -491,16 +458,16 @@ public class SlimStatusBar extends PhoneStatusBar implements
         return false;
     }
 
-    @Override
+    /*@Override
     protected void hideRecents(boolean triggeredFromAltTab, boolean triggeredFromHomeKey) {
         if (mSlimRecents != null) {
             mSlimRecents.hideRecents(triggeredFromHomeKey);
         } else {
             super.hideRecents(triggeredFromAltTab, triggeredFromHomeKey);
         }
-    }
+    }*/
 
-    @Override
+    /*@Override
     protected void toggleSplitScreenMode(int metricsDockAction, int metricsUndockAction) {
         boolean isInLockTaskMode = false;
         try {
@@ -527,9 +494,9 @@ public class SlimStatusBar extends PhoneStatusBar implements
         } else {
             super.toggleSplitScreenMode(metricsDockAction, metricsUndockAction);
         }
-    }
+    }*/
 
-    @Override
+    /*@Override
     protected void toggleRecents() {
         if (mSlimRecents != null) {
             sendCloseSystemWindows(mContext, SYSTEM_DIALOG_REASON_RECENT_APPS);
@@ -555,7 +522,7 @@ public class SlimStatusBar extends PhoneStatusBar implements
         } else {
             super.cancelPreloadingRecents();
         }
-    }
+    }*/
 
     protected void rebuildRecentsScreen() {
         if (mSlimRecents != null) {
@@ -611,6 +578,17 @@ public class SlimStatusBar extends PhoneStatusBar implements
         int msg = MSG_TOGGLE_SCREENSHOT;
         mHandler.removeMessages(msg);
         mHandler.sendEmptyMessage(msg);
+    }
+
+    @Override
+    public void toggleRecents() {
+        if  (mSlimRecents != null) {
+            sendCloseSystemWindows(mContext, SYSTEM_DIALOG_REASON_RECENT_APPS);
+            mSlimRecents.toggleRecents(mDisplay, mLayoutDirection, getStatusBarView());
+        } else {
+            Recents recents = SysUiServiceProvider.getComponent(mContext, Recents.class);
+            recents.toggleRecentApps();
+        }
     }
 
     protected class H extends Handler {
@@ -786,7 +764,7 @@ public class SlimStatusBar extends PhoneStatusBar implements
         }
     }
 
-    @Override
+    /*@Override
     protected void bindGuts(final ExpandableNotificationRow row) {
         row.inflateGuts();
         final StatusBarNotification sbn = row.getStatusBarNotification();
@@ -819,9 +797,9 @@ public class SlimStatusBar extends PhoneStatusBar implements
         LinearLayout buttonParent = (LinearLayout) settingsButton.getParent();
         final TextView killButton = (TextView) LayoutInflater.from(
                 settingsButton.getContext()).inflate(
-                R.layout.kill_button, buttonParent, false /* attachToRoot */);
+                R.layout.kill_button, buttonParent, false);
         if (buttonParent.findViewById(R.id.notification_inspect_kill) == null) { // only add once
-            buttonParent.addView(killButton, buttonParent.indexOfChild(settingsButton)/*index*/);
+            buttonParent.addView(killButton, buttonParent.indexOfChild(settingsButton));
         }
         if (appUid >= 0) {
             final int appUidF = appUid;
@@ -888,7 +866,7 @@ public class SlimStatusBar extends PhoneStatusBar implements
                 }
             }
         });
-    }
+    }*/
 
     private boolean isThisASystemPackage(String packageName, PackageManager pm) {
         try {
