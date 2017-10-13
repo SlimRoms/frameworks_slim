@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2016 SlimRoms Project
+* Copyright (C) 2016-2017 SlimRoms Project
 * Copyright (C) 2013-14 The Android Open Source Project
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
@@ -38,11 +38,11 @@ public class SlimKeyguardStatusBarView extends KeyguardStatusBarView {
     protected void onFinishInflate() {
         super.onFinishInflate();
 
-        View batteryLevel = findViewById(R.id.battery_level);
-        ((ViewGroup) batteryLevel.getParent()).removeView(batteryLevel);
+        //View batteryLevel = findViewById(R.id.battery_level);
+        //((ViewGroup) batteryLevel.getParent()).removeView(batteryLevel);
     }
 
-    @Override
+    /*@Override
     public void setBatteryController(final BatteryController controller) {
         super.setBatteryController(controller);
         AutoReinflateContainer batteryContainer = (AutoReinflateContainer)
@@ -56,5 +56,5 @@ public class SlimKeyguardStatusBarView extends KeyguardStatusBarView {
                 }
             });
         }
-    }
+    }*/
 }

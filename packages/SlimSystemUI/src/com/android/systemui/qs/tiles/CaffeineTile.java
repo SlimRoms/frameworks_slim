@@ -27,13 +27,19 @@ import android.os.CountDownTimer;
 import android.os.PowerManager;
 import android.os.SystemClock;
 import android.provider.Settings;
+import android.service.quicksettings.Tile;
+import android.widget.Switch;
 
-import com.android.internal.logging.MetricsProto.MetricsEvent;
-import com.android.systemui.qs.QSTile;
+import com.android.internal.logging.MetricsLogger;
+import com.android.internal.logging.nano.MetricsProto.MetricsEvent;
+import com.android.systemui.plugins.qs.QSTile.BooleanState;
+import com.android.systemui.qs.QSHost;
+import com.android.systemui.qs.QSTileHost;
+import com.android.systemui.qs.tileimpl.QSTileImpl;
 import com.android.systemui.R;
 
 /** Quick settings tile: Caffeine **/
-public class CaffeineTile extends QSTile<QSTile.BooleanState> {
+public class CaffeineTile extends QSTileImpl<BooleanState> {
 
     private final PowerManager.WakeLock mWakeLock;
     private int mSecondsRemaining;
@@ -51,7 +57,7 @@ public class CaffeineTile extends QSTile<QSTile.BooleanState> {
     private final Receiver mReceiver = new Receiver();
     private boolean mListening;
 
-    public CaffeineTile(Host host) {
+    public CaffeineTile(QSHost host) {
         super(host);
         mWakeLock = ((PowerManager) mContext.getSystemService(Context.POWER_SERVICE)).newWakeLock(
                 PowerManager.FULL_WAKE_LOCK, "CaffeineTile");

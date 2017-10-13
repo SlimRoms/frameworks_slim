@@ -47,7 +47,7 @@ public class SlimCommandQueue extends ISlimStatusBar.Stub {
         public void toggleLastApp();
         public void toggleKillApp();
         public void toggleScreenshot();
-        public void toggleRecentApps();
+        public void toggleRecents();
         public void toggleSplitScreen();
         public void preloadRecentApps();
         public void cancelPreloadRecentApps();
@@ -149,7 +149,7 @@ public class SlimCommandQueue extends ISlimStatusBar.Stub {
                     mCallbacks.toggleScreenshot();
                     break;
                 case MSG_TOGGLE_RECENT_APPS:
-                    mCallbacks.toggleRecentApps();
+                    mCallbacks.toggleRecents();
                     break;
                 case MSG_PRELOAD_RECENT_APPS:
                     mCallbacks.preloadRecentApps();
