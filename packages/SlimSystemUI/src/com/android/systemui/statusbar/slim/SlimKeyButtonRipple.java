@@ -33,7 +33,7 @@ import android.view.View;
 import android.view.animation.Interpolator;
 
 import com.android.systemui.R;
-import com.android.systemui.statusbar.phone.PhoneStatusBar;
+import com.android.systemui.statusbar.phone.StatusBar;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -60,7 +60,7 @@ public class SlimKeyButtonRipple extends Drawable {
     private int mMaxWidth;
 
     private final Interpolator mInterpolator = new LogInterpolator();
-    private final Interpolator mAlphaExitInterpolator = PhoneStatusBar.ALPHA_OUT;
+    private final Interpolator mAlphaExitInterpolator = StatusBar.ALPHA_OUT;
     private boolean mSupportHardware;
     private final View mTargetView;
 

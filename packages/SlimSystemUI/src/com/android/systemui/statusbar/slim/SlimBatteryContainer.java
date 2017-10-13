@@ -28,6 +28,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.android.systemui.Dependency;
 import com.android.systemui.R;
 import com.android.systemui.statusbar.policy.BatteryController;
 
@@ -70,7 +71,7 @@ public class SlimBatteryContainer extends LinearLayout implements
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         if (mBatteryController != null) {
-            mBatteryController.removeStateChangedCallback(this);
+            mBatteryController.removeCallback(this);
         }
         mBatteryObserver.unObserve();
 
@@ -80,8 +81,10 @@ public class SlimBatteryContainer extends LinearLayout implements
     @Override
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
+        mBatteryController = Dependency.get(BatteryController.class);
         if (mBatteryController != null) {
-            mBatteryController.addStateChangedCallback(this);
+            mBatteryController.addCallback(this);
+            mBattery.setBatteryController(mBatteryController);
         }
         mBatteryObserver.observe();
         mAttached = true;
@@ -97,12 +100,6 @@ public class SlimBatteryContainer extends LinearLayout implements
     @Override
     public void onPowerSaveChanged(boolean enabled) {
         // could not care less
-    }
-
-    public void setBatteryController(BatteryController batteryController) {
-        mBatteryController = batteryController;
-        mBattery.setBatteryController(batteryController);
-        mBatteryController.addStateChangedCallback(this);
     }
 
     public void updateSettings() {
