@@ -20,19 +20,31 @@ import android.content.ComponentName;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.content.SyncStatusObserver;
+import android.provider.Settings;
+import android.service.quicksettings.Tile;
 
-import com.android.internal.logging.MetricsProto.MetricsEvent;
+import com.android.internal.logging.MetricsLogger;
+import com.android.internal.logging.nano.MetricsProto.MetricsEvent;
+
+import com.android.systemui.Dependency;
+import com.android.systemui.plugins.ActivityStarter;
+import com.android.systemui.plugins.qs.QSTile.BooleanState;
+import com.android.systemui.qs.QSHost;
+import com.android.systemui.qs.QSTileHost;
+import com.android.systemui.qs.tileimpl.QSTileImpl;
 import com.android.systemui.R;
-import com.android.systemui.qs.QSTile;
+import android.widget.Switch;
 
 /** Quick settings tile: Sync **/
-public class SyncTile extends QSTile<QSTile.BooleanState> {
+public class SyncTile extends QSTileImpl<BooleanState> {
 
     private Object mSyncObserverHandle = null;
     private boolean mListening;
+    private final ActivityStarter mActivityStarter;
 
-    public SyncTile(Host host) {
+    public SyncTile(QSHost host) {
         super(host);
+        mActivityStarter = Dependency.get(ActivityStarter.class);
     }
 
     @Override
@@ -50,7 +62,7 @@ public class SyncTile extends QSTile<QSTile.BooleanState> {
     public void handleLongClick() {
         Intent intent = new Intent("android.settings.SYNC_SETTINGS");
         intent.addCategory(Intent.CATEGORY_DEFAULT);
-        mHost.startActivityDismissingKeyguard(intent);
+        mActivityStarter.postStartActivityDismissingKeyguard(intent, 0);
     }
 
     @Override

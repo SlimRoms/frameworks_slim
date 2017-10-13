@@ -47,7 +47,7 @@ public class SlimStatusBarIconController {
         mContext = context;
         mSlimStatusBar = slimStatusBar;
 
-        mSlimBattery = (SlimBatteryContainer) statusBar.findViewById(R.id.slim_battery_container);
+        mSlimBattery = null;//(SlimBatteryContainer) statusBar.findViewById(R.id.slim_battery_container);
 
         mFastOutSlowIn = AnimationUtils.loadInterpolator(mContext,
                 android.R.interpolator.fast_out_slow_in);
@@ -59,8 +59,7 @@ public class SlimStatusBarIconController {
         if (!animate) {
             setIconTintInternal(dark ? 1.0f : 0.0f);
         } else {
-            animateIconTint(dark ? 1.0f : 0.0f, 0,
-                    StatusBarIconController.DEFAULT_TINT_ANIMATION_DURATION);
+            animateIconTint(dark ? 1.0f : 0.0f, 0, 500);
         }
     }
 
@@ -95,6 +94,8 @@ public class SlimStatusBarIconController {
     }
 
     private void applyIconTint() {
-        mSlimBattery.setDarkIntensity(mDarkIntensity);
+        if (mSlimBattery != null) {
+            mSlimBattery.setDarkIntensity(mDarkIntensity);
+        }
     }
 }

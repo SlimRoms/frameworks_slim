@@ -32,11 +32,10 @@ public class SlimCommandQueue extends ISlimStatusBar.Stub {
     private static final int MSG_TOGGLE_LAST_APP                    = 2 << MSG_SHIFT;
     private static final int MSG_TOGGLE_KILL_APP                    = 3 << MSG_SHIFT;
     private static final int MSG_TOGGLE_SCREENSHOT                  = 4 << MSG_SHIFT;
-    private static final int MSG_TOGGLE_RECENT_APPS                 = 5 << MSG_SHIFT;
-    private static final int MSG_PRELOAD_RECENT_APPS                = 6 << MSG_SHIFT;
-    private static final int MSG_CANCEL_PRELOAD_RECENT_APPS         = 7 << MSG_SHIFT;
-    private static final int MSG_START_ASSIST                       = 8 << MSG_SHIFT;
-    private static final int MSG_TOGGLE_SPLIT_SCREEN                = 9 << MSG_SHIFT;
+    private static final int MSG_PRELOAD_RECENT_APPS                = 5 << MSG_SHIFT;
+    private static final int MSG_CANCEL_PRELOAD_RECENT_APPS         = 6 << MSG_SHIFT;
+    private static final int MSG_START_ASSIST                       = 7 << MSG_SHIFT;
+    private static final int MSG_TOGGLE_SPLIT_SCREEN                = 8 << MSG_SHIFT;
 
     private Callbacks mCallbacks;
     private Handler mHandler = new H();
@@ -47,7 +46,6 @@ public class SlimCommandQueue extends ISlimStatusBar.Stub {
         public void toggleLastApp();
         public void toggleKillApp();
         public void toggleScreenshot();
-        public void toggleRecentApps();
         public void toggleSplitScreen();
         public void preloadRecentApps();
         public void cancelPreloadRecentApps();
@@ -82,6 +80,9 @@ public class SlimCommandQueue extends ISlimStatusBar.Stub {
             mHandler.obtainMessage(MSG_TOGGLE_KILL_APP, 0, 0, null).sendToTarget();
         }
     }
+    
+    @Override
+    public void toggleRecentApps() {}
 
     @Override
     public void toggleSplitScreen() {
@@ -96,14 +97,6 @@ public class SlimCommandQueue extends ISlimStatusBar.Stub {
         synchronized (mLock) {
             mHandler.removeMessages(MSG_TOGGLE_SCREENSHOT);
             mHandler.obtainMessage(MSG_TOGGLE_SCREENSHOT, 0, 0, null).sendToTarget();
-        }
-    }
-
-    @Override
-    public void toggleRecentApps() {
-        synchronized (mLock) {
-            mHandler.removeMessages(MSG_TOGGLE_RECENT_APPS);
-            mHandler.obtainMessage(MSG_TOGGLE_RECENT_APPS, 0, 0, null).sendToTarget();
         }
     }
 
@@ -147,9 +140,6 @@ public class SlimCommandQueue extends ISlimStatusBar.Stub {
                     break;
                 case MSG_TOGGLE_SCREENSHOT:
                     mCallbacks.toggleScreenshot();
-                    break;
-                case MSG_TOGGLE_RECENT_APPS:
-                    mCallbacks.toggleRecentApps();
                     break;
                 case MSG_PRELOAD_RECENT_APPS:
                     mCallbacks.preloadRecentApps();

@@ -67,7 +67,7 @@ import com.android.systemui.SystemUIApplication;
 import com.android.systemui.slimrecent.ExpandableCardAdapter.ExpandableCard;
 import com.android.systemui.slimrecent.ExpandableCardAdapter.OptionsItem;
 import com.android.systemui.stackdivider.WindowManagerProxy;
-import com.android.systemui.statusbar.phone.PhoneStatusBar;
+import com.android.systemui.statusbar.phone.StatusBar;
 
 import java.io.IOException;
 import java.lang.ref.WeakReference;
@@ -287,7 +287,7 @@ public class RecentPanelView {
                     if (appContext == null) appContext = mContext;
                     if (appContext instanceof SystemUIApplication) {
                         SystemUIApplication app = (SystemUIApplication) appContext;
-                        PhoneStatusBar statusBar = app.getComponent(PhoneStatusBar.class);
+                        StatusBar statusBar = app.getComponent(StatusBar.class);
                         if (statusBar != null) {
                             statusBar.showScreenPinningRequest(task.persistentTaskId, false);
                         }
@@ -970,8 +970,7 @@ public class RecentPanelView {
 
             final List<ActivityManager.RecentTaskInfo> recentTasks =
                     am.getRecentTasksForUser(ActivityManager.getMaxRecentTasksStatic(),
-                    ActivityManager.RECENT_IGNORE_HOME_STACK_TASKS
-                            | ActivityManager.RECENT_INGORE_PINNED_STACK_TASKS
+                    ActivityManager.RECENT_INGORE_PINNED_STACK_TASKS
                             | ActivityManager.RECENT_IGNORE_UNAVAILABLE
                             | ActivityManager.RECENT_INCLUDE_PROFILES,
                             UserHandle.CURRENT.getIdentifier());
