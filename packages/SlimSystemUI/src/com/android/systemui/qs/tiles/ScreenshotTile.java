@@ -28,21 +28,27 @@ import android.os.Message;
 import android.os.Messenger;
 import android.os.RemoteException;
 import android.view.View;
+import android.provider.Settings;
+import android.service.quicksettings.Tile;
+import android.widget.Switch;
 
+import com.android.internal.logging.MetricsLogger;
+import com.android.internal.logging.nano.MetricsProto.MetricsEvent;
 import com.android.systemui.R;
+import com.android.systemui.plugins.qs.QSTile.BooleanState;
+import com.android.systemui.qs.QSHost;
+import com.android.systemui.qs.QSTileHost;
+import com.android.systemui.qs.tileimpl.QSTileImpl;
 import com.android.systemui.screenshot.TakeScreenshotService;
-import com.android.systemui.qs.QSTile;
-
-import com.android.internal.logging.MetricsProto.MetricsEvent;
 
 /** Quick settings tile: Screenshot **/
-public class ScreenshotTile extends QSTile<QSTile.BooleanState> {
+public class ScreenshotTile extends QSTileImpl<BooleanState> {
 
     private boolean mListening;
     private final Object mScreenshotLock = new Object();
     private ServiceConnection mScreenshotConnection = null;
 
-    public ScreenshotTile(Host host) {
+    public ScreenshotTile(QSHost host) {
         super(host);
     }
 
