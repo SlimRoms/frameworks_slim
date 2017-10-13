@@ -61,7 +61,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.internal.logging.MetricsLogger;
-import com.android.internal.logging.MetricsProto.MetricsEvent;
+import com.android.internal.logging.nano.MetricsProto.MetricsEvent;
 import com.android.keyguard.KeyguardHostView.OnDismissAction;
 import com.android.systemui.AutoReinflateContainer;
 import com.android.systemui.AutoReinflateContainer.InflateListener;
@@ -75,7 +75,7 @@ import com.android.systemui.statusbar.SlimNotificationGuts;
 import com.android.systemui.statusbar.StatusBarState;
 import com.android.systemui.statusbar.phone.SlimNavigationBarView;
 import com.android.systemui.statusbar.phone.NavigationBarView;
-import com.android.systemui.statusbar.phone.PhoneStatusBar;
+import com.android.systemui.statusbar.phone.StatusBar;
 import com.android.systemui.statusbar.phone.PhoneStatusBarView;
 import com.android.systemui.statusbar.phone.SystemUIDialog;
 import com.android.systemui.statusbar.slim.SlimQuickStatusBarHeader;
@@ -95,7 +95,7 @@ import static com.android.systemui.statusbar.phone.BarTransitions.MODE_TRANSLUCE
 import static com.android.systemui.statusbar.phone.BarTransitions.MODE_TRANSPARENT;
 import static com.android.systemui.statusbar.phone.BarTransitions.MODE_WARNING;
 
-public class SlimStatusBar extends PhoneStatusBar implements
+public class SlimStatusBar extends StatusBar implements
         SlimCommandQueue.Callbacks {
 
     private static final String TAG = SlimStatusBar.class.getSimpleName();

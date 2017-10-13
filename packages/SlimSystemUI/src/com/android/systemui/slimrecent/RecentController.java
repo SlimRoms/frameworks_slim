@@ -68,7 +68,8 @@ import com.android.systemui.R;
 import com.android.systemui.RecentsComponent;
 import com.android.systemui.recents.misc.SystemServicesProxy;
 import com.android.systemui.recents.misc.Utilities;
-import com.android.systemui.statusbar.BaseStatusBar;
+//import com.android.systemui.statusbar.BaseStatusBar;
+import com.android.systemui.statusbar.phone.StatusBar;
 
 import slim.provider.SlimSettings;
 
@@ -135,7 +136,7 @@ public class RecentController implements RecentPanelView.OnExitListener,
             if (Intent.ACTION_CLOSE_SYSTEM_DIALOGS.equals(action)) {
                 String reason = intent.getStringExtra("reason");
                 if (reason != null &&
-                        !reason.equals(BaseStatusBar.SYSTEM_DIALOG_REASON_RECENT_APPS)) {
+                        !reason.equals(StatusBar.SYSTEM_DIALOG_REASON_RECENT_APPS)) {
                     hideRecents(false);
                 }
                 if (DEBUG) Log.d(TAG, "braodcast system dialog");
@@ -595,7 +596,7 @@ public class RecentController implements RecentPanelView.OnExitListener,
 
         if (DEBUG) Log.d(TAG, "in animation starting");
         mIsShowing = true;
-        sendCloseSystemWindows(BaseStatusBar.SYSTEM_DIALOG_REASON_RECENT_APPS);
+        sendCloseSystemWindows(StatusBar.SYSTEM_DIALOG_REASON_RECENT_APPS);
         mAnimationState = ANIMATION_STATE_NONE;
         mHandler.removeCallbacks(mRecentRunnable);
         mWindowManager.addView(mParentView, generateLayoutParameter());

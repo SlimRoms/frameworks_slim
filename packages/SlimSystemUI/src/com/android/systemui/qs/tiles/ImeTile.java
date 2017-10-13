@@ -22,15 +22,22 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.provider.Settings;
-import com.android.systemui.R;
-import com.android.systemui.qs.QSTile;
-import com.android.internal.logging.MetricsProto.MetricsEvent;
+import android.service.quicksettings.Tile;
+import android.widget.Switch;
 
-public class ImeTile extends QSTile<QSTile.BooleanState> {
+import com.android.internal.logging.MetricsLogger;
+import com.android.internal.logging.nano.MetricsProto.MetricsEvent;
+import com.android.systemui.R;
+import com.android.systemui.plugins.qs.QSTile.BooleanState;
+import com.android.systemui.qs.QSHost;
+import com.android.systemui.qs.QSTileHost;
+import com.android.systemui.qs.tileimpl.QSTileImpl;
+
+public class ImeTile extends QSTileImpl<BooleanState> {
 
     private boolean mListening;
 
-    public ImeTile(Host host) {
+    public ImeTile(QSHost host) {
         super(host);
     }
 
