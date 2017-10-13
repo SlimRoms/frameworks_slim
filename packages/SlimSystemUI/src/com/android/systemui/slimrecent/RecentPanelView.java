@@ -67,7 +67,7 @@ import com.android.systemui.SystemUIApplication;
 import com.android.systemui.slimrecent.ExpandableCardAdapter.ExpandableCard;
 import com.android.systemui.slimrecent.ExpandableCardAdapter.OptionsItem;
 import com.android.systemui.stackdivider.WindowManagerProxy;
-import com.android.systemui.statusbar.phone.PhoneStatusBar;
+import com.android.systemui.statusbar.phone.StatusBar;
 
 import java.io.IOException;
 import java.lang.ref.WeakReference;

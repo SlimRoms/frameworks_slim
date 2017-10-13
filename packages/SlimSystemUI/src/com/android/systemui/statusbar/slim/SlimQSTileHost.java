@@ -17,9 +17,9 @@ package com.android.systemui.statusbar.slim;
 
 import android.content.Context;
 
-import com.android.systemui.qs.QSTile;
-import com.android.systemui.statusbar.phone.QSTileHost;
-import com.android.systemui.statusbar.phone.PhoneStatusBar;
+import com.android.systemui.qs.QSHost;
+import com.android.systemui.qs.QSTileHost;
+import com.android.systemui.statusbar.phone.StatusBar;
 import com.android.systemui.statusbar.phone.StatusBarIconController;
 import com.android.systemui.statusbar.phone.StatusBarKeyguardViewManager;
 import com.android.systemui.statusbar.phone.StatusBarWindowManager;
@@ -48,7 +48,7 @@ import com.android.systemui.qs.tiles.UsbTetherTile;
 
 public class SlimQSTileHost extends QSTileHost {
 
-    public SlimQSTileHost(Context context, PhoneStatusBar statusBar,
+    public SlimQSTileHost(Context context, StatusBar statusBar,
             BluetoothController bluetooth, LocationController location,
             RotationLockController rotation, NetworkController network,
             ZenModeController zen, HotspotController hotspot,
