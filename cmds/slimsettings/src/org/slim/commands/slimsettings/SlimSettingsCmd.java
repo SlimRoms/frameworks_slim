@@ -201,10 +201,7 @@ public final class SlimSettingsCmd {
             return lines;
         }
         try {
-            Bundle queryArgs = ContentResolver.createSqlQueryBundle(
-                        null, null, null);
-            final Cursor cursor = provider.query(resolveCallingPackage(),
-                    uri, null, queryArgs, null);
+            final Cursor cursor = provider.query(resolveCallingPackage(), uri, null, null, null);
             try {
                 while (cursor != null && cursor.moveToNext()) {
                     lines.add(cursor.getString(1) + "=" + cursor.getString(2));

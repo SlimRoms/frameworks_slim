@@ -95,7 +95,6 @@ public class SlimPreferenceManager {
     public static int getSettingType(AttributeHelper a) {
         int s = a.getInt(slim.R.styleable.SlimPreference_slimSettingType,
                 SLIM_SYSTEM_SETTING);
-        Log.d("TEST", "settingType=" + s);
         switch (s) {
             case SLIM_GLOBAL_SETTING:
                 return SLIM_GLOBAL_SETTING;
