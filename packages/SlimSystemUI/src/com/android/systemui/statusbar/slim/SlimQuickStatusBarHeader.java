@@ -23,18 +23,17 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.android.systemui.R;
-import com.android.systemui.statusbar.phone.ActivityStarter;
-import com.android.systemui.statusbar.phone.QuickStatusBarHeader;
+import com.android.systemui.plugins.ActivityStarter
 import com.android.systemui.statusbar.policy.BatteryController;
 
 public class SlimQuickStatusBarHeader extends QuickStatusBarHeader {
 
-    public SlimQuickStatusBarHeader(Context context, AttributeSet attrs) {
+/*    public SlimQuickStatusBarHeader(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
     public ActivityStarter getActivityStarter() {
         return mActivityStarter;
     }
-
+*/
 }

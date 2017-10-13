@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.android.systemui.qs.tiles;
 
 import android.content.BroadcastReceiver;
@@ -22,17 +21,26 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.hardware.usb.UsbManager;
-import android.provider.Settings;
 import android.net.ConnectivityManager;
+import android.provider.Settings;
+import android.service.quicksettings.Tile;
+import android.widget.Switch;
 
-import com.android.internal.logging.MetricsProto.MetricsEvent;
+import com.android.internal.logging.MetricsLogger;
+import com.android.internal.logging.nano.MetricsProto.MetricsEvent;
+
+import com.android.systemui.Dependency;
+import com.android.systemui.plugins.ActivityStarter;
+import com.android.systemui.plugins.qs.QSTile.BooleanState;
+import com.android.systemui.qs.QSHost;
+import com.android.systemui.qs.QSTileHost;
+import com.android.systemui.qs.tileimpl.QSTileImpl;
 import com.android.systemui.R;
-import com.android.systemui.qs.QSTile;
 
 /**
  * USB Tether quick settings tile
  */
-public class UsbTetherTile extends QSTile<QSTile.BooleanState> {
+public class UsbTetherTile extends QSTileImpl<BooleanState> {
 
     private final ConnectivityManager mConnectivityManager;
 
@@ -41,7 +49,7 @@ public class UsbTetherTile extends QSTile<QSTile.BooleanState> {
     private boolean mUsbTethered = false;
     private boolean mUsbConnected = false;
 
-    public UsbTetherTile(Host host) {
+    public UsbTetherTile(QSHost host) {
         super(host);
         mConnectivityManager = (ConnectivityManager) mContext
                 .getSystemService(Context.CONNECTIVITY_SERVICE);

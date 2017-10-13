@@ -17,25 +17,34 @@
 
 package com.android.systemui.qs.tiles;
 
-import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
+import android.os.SystemProperties;
 import android.provider.Settings;
 import android.provider.Settings.Secure;
+import android.service.quicksettings.Tile;
+import android.text.TextUtils;
 
-import com.android.internal.logging.MetricsProto.MetricsEvent;
+import com.android.internal.logging.MetricsLogger;
+import com.android.internal.logging.nano.MetricsProto.MetricsEvent;
+
+import com.android.systemui.Dependency;
+import com.android.systemui.plugins.ActivityStarter;
+import com.android.systemui.plugins.qs.QSTile.BooleanState;
+import com.android.systemui.qs.QSHost;
+import com.android.systemui.qs.tileimpl.QSTileImpl;
 import com.android.systemui.qs.SecureSetting;
-import com.android.systemui.qs.QSTile;
 import com.android.systemui.R;
 
 
 /** Quick settings tile: Ambient Display **/
-public class AmbientDisplayTile extends QSTile<QSTile.BooleanState> {
+public class AmbientDisplayTile extends QSTileImpl<BooleanState> {
 
     private static final Intent DISPLAY_SETTINGS = new Intent("android.settings.DISPLAY_SETTINGS");
 
     private final SecureSetting mSetting;
 
-    public AmbientDisplayTile(Host host) {
+    public AmbientDisplayTile(QSHost host) {
         super(host);
 
         mSetting = new SecureSetting(mContext, mHandler, Secure.DOZE_ENABLED) {

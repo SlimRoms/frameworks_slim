@@ -33,7 +33,7 @@ import android.view.View;
 import android.view.animation.Interpolator;
 
 import com.android.systemui.R;
-import com.android.systemui.statusbar.phone.PhoneStatusBar;
+import com.android.systemui.statusbar.phone.StatusBar;
 
 import java.util.ArrayList;
 import java.util.HashSet;
