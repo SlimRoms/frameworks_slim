@@ -36,7 +36,7 @@ public class SlimNotificationGuts extends NotificationGuts {
 
     public void bindGutsImportance(final PackageManager pm, final StatusBarNotification sbn,
             final Set<String> nonBlockablePkgs, final int importance) {
-        bindImportance(pm, sbn, nonBlockablePkgs, importance);
+        //bindImportance(pm, sbn, nonBlockablePkgs, importance);
     }
 
 }

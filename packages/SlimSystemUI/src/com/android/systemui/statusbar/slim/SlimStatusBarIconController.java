@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2016 SlimRoms Project
+ * Copyright (C) 2016-2017 SlimRoms Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -59,8 +59,7 @@ public class SlimStatusBarIconController {
         if (!animate) {
             setIconTintInternal(dark ? 1.0f : 0.0f);
         } else {
-            animateIconTint(dark ? 1.0f : 0.0f, 0,
-                    StatusBarIconController.DEFAULT_TINT_ANIMATION_DURATION);
+            animateIconTint(dark ? 1.0f : 0.0f, 0, 500);
         }
     }
 
@@ -95,6 +94,8 @@ public class SlimStatusBarIconController {
     }
 
     private void applyIconTint() {
-        mSlimBattery.setDarkIntensity(mDarkIntensity);
+        if (mSlimBattery != null) {
+            mSlimBattery.setDarkIntensity(mDarkIntensity);
+        }
     }
 }
