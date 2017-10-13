@@ -39,7 +39,7 @@
 
             <meta-data
                 android:name="com.android.settings.category"
-                android:value="com.android.settings.category.personalization" />
+                android:value="com.android.settings.category.ia.homepage" />
 
         </activity>
 
@@ -55,7 +55,7 @@
 
             <meta-data
                 android:name="com.android.settings.category"
-                android:value="com.android.settings.category.personalization" />
+                android:value="com.android.settings.category.ia.homepage" />
 
         </activity>
 

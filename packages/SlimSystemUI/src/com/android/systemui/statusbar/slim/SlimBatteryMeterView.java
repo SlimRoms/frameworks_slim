@@ -42,9 +42,12 @@ import android.os.Handler;
 import android.util.DisplayMetrics;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.util.TypedValue;
+import android.view.ContextThemeWrapper;
 import android.view.View;
 import android.content.ContentResolver;
 
+import com.android.settingslib.Utils;
 import com.android.systemui.R;
 import com.android.systemui.DemoMode;
 import com.android.systemui.statusbar.policy.BatteryController;
@@ -185,15 +188,19 @@ public class SlimBatteryMeterView extends View implements DemoMode,
         TypedArray atts = context.obtainStyledAttributes(attrs, R.styleable.BatteryMeterView,
                 defStyle, 0);
         mFrameColor = atts.getColor(R.styleable.BatteryMeterView_frameColor,
-                res.getColor(R.color.batterymeter_frame_color));
+                res.getColor(R.color.meter_background_color));
         TypedArray levels = res.obtainTypedArray(R.array.batterymeter_color_levels);
         TypedArray colors = res.obtainTypedArray(R.array.batterymeter_color_values);
 
         final int N = levels.length();
-        mColors = new int[2*N];
-        for (int i=0; i<N; i++) {
-            mColors[2*i] = levels.getInt(i, 0);
-            mColors[2*i+1] = colors.getColor(i, 0);
+        mColors = new int[2 * N];
+        for (int i=0; i < N; i++) {
+            mColors[2 * i] = levels.getInt(i, 0);
+            if (colors.getType(i) == TypedValue.TYPE_ATTRIBUTE) {
+                mColors[2 * i + 1] = Utils.getColorAttr(context, colors.getThemeAttributeId(i, 0));
+            } else {
+                mColors[2 * i + 1] = colors.getColor(i, 0);
+            }
         }
         levels.recycle();
         colors.recycle();
@@ -208,12 +215,14 @@ public class SlimBatteryMeterView extends View implements DemoMode,
         mSubpixelSmoothingRight = context.getResources().getFraction(
                 R.fraction.battery_subpixel_smoothing_right, 1, 1);
 
-        mDarkModeBackgroundColor =
-                context.getColor(R.color.dark_mode_icon_color_dual_tone_background);
-        mDarkModeFillColor = context.getColor(R.color.dark_mode_icon_color_dual_tone_fill);
-        mLightModeBackgroundColor =
-                context.getColor(R.color.light_mode_icon_color_dual_tone_background);
-        mLightModeFillColor = context.getColor(R.color.light_mode_icon_color_dual_tone_fill);
+        Context dualToneDarkTheme = new ContextThemeWrapper(context,
+                Utils.getThemeAttr(context, R.attr.darkIconTheme));
+        Context dualToneLightTheme = new ContextThemeWrapper(context,
+                Utils.getThemeAttr(context, R.attr.lightIconTheme));
+        mDarkModeBackgroundColor = Utils.getColorAttr(dualToneDarkTheme, R.attr.backgroundColor);
+        mDarkModeFillColor = Utils.getColorAttr(dualToneDarkTheme, R.attr.fillColor);
+        mLightModeBackgroundColor = Utils.getColorAttr(dualToneLightTheme, R.attr.backgroundColor);
+        mLightModeFillColor = Utils.getColorAttr(dualToneLightTheme, R.attr.fillColor);
 
         loadShowBatterySetting();
         mBatteryMeterDrawable = createBatteryMeterDrawable(mMeterMode);
@@ -224,7 +233,7 @@ public class SlimBatteryMeterView extends View implements DemoMode,
         super.onAttachedToWindow();
 
         if (mBatteryController != null) {
-            mBatteryController.addStateChangedCallback(this);
+            mBatteryController.addCallback(this);
         }
         mAttached = true;
     }
@@ -235,7 +244,7 @@ public class SlimBatteryMeterView extends View implements DemoMode,
 
         mAttached = false;
         if (mBatteryController != null) {
-            mBatteryController.removeStateChangedCallback(this);
+            mBatteryController.removeCallback(this);
         }
     }
 
@@ -278,7 +287,7 @@ public class SlimBatteryMeterView extends View implements DemoMode,
     public void setBatteryController(BatteryController batteryController) {
         mBatteryController = batteryController;
         if (mAttached) {
-            mBatteryController.addStateChangedCallback(this);
+            mBatteryController.addCallback(this);
         }
         mPowerSaveEnabled = mBatteryController.isPowerSave();
     }
@@ -387,8 +396,8 @@ public class SlimBatteryMeterView extends View implements DemoMode,
     public void setDarkIntensity(float darkIntensity) {
         if (mBatteryMeterDrawable != null) {
             int backgroundColor = getBackgroundColor(darkIntensity);
-            int fillColor = getFillColor(darkIntensity);
-            mBatteryMeterDrawable.setDarkIntensity(backgroundColor, fillColor);
+            mIconTint = getFillColor(darkIntensity);
+            mBatteryMeterDrawable.setDarkIntensity(backgroundColor, mIconTint);
         }
     }
 
@@ -520,7 +529,7 @@ public class SlimBatteryMeterView extends View implements DemoMode,
             mWarningTextPaint.setTypeface(font);
             mWarningTextPaint.setTextAlign(Paint.Align.CENTER);
 
-            mChargeColor = getResources().getColor(R.color.batterymeter_charge_color);
+            mChargeColor = Utils.getDefaultColor(mContext, R.color.meter_consumed_color);
 
             mBoltPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
             mBoltPaint.setColor(res.getColor(R.color.batterymeter_bolt_color));
@@ -588,6 +597,9 @@ public class SlimBatteryMeterView extends View implements DemoMode,
 
             // set the battery charging color
             mBatteryPaint.setColor(mCharging ? mChargeColor : getColorForLevel(level));
+            
+                        android.util.Log.d("TEST", "color - " + mBatteryPaint.getColor() + " : tint - " + mIconTint);
+
 
             if (level >= FULL) {
                 drawFrac = 1f;
@@ -844,7 +856,7 @@ public class SlimBatteryMeterView extends View implements DemoMode,
             mFrontPaint.setStyle(Paint.Style.STROKE);
 
             mBackPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-            mBackPaint.setColor(res.getColor(R.color.batterymeter_frame_color));
+            //mBackPaint.setColor(res.getColor(R.color.batterymeter_frame_color));
             mBackPaint.setStrokeCap(Paint.Cap.BUTT);
             mBackPaint.setDither(true);
             mBackPaint.setStrokeWidth(0);
@@ -857,7 +869,7 @@ public class SlimBatteryMeterView extends View implements DemoMode,
             mWarningTextPaint.setTypeface(font);
             mWarningTextPaint.setTextAlign(Paint.Align.CENTER);
 
-            mChargeColor = getResources().getColor(R.color.batterymeter_charge_color);
+            //mChargeColor = getResources().getColor(R.color.batterymeter_charge_color);
 
             mPathEffect = new DashPathEffect(new float[]{3,2},0);
 
@@ -919,6 +931,8 @@ public class SlimBatteryMeterView extends View implements DemoMode,
 
             paint = mFrontPaint;
             paint.setColor(getColorForLevel(level));
+            
+            android.util.Log.d("TEST", "color - " + paint.getColor() + " : tint - " + mIconTint);
 
             if (mMeterMode == BatteryMeterMode.BATTERY_METER_DOTTED_CIRCLE) {
                 paint.setPathEffect(mPathEffect);
