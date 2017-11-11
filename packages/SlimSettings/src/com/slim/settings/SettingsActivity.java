@@ -89,6 +89,13 @@ public class SettingsActivity extends SettingsDrawerActivity implements
         finish();
     }
 
+    private void showMenuIcon() {
+        final ActionBar actionBar = getActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
+    }
+
     public static class SubSettingsFragment extends PreferenceFragment {
         @Override
         public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
