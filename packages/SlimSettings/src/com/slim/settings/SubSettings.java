@@ -68,7 +68,7 @@ public class SubSettings extends SettingsActivity {
 
         switchToFragment(initialFragmentName, initialArguments, true, false, initialTitle, false);
         if (intent.getBooleanExtra(EXTRA_SHOW_FRAGMENT_SHOW_MENU, false)) {
-            showMenuIcon();
+            //showMenuIcon();
         }
     }
 

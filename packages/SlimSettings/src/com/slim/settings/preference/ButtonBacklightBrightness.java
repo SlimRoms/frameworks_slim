@@ -39,6 +39,8 @@ import android.widget.TextView;
 
 import com.slim.settings.R;
 
+import slim.provider.SlimSettings;
+
 import static com.slim.settings.fragments.HardwareKeysSettings.KEY_MASK_HOME;
 import static com.slim.settings.fragments.HardwareKeysSettings.KEY_MASK_BACK;
 import static com.slim.settings.fragments.HardwareKeysSettings.KEY_MASK_MENU;
@@ -73,18 +75,18 @@ public class ButtonBacklightBrightness extends CustomDialogPreference<AlertDialo
 
         if (isKeyboardSupported()) {
             mKeyboardBrightness = new BrightnessControl(
-                    Settings.System.KEYBOARD_BRIGHTNESS, false);
+                    SlimSettings.System.KEYBOARD_BRIGHTNESS, false);
             mActiveControl = mKeyboardBrightness;
         }
         if (isButtonSupported()) {
             boolean isSingleValue = !context.getResources().getBoolean(
-                    com.android.internal.R.bool.config_deviceHasVariableButtonBrightness);
+                    org.slim.framework.internal.R.bool.config_deviceHasVariableButtonBrightness);
 
             int defaultBrightness = context.getResources().getInteger(
-                    com.android.internal.R.integer.config_buttonBrightnessSettingDefault);
+                    org.slim.framework.internal.R.integer.config_buttonBrightnessSettingDefault);
 
             mButtonBrightness = new BrightnessControl(
-                    Settings.System.BUTTON_BRIGHTNESS, isSingleValue, defaultBrightness);
+                    SlimSettings.System.BUTTON_BRIGHTNESS, isSingleValue, defaultBrightness);
             mActiveControl = mButtonBrightness;
         }
 
@@ -236,14 +238,14 @@ public class ButtonBacklightBrightness extends CustomDialogPreference<AlertDialo
                 || (deviceKeys & KEY_MASK_ASSIST) != 0
                 || (deviceKeys & KEY_MASK_APP_SWITCH) != 0;
         boolean hasBacklight = res.getInteger(
-                com.android.internal.R.integer.config_buttonBrightnessSettingDefault) > 0;
+                org.slim.framework.internal.R.integer.config_buttonBrightnessSettingDefault) > 0;
 
         return hasBacklightKey && hasBacklight;
     }
 
     public boolean isKeyboardSupported() {
         return getContext().getResources().getInteger(
-                com.android.internal.R.integer.config_keyboardBrightnessSettingDefault) > 0;
+                org.slim.framework.internal.R.integer.config_keyboardBrightnessSettingDefault) > 0;
     }
 
     public void updateSummary() {
@@ -272,13 +274,13 @@ public class ButtonBacklightBrightness extends CustomDialogPreference<AlertDialo
     }
 
     private int getTimeout() {
-        return Settings.System.getInt(mResolver,
-                Settings.System.BUTTON_BACKLIGHT_TIMEOUT, DEFAULT_BUTTON_TIMEOUT * 1000) / 1000;
+        return SlimSettings.System.getInt(mResolver,
+                SlimSettings.System.BUTTON_BACKLIGHT_TIMEOUT, DEFAULT_BUTTON_TIMEOUT * 1000) / 1000;
     }
 
     private void applyTimeout(int timeout) {
-        Settings.System.putInt(mResolver,
-                Settings.System.BUTTON_BACKLIGHT_TIMEOUT, timeout * 1000);
+        SlimSettings.System.putInt(mResolver,
+                SlimSettings.System.BUTTON_BACKLIGHT_TIMEOUT, timeout * 1000);
     }
 
     private void updateBrightnessPreview() {

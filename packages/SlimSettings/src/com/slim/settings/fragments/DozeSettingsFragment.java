@@ -326,11 +326,11 @@ public class DozeSettingsFragment extends SettingsPreferenceFragment implements
     }
 
     private static boolean isTiltSensorUsedByDefault(AmbientDisplayConfiguration config) {
-        return config.pulseOnTiltAvailable();
+        return false;// config.pulseOnTiltAvailable();
     }
 
     private static boolean isProximitySensorUsedByDefault(AmbientDisplayConfiguration config) {
-        return config.pulseOnProximityAvailable();
+        return false;//config.pulseOnProximityAvailable();
     }
 
     private static boolean isSigmotionSensorUsedByDefault(Context context) {

@@ -44,7 +44,7 @@ public class SettingsActivity extends SettingsDrawerActivity implements
             }
             transaction.replace(R.id.content_frame, fragment);
             transaction.commit();
-            showMenuIcon();
+            //showMenuIcon();
         }
         getActionBar().setDisplayHomeAsUpEnabled(true);
     }
