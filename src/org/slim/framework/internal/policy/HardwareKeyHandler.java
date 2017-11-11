@@ -25,6 +25,7 @@ import android.os.Handler;
 import android.os.RemoteException;
 import android.os.ServiceManager;
 import android.os.UserHandle;
+import android.os.VibrationEffect;
 import android.os.Vibrator;
 import android.provider.Settings;
 import android.service.dreams.DreamManagerInternal;
@@ -860,10 +861,14 @@ public class HardwareKeyHandler {
         }
         if (pattern.length == 1) {
             // One-shot vibration
-            mVibrator.vibrate(owningUid, owningPackage, pattern[0], VIBRATION_ATTRIBUTES);
+            mVibrator.vibrate(owningUid, owningPackage,
+                    VibrationEffect.createOneShot(pattern[0],
+                    VibrationEffect.DEFAULT_AMPLITUDE), VIBRATION_ATTRIBUTES);
         } else {
             // Pattern vibration
-            mVibrator.vibrate(owningUid, owningPackage, pattern, -1, VIBRATION_ATTRIBUTES);
+            mVibrator.vibrate(owningUid, owningPackage,
+                    VibrationEffect.createWaveform(pattern, -1),
+                    VIBRATION_ATTRIBUTES);
         }
         return true;
     }
