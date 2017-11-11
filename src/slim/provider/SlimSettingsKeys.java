@@ -546,6 +546,27 @@ public final class SlimSettingsKeys {
          */
         public static final String PROXIMITY_ON_WAKE = "proximity_on_wake";
 
+       /**
+        * The keyboard brightness to be used while the screen is on.
+        * Valid value range is between 0 and {@link PowerManager#getMaximumKeyboardBrightness()}
+        * @hide
+        */
+        public static final String KEYBOARD_BRIGHTNESS = "keyboard_brightness";
+
+        /**
+        * The button brightness to be used while the screen is on or after a button press,
+        * depending on the value of {@link BUTTON_BACKLIGHT_TIMEOUT}.
+        * Valid value range is between 0 and {@link PowerManager#getMaximumButtonBrightness()}
+        * @hide
+        */
+        public static final String BUTTON_BRIGHTNESS = "button_brightness";
+
+        /**
+        * The time in ms to keep the button backlight on after pressing a button.
+        * A value of 0 will keep the buttons on for as long as the screen is on.
+        * @hide
+        */
+        public static final String BUTTON_BACKLIGHT_TIMEOUT = "button_backlight_timeout";
     }
 
     public interface Secure {
