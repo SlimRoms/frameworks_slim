@@ -16,6 +16,7 @@
 
 package com.slim.settings;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
@@ -87,6 +88,13 @@ public class SettingsActivity extends SettingsDrawerActivity implements
     @Override
     public void onBackPressed() {
         finish();
+    }
+
+    protected void showMenuIcon() {
+        final ActionBar actionBar = getActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
     }
 
     public static class SubSettingsFragment extends PreferenceFragment {

@@ -477,15 +477,16 @@ public class HardwareKeysSettings extends SettingsPreferenceFragment implements
             SlimSettings.System.putInt(getContentResolver(),
                     SlimSettings.System.DISABLE_HW_KEYS, value ? 0 : 1);
             if (!value) {
-                Settings.System.putInt(getContentResolver(),
-                        Settings.System.BUTTON_BRIGHTNESS, 0);
+                SlimSettings.System.putInt(getContentResolver(),
+                        SlimSettings.System.BUTTON_BRIGHTNESS, 0);
             } else {
                 int defBright = getResources().getInteger(
-                        com.android.internal.R.integer.config_buttonBrightnessSettingDefault);
+                        org.slim.framework.internal.R
+                            .integer.config_buttonBrightnessSettingDefault);
                 int oldBright = PreferenceManager.getDefaultSharedPreferences(getActivity())
                         .getInt(ButtonBacklightBrightness.KEY_BUTTON_BACKLIGHT, defBright);
-                Settings.System.putInt(getContentResolver(),
-                        Settings.System.BUTTON_BRIGHTNESS, oldBright);
+                SlimSettings.System.putInt(getContentResolver(),
+                        SlimSettings.System.BUTTON_BRIGHTNESS, oldBright);
             }
             return true;
         }
