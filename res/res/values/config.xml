@@ -46,4 +46,8 @@
 
     <!-- Slim Recents default allowed max apps -->
     <integer name="slim_recents_max_apps_default">25</integer>
+
+    <integer name="config_buttonBrightnessSettingDefault">255</integer>
+    <integer name="config_keyboardBrightnessSettingDefault">0</integer>
+    <bool name="config_deviceHasVariableButtonBrightness">false</bool>
 </resources>
