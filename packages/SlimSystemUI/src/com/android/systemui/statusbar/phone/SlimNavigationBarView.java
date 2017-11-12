@@ -272,10 +272,10 @@ public class SlimNavigationBarView extends NavigationBarView {
                 mContext.getSystemService(Context.KEYGUARD_SERVICE);
     }
 
-    /*@Override
-    public SlimNavigationBarTransitions getBarTransitions() {
+    @Override
+    public NavigationBarTransitions getBarTransitions() {
         return mBarTransitions;
-    }*/
+    }
 
     @Override
     protected void onAttachedToWindow() {
@@ -569,6 +569,8 @@ public class SlimNavigationBarView extends NavigationBarView {
         setMenuVisibility(mShowMenu, true);
 
         setDisabledFlags(mDisabledFlags, true);
+        
+        mBarTransitions.reapplyDarkIntensity();
     }
 
     private void updateBackButton(View button, boolean backAlt) {

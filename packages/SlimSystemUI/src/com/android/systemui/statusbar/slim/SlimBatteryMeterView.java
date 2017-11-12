@@ -597,9 +597,6 @@ public class SlimBatteryMeterView extends View implements DemoMode,
 
             // set the battery charging color
             mBatteryPaint.setColor(mCharging ? mChargeColor : getColorForLevel(level));
-            
-                        android.util.Log.d("TEST", "color - " + mBatteryPaint.getColor() + " : tint - " + mIconTint);
-
 
             if (level >= FULL) {
                 drawFrac = 1f;
@@ -932,8 +929,6 @@ public class SlimBatteryMeterView extends View implements DemoMode,
             paint = mFrontPaint;
             paint.setColor(getColorForLevel(level));
             
-            android.util.Log.d("TEST", "color - " + paint.getColor() + " : tint - " + mIconTint);
-
             if (mMeterMode == BatteryMeterMode.BATTERY_METER_DOTTED_CIRCLE) {
                 paint.setPathEffect(mPathEffect);
             } else {

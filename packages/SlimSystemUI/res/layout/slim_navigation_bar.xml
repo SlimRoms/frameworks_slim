@@ -99,7 +99,7 @@
                     android:layout_height="match_parent"
                     android:contentDescription="@string/accessibility_menu"
                     android:src="@drawable/ic_sysbar_menu"
-                    android:visibility="invisible"
+                    android:visibility="gone"
                     android:scaleType="centerInside"
                     android:layout_gravity="end"
                     systemui:keyCode="82" />
