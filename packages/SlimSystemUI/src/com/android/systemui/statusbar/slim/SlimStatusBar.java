@@ -66,6 +66,7 @@ import com.android.keyguard.KeyguardHostView.OnDismissAction;
 import com.android.systemui.AutoReinflateContainer;
 import com.android.systemui.AutoReinflateContainer.InflateListener;
 import com.android.systemui.Dependency;
+import com.android.systemui.SysUiServiceProvider;
 import com.android.systemui.R;
 import com.android.systemui.recents.Recents;
 import com.android.systemui.slimrecent.RecentController;
@@ -603,6 +604,12 @@ public class SlimStatusBar extends StatusBar implements
         int msg = MSG_TOGGLE_SCREENSHOT;
         mHandler.removeMessages(msg);
         mHandler.sendEmptyMessage(msg);
+    }
+    
+    @Override
+    public void toggleRecents() {
+        Recents recents = SysUiServiceProvider.getComponent(mContext, Recents.class);
+        recents.toggleRecentApps();
     }
 
     protected class H extends Handler {
