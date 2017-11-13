@@ -570,6 +570,12 @@ public class SlimStatusBar extends StatusBar implements
         mHandler.removeMessages(msg);
         mHandler.sendEmptyMessage(msg);
     }
+    
+    @Override
+    public void toggleRecents() {
+        Recents recents = SysUiServiceProvider.getComponent(mContext, Recents.class);
+        recents.toggleRecentApps();
+    }
 
     @Override
     public void toggleRecents() {
