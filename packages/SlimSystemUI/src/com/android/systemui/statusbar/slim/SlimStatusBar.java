@@ -116,7 +116,6 @@ public class SlimStatusBar extends StatusBar implements
     private Handler mHandler = new H();
     private BatteryController mBatteryController;
 
-    private SlimStatusBarIconController mSlimIconController;
     private SlimScreenPinningRequest mSlimScreenPinningRequest;
     private LightBarController mLightBarController;
 
@@ -269,8 +268,6 @@ public class SlimStatusBar extends StatusBar implements
     protected void makeStatusBarView() {
         super.makeStatusBarView();
 
-        mSlimIconController = new SlimStatusBarIconController(mContext, mStatusBarWindow, this);
-
         //mStatusBarWindow.findViewById(R.id.battery).setVisibility(View.GONE);
 
         mSlimScreenPinningRequest = new SlimScreenPinningRequest(mContext);
@@ -414,37 +411,6 @@ public class SlimStatusBar extends StatusBar implements
         lp.setTitle("NavigationBar");
         lp.windowAnimations = 0;
         return lp;
-    }
-
-    @Override
-    public void setSystemUiVisibility(int vis, int fullscreenStackVis, int dockedStackVis,
-            int mask, Rect fullscreenStackBounds, Rect dockedStackBounds) {
-        
-        if (mSlimNavBar != null) {
-            mSlimNavBar.setSystemUiVisibility(vis, fullscreenStackVis, dockedStackVis,
-                mask, fullscreenStackBounds, dockedStackBounds);
-        }
-        
-        final int oldVal = 0;
-        final int newVal = (oldVal&~mask | vis&mask);
-        final int diff = newVal ^ oldVal;
-
-        if (diff != 0) {
-            final int sbMode = computeStatusBarMode(oldVal, newVal);
-            final boolean sbModeChanged = sbMode != -1;
-            if ((diff & View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR) != 0 || sbModeChanged) {
-                boolean isTransparentBar = (sbMode == MODE_TRANSPARENT
-                        || sbMode == MODE_LIGHTS_OUT_TRANSPARENT);
-                boolean allowLight = isTransparentBar;
-                boolean light = (vis & View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR) != 0;
-                boolean animate = true;
-
-                mSlimIconController.setIconsDark(allowLight && light, animate);
-            }
-        }
-
-        super.setSystemUiVisibility(vis, fullscreenStackVis, dockedStackVis, mask,
-                fullscreenStackBounds, dockedStackBounds);
     }
 
     @Override
