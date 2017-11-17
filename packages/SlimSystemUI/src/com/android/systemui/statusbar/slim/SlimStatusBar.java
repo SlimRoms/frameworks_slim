@@ -332,7 +332,6 @@ public class SlimStatusBar extends StatusBar implements
     
     @Override
     protected void createNavigationBar() {
-        Log.d("TEST", "createNavigationBar");
         if (mSlimNavigationBarView == null && !mNavigationBarAttached) {
         mSlimNavigationBarView = SlimNavigationBarFragment.create(mContext, (tag, fragment) -> {
             mSlimNavBar = (SlimNavigationBarFragment) fragment;
