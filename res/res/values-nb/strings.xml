@@ -18,8 +18,13 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <!-- Labels for the WRITE_SETTINGS permission -->
   <string name="permlab_writeSettings">endre Slim systeminnstillinger</string>
+  <string name="permdesc_writeSettings">Gir en app tilgang til å endre Slim systeminnstillinger.</string>
   <!-- Labels for the WRITE_SECURE_SETTINGS permission -->
+  <string name="permdesc_writeSecureSettings">Gir en app tilgang til å endre Slim sikkerhets-systeminnstillinger. Tilgangen bør ikke gis til normale apper.</string>
   <!-- General Strings -->
+  <string name="reset">Tilbakestill</string>
+  <string name="disabled">Deaktivert</string>
+  <string name="help">Hjelp</string>
   <!-- Settings categories -->
   <!-- Shortcut actions -->
   <!-- Button shorcut actions -->

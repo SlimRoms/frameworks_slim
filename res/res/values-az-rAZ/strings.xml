@@ -35,10 +35,65 @@
   <string name="shortcut_action_ring_vib_silent">Zəng/Vibrasiya/Səssiz</string>
   <string name="shortcut_action_media_next">Musiqi - növbəti mahnı</string>
   <string name="shortcut_action_media_play_pause">Musiqi - başlat/saxla</string>
+  <string name="shortcut_action_media_previous">Musiqi - əvvəlki mahnı</string>
+  <string name="shortcut_action_wake_device">Cihazı oyandır</string>
+  <string name="shortcut_action_kill">Tətbiqi sonlandır</string>
+  <string name="shortcut_action_screenshot">Ekran şəkli</string>
+  <string name="shortcut_action_lastapp">Son tətbiq</string>
+  <string name="shortcut_action_notifications">Bildirişlər</string>
+  <string name="shortcut_action_qs">Cəld tənzimləmələr paneli</string>
+  <string name="shortcut_action_longpress">Uzun basma:</string>
+  <string name="shortcut_action_doubletap">Cüt toxunma:</string>
+  <string name="shortcut_action_select_action_longpress">Uzun basma hərəkətini seç:</string>
+  <string name="shortcut_action_select_action_doubletap">Cüt toxunma hərəkətini seç:</string>
+  <string name="shortcut_action_select_action">Hərəkəti seç:</string>
+  <string name="shortcut_action_select_action_newaction">Yeni hərəkəti seçin:</string>
+  <string name="shortcut_action_reset">Sıfırla</string>
+  <string name="shortcut_action_add">Əlavə et</string>
+  <string name="shortcut_action_reset_message">Bütün girişlər ilkin vəziyyətə qaytarılsın mı?</string>
+  <string name="shortcut_action_max">Maksimal giriş həcminə çatdı</string>
+  <string name="shortcut_action_warning">Xәbәrdarlıq</string>
+  <string name="shortcut_action_warning_message">Son girişi silmək mümkün deyil</string>
+  <string name="shortcuts_icon_default">İlkin</string>
+  <string name="shortcuts_icon_presets">Sistem nişanları</string>
+  <string name="shortcuts_icon_custom">Qalereya</string>
+  <string name="shortcuts_icon_picker_choose_icon_title">Nişan seç</string>
+  <string name="shortcuts_icon_picker_alarm">Zəngli saat</string>
+  <string name="shortcuts_icon_picker_andy">Andy</string>
+  <string name="shortcuts_icon_picker_battery">Batareya</string>
+  <string name="shortcuts_icon_picker_calendar">Təqvim</string>
+  <string name="shortcuts_icon_picker_camera">Kamera</string>
+  <string name="shortcuts_icon_picker_cloud">Bulud</string>
+  <string name="shortcuts_icon_picker_phone">Telefon</string>
+  <string name="shortcuts_icon_picker_package">Paket</string>
+  <string name="shortcuts_icon_picker_pinterest">Pinterest</string>
+  <string name="shortcuts_icon_picker_play">Oynat</string>
+  <string name="shortcuts_icon_picker_pocket">Cib</string>
+  <string name="shortcuts_icon_picker_quicksettings">Cəld Tənzimləmələr</string>
+  <string name="shortcuts_icon_picker_rss">RSS Kanalı</string>
+  <string name="shortcuts_icon_picker_sdcard">SDKart</string>
+  <string name="shortcuts_icon_picker_search">Axtar</string>
+  <string name="shortcuts_icon_picker_sms">Mesaşlaşma</string>
+  <string name="shortcuts_icon_picker_tasks">Tapşırıqlar</string>
+  <string name="shortcuts_icon_picker_terminal">Terminal</string>
+  <string name="shortcuts_icon_picker_transit">Tranzit</string>
+  <string name="shortcuts_icon_picker_tv">TV</string>
+  <string name="shortcuts_icon_picker_twitter">Twitter</string>
+  <string name="shortcuts_icon_picker_unlock">Kilidi aç</string>
   <!-- Button shorcut actions -->
+  <string name="shortcut_action_back">Geri</string>
+  <string name="shortcut_action_home">Əsas ekran</string>
+  <string name="shortcut_action_power_menu">Güc menyusu</string>
+  <string name="shortcut_action_camera">Kamera</string>
+  <string name="shortcut_action_assist">Axtar</string>
+  <string name="shortcut_action_search">Tətbiqlərdə axtar</string>
+  <string name="shortcut_action_voice_search">Səsli axtarış</string>
   <!-- Icon color options -->
+  <string name="icon_color_mode_system_icons">Sistem nişanları</string>
   <!-- Slimseekbar -->
+  <string name="default_string">İlkin</string>
   <!-- Color Picker -->
+  <string name="dialog_color_picker">Rəng Seçici</string>
   <!-- Proximity speaker -->
   <!-- Slim Doze-->
   <!-- Increasing ring tone volume -->

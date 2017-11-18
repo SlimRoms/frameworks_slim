@@ -27,18 +27,20 @@
   <string name="disabled">Išjungta</string>
   <string name="help">Pagalba</string>
   <string name="attention">Dėmesio</string>
-  <string name="reset_message">Iš naujo nustatyti visus įrašus pagal nutylėjimą?</string>
+  <string name="reset_message">Iš naujo nustatyti visus įrašus pagal numatytus nustatymus?</string>
   <string name="help_label">Pagalba &amp; atsiliepimai</string>
+  <string name="no_home_key">Jūs nebeturite jokio mygtuko paskirto \"Pradžios\" veiksmui!\n\nTai gali padaryti prietaisą nenaudojamą!</string>
+  <string name="no_back_key">Jūs nebeturite jokio mygtuko paskirto \"Atgal\" veiksmui!\n\nTai gali padaryti prietaisą nenaudojamą!</string>
   <!-- Settings categories -->
   <string name="settings_header_category_personalization">Personalizavimas</string>
   <!-- Shortcut actions -->
-  <string name="shortcut_action_none">Nieko nėra</string>
+  <string name="shortcut_action_none">Jokio</string>
   <string name="shortcut_action_menu">Meniu</string>
   <string name="shortcut_action_ring_vib">Skambinti/Vibruoti</string>
-  <string name="shortcut_action_ring_silent">Skambėti/Tylėti</string>
-  <string name="shortcut_action_ring_vib_silent">Skambėti/Vibruoti/Tylėti</string>
+  <string name="shortcut_action_ring_silent">Skambėti/Tylus</string>
+  <string name="shortcut_action_ring_vib_silent">Skambėti/Vibruoti/Tylus</string>
   <string name="shortcut_action_media_next">Muzika - sekanti daina</string>
-  <string name="shortcut_action_media_play_pause">Muzika - paleisti/sustabdyti</string>
+  <string name="shortcut_action_media_play_pause">Muzika - paleisti/pauzė</string>
   <string name="shortcut_action_media_previous">Muzika - ankstesnė daina</string>
   <string name="shortcut_action_wake_device">Pažadinti įrenginį</string>
   <string name="shortcut_action_kill">Uždaryti programą</string>
@@ -49,20 +51,29 @@
   <string name="shortcut_action_longpress">Ilgas paspaudimas:</string>
   <string name="shortcut_action_doubletap">Dvigubas bakstelėjimas:</string>
   <string name="shortcut_action_select_action_longpress">Pasirinkite ilgo paspaudimo veiksmą:</string>
-  <string name="shortcut_action_select_action_doubletap">Pasirinkite dukart bakstelėjimo veiksmą:</string>
+  <string name="shortcut_action_select_action_doubletap">Pasirinkite dvigubo bakstelėjimo veiksmą:</string>
   <string name="shortcut_action_select_action">Pasirinkite veiksmą:</string>
   <string name="shortcut_action_select_action_newaction">Pasirinkite naują veiksmą:</string>
   <string name="shortcut_action_reset">Atstatyti</string>
   <string name="shortcut_action_add">Pridėti</string>
-  <string name="shortcut_action_reset_message">Iš naujo nustatyti visus įrašus pagal nutylėjimą?</string>
+  <string name="shortcut_action_reset_message">Iš naujo nustatyti visus įrašus pagal numatytus nustatymus?</string>
   <string name="shortcut_action_max">Pasiektas maksimalus įrašų dydis</string>
   <string name="shortcut_action_warning">Įspėjimas</string>
+  <string name="shortcut_action_warning_message">Neįmanoma panaikinti paskutinio įrašo</string>
+  <string name="shortcut_action_required_warning_message">Neįmanoma panaikinti reikalaujamų mygtukų</string>
+  <string name="shortcut_action_disable_message">Neigalintas\nPridėti įrašą, norėdami įjungti šią funkciją</string>
+  <string name="shortcut_image_not_valid">Pasirinktą programą nepateikė galiojančios piktogramos arba nepalaiko vaizdo apkarpymo. Naudokite kitą programėlę.</string>
+  <string name="shortcut_duplicate_entry">Pasirinktas veiksmas negali būti pridėtas du kartus</string>
   <string name="shortcut_action_help_shortcut">nuoroda</string>
   <string name="shortcut_action_help_button">mygtukas</string>
   <string name="shortcut_action_help_app">programėlė</string>
+  <string name="shortcut_action_help_icon">, kol rinksitės piktogramą parodys tinkinimo pasirinkčių</string>
+  <string name="shortcut_action_help_main">Kad pridėti a %1$s, pasirinkite pridėti piktogramą. Kai %1$s yra pridėta, pasirenkama eilutė pakeis %2$s\n\n kad panaikinti a %1$s, braukite eilute horizontaliai į kairę ar desinę. Pertvarkyti %1$s saraše vertikaliai tempkite inkarą kairėje.\n\nKad ištrinti ar atstatyti į numatytą, pasirinkite atstatyti pasirinkimą.</string>
+  <string name="shortcut_action_help_delete_last_entry">Pašalinant kiekvieną %1$s sąraše, funkcija bus visiškai panakinta.</string>
+  <string name="shortcut_action_help_pie_second_layer_delete_last_entry">Pašalinant kiekvieną %1$s sąraše, antrasis pie sluoksnis bus visiškai panakintas.</string>
   <string name="shortcuts_applications">Programėlės</string>
   <string name="shortcuts_select_custom_app_title">Pasirinkite programėlę</string>
-  <string name="shortcuts_icon_picker_type">Pasirinkite piktogramą tipą:</string>
+  <string name="shortcuts_icon_picker_type">Pasirinkite piktogramos tipą:</string>
   <string name="shortcuts_icon_default">Numatytasis</string>
   <string name="shortcuts_icon_presets">Sistemos piktogramos</string>
   <string name="shortcuts_icon_custom">Galerija</string>
@@ -80,21 +91,21 @@
   <string name="shortcuts_icon_picker_drive">Diskas</string>
   <string name="shortcuts_icon_picker_dropbox">Dropbox</string>
   <string name="shortcuts_icon_picker_email">El. paštas</string>
-  <string name="shortcuts_icon_picker_email2">El. paštas pavaduotojas</string>
+  <string name="shortcuts_icon_picker_email2">El. paštas alternatyva</string>
   <string name="shortcuts_icon_picker_evernote">Evernote</string>
   <string name="shortcuts_icon_picker_facebook">Facebook</string>
   <string name="shortcuts_icon_picker_favorite">Mėgstamiausi</string>
   <string name="shortcuts_icon_picker_file_browser">Failų naršyklė</string>
-  <string name="shortcuts_icon_picker_file_browser2">Failų naršyklės alternatyvos</string>
+  <string name="shortcuts_icon_picker_file_browser2">Failų naršyklės alternatyva</string>
   <string name="shortcuts_icon_picker_fitness">Fitnesas</string>
   <string name="shortcuts_icon_picker_gallery">Galerija</string>
-  <string name="shortcuts_icon_picker_gears">Pavaros</string>
+  <string name="shortcuts_icon_picker_gears">Įrankiai</string>
   <string name="shortcuts_icon_picker_google_small">Google</string>
   <string name="shortcuts_icon_picker_gplus">Google Plus</string>
   <string name="shortcuts_icon_picker_gtalk">Hangouts</string>
   <string name="shortcuts_icon_picker_help">Pagalba</string>
   <string name="shortcuts_icon_picker_joystick">Vairalazdė</string>
-  <string name="shortcuts_icon_picker_key">Raktai/paskyros</string>
+  <string name="shortcuts_icon_picker_key">Mygtukai/paskyros</string>
   <string name="shortcuts_icon_picker_laptop">Nešiojamas kompiuteris</string>
   <string name="shortcuts_icon_picker_notes">Pastabos</string>
   <string name="shortcuts_icon_picker_luggage">Kelionės</string>
@@ -110,7 +121,7 @@
   <string name="shortcuts_icon_picker_pocket">Kišenė</string>
   <string name="shortcuts_icon_picker_quicksettings">Greitieji nustatymai</string>
   <string name="shortcuts_icon_picker_rss">RSS sklaidos kanalas</string>
-  <string name="shortcuts_icon_picker_sdcard">SDCard</string>
+  <string name="shortcuts_icon_picker_sdcard">SD Kortelė</string>
   <string name="shortcuts_icon_picker_search">Paieška</string>
   <string name="shortcuts_icon_picker_sms">Pranešimai</string>
   <string name="shortcuts_icon_picker_tasks">Užduotys</string>
@@ -124,7 +135,7 @@
   <string name="shortcut_action_app">Pasirinktinę taikomąją programą</string>
   <string name="shortcut_action_home">Pradžia</string>
   <string name="shortcut_action_navbar">Naršymo juosta</string>
-  <string name="shortcut_action_ime">Atidaryti IME perjungiklį</string>
+  <string name="shortcut_action_ime">Atidaryti IME komutatorių</string>
   <string name="shortcut_action_power_menu">Išjungimo meniu</string>
   <string name="shortcut_action_smart">Protingas atvartas</string>
   <string name="shortcut_action_recent">Paskutiniai</string>
@@ -136,7 +147,7 @@
   <string name="shortcut_action_torch">Žibintuvėlis</string>
   <string name="shortcut_action_voice_search">Paieška balsu</string>
   <string name="shortcut_action_nowontap">Google Now / Now bakstelėjus</string>
-  <string name="shortcut_action_split_screen">Padalinti ekraną</string>
+  <string name="shortcut_action_split_screen">Padalintas ekranas</string>
   <string name="shortcut_action_doze_pulse">Doze pulsas</string>
   <!-- Icon color options -->
   <string name="icon_color_mode_all_icons">Visos piktogramos</string>
@@ -145,7 +156,7 @@
   <!-- Slimseekbar -->
   <string name="default_string">Numatytas</string>
   <!-- Color Picker -->
-  <string name="dialog_color_picker">Spalvų parinkiklis</string>
+  <string name="dialog_color_picker">Spalvos parinkimas</string>
   <string name="press_color_to_apply">Paspauskite ant spalvos, kad nustatyti</string>
   <string name="hex">Hex:</string>
   <string name="set">Nustayti</string>
@@ -154,11 +165,20 @@
   <string name="display_category_prox_auto_speaker_title">Artumo garsiakalbio parinktys</string>
   <string name="prox_auto_speaker_options">Artumo garsiakalbio nustatymai</string>
   <string name="prox_auto_speaker_title">Automatinis artumo garsiakalbis</string>
-  <string name="prox_auto_speaker_summary">Įjungti garsiakalbį, kai įrenginys pašalinamas nuo veido</string>
+  <string name="prox_auto_speaker_summary">Įjungti garsiakalbį, kai įrenginys atitraukiamas nuo veido</string>
   <string name="prox_auto_speaker_delay_title">Artumo garsiakalbio užvėlynimas</string>
-  <string name="prox_auto_speaker_delay_summary">Laikui, kol garsiakalbis bus suaktyvintas</string>
+  <string name="prox_auto_speaker_delay_summary">Laiko vėlinimas kol garsiakalbis bus suaktyvintas</string>
   <string name="prox_auto_speaker_incall_only_title">Tik skambučio metu</string>
+  <string name="prox_auto_speaker_incall_only_summary_on">Išeinanttiems skambučiams, klausytojas taps aktyvus tik gaves grupės atsakymus</string>
+  <string name="prox_auto_speaker_incall_only_summary_off">Klausytojas bus aktyvus visiems skambučiams (numatytoji reikšmė)</string>
   <!-- Slim Doze-->
+  <string name="display_category_doze_options_title">Prietemos (doze) nustatymai</string>
+  <string name="doze_settings_title">Išplėstinės doze parinktys</string>
   <!-- Increasing ring tone volume -->
+  <string name="increasing_ring_volume_option_title">Didėjantis skambėjimo garsumas</string>
+  <string name="increasing_ring_min_volume_title">Pradinis garsumas</string>
+  <string name="increasing_ring_ramp_up_time_title">Didėjimo laikas</string>
   <!-- Proximity wake -->
+  <string name="proximity_wake_title">Išvengti atsitiktinio pažadinimo</string>
+  <string name="proximity_wake_summary">Patikrinti artumo jutiklio prieš pažadinant ekraną</string>
 </resources>

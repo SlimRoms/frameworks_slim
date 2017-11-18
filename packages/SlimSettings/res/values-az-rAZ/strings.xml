@@ -72,6 +72,24 @@
   <string name="app_ops_summaries_modify_clipboard">lövhəyə düzəliş etmə</string>
   <string name="app_ops_summaries_media_buttons">media düymələri</string>
   <string name="app_ops_summaries_audio_focus">səs fokusu</string>
+  <string name="app_ops_summaries_master_volume">əsas səs</string>
+  <string name="app_ops_summaries_voice_volume">danışıq səsi</string>
+  <string name="app_ops_summaries_ring_volume">zəng səsi</string>
+  <string name="app_ops_summaries_media_volume">media səsi</string>
+  <string name="app_ops_summaries_alarm_volume">zəngli saat səsi</string>
+  <string name="app_ops_summaries_notification_volume">bildiriş səsi</string>
+  <string name="app_ops_summaries_bluetooth_volume">bluetooth səsi</string>
+  <string name="app_ops_summaries_keep_awake">oyaq saxla</string>
+  <string name="app_ops_summaries_monitor_location">yeri izlə</string>
+  <string name="app_ops_summaries_monitor_high_power_location">yüksək güc yerini izlə</string>
+  <string name="app_ops_summaries_get_usage_stats">istifadə statistikalarını al</string>
+  <string name="app_ops_summaries_mute_unmute_microphone">mikrofonu səsli/səssiz et</string>
+  <string name="app_ops_summaries_toast_window">tost bildirişlərini göstər</string>
+  <string name="app_ops_summaries_project_media">medianı əks etdir</string>
+  <string name="app_ops_summaries_activate_vpn">VPN-ni aktivləşdir</string>
+  <string name="app_ops_summaries_write_wallpaper">divar kağızı yaz</string>
+  <string name="app_ops_summaries_assist_structure">köməkçi strukturu</string>
+  <string name="app_ops_summaries_assist_screenshot">köməkçi ekran şəkli</string>
   <!-- User display names for app ops codes - extension of AOSP -->
   <string name="app_ops_labels_read_sms">SMS oxuma</string>
   <string name="app_ops_labels_write_sms">SMS yazma</string>
@@ -124,8 +142,15 @@
   <string name="app_ops_labels_get_accounts">Hesabları əldə et</string>
   <string name="app_ops_labels_change_wifi">Wi-Fi aktiv et</string>
   <!-- App ops permissions -->
+  <string name="app_ops_permissions_always_ask">Həmişə soruş</string>
   <!-- App ops detail -->
+  <string name="app_ops_entry_summary"><xliff:g id="op">%1$s</xliff:g> (<xliff:g id="count">%2$s</xliff:g> istifadə edildi)</string>
+  <string name="app_ops_allowed_count"><xliff:g id="count" example="2 times">%s</xliff:g> icazə verildi</string>
+  <string name="app_ops_ignored_count"><xliff:g id="count" example="2 times">%s</xliff:g> rədd edildi</string>
+  <string name="app_ops_both_count"><xliff:g id="count">%1$s</xliff:g> icazə verildi, <xliff:g id="count">%2$s</xliff:g> rədd edildi</string>
   <!-- App ops menu options -->
+  <string name="app_ops_show_user_apps">İstifadəçi tətbiqlərini göstər</string>
+  <string name="app_ops_show_system_apps">Daxili tətbiqləri göstər</string>
   <!-- Privacy Settings Header item -->
   <!-- Privacy Guard -->
   <!-- Setting checkbox title for root access -->
@@ -136,6 +161,10 @@
   <!-- Proximity wake -->
   <string name="proximity_wake_title">Təsadüfi oyanmaların qarşısını al</string>
   <!-- Advanced reboot options -->
+  <string name="advanced_reboot_title">Qabaqcıl yenidən başlatma</string>
+  <string name="advanced_reboot_dialog_title">Qabaqcıl yenidən başlatma menyusu</string>
+  <string name="advanced_reboot_disabled">Ləğv et</string>
+  <string name="advanced_reboot_hide_on_keyguard">Kilid ekranında gizlət</string>
   <!-- Hardware keys and lights -->
   <!-- Key backlight -->
   <string name="settings_reset_button">Sıfırla</string>
@@ -149,12 +178,27 @@
   <string name="backlight_summary_enabled_with_timeout"><xliff:g id="timeout">%s</xliff:g> üçün fəaldır</string>
   <string name="backlight_summary_enabled">Aktiv</string>
   <!-- Hardware keys -->
+  <string name="keys_back_double_tap_title">Geri düyməsi (cüt toxunuş)</string>
+  <string name="keys_home_press_title">Əsas düymə</string>
+  <string name="keys_home_long_press_title">Əsas düymə (uzun basma)</string>
+  <string name="keys_home_double_tap_title">Əsas düymə (cüt toxunuş)</string>
+  <string name="keys_menu_press_title">Menyu düyməsi</string>
+  <string name="keys_menu_long_press_title">Menyu düyməsi (uzun basma)</string>
+  <string name="keys_menu_double_tap_title">Menyu düyməsi (cüt toxunuş)</string>
+  <string name="keys_assist_press_title">Axtarış düyməsi</string>
   <!-- Slim Shortcuts -->
   <!-- Chamber of Secrets -->
   <!-- Device specific settings -->
   <!-- Status bar -->
+  <string name="status_bar_title">Status sətri</string>
+  <string name="status_bar_style_title">Status sətri stili</string>
   <!-- Status bar - Battery Options -->
+  <string name="battery_icon_options_title">Batereya nişanı seçimləri</string>
   <!-- Status bar - Battery Style -->
+  <string name="status_bar_battery_style_title">Batereya status stili</string>
+  <string name="status_bar_battery_style_circle">Dairə</string>
+  <string name="status_bar_battery_style_dotted_circle">Nöqtəli dairə</string>
+  <string name="status_bar_battery_style_text">Mətn</string>
   <string name="status_bar_battery_style_hidden">Gizli</string>
   <string name="status_bar_battery_style_icon_portrait">Şaquli ikon</string>
   <string name="status_bar_battery_style_icon_landscape">Üfüqi ikon</string>
@@ -179,9 +223,11 @@
   <string name="navigation_menu_right">Sağ</string>
   <string name="navigation_menu_left">Sol</string>
   <string name="navigation_menu_both">Hər ikisi</string>
+  <string name="navigation_menu_default_jb_behavior">Tələb ediləndə göstər (İlkin)</string>
   <string name="navigation_menu_never_show">Heç vaxt göstərmə</string>
   <string name="navigation_menu_always_show">Həmişə göstər</string>
   <string name="navbar_button_cat">Naviqasiya paneli düymələri</string>
+  <string name="title_pref_menu_location">Menyu yeri</string>
   <string name="navbar_enable_bar">Naviqasiya panelini aktivləşdir</string>
   <string name="navbar_enable_bar_summary">Naviqasiya panelini aktivləşdir</string>
   <string name="navbar_style_dimen_title">Ölçülər</string>

@@ -17,12 +17,17 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <!-- Common strings -->
+  <string name="disabled">Онемогућено је</string>
+  <string name="menu_cancel">Одбаци</string>
+  <string name="advanced_settings">Напредно</string>
   <!-- Common color picker strings -->
   <!-- Slim settings screens -->
+  <string name="interface_settings_title">Интерфејс</string>
   <!-- Navigation settings -->
   <!-- Names of categories of app ops tabs - extension of AOSP -->
   <string name="app_ops_categories_media">Медији</string>
   <string name="app_ops_categories_device">Уређај</string>
+  <string name="app_ops_categories_su">Суперкорисник</string>
   <!-- User display names for app ops codes - extension of AOSP -->
   <string name="app_ops_summaries_gps">GPS</string>
   <string name="app_ops_summaries_vibrate">вибрација</string>

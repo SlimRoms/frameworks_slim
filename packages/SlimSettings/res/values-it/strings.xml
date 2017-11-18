@@ -466,6 +466,7 @@
   <!--string name="doze_trigger_doubletap_title">Double tap trigger</string-->
   <!--string name="doze_trigger_doubletap_summary_on">Doze pulse will be triggered by a double tap</string-->
   <!--string name="doze_trigger_doubletap_summary_off">Double tap sensor will not be utilized as a triggering mechanism (default)</string-->
+  <string name="doze_trigger_hand_wave_title">Innesco da gesto d\'onda a mano</string>
   <string name="doze_trigger_hand_wave_summary_on">Doze verrà attivato da un gesto della mano (predefinito)</string>
   <string name="doze_trigger_hand_wave_summary_off">Lo schermo non si riattiva quando il dispositivo viene sollevato</string>
   <string name="doze_trigger_pocket_summary_off">Estrarre il device dalla tasca non sarà utilizzato come meccanismo di innesco</string>
