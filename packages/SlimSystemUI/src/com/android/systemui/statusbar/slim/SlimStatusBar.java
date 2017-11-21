@@ -573,8 +573,13 @@ public class SlimStatusBar extends StatusBar implements
     
     @Override
     public void toggleRecents() {
-        Recents recents = SysUiServiceProvider.getComponent(mContext, Recents.class);
-        recents.toggleRecentApps();
+        if  (mSlimRecents != null) {
+            sendCloseSystemWindows(mContext, SYSTEM_DIALOG_REASON_RECENT_APPS);
+            mSlimRecents.toggleRecents(mDisplay, mLayoutDirection, getStatusBarView());
+        } else {
+            Recents recents = SysUiServiceProvider.getComponent(mContext, Recents.class);
+            recents.toggleRecentApps();
+        }
     }
 
     protected class H extends Handler {
