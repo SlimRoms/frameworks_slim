@@ -22,7 +22,7 @@ import android.animation.LayoutTransition.TransitionListener;
 import android.animation.ObjectAnimator;
 import android.animation.TimeInterpolator;
 import android.animation.ValueAnimator;
-import android.app.ActivityManagerNative;
+import android.app.ActivityManager;
 import android.app.KeyguardManager;
 import android.app.StatusBarManager;
 import android.app.admin.DevicePolicyManager;
@@ -517,11 +517,13 @@ public class SlimNavigationBarView extends NavigationBarView {
         return padding;
     }
 
-    private LayoutParams getLayoutParams(boolean landscape, int dp) {
+    private LinearLayout.LayoutParams getLayoutParams(boolean landscape, int dp) {
         float px = dp * getResources().getDisplayMetrics().density;
         return landscape ?
-                new LayoutParams(LayoutParams.MATCH_PARENT, dp) :
-                new LayoutParams(dp, LayoutParams.MATCH_PARENT);
+                new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT,
+                        LayoutParams.WRAP_CONTENT) :
+                new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT,
+                        LayoutParams.MATCH_PARENT, 1.0f);
     }
 
     private LayoutParams getSeparatorLayoutParams(boolean landscape) {
@@ -629,7 +631,7 @@ public class SlimNavigationBarView extends NavigationBarView {
 
     private boolean inLockTask() {
         try {
-            return ActivityManagerNative.getDefault().isInLockTaskMode();
+            return ActivityManager.getService().isInLockTaskMode();
         } catch (RemoteException e) {
             return false;
         }
@@ -662,7 +664,7 @@ public class SlimNavigationBarView extends NavigationBarView {
                 return;
             }
             WindowManager wm = (WindowManager)getContext().getSystemService(Context.WINDOW_SERVICE);
-            wm.updateViewLayout(this, lp);
+            wm.updateViewLayout((View) getParent(), lp);
         }
     }
 
@@ -688,8 +690,10 @@ public class SlimNavigationBarView extends NavigationBarView {
                 && shouldShow)
                 || mOverrideMenuKeys;
 
-        leftMenuKeyView.setVisibility(showLeftMenuButton ? View.VISIBLE : View.INVISIBLE);
-        rightMenuKeyView.setVisibility(showRightMenuButton ? View.VISIBLE : View.INVISIBLE);
+        if (leftMenuKeyView != null)
+            leftMenuKeyView.setVisibility(showLeftMenuButton ? View.VISIBLE : View.INVISIBLE);
+        if (rightMenuKeyView != null)
+            rightMenuKeyView.setVisibility(showRightMenuButton ? View.VISIBLE : View.INVISIBLE);
         mShowMenu = show;
     }
 
