@@ -75,7 +75,9 @@ import com.android.systemui.stackdivider.WindowManagerProxy;
 import com.android.systemui.statusbar.ExpandableNotificationRow;
 import com.android.systemui.statusbar.SlimNotificationGuts;
 import com.android.systemui.statusbar.StatusBarState;
+import com.android.systemui.statusbar.phone.SlimNavigationBarFragment;
 import com.android.systemui.statusbar.phone.SlimNavigationBarView;
+import com.android.systemui.statusbar.phone.LightBarController;
 import com.android.systemui.statusbar.phone.NavigationBarView;
 import com.android.systemui.statusbar.phone.StatusBar;
 import com.android.systemui.statusbar.phone.PhoneStatusBarView;
@@ -106,7 +108,8 @@ public class SlimStatusBar extends StatusBar implements
     protected static final int MSG_TOGGLE_KILL_APP = 11002;
     protected static final int MSG_TOGGLE_SCREENSHOT = 11003;
 
-    private SlimNavigationBarView mSlimNavigationBarView;
+    private View mSlimNavigationBarView;
+    private SlimNavigationBarFragment mSlimNavBar;
     private RecentController mSlimRecents;
     private Display mDisplay;
     private SlimCommandQueue mSlimCommandQueue;
@@ -115,12 +118,14 @@ public class SlimStatusBar extends StatusBar implements
 
     private SlimStatusBarIconController mSlimIconController;
     private SlimScreenPinningRequest mSlimScreenPinningRequest;
+    private LightBarController mLightBarController;
 
     private boolean mHasNavigationBar = false;
     private boolean mNavigationBarAttached = false;
     private boolean mDisableHomeLongpress = false;
 
     private int mDensity;
+    private int mStatusBarMode;
 
     class SettingsObserver extends ContentObserver {
         SettingsObserver(Handler handler) {
@@ -207,12 +212,12 @@ public class SlimStatusBar extends StatusBar implements
                 || uri.equals(SlimSettings.System.getUriFor(
                     SlimSettings.System.MENU_VISIBILITY))) {
                 if (mSlimNavigationBarView != null) {
-                    mSlimNavigationBarView.recreateNavigationBar();
-                    //prepareNavigationBarView();
+                    mSlimNavBar.recreateNavigationBar();
+                    mSlimNavBar.prepareNavigationBarView();
                 }
             } else if (uri.equals(SlimSettings.System.getUriFor(
                     SlimSettings.System.NAVIGATION_BAR_CAN_MOVE))) {
-                //prepareNavigationBarView();
+                mSlimNavBar.prepareNavigationBarView();
             } else if (uri.equals(SlimSettings.System.getUriFor(
                     SlimSettings.System.DIM_NAV_BUTTONS))
                 || uri.equals(SlimSettings.System.getUriFor(
@@ -226,8 +231,8 @@ public class SlimStatusBar extends StatusBar implements
                 || uri.equals(SlimSettings.System.getUriFor(
                     SlimSettings.System.DIM_NAV_BUTTONS_TOUCH_ANYWHERE))) {
                 if (mSlimNavigationBarView != null) {
-                    mSlimNavigationBarView.updateNavigationBarSettings();
-                    mSlimNavigationBarView.onNavButtonTouched();
+                    mSlimNavBar.updateNavigationBarSettings();
+                    mSlimNavBar.onNavButtonTouched();
                 }
             } else if (uri.equals(SlimSettings.System.getUriFor(
                     SlimSettings.System.NAVIGATION_BAR_SHOW))) {
@@ -246,6 +251,7 @@ public class SlimStatusBar extends StatusBar implements
                 .getDefaultDisplay();
 
         mBatteryController = Dependency.get(BatteryController.class);
+        mLightBarController = new LightBarController();
 
         updateNavigationBarVisibility();
         updateRecents();
@@ -315,14 +321,29 @@ public class SlimStatusBar extends StatusBar implements
                     UserHandle.USER_CURRENT) == 1;
 
         if (mHasNavigationBar) {
-            //addNavigationBar();
+            createNavigationBar();
             //mSlimScreenPinningRequest.setSlimNavigationBarView(mSlimNavigationBarView);
         } else {
             if (mNavigationBarAttached) {
                 mNavigationBarAttached = false;
-                mWindowManager.removeView(mSlimNavigationBarView);
+                mWindowManager.removeViewImmediate(mSlimNavigationBarView);
                 mSlimScreenPinningRequest.setSlimNavigationBarView(null);
+                mSlimNavigationBarView = null;
             }
+        }
+    }
+
+    @Override
+    protected void createNavigationBar() {
+        if (mSlimNavigationBarView == null && !mNavigationBarAttached) {
+        mSlimNavigationBarView = SlimNavigationBarFragment.create(mContext, (tag, fragment) -> {
+            mSlimNavBar = (SlimNavigationBarFragment) fragment;
+            if (mLightBarController != null) {
+                mSlimNavBar.setLightBarController(mLightBarController);
+            }
+            mSlimNavBar.setCurrentSysuiVisibility(mSystemUiVisibility);
+            mNavigationBarAttached = true;
+        });
         }
     }
 
@@ -394,33 +415,6 @@ public class SlimStatusBar extends StatusBar implements
         return lp;
     }
 
-    /*@Override
-    public void setSystemUiVisibility(int vis, int fullscreenStackVis, int dockedStackVis,
-            int mask, Rect fullscreenStackBounds, Rect dockedStackBounds) {
-        final int oldVal = 0;
-        final int newVal = (oldVal&~mask | vis&mask);
-        final int diff = newVal ^ oldVal;
-
-        if (diff != 0) {
-            final int sbMode = computeBarMode(oldVal, newVal, mStatusBarWindow.getBarTransitions(),
-                    View.STATUS_BAR_TRANSIENT, View.STATUS_BAR_TRANSLUCENT,
-                    View.STATUS_BAR_TRANSPARENT);
-            final boolean sbModeChanged = sbMode != -1;
-            if ((diff & View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR) != 0 || sbModeChanged) {
-                boolean isTransparentBar = (mStatusBarMode == MODE_TRANSPARENT
-                        || sbMode == MODE_LIGHTS_OUT_TRANSPARENT);
-                boolean allowLight = isTransparentBar;
-                boolean light = (vis & View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR) != 0;
-                boolean animate = true;
-
-                mSlimIconController.setIconsDark(allowLight && light, animate);
-            }
-        }
-
-        super.setSystemUiVisibility(vis, fullscreenStackVis, dockedStackVis, mask,
-                fullscreenStackBounds, dockedStackBounds);
-    }*/
-
     @Override
     protected void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
@@ -428,7 +422,7 @@ public class SlimStatusBar extends StatusBar implements
         final int density = newConfig.densityDpi;
         if (density != mDensity) {
             mDensity = density;
-            mSlimNavigationBarView.recreateNavigationBar();
+            mSlimNavBar.recreateNavigationBar();
             rebuildRecentsScreen();
         }
     }

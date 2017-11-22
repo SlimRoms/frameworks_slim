@@ -3,7 +3,7 @@
 /* apps/common/assets/default/default/skins/StatusBar.xml
 **
 ** Copyright 2011, The Android Open Source Project
-** Copyright (C) 2016 SlimRoms Project
+** Copyright (C) 2016-2017 SlimRoms Project
 **
 ** Licensed under the Apache License, Version 2.0 (the "License");
 ** you may not use this file except in compliance with the License.
@@ -38,84 +38,7 @@
             android:clipChildren="false"
             android:clipToPadding="false"
             android:id="@+id/nav_buttons"
-            android:animateLayoutChanges="true"
-            >
-
-            <!-- navigation controls -->
-            <com.android.systemui.statusbar.slim.SlimKeyButtonView android:id="@+id/menu_left"
-                android:layout_width="@dimen/navigation_side_padding"
-                android:layout_height="match_parent"
-                android:src="@drawable/ic_sysbar_menu"
-                systemui:keyCode="82"
-                android:layout_weight="0"
-                android:visibility="invisible"
-                android:contentDescription="@string/accessibility_menu" />
-            <com.android.systemui.statusbar.slim.SlimKeyButtonView android:id="@+id/back"
-                android:layout_width="@dimen/navigation_key_width"
-                android:layout_height="match_parent"
-                android:src="@drawable/ic_sysbar_back"
-                systemui:keyCode="4"
-                android:layout_weight="0"
-                android:scaleType="center"
-                android:contentDescription="@string/accessibility_back"
-                />
-            <View
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:visibility="invisible"
-                />
-            <com.android.systemui.statusbar.slim.SlimKeyButtonView android:id="@+id/home"
-                android:layout_width="@dimen/navigation_key_width"
-                android:layout_height="match_parent"
-                android:src="@drawable/ic_sysbar_home"
-                systemui:keyCode="3"
-                systemui:keyRepeat="false"
-                android:layout_weight="0"
-                android:scaleType="center"
-                android:contentDescription="@string/accessibility_home"
-                />
-            <View
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:visibility="invisible"
-                />
-            <com.android.systemui.statusbar.slim.SlimKeyButtonView android:id="@+id/recent_apps"
-                android:layout_width="@dimen/navigation_key_width"
-                android:layout_height="match_parent"
-                android:src="@drawable/ic_sysbar_recent"
-                android:layout_weight="0"
-                android:scaleType="center"
-                android:contentDescription="@string/accessibility_recent"
-                />
-            <FrameLayout
-                android:layout_width="@dimen/navigation_side_padding"
-                android:layout_height="match_parent"
-                android:layout_weight="0" >
-                <com.android.systemui.statusbar.slim.SlimKeyButtonView
-                    android:id="@+id/menu"
-                    android:layout_width="@dimen/navigation_extra_key_width"
-                    android:layout_height="match_parent"
-                    android:contentDescription="@string/accessibility_menu"
-                    android:src="@drawable/ic_sysbar_menu"
-                    android:visibility="invisible"
-                    android:scaleType="centerInside"
-                    android:layout_gravity="end"
-                    systemui:keyCode="82" />
-
-                <com.android.systemui.statusbar.slim.SlimKeyButtonView
-                    android:id="@+id/ime_switcher"
-                    android:layout_width="@dimen/navigation_extra_key_width"
-                    android:layout_height="match_parent"
-                    android:contentDescription="@string/accessibility_ime_switch_button"
-                    android:scaleType="centerInside"
-                    android:src="@drawable/ic_ime_switcher_default"
-                    android:visibility="invisible"
-                    android:layout_gravity="end" />
-            </FrameLayout>
-
-        </LinearLayout>
+            android:animateLayoutChanges="true" />
 
         <com.android.systemui.statusbar.policy.DeadZone
             android:id="@+id/deadzone"
@@ -144,82 +67,7 @@
             android:clipChildren="false"
             android:clipToPadding="false"
             android:id="@+id/nav_buttons"
-            android:animateLayoutChanges="true"
-            >
-
-            <!-- navigation controls -->
-            <FrameLayout
-                android:layout_weight="0"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/navigation_side_padding" >
-                <com.android.systemui.statusbar.slim.SlimKeyButtonView
-                    android:id="@+id/ime_switcher"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/navigation_extra_key_width"
-                    android:contentDescription="@string/accessibility_ime_switch_button"
-                    android:scaleType="centerInside"
-                    android:src="@drawable/ic_ime_switcher_default"
-                    android:layout_gravity="top"
-                    android:visibility="invisible" />
-
-                <com.android.systemui.statusbar.slim.SlimKeyButtonView
-                    android:id="@+id/menu"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:contentDescription="@string/accessibility_menu"
-                    android:src="@drawable/ic_sysbar_menu"
-                    android:scaleType="centerInside"
-                    android:layout_gravity="top"
-                    android:visibility="invisible"
-                    systemui:keyCode="82" />
-            </FrameLayout>
-
-            <com.android.systemui.statusbar.slim.SlimKeyButtonView android:id="@+id/recent_apps"
-                android:layout_height="@dimen/navigation_key_width"
-                android:layout_width="match_parent"
-                android:src="@drawable/ic_sysbar_recent"
-                android:scaleType="center"
-                android:layout_weight="0"
-                android:contentDescription="@string/accessibility_recent"
-                />
-            <View
-                android:layout_height="match_parent"
-                android:layout_width="match_parent"
-                android:layout_weight="1"
-                android:visibility="invisible"
-                />
-            <com.android.systemui.statusbar.slim.SlimKeyButtonView android:id="@+id/home"
-                android:layout_height="@dimen/navigation_key_width"
-                android:layout_width="match_parent"
-                android:src="@drawable/ic_sysbar_home"
-                android:scaleType="center"
-                systemui:keyCode="3"
-                systemui:keyRepeat="false"
-                android:layout_weight="0"
-                android:contentDescription="@string/accessibility_home"
-                />
-            <View
-                android:layout_height="match_parent"
-                android:layout_width="match_parent"
-                android:layout_weight="1"
-                android:visibility="invisible"
-                />
-            <com.android.systemui.statusbar.slim.SlimKeyButtonView android:id="@+id/back"
-                android:layout_height="@dimen/navigation_key_width"
-                android:layout_width="match_parent"
-                android:src="@drawable/ic_sysbar_back"
-                android:scaleType="center"
-                systemui:keyCode="4"
-                android:layout_weight="0"
-                android:contentDescription="@string/accessibility_back"
-                />
-            <View
-                android:layout_height="@dimen/navigation_side_padding"
-                android:layout_width="match_parent"
-                android:layout_weight="0"
-                android:visibility="invisible"
-                />
-        </LinearLayout>
+            android:animateLayoutChanges="true" />
 
         <com.android.systemui.statusbar.policy.DeadZone
             android:id="@+id/deadzone"
