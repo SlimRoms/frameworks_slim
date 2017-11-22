@@ -526,7 +526,7 @@ public class SlimStatusBar extends StatusBar implements
                 SlimSettings.System.USE_SLIM_RECENTS, 1, UserHandle.USER_CURRENT) == 1;
 
         if (slimRecents) {
-            mSlimRecents = new RecentController(mContext, mLayoutDirection);
+            mSlimRecents = new RecentController(mContext);
             mRecents = null;
             //mSlimRecents.setCallback(this);
             rebuildRecentsScreen();
@@ -570,23 +570,12 @@ public class SlimStatusBar extends StatusBar implements
         mHandler.removeMessages(msg);
         mHandler.sendEmptyMessage(msg);
     }
-    
-    @Override
-    public void toggleRecents() {
-        if  (mSlimRecents != null) {
-            sendCloseSystemWindows(mContext, SYSTEM_DIALOG_REASON_RECENT_APPS);
-            mSlimRecents.toggleRecents(mDisplay, mLayoutDirection, getStatusBarView());
-        } else {
-            Recents recents = SysUiServiceProvider.getComponent(mContext, Recents.class);
-            recents.toggleRecentApps();
-        }
-    }
 
     @Override
     public void toggleRecents() {
         if  (mSlimRecents != null) {
             sendCloseSystemWindows(mContext, SYSTEM_DIALOG_REASON_RECENT_APPS);
-            mSlimRecents.toggleRecents(mDisplay, mLayoutDirection, getStatusBarView());
+            mSlimRecents.toggleRecentApps();
         } else {
             Recents recents = SysUiServiceProvider.getComponent(mContext, Recents.class);
             recents.toggleRecentApps();
