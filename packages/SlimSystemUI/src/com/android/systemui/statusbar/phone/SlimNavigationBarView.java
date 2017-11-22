@@ -272,10 +272,10 @@ public class SlimNavigationBarView extends NavigationBarView {
                 mContext.getSystemService(Context.KEYGUARD_SERVICE);
     }
 
-    /*@Override
-    public SlimNavigationBarTransitions getBarTransitions() {
+    @Override
+    public NavigationBarTransitions getBarTransitions() {
         return mBarTransitions;
-    }*/
+    }
 
     @Override
     protected void onAttachedToWindow() {
@@ -569,6 +569,8 @@ public class SlimNavigationBarView extends NavigationBarView {
         setMenuVisibility(mShowMenu, true);
 
         setDisabledFlags(mDisabledFlags, true);
+        
+        mBarTransitions.reapplyDarkIntensity();
     }
 
     private void updateBackButton(View button, boolean backAlt) {
@@ -588,7 +590,8 @@ public class SlimNavigationBarView extends NavigationBarView {
         final boolean disableHome = ((disabledFlags & View.STATUS_BAR_DISABLE_HOME) != 0);
         boolean disableRecent = ((disabledFlags & View.STATUS_BAR_DISABLE_RECENT) != 0);
         final boolean disableBack = ((disabledFlags & View.STATUS_BAR_DISABLE_BACK) != 0)
-                && ((mNavigationIconHints & StatusBarManager.NAVIGATION_HINT_BACK_ALT) == 0);
+                && ((mNavigationIconHints
+                        & StatusBarManager.NAVIGATION_HINT_BACK_ALT) == 0);
         final boolean keyguardProbablyEnabled =
                 (mDisabledFlags & View.STATUS_BAR_DISABLE_HOME) != 0;
 
