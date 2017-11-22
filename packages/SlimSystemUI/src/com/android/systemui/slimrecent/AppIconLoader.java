@@ -1,6 +1,7 @@
 /*
  * Copyright (C) 2014-2017 SlimRoms Project
  * Author: Lars Greiss - email: kufikugel@googlemail.com
+ * Copyright (C) 2017 ABC rom
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -19,7 +20,7 @@ package com.android.systemui.slimrecent;
 
 import android.content.Context;
 import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
+import android.content.pm.ActivityInfo;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
@@ -82,7 +83,7 @@ public class AppIconLoader {
      * @params packageName
      * @params imageView
      */
-    protected void loadAppIcon(ResolveInfo info, String identifier,
+    protected void loadAppIcon(ActivityInfo info, String identifier,
             IconCallback callback, float scaleFactor) {
         final BitmapDownloaderTask task =
                 new BitmapDownloaderTask(callback, mContext, scaleFactor, identifier);
@@ -92,7 +93,8 @@ public class AppIconLoader {
     /**
      * Loads the actual app icon.
      */
-    private static Drawable getAppIcon(ResolveInfo info, Context context, float scaleFactor) {
+    private static Drawable getAppIcon(ActivityInfo info,
+            Context context, float scaleFactor) {
         if (context == null) {
             return null;
         }
@@ -106,7 +108,8 @@ public class AppIconLoader {
                 com.android.internal.R.mipmap.sym_def_app_icon);
     }
 
-    private static Drawable getFullResIcon(Context context, Resources resources, int iconId) {
+    private static Drawable getFullResIcon(Context context,
+            Resources resources, int iconId) {
         try {
             return resources.getDrawableForDensity(iconId,
                     context.getResources().getDisplayMetrics().densityDpi);
@@ -116,20 +119,7 @@ public class AppIconLoader {
     }
 
     private static Drawable getFullResIcon(Context context,
-            ResolveInfo info, PackageManager packageManager) {
-        Resources resources;
-        try {
-            resources = packageManager.getResourcesForApplication(
-                    info.activityInfo.applicationInfo);
-        } catch (PackageManager.NameNotFoundException e) {
-            resources = null;
-        }
-        if (resources != null) {
-            int iconId = info.activityInfo.getIconResource();
-            if (iconId != 0) {
-                return getFullResIcon(context, resources, iconId);
-            }
-        }
+            ActivityInfo info, PackageManager packageManager) {
         return getFullResDefaultActivityIcon(context);
     }
 
@@ -139,7 +129,8 @@ public class AppIconLoader {
      * The reality shows that a lot apps do not care about and add just one big icon for
      * all screen resolution.
      */
-    private static Drawable getResizedBitmap(Drawable source, Context context, float scaleFactor) {
+    private static Drawable getResizedBitmap(Drawable source,
+            Context context, float scaleFactor) {
         if (source == null) {
             return null;
         }
@@ -148,7 +139,8 @@ public class AppIconLoader {
                 .getDimensionPixelSize(R.dimen.recent_app_icon_size) * scaleFactor);
 
         final Bitmap bitmap = ImageHelper.drawableToBitmap(source);
-        final Bitmap scaledBitmap = Bitmap.createBitmap(iconSize, iconSize, Config.ARGB_8888);
+        final Bitmap scaledBitmap = Bitmap
+                .createBitmap(iconSize, iconSize, Config.ARGB_8888);
 
         final float ratioX = iconSize / (float) bitmap.getWidth();
         final float ratioY = iconSize / (float) bitmap.getHeight();
@@ -172,28 +164,29 @@ public class AppIconLoader {
     /**
      * AsyncTask loader for the app icon.
      */
-    private static class BitmapDownloaderTask extends AsyncTask<ResolveInfo, Void, Drawable> {
+    private static class BitmapDownloaderTask
+            extends AsyncTask<ActivityInfo, Void, Drawable> {
 
         private Drawable mAppIcon;
 
+        private IconCallback mCallback;
         private final WeakReference<Context> rContext;
 
-        //private int mOrigPri;
-
-        private IconCallback mCallback;
-
         private float mScaleFactor;
+
+        private String mLRUCacheKey;
 
         public BitmapDownloaderTask(IconCallback callback,
                 Context context, float scaleFactor, String identifier) {
             mCallback = callback;
             rContext = new WeakReference<Context>(context);
             mScaleFactor = scaleFactor;
+            mLRUCacheKey = identifier;
         }
 
         @Override
-        protected Drawable doInBackground(ResolveInfo... params) {
-            Process.setThreadPriority(Process.THREAD_PRIORITY_FOREGROUND);
+        protected Drawable doInBackground(ActivityInfo... params) {
+            Process.setThreadPriority(Process.THREAD_PRIORITY_BACKGROUND + 1);
             if (isCancelled() || rContext == null) {
                 return null;
             }
@@ -218,7 +211,13 @@ public class AppIconLoader {
             if (mCallback != null) {
                 mCallback.onDrawableLoaded(bitmap);
             }
+            if (bitmap != null && context != null
+                    && bitmap instanceof BitmapDrawable) {
+                // Put our bitmap intu LRU cache for later use.
+                CacheController.getInstance(context, null)
+                        .addBitmapToMemoryCache(
+                        mLRUCacheKey, (BitmapDrawable)bitmap);
+            }
         }
     }
-
 }
