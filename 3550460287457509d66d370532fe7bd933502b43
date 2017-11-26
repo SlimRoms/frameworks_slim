@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e087bc04_e8303599",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2017-11-26T23:52:31Z",
+      "side": 1,
+      "message": "Update what specifically? Little more details.",
+      "revId": "3550460287457509d66d370532fe7bd933502b43",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f031a63d_31186a44",
+        "filename": "packages/SlimSettings/src/com/slim/settings/preference/ButtonBacklightBrightness.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2017-11-26T23:52:31Z",
+      "side": 1,
+      "message": "If this code is yours Should add Slim\u0027s copyright under Cm\u0027s. If it\u0027s lineage\u0027s then add theirs.",
+      "revId": "3550460287457509d66d370532fe7bd933502b43",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    }
+  ]
+}
