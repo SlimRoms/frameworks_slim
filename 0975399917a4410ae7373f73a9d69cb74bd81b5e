@@ -1,0 +1,181 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d00cceef_9d12fb91",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2017-11-27T00:06:50Z",
+      "side": 1,
+      "message": "Same as before. More details on what\u0027s being changed",
+      "revId": "0975399917a4410ae7373f73a9d69cb74bd81b5e",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b0169670_3470601c",
+        "filename": "packages/SlimSystemUI/src/com/android/systemui/qs/tiles/ImeTile.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2017-11-27T00:06:50Z",
+      "side": 1,
+      "message": "Add copyright based on code originator (Slim or Lineage)",
+      "revId": "0975399917a4410ae7373f73a9d69cb74bd81b5e",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d132f0cc_f232ab0a",
+        "filename": "packages/SlimSystemUI/src/com/android/systemui/qs/tiles/ScreenshotTile.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2017-11-27T00:06:50Z",
+      "side": 1,
+      "message": "Update copyright based on code originator",
+      "revId": "0975399917a4410ae7373f73a9d69cb74bd81b5e",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d0e4cdc3_e98e4014",
+        "filename": "packages/SlimSystemUI/src/com/android/systemui/qs/tiles/SyncTile.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2017-11-27T00:06:50Z",
+      "side": 1,
+      "message": "Update copyright here as well",
+      "revId": "0975399917a4410ae7373f73a9d69cb74bd81b5e",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "61039524_e3d836ae",
+        "filename": "packages/SlimSystemUI/src/com/android/systemui/qs/tiles/UsbTetherTile.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2017-11-27T00:06:50Z",
+      "side": 1,
+      "message": "Update copyright",
+      "revId": "0975399917a4410ae7373f73a9d69cb74bd81b5e",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bfe587b6_6613a9f8",
+        "filename": "packages/SlimSystemUI/src/com/android/systemui/statusbar/slim/SlimKeyButtonRipple.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2017-11-27T00:06:50Z",
+      "side": 1,
+      "message": "Update dates",
+      "range": {
+        "startLine": 3,
+        "startChar": 17,
+        "endLine": 3,
+        "endChar": 21
+      },
+      "revId": "0975399917a4410ae7373f73a9d69cb74bd81b5e",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3220f929_95cf775f",
+        "filename": "packages/SlimSystemUI/src/com/android/systemui/statusbar/slim/SlimKeyguardStatusBarView.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2017-11-27T00:06:50Z",
+      "side": 1,
+      "message": "date",
+      "range": {
+        "startLine": 2,
+        "startChar": 16,
+        "endLine": 2,
+        "endChar": 20
+      },
+      "revId": "0975399917a4410ae7373f73a9d69cb74bd81b5e",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0b9ebd4c_13e35ccd",
+        "filename": "packages/SlimSystemUI/src/com/android/systemui/statusbar/slim/SlimStatusBarIconController.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2017-11-27T00:06:50Z",
+      "side": 1,
+      "message": "date",
+      "range": {
+        "startLine": 2,
+        "startChar": 17,
+        "endLine": 2,
+        "endChar": 21
+      },
+      "revId": "0975399917a4410ae7373f73a9d69cb74bd81b5e",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "37a1355a_661489a2",
+        "filename": "packages/SlimSystemUI/src/com/android/systemui/statusbar/slim/SlimStatusBarIconController.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2017-11-27T00:06:50Z",
+      "side": 1,
+      "message": "Just remove or comment out the full code and add new code under",
+      "range": {
+        "startLine": 50,
+        "startChar": 28,
+        "endLine": 50,
+        "endChar": 105
+      },
+      "revId": "0975399917a4410ae7373f73a9d69cb74bd81b5e",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    }
+  ]
+}
