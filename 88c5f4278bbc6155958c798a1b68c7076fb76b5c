@@ -1,0 +1,222 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a814416_29423408",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2017-11-27T00:22:21Z",
+      "side": 1,
+      "message": "More details",
+      "revId": "88c5f4278bbc6155958c798a1b68c7076fb76b5c",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cbd654d6_2e632d0e",
+        "filename": "packages/SlimSystemUI/res/layout/slim_navigation_bar.xml",
+        "patchSetId": 6
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2017-11-27T00:22:21Z",
+      "side": 1,
+      "message": "date",
+      "range": {
+        "startLine": 6,
+        "startChar": 17,
+        "endLine": 6,
+        "endChar": 21
+      },
+      "revId": "88c5f4278bbc6155958c798a1b68c7076fb76b5c",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9b112b1c_94664bd0",
+        "filename": "packages/SlimSystemUI/src/com/android/systemui/statusbar/phone/SlimNavigationBarFragment.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2017-11-27T00:22:21Z",
+      "side": 1,
+      "message": "Is this purely aosp?",
+      "revId": "88c5f4278bbc6155958c798a1b68c7076fb76b5c",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3f99ff04_29e3d923",
+        "filename": "packages/SlimSystemUI/src/com/android/systemui/statusbar/phone/SlimNavigationBarFragment.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 708,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2017-11-27T00:22:21Z",
+      "side": 1,
+      "message": "space",
+      "range": {
+        "startLine": 708,
+        "startChar": 0,
+        "endLine": 708,
+        "endChar": 4
+      },
+      "revId": "88c5f4278bbc6155958c798a1b68c7076fb76b5c",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d430edc0_8b846f17",
+        "filename": "packages/SlimSystemUI/src/com/android/systemui/statusbar/phone/SlimNavigationBarFragment.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 712,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2017-11-27T00:22:21Z",
+      "side": 1,
+      "message": "space",
+      "range": {
+        "startLine": 712,
+        "startChar": 0,
+        "endLine": 712,
+        "endChar": 4
+      },
+      "revId": "88c5f4278bbc6155958c798a1b68c7076fb76b5c",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3d423951_2890ba52",
+        "filename": "packages/SlimSystemUI/src/com/android/systemui/statusbar/phone/SlimNavigationBarFragment.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 716,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2017-11-27T00:22:21Z",
+      "side": 1,
+      "message": "dead space",
+      "range": {
+        "startLine": 716,
+        "startChar": 0,
+        "endLine": 716,
+        "endChar": 4
+      },
+      "revId": "88c5f4278bbc6155958c798a1b68c7076fb76b5c",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cea1ea2a_fd638761",
+        "filename": "packages/SlimSystemUI/src/com/android/systemui/statusbar/phone/SlimNavigationBarView.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 572,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2017-11-27T00:22:21Z",
+      "side": 1,
+      "message": "space",
+      "range": {
+        "startLine": 572,
+        "startChar": 0,
+        "endLine": 572,
+        "endChar": 8
+      },
+      "revId": "88c5f4278bbc6155958c798a1b68c7076fb76b5c",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "126f01ed_95cc8dca",
+        "filename": "packages/SlimSystemUI/src/com/android/systemui/statusbar/slim/SlimStatusBar.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 335,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2017-11-27T00:22:21Z",
+      "side": 1,
+      "message": "space",
+      "range": {
+        "startLine": 335,
+        "startChar": 0,
+        "endLine": 335,
+        "endChar": 4
+      },
+      "revId": "88c5f4278bbc6155958c798a1b68c7076fb76b5c",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2872413d_640653b1",
+        "filename": "packages/SlimSystemUI/src/com/android/systemui/statusbar/slim/SlimStatusBar.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 422,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2017-11-27T00:22:21Z",
+      "side": 1,
+      "message": "space",
+      "range": {
+        "startLine": 422,
+        "startChar": 0,
+        "endLine": 422,
+        "endChar": 8
+      },
+      "revId": "88c5f4278bbc6155958c798a1b68c7076fb76b5c",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ddfa807f_334fa404",
+        "filename": "packages/SlimSystemUI/src/com/android/systemui/statusbar/slim/SlimStatusBar.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 427,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2017-11-27T00:22:21Z",
+      "side": 1,
+      "message": "space",
+      "range": {
+        "startLine": 427,
+        "startChar": 0,
+        "endLine": 427,
+        "endChar": 8
+      },
+      "revId": "88c5f4278bbc6155958c798a1b68c7076fb76b5c",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    }
+  ]
+}
