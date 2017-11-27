@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3361427b_c7443156",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2017-11-27T00:27:14Z",
+      "side": 1,
+      "message": "More details",
+      "revId": "939b7ae6af9eb79fdcfc7298689c1b2d85d6e4c7",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a186ae16_101dcd6f",
+        "filename": "packages/SlimSystemUI/res/layout/slim_navigation_bar.xml",
+        "patchSetId": 8
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2017-11-27T00:27:14Z",
+      "side": 1,
+      "message": "date",
+      "range": {
+        "startLine": 6,
+        "startChar": 17,
+        "endLine": 6,
+        "endChar": 21
+      },
+      "revId": "939b7ae6af9eb79fdcfc7298689c1b2d85d6e4c7",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    }
+  ]
+}
