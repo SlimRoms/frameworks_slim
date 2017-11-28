@@ -49,7 +49,7 @@
             android:icon="@drawable/ic_settings_navigation"
             android:theme="@style/Theme.Settings" >
 
-            <intent-filter>
+            <intent-filter android:priority="3">
                 <action android:name="com.android.settings.action.EXTRA_SETTINGS" />
             </intent-filter>
 
@@ -57,16 +57,29 @@
                 android:name="com.android.settings.category"
                 android:value="com.android.settings.category.ia.homepage" />
 
+            <meta-data
+                android:name="com.android.settings.summary"
+                android:value="@string/summary_empty" />
+
         </activity>
 
         <activity
             android:name="com.slim.settings.activities.DozeSettingsActivity"
             android:label="@string/doze_settings_title"
+            android:enabled="false"
             android:theme="@style/Theme.Settings" >
 
             <intent-filter>
-                <action android:name="com.slim.settings.action.DOZE_SETTINGS" />
+                <action android:name="com.android.settings.action.EXTRA_SETTINGS" />
             </intent-filter>
+
+            <meta-data
+                android:name="com.android.settings.category"
+                android:value="com.android.settings.category.ia.display" />
+
+            <meta-data
+                android:name="com.android.settings.summary"
+                android:value="@string/summary_empty" />
 
         </activity>
 

@@ -22,6 +22,9 @@
     <string name="menu_cancel">Discard</string>
     <string name="advanced_settings">Advanced</string>
 
+    <!-- DO NOT TRANSLATE Empty summary for dynamic preferences -->
+    <string name="summary_empty" translatable="false"></string>
+
     <!-- Common color picker strings -->
     <string name="color_picker_reset_message">Reset color?</string>
 
