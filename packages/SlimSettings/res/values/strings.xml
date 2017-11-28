@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-     Copyright (C) 2013-2016 SlimRoms Project
+     Copyright (C) 2013-2017 SlimRoms Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -21,6 +21,9 @@
     <string name="menu_save">Save</string>
     <string name="menu_cancel">Discard</string>
     <string name="advanced_settings">Advanced</string>
+
+    <!-- DO NOT TRANSLATE Empty summary for dynamic preferences -->
+    <string name="summary_empty" translatable="false"></string>
 
     <!-- Common color picker strings -->
     <string name="color_picker_reset_message">Reset color?</string>
