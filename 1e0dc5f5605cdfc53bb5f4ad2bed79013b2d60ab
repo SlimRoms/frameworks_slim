@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fe034137_a691ee16",
+        "filename": "packages/SlimSystemUI/src/com/android/systemui/slimrecent/RecentPanelView.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 448,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2017-12-03T18:50:59Z",
+      "side": 1,
+      "message": "space",
+      "range": {
+        "startLine": 448,
+        "startChar": 92,
+        "endLine": 448,
+        "endChar": 93
+      },
+      "revId": "1e0dc5f5605cdfc53bb5f4ad2bed79013b2d60ab",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "31797317_5c50679b",
+        "filename": "res/res/anim/recent_enter.xml",
+        "patchSetId": 7
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2017-12-03T18:50:59Z",
+      "side": 1,
+      "message": "spaces",
+      "revId": "1e0dc5f5605cdfc53bb5f4ad2bed79013b2d60ab",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": false
+    }
+  ]
+}
