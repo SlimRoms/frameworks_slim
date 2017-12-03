@@ -116,7 +116,6 @@ public class SlimStatusBar extends StatusBar implements
     private Handler mHandler = new H();
     private BatteryController mBatteryController;
 
-    private SlimStatusBarIconController mSlimIconController;
     private SlimScreenPinningRequest mSlimScreenPinningRequest;
     private LightBarController mLightBarController;
 
@@ -268,8 +267,6 @@ public class SlimStatusBar extends StatusBar implements
     @Override
     protected void makeStatusBarView() {
         super.makeStatusBarView();
-
-        mSlimIconController = new SlimStatusBarIconController(mContext, mStatusBarWindow, this);
 
         //mStatusBarWindow.findViewById(R.id.battery).setVisibility(View.GONE);
 
