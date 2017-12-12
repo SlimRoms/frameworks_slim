@@ -70,7 +70,6 @@ public class SlimBatteryMeterView extends View implements DemoMode,
     private float mButtonHeightFraction;
     private float mSubpixelSmoothingLeft;
     private float mSubpixelSmoothingRight;
-    private int mIconTint = Color.WHITE;
     private int mAnimOffset;
 
     public static enum BatteryMeterMode {
@@ -95,11 +94,8 @@ public class SlimBatteryMeterView extends View implements DemoMode,
     private BatteryController mBatteryController;
     private boolean mPowerSaveEnabled;
 
-    private int mDarkModeBackgroundColor;
-    private int mDarkModeFillColor;
-
-    private int mLightModeBackgroundColor;
-    private int mLightModeFillColor;
+    private int mForegroundColor;
+    private int mBackgroundColor;
 
     private final Handler mHandler;
 
@@ -207,13 +203,6 @@ public class SlimBatteryMeterView extends View implements DemoMode,
                 R.fraction.battery_subpixel_smoothing_left, 1, 1);
         mSubpixelSmoothingRight = context.getResources().getFraction(
                 R.fraction.battery_subpixel_smoothing_right, 1, 1);
-
-        mDarkModeBackgroundColor =
-                context.getColor(R.color.dark_mode_icon_color_dual_tone_background);
-        mDarkModeFillColor = context.getColor(R.color.dark_mode_icon_color_dual_tone_fill);
-        mLightModeBackgroundColor =
-                context.getColor(R.color.light_mode_icon_color_dual_tone_background);
-        mLightModeFillColor = context.getColor(R.color.light_mode_icon_color_dual_tone_fill);
 
         loadShowBatterySetting();
         mBatteryMeterDrawable = createBatteryMeterDrawable(mMeterMode);
@@ -375,7 +364,7 @@ public class SlimBatteryMeterView extends View implements DemoMode,
 
                 // Respect tinting for "normal" level
                 if (i == mColors.length-2) {
-                    return mIconTint;
+                    return mForegroundColor;
                 } else {
                     return color;
                 }
@@ -384,26 +373,10 @@ public class SlimBatteryMeterView extends View implements DemoMode,
         return color;
     }
 
-    public void setDarkIntensity(float darkIntensity) {
-        if (mBatteryMeterDrawable != null) {
-            int backgroundColor = getBackgroundColor(darkIntensity);
-            int fillColor = getFillColor(darkIntensity);
-            mBatteryMeterDrawable.setDarkIntensity(backgroundColor, fillColor);
-        }
-    }
-
-    private int getBackgroundColor(float darkIntensity) {
-        return getColorForDarkIntensity(
-                darkIntensity, mLightModeBackgroundColor, mDarkModeBackgroundColor);
-    }
-
-    public int getFillColor(float darkIntensity) {
-        return getColorForDarkIntensity(
-                darkIntensity, mLightModeFillColor, mDarkModeFillColor);
-    }
-
-    private int getColorForDarkIntensity(float darkIntensity, int lightColor, int darkColor) {
-        return (int) ArgbEvaluator.getInstance().evaluate(darkIntensity, lightColor, darkColor);
+    public void setColors(int foreground, int background) {
+        mForegroundColor = foreground;
+        mBackgroundColor = background;
+        invalidate();
     }
 
     private int updateChargingAnimLevel() {
@@ -467,7 +440,6 @@ public class SlimBatteryMeterView extends View implements DemoMode,
         void onDraw(Canvas c);
         void onSizeChanged(int w, int h, int oldw, int oldh);
         void onDispose();
-        void setDarkIntensity(int backgroundColor, int fillColor);
     }
 
     protected class NormalBatteryMeterDrawable implements BatteryMeterDrawable {
@@ -485,7 +457,6 @@ public class SlimBatteryMeterView extends View implements DemoMode,
         private final Paint mFramePaint, mBatteryPaint, mWarningTextPaint, mTextPaint, mBoltPaint;
         private float mTextHeight, mWarningTextHeight;
 
-        private int mChargeColor;
         private final float[] mBoltPoints;
         private final Path mBoltPath = new Path();
 
@@ -519,8 +490,6 @@ public class SlimBatteryMeterView extends View implements DemoMode,
             font = Typeface.create("sans-serif", Typeface.BOLD);
             mWarningTextPaint.setTypeface(font);
             mWarningTextPaint.setTextAlign(Paint.Align.CENTER);
-
-            mChargeColor = getResources().getColor(R.color.batterymeter_charge_color);
 
             mBoltPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
             mBoltPaint.setColor(res.getColor(R.color.batterymeter_bolt_color));
@@ -587,7 +556,7 @@ public class SlimBatteryMeterView extends View implements DemoMode,
             mFrame.bottom -= mSubpixelSmoothingRight;
 
             // set the battery charging color
-            mBatteryPaint.setColor(mCharging ? mChargeColor : getColorForLevel(level));
+            mBatteryPaint.setColor(mCharging ? mForegroundColor: getColorForLevel(level));
 
             if (level >= FULL) {
                 drawFrac = 1f;
@@ -657,6 +626,7 @@ public class SlimBatteryMeterView extends View implements DemoMode,
                             mBoltFrame.top + mBoltPoints[1] * mBoltFrame.height());
                 }
 
+                mBoltPaint.setColor(mForegroundColor);
                 if (level <= 25) { // valid for portrai and landscape
                     // draw the bolt if opaque
                     c.drawPath(mBoltPath, mBoltPaint);
@@ -697,6 +667,7 @@ public class SlimBatteryMeterView extends View implements DemoMode,
             }
 
             // draw the battery shape background
+            mFramePaint.setColor(mBackgroundColor);
             c.drawPath(mShapePath, mFramePaint);
 
             // draw the battery shape, clipped to charging level
@@ -731,15 +702,6 @@ public class SlimBatteryMeterView extends View implements DemoMode,
         public void onDispose() {
             mHandler.removeCallbacks(mInvalidate);
             mDisposed = true;
-        }
-
-        @Override
-        public void setDarkIntensity(int backgroundColor, int fillColor) {
-            mIconTint = fillColor;
-            mFramePaint.setColor(backgroundColor);
-            mBoltPaint.setColor(fillColor);
-            mChargeColor = fillColor;
-            invalidate();
         }
 
         @Override
@@ -824,7 +786,6 @@ public class SlimBatteryMeterView extends View implements DemoMode,
 
         private final RectF mBoltFrame = new RectF();
 
-        private int mChargeColor;
         private final float[] mBoltPoints;
         private final Path mBoltPath = new Path();
 
@@ -857,8 +818,6 @@ public class SlimBatteryMeterView extends View implements DemoMode,
             mWarningTextPaint.setTypeface(font);
             mWarningTextPaint.setTextAlign(Paint.Align.CENTER);
 
-            mChargeColor = getResources().getColor(R.color.batterymeter_charge_color);
-
             mPathEffect = new DashPathEffect(new float[]{3,2},0);
 
             mBoltPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -882,15 +841,6 @@ public class SlimBatteryMeterView extends View implements DemoMode,
         public void onDispose() {
             mHandler.removeCallbacks(mInvalidate);
             mDisposed = true;
-        }
-
-        @Override
-        public void setDarkIntensity(int backgroundColor, int fillColor) {
-            mIconTint = fillColor;
-            mBoltPaint.setColor(fillColor);
-            mBackPaint.setColor(backgroundColor);
-            mChargeColor = fillColor;
-            invalidate();
         }
 
         @Override
@@ -927,6 +877,7 @@ public class SlimBatteryMeterView extends View implements DemoMode,
             }
 
             // draw thin gray ring first
+            mBackPaint.setColor(mBackgroundColor);
             canvas.drawArc(drawRect, 270, 360, false, mBackPaint);
             // draw colored arc representing charge level
             canvas.drawArc(drawRect, 270 + mAnimOffset, 3.6f * level, false, paint);
@@ -954,6 +905,7 @@ public class SlimBatteryMeterView extends View implements DemoMode,
                             mBoltFrame.left + mBoltPoints[0] * mBoltFrame.width(),
                             mBoltFrame.top + mBoltPoints[1] * mBoltFrame.height());
                 }
+                mBoltPaint.setColor(mForegroundColor);
                 canvas.drawPath(mBoltPath, mBoltPaint);
 
             } else {

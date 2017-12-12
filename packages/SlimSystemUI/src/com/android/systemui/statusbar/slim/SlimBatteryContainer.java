@@ -17,6 +17,7 @@
 
 package com.android.systemui.statusbar.slim;
 
+import android.animation.ArgbEvaluator;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.database.ContentObserver;
@@ -49,10 +50,23 @@ public class SlimBatteryContainer extends LinearLayout implements
     private boolean mBatteryIsCharging;
     private int mBatteryChargeLevel;
 
+    private int mDarkModeBackgroundColor;
+    private int mDarkModeFillColor;
+
+    private int mLightModeBackgroundColor;
+    private int mLightModeFillColor;
+
     public SlimBatteryContainer(Context context, AttributeSet attrs) {
         super(context, attrs);
 
         mBatteryObserver = new BatterySettingsObserver(new Handler());
+
+         mDarkModeBackgroundColor =
+                context.getColor(R.color.dark_mode_icon_color_dual_tone_background);
+        mDarkModeFillColor = context.getColor(R.color.dark_mode_icon_color_dual_tone_fill);
+        mLightModeBackgroundColor =
+                context.getColor(R.color.light_mode_icon_color_dual_tone_background);
+        mLightModeFillColor = context.getColor(R.color.light_mode_icon_color_dual_tone_fill);
     }
 
     @Override
@@ -178,8 +192,24 @@ public class SlimBatteryContainer extends LinearLayout implements
         }
     }
 
-    public void setDarkIntensity(float darkIntensity) {
-        mBattery.setDarkIntensity(darkIntensity);
-        mBatteryLevel.setTextColor(mBattery.getFillColor(darkIntensity));
+    public void setDarkIntensity(float intensity) {
+        int foreground = getFillColor(intensity);
+        int background = getBackgroundColor(intensity);
+        mBattery.setColors(foreground, background);
+        mBatteryLevel.setTextColor(foreground);
+    }
+
+    private int getBackgroundColor(float darkIntensity) {
+        return getColorForDarkIntensity(
+            darkIntensity, mLightModeBackgroundColor, mDarkModeBackgroundColor);
+    }
+
+    public int getFillColor(float darkIntensity) {
+        return getColorForDarkIntensity(
+                darkIntensity, mLightModeFillColor, mDarkModeFillColor);
+    }
+
+    private int getColorForDarkIntensity(float darkIntensity, int lightColor, int darkColor) {
+        return (int) ArgbEvaluator.getInstance().evaluate(darkIntensity, lightColor, darkColor);
     }
 }
