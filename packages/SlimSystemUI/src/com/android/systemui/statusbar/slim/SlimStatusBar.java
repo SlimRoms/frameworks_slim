@@ -250,7 +250,7 @@ public class SlimStatusBar extends StatusBar implements
                 .getDefaultDisplay();
 
         mBatteryController = Dependency.get(BatteryController.class);
-        mLightBarController = new LightBarController();
+        mLightBarController = Dependency.get(LightBarController.class);
 
         updateNavigationBarVisibility();
         updateRecents();

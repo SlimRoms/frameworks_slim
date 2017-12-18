@@ -46,7 +46,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
-import android.os.PowerManager;
 import android.os.RemoteException;
 import android.os.UserHandle;
 import android.provider.Settings;
@@ -203,8 +202,7 @@ public class SlimNavigationBarFragment extends Fragment implements Callbacks {
         IntentFilter filter = new IntentFilter(Intent.ACTION_SCREEN_OFF);
         filter.addAction(Intent.ACTION_SCREEN_ON);
         getContext().registerReceiverAsUser(mBroadcastReceiver, UserHandle.ALL, filter, null, null);
-        PowerManager pm = getContext().getSystemService(PowerManager.class);
-        notifyNavigationBarScreenOn(pm.isScreenOn());
+        notifyNavigationBarScreenOn();
     }
 
     @Override
@@ -379,8 +377,8 @@ public class SlimNavigationBarFragment extends Fragment implements Callbacks {
                 ((View) mNavigationBarView.getParent()).getLayoutParams());
     }
 
-    private void notifyNavigationBarScreenOn(boolean screenOn) {
-        mNavigationBarView.notifyScreenOn(screenOn);
+    private void notifyNavigationBarScreenOn() {
+        mNavigationBarView.notifyScreenOn();
     }
 
     public void prepareNavigationBarView() {
@@ -547,7 +545,8 @@ public class SlimNavigationBarFragment extends Fragment implements Callbacks {
 
     private boolean onLongPressRecents() {
         if (mRecents == null || !ActivityManager.supportsMultiWindow(getContext())
-                || !mDivider.getView().getSnapAlgorithm().isSplitScreenFeasible()) {
+                || !mDivider.getView().getSnapAlgorithm().isSplitScreenFeasible()
+                || Recents.getConfiguration().isLowRamDevice) {
             return false;
         }
 
@@ -606,7 +605,7 @@ public class SlimNavigationBarFragment extends Fragment implements Callbacks {
     }
 
     public void onKeyguardOccludedChanged(boolean keyguardOccluded) {
-        mNavigationBarView.onKeyguardOccludedChanged(keyguardOccluded);
+        //mNavigationBarView.onKeyguardOccludedChanged(keyguardOccluded);
     }
 
     public void disableAnimationsDuringHide(long delay) {
@@ -664,10 +663,9 @@ public class SlimNavigationBarFragment extends Fragment implements Callbacks {
         @Override
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
-            if (Intent.ACTION_SCREEN_OFF.equals(action)) {
-                notifyNavigationBarScreenOn(false);
-            } else if (Intent.ACTION_SCREEN_ON.equals(action)) {
-                notifyNavigationBarScreenOn(true);
+            if (Intent.ACTION_SCREEN_OFF.equals(action)
+                    || Intent.ACTION_SCREEN_ON.equals(action)) {
+                notifyNavigationBarScreenOn();
             }
         }
     };
