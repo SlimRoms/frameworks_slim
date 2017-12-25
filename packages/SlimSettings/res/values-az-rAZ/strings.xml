@@ -90,7 +90,39 @@
   <string name="app_ops_summaries_write_wallpaper">divar kağızı yaz</string>
   <string name="app_ops_summaries_assist_structure">köməkçi strukturu</string>
   <string name="app_ops_summaries_assist_screenshot">köməkçi ekran şəkli</string>
+  <string name="app_ops_summaries_read_phone_state">telefonun vəziyyətinə bax</string>
+  <string name="app_ops_summaries_add_voicemail">səs mesajı əlavə et</string>
+  <string name="app_ops_summaries_use_sip">SIP-i işlət</string>
+  <string name="app_ops_summaries_make_call">zəng et</string>
+  <string name="app_ops_summaries_use_fingerprint">barmaq izindən istifadə et</string>
+  <string name="app_ops_summaries_use_body_sensors">bədən sensorundan istifadə et</string>
+  <string name="app_ops_summaries_read_cell_broadcasts">hüceyrəvi yayımları oxu</string>
+  <string name="app_ops_summaries_mock_location">saxta mövqe</string>
+  <string name="app_ops_summaries_read_external_storage">xarici yaddaşı oxu</string>
+  <string name="app_ops_summaries_write_external_storage">xarici yaddaşa yaz</string>
+  <string name="app_ops_summaries_turn_screen_on">ekranı yandır</string>
+  <string name="app_ops_summaries_get_accounts">hesabları al</string>
+  <string name="app_ops_summaries_toggle_wifi">Wi-Fi aç/bağla </string>
+  <string name="app_ops_summaries_toggle_bluetooth">bluetooth açıb bağla</string>
+  <string name="app_ops_summaries_start_at_boot">açılanda başlat</string>
+  <string name="app_ops_summaries_toggle_nfc">NFC aç bağla</string>
+  <string name="app_ops_summaries_toggle_mobile_data">mobil məlumatı açıb bağla</string>
+  <string name="app_ops_summaries_superuser">root müraciəti</string>
   <!-- User display names for app ops codes - extension of AOSP -->
+  <string name="app_ops_labels_coarse_location">Təxmini yer</string>
+  <string name="app_ops_labels_fine_location">Dəqiq yer</string>
+  <string name="app_ops_labels_gps">GPS</string>
+  <string name="app_ops_labels_vibrate">Titrəmə</string>
+  <string name="app_ops_labels_read_contacts">Şəxsləri oxu</string>
+  <string name="app_ops_labels_modify_contacts">Şəxslərə düzəliş et</string>
+  <string name="app_ops_labels_read_call_log">Zəng qeydini oxu</string>
+  <string name="app_ops_labels_modify_call_log">Zəng qeydinə düzəliş et</string>
+  <string name="app_ops_labels_read_calendar">Təqvimi oxu</string>
+  <string name="app_ops_labels_modify_calendar">Təqvimə düzəliş et</string>
+  <string name="app_ops_labels_wifi_scan">Wi-Fi axtarışı</string>
+  <string name="app_ops_labels_notification">Bildiriş göstər</string>
+  <string name="app_ops_labels_cell_scan">Hüceyrəvi tədqiq</string>
+  <string name="app_ops_labels_call_phone">Zəng et</string>
   <string name="app_ops_labels_read_sms">SMS oxuma</string>
   <string name="app_ops_labels_write_sms">SMS yazma</string>
   <string name="app_ops_labels_receive_sms">SMS qəbul et</string>
@@ -141,7 +173,13 @@
   <string name="app_ops_labels_turn_screen_on">Ekranı aç</string>
   <string name="app_ops_labels_get_accounts">Hesabları əldə et</string>
   <string name="app_ops_labels_change_wifi">Wi-Fi aktiv et</string>
+  <string name="app_ops_labels_toggle_bluetooth">Bluetooth aç/bağla</string>
+  <string name="app_ops_labels_start_at_boot">Açılanda başlat</string>
+  <string name="app_ops_labels_toggle_nfc">NFC aç/bağla</string>
+  <string name="app_ops_labels_superuser">Root icazəsi</string>
   <!-- App ops permissions -->
+  <string name="app_ops_permissions_allowed">İcazə verildi</string>
+  <string name="app_ops_permissions_ignored">Yox sayıldı</string>
   <string name="app_ops_permissions_always_ask">Həmişə soruş</string>
   <!-- App ops detail -->
   <string name="app_ops_entry_summary"><xliff:g id="op">%1$s</xliff:g> (<xliff:g id="count">%2$s</xliff:g> istifadə edildi)</string>
@@ -151,13 +189,49 @@
   <!-- App ops menu options -->
   <string name="app_ops_show_user_apps">İstifadəçi tətbiqlərini göstər</string>
   <string name="app_ops_show_system_apps">Daxili tətbiqləri göstər</string>
+  <string name="app_ops_reset_counters">İcazə vermə/rədd etmə sayğaclarını sıfırla</string>
+  <string name="app_ops_reset_confirm_title">Sayğac sıfırlamağı təsdiqlə</string>
+  <string name="app_ops_reset_confirm_mesg">Sayğacları sıfırlamaq istədiyinizə əminsiniz?</string>
   <!-- Privacy Settings Header item -->
+  <string name="privacy_settings_title">Gizlilik</string>
   <!-- Privacy Guard -->
+  <string name="privacy_guard_switch_label">Gizlilik Qorumasını Aktivləşdir</string>
+  <string name="privacy_guard_dlg_title">Məxfilik Mühafizəsini Fəallaşdır?</string>
+  <string name="privacy_guard_dlg_text">Gizlilik qoruması aktiv olduğunda tətbiqetmə kontaktlar, mesajlar və ya zəng hesabatları kimi şəxsi məlumatlardan istifadə edə bilməyəcək.</string>
+  <string name="privacy_guard_dlg_system_app_text">Gizlilik Qoruması sistem tətbiqetməsi üçün aktivləşdirildiyində tətbiqetmə şəxsi məlumatları əldə edə və ya təqdim edə bilməyəcək. Bu digər tətbiqetmələrin qeyri stabil işləməsinə səbəb ola bilər.</string>
+  <string name="privacy_guard_default_title">Susmaya görə aktivləşdirilib</string>
+  <string name="privacy_guard_default_summary">Yeni qurulan tətbiqetmələr üçün susmaya görə aktivləşdir</string>
+  <string name="privacy_guard_manager_title">Gizlilik Qoruması</string>
+  <string name="privacy_guard_manager_summary">Şəxsi verilənlərinizin hansı tətbiqetmələr üçün əlçatan olacağını idarə edin</string>
+  <string name="privacy_guard_no_user_apps">Quraşdırılmış tətbiqetmə yoxdur</string>
+  <string name="privacy_guard_help_title">Kömək</string>
+  <string name="privacy_guard_reset_title">Sıfırla</string>
+  <string name="privacy_guard_reset_text">İcazələr sıfırlansın?</string>
+  <string name="privacy_guard_manager_show_system_apps">Sistem tətbiqetmələrini göstər</string>
+  <string name="privacy_guard_advanced_settings_title">Qabaqcıl</string>
   <!-- Setting checkbox title for root access -->
+  <string name="root_access">Root müraciəti</string>
+  <string name="root_access_warning_title">Root müraciətinə icazə verilsin?</string>
+  <string name="root_access_warning_message">Root müraciətinə icazə vermək çox təhlükəlidir və sisteminizin təhlükəsizliyinə ziyan vura bilər!</string>
+  <string name="root_access_none">Deaktivdir</string>
+  <string name="root_access_apps">Ancaq proqramlar</string>
+  <string name="root_access_adb">Yalnız ADB</string>
+  <string name="root_access_all">Programlar və ADB</string>
   <!-- Memory -->
+  <string name="memory_startup_apps_title">Sistem başladılarkən işə düşən tətbiqlər</string>
   <!-- About phone screen, Slim version -->
+  <string name="slim_version_title">Slim versiyası</string>
+  <string name="slim_version_default">Bilinmir</string>
   <!-- Display & Lights screen, setting options for LCD density -->
+  <string name="lcd_density">LCD sıxlığı</string>
+  <string name="dialog_title_lcd_density">LCD sıxlığı</string>
+  <string name="lcd_density_value_format">%d DPI</string>
+  <string name="lcd_density_default_value_format">%d DPI (standart)</string>
+  <string name="restarting_ui">UI\u2026 yenidən başladılır</string>
+  <string name="lcd_density_prompt_message">Bəzi tətbiqetmələr standartdan kənar Dpi\'larda işləməyə bilər.\n\nBu telefonunuzu yenidən başladacaq.</string>
   <!-- Wakeup options -->
+  <string name="display_category_wakeup_options_title">Oyandırma parametrləri</string>
+  <string name="wakeup_when_plugged_unplugged_title">Batareya doldurulanda oyat</string>
   <!-- Proximity wake -->
   <string name="proximity_wake_title">Təsadüfi oyanmaların qarşısını al</string>
   <!-- Advanced reboot options -->
@@ -165,7 +239,10 @@
   <string name="advanced_reboot_dialog_title">Qabaqcıl yenidən başlatma menyusu</string>
   <string name="advanced_reboot_disabled">Ləğv et</string>
   <string name="advanced_reboot_hide_on_keyguard">Kilid ekranında gizlət</string>
+  <string name="advanced_reboot_show_always">Həmişə göstər</string>
   <!-- Hardware keys and lights -->
+  <string name="hardware_keys_enable_title">Cihaz düymələrini aktiv et</string>
+  <string name="hardware_keys_enable_summary">Cihaz düymələrini aç/qapat</string>
   <!-- Key backlight -->
   <string name="settings_reset_button">Sıfırla</string>
   <string name="button_backlight_enabled">Düymələri işıqlandır</string>
@@ -178,6 +255,8 @@
   <string name="backlight_summary_enabled_with_timeout"><xliff:g id="timeout">%s</xliff:g> üçün fəaldır</string>
   <string name="backlight_summary_enabled">Aktiv</string>
   <!-- Hardware keys -->
+  <string name="button_keys_title">Cihaz Düymələri</string>
+  <string name="keys_bindings_title">Düymə əməliyyatları</string>
   <string name="keys_back_double_tap_title">Geri düyməsi (cüt toxunuş)</string>
   <string name="keys_home_press_title">Əsas düymə</string>
   <string name="keys_home_long_press_title">Əsas düymə (uzun basma)</string>
@@ -186,9 +265,15 @@
   <string name="keys_menu_long_press_title">Menyu düyməsi (uzun basma)</string>
   <string name="keys_menu_double_tap_title">Menyu düyməsi (cüt toxunuş)</string>
   <string name="keys_assist_press_title">Axtarış düyməsi</string>
+  <string name="keys_camera_press_title">Kamera düyməsi</string>
+  <string name="keys_action_long">Uzun basılı saxlama</string>
+  <string name="keys_action_double">Cüt toxunma</string>
   <!-- Slim Shortcuts -->
+  <string name="slim_shortcut_picker">Slim Əməliyyatları</string>
+  <string name="shortcut_action_select_action">Əməliyyat seçin:</string>
   <!-- Chamber of Secrets -->
   <!-- Device specific settings -->
+  <string name="screen_off_gesture_settings_title">Sönülü ekran jestləri</string>
   <!-- Status bar -->
   <string name="status_bar_title">Status sətri</string>
   <string name="status_bar_style_title">Status sətri stili</string>
@@ -235,8 +320,15 @@
   <string name="navbar_cat">Naviqasiya paneli</string>
   <!-- SlimDim -->
   <!-- Navigation bar button style -->
+  <string name="nav_bar_button_style">Düymə stili</string>
+  <string name="navigation_bar_icon_tint_title">Düymə rəngi</string>
+  <string name="nav_button_color_mode_title">Rəng modu</string>
+  <string name="nav_button_color_mode_dialog_title">Rəngləndir</string>
   <!-- Icon color options -->
+  <string name="icon_color_mode_all_icons">Bütün düymələr</string>
+  <string name="icon_color_mode_system_icons">Sistem ikonları</string>
   <!-- Recent panel -->
+  <string name="recent_panel_scale_title">Ölçü</string>
   <string name="recent_panel_expanded_mode_always">Hər zaman</string>
   <string name="recent_panel_expanded_mode_never">Heç vaxt</string>
   <!-- ATTENTION: RTL languages need to replace left with right -->
@@ -267,5 +359,10 @@
   <!--string name="doze_trigger_doubletap_title">Double tap trigger</string-->
   <!--string name="doze_trigger_doubletap_summary_on">Doze pulse will be triggered by a double tap</string-->
   <!--string name="doze_trigger_doubletap_summary_off">Double tap sensor will not be utilized as a triggering mechanism (default)</string-->
+  <string name="doze_trigger_notification_title">Bildiriş tətikləyici</string>
+  <string name="doze_trigger_notification_summary_off">Bildirişlər bir tətikləmə mexanizmas olaraq istifadə edilməyəcək</string>
   <!-- Increasing ring tone volume -->
+  <string name="increasing_ring_volume_option_title">Artan zəng səsi</string>
+  <string name="increasing_ring_min_volume_title">Başlanğıc səsi</string>
+  <string name="increasing_ring_ramp_up_time_title">Artma vaxtı</string>
 </resources>

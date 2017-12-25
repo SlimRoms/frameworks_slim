@@ -32,6 +32,7 @@
   <string name="no_home_key">Es ist keine Taste mehr mit der \"Home\"-Funktion belegt!\n\nDies kann ihr Gerät unbedienbar machen!</string>
   <string name="no_back_key">Es ist keine Taste mehr mit der \"Zurück\"-Funktion belegt!\n\nIhr Gerät kann dadurch unbrauchbar werden!</string>
   <!-- Settings categories -->
+  <string name="settings_header_category_personalization">Personalisierung</string>
   <!-- Shortcut actions -->
   <string name="shortcut_action_none">Nicht zugewiesen</string>
   <string name="shortcut_action_menu">Menü</string>
@@ -87,7 +88,7 @@
   <string name="shortcuts_icon_picker_contact">Kontakt</string>
   <string name="shortcuts_icon_picker_directdial">Direktanruf</string>
   <string name="shortcuts_icon_picker_directmessage">Direktnachricht</string>
-  <string name="shortcuts_icon_picker_drive">Drive</string>
+  <string name="shortcuts_icon_picker_drive">Laufwerk</string>
   <string name="shortcuts_icon_picker_dropbox">Dropbox</string>
   <string name="shortcuts_icon_picker_email">E-Mail</string>
   <string name="shortcuts_icon_picker_email2">E-Mail Alternative</string>
@@ -147,6 +148,7 @@
   <string name="shortcut_action_voice_search">Sprachsuche</string>
   <string name="shortcut_action_nowontap">Google Now / Now on Tap</string>
   <string name="shortcut_action_split_screen">Geteilter Bildschirm</string>
+  <string name="shortcut_action_doze_pulse">Schlummerimpuls</string>
   <!-- Icon color options -->
   <string name="icon_color_mode_all_icons">Alle Symbole</string>
   <string name="icon_color_mode_system_icons">Systemsymbole</string>
@@ -163,11 +165,23 @@
   <string name="set">Einstellen</string>
   <string name="color_default">Standard</string>
   <!-- Proximity speaker -->
+  <string name="display_category_prox_auto_speaker_title">Näherungssensoreinstellungen für Lautspercher</string>
+  <string name="prox_auto_speaker_options">Näherungssensoroptionen für Lautspercher</string>
+  <string name="prox_auto_speaker_title">Lautsprecher-Entfernungsautomatik</string>
   <string name="prox_auto_speaker_summary">Freisprecheinrichtung einschalten, wenn das Gerät vom Gesicht entfernt wird</string>
+  <string name="prox_auto_speaker_delay_title">Lautsprecher-Entfernungsverzögerung</string>
   <string name="prox_auto_speaker_delay_summary">Zeitverzögerung bis der Lautsprecher aktiviert wird</string>
   <string name="prox_auto_speaker_incall_only_title">Nur während eines Anrufs</string>
+  <string name="prox_auto_speaker_incall_only_summary_on">Bei ausgehenden Anrufen wird der Hörer erst dann aktiv, wenn der Empfänger antwortet</string>
+  <string name="prox_auto_speaker_incall_only_summary_off">Der Hörer ist während des gesamten Telefonats aktiv (Standard)</string>
   <!-- Slim Doze-->
+  <string name="display_category_doze_options_title">Inaktivitätsbildschirm (Schlummern) Optionen</string>
+  <string name="doze_settings_title">Erweiterte Schlummeroptionen</string>
   <!-- Increasing ring tone volume -->
+  <string name="increasing_ring_volume_option_title">Klingeltonlautstärke erhöhen</string>
+  <string name="increasing_ring_min_volume_title">Anfangslautstärke</string>
+  <string name="increasing_ring_ramp_up_time_title">Anstiegszeit</string>
   <!-- Proximity wake -->
   <string name="proximity_wake_title">Unbeabsichtigtes Aufwecken verhindern</string>
+  <string name="proximity_wake_summary">Vor Einschalten des Bildschirms Näherungssensor überprüfen</string>
 </resources>
