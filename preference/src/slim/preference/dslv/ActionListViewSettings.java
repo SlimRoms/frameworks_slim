@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2016-2017 SlimRoms Project
+ * Copyright (C) 2016-2018 SlimRoms Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -561,7 +561,7 @@ public class ActionListViewSettings extends ListFragment implements
                 getContext().getResources().getString(R.string.shortcut_action_reset))
                 .setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
         menu.add(0, MENU_ADD, 0, getContext().getResources().getString(R.string.shortcut_action_add))
-                .setIcon(getContext().getResources().getDrawable(R.drawable.ic_menu_add))
+                .setIcon(getContext().getResources().getDrawable(org.slim.preference.R.drawable.ic_menu_add))
                 .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
 
     }

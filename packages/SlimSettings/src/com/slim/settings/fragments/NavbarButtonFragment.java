@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2013-2016 SlimRoms Project
+ * Copyright (C) 2013-2018 SlimRoms Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,6 +35,11 @@ public class NavbarButtonFragment extends SettingsPreferenceFragment implements
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    protected int getPreferenceScreenResId() {
+        return R.xml.navbar_buttons;
     }
 
     @Override

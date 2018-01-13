@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2012-2017 SlimRoms Project
+ * Copyright (C) 2012-2018 SlimRoms Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -70,8 +70,17 @@ public class NavbarStyleDimenSettings extends SettingsPreferenceFragment impleme
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // Load the preferences from an XML resource
-        addPreferencesFromResource(R.xml.navbar_style_dimen_settings);
+        setHasOptionsMenu(true);
+    }
+
+    @Override
+    protected int getPreferenceScreenResId() {
+        return R.xml.navbar_style_dimen_settings;
+    }
+
+    @Override
+    public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
+        super.onCreatePreferences(savedInstanceState, rootKey);
 
         mNavigationBarHeight =
             (ListPreference) findPreference(PREF_NAVIGATION_BAR_HEIGHT);
@@ -91,8 +100,6 @@ public class NavbarStyleDimenSettings extends SettingsPreferenceFragment impleme
 
         mNavigationBarHeightLandscape.setEnabled(!navbarCanMove);
         mNavigationBarWidth.setEnabled(navbarCanMove);
-
-        setHasOptionsMenu(true);
     }
 
     @Override

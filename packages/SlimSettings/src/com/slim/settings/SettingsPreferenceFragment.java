@@ -1,6 +1,6 @@
 /*
  * Copyright (C) 2010 The Android Open Source Project
- * Copyright (C) 2017 SlimRoms Project
+ * Copyright (C) 2017-2018 SlimRoms Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -63,11 +63,27 @@ public abstract class SettingsPreferenceFragment extends InstrumentedPreferenceF
     // Cache the content resolver for async callbacks
     private ContentResolver mContentResolver;
 
+    protected ProgressiveDisclosureMixin mProgressiveDisclosureMixin;
+
+    protected abstract int getPreferenceScreenResId();
+
     protected void removePreference(String key) {
         Preference pref = findPreference(key);
         if (pref != null) {
             getPreferenceScreen().removePreference(pref);
         }
+    }
+
+    @Override
+    public Preference findPreference(CharSequence key) {
+        Preference preference = super.findPreference(key);
+        if (preference == null && mProgressiveDisclosureMixin != null) {
+            preference = mProgressiveDisclosureMixin.findPreference(getPreferenceScreen(), key);
+        }
+        if (preference == null) {
+            Log.d(TAG, "Cannot find preference with key " + key);
+        }
+        return preference;
     }
 
     /*
@@ -80,6 +96,12 @@ public abstract class SettingsPreferenceFragment extends InstrumentedPreferenceF
 
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
+        final int resId = getPreferenceScreenResId();
+        if (resId <= 0) {
+            return;
+        }
+        addPreferencesFromResource(resId);
+        mProgressiveDisclosureMixin.collapse(getPreferenceScreen());
     }
 
     /**
@@ -105,6 +127,13 @@ public abstract class SettingsPreferenceFragment extends InstrumentedPreferenceF
      */
     protected PackageManager getPackageManager() {
         return getActivity().getPackageManager();
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        mProgressiveDisclosureMixin = new ProgressiveDisclosureMixin(context, this, true);
+        getLifecycle().addObserver(mProgressiveDisclosureMixin);
     }
 
     @Override

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright (C) 2016 The SlimRoms Project
+<!-- Copyright (C) 2016-2018 The SlimRoms Project
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
      You may obtain a copy of the License at
@@ -13,16 +13,36 @@
 
 <resources>
 
-    <style name="Preference">
-        <item name="android:layout">@layout/preference_material_settings</item>
+    <style name="DialogPreferenceStyle" parent="@*android:style/Preference.DeviceDefault.DialogPreference">
+        <item name="allowDividerAbove">false</item>
+        <item name="allowDividerBelow">true</item>
+        <item name="singleLineTitle">false</item>
+        <item name="android:iconSpaceReserved">true</item>
     </style>
 
     <style name="EditTextPreference" parent="@*android:style/Preference.Material.DialogPreference.EditTextPreference">
         <item name="android:dialogLayout">@layout/preference_dialog_edittext</item>
     </style>
 
+    <style name="PreferenceCategoryStyle" parent="@*android:style/Preference.DeviceDefault.Category">
+        <item name="allowDividerAbove">false</item>
+        <item name="allowDividerBelow">false</item>
+        <item name="android:layout">@layout/preference_category_material_settings</item>
+    </style>
+
     <style name="PreferenceFragmentStyle" parent="@*android:style/PreferenceFragment.Material">
+        <item name="allowDividerAfterLastItem">false</item>
         <item name="android:layout">@layout/preference_list_fragment</item>
+    </style>
+
+    <style name="PreferenceStyle" parent="@*android:style/Preference.DeviceDefault">
+        <item name="allowDividerAbove">false</item>
+        <item name="allowDividerBelow">true</item>
+        <item name="singleLineTitle">false</item>
+        <item name="android:layout">@layout/preference_material_settings</item>
+    </style>
+
+    <style name="PreferenceTheme">
     </style>
 
     <style name="PreferenceFragmentListSinglePane" parent="@*android:style/PreferenceFragmentList">
@@ -58,6 +78,10 @@
         <item name="android:layout_marginTop">0dp</item>
         <item name="android:layout_marginBottom">0dp</item>
         <item name="android:scrollbarStyle">outsideOverlay</item>
+    </style>
+
+    <style name="SwitchPreferenceStyle" parent="@style/PreferenceStyle">
+        <item name="widgetLayout">@*android:layout/preference_widget_switch</item>
     </style>
 
 </resources>

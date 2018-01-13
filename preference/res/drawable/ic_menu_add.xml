@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-    Copyright (c) 2016-2018 The SlimRoms Project
+    Copyright (c) 2018 The SlimRoms Project
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -22,7 +22,7 @@
     android:tint="?android:attr/colorAccent">
 
     <path
-        android:fillColor="@android:color/white"
+        android:fillColor="#FF000000"
         android:pathData="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
     <path
         android:pathData="M0 0h24v24H0z" />

@@ -16,13 +16,13 @@
 
 package com.slim.settings;
 
-import android.support.v14.preference.PreferenceFragment;
 import com.android.internal.logging.MetricsLogger;
+import com.android.settingslib.core.lifecycle.ObservablePreferenceFragment;
 
 /**
  * Instrumented preference fragment that logs visibility state.
  */
-public abstract class InstrumentedPreferenceFragment extends PreferenceFragment {
+public abstract class InstrumentedPreferenceFragment extends ObservablePreferenceFragment {
     /**
      * Declare the view of this category.
      *

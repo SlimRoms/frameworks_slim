@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017 SlimRoms Project
+ * Copyright (C) 2017-2018 SlimRoms Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,6 +18,7 @@ package com.slim.settings.fragments;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.preference.Preference;
@@ -41,21 +42,35 @@ public class SlimPreferenceFragment extends SettingsPreferenceFragment {
     private static final int MENU_RESET = Menu.FIRST;
     private static final int DLG_RESET = 0;
 
+    private int mPreferenceScreenResId;
+
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        int limit = getArguments().getInt("tile_limit", 0);
+        if (limit > 0) {
+            mProgressiveDisclosureMixin.setTileLimit(limit);
+        }
+    }
 
+    @Override
+    protected int getPreferenceScreenResId() {
+        return mPreferenceScreenResId;
+    }
+
+    @Override
+    public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         String screen = getArguments().getString("preference_xml", null);
-
-
         if (screen != null) {
             int id = getResources().getIdentifier(screen, "xml", "com.slim.settings");
             if (id > 0) {
-                addPreferencesFromResource(id);
+                mPreferenceScreenResId = id;
             }
         }
+        super.onCreatePreferences(savedInstanceState, rootKey);
 
         PreferenceScreen prefScreen = getPreferenceScreen();
+        if (prefScreen == null) return;
         for (int i = 0; i < prefScreen.getPreferenceCount(); i++) {
             Preference pref = prefScreen.getPreference(i);
             if (pref instanceof ColorPickerPreference) {
@@ -71,6 +86,7 @@ public class SlimPreferenceFragment extends SettingsPreferenceFragment {
 
         int count = 0;
         PreferenceScreen prefScreen = getPreferenceScreen();
+        if (prefScreen == null) return;
         for (int i = 0; i < prefScreen.getPreferenceCount(); i++) {
             Preference pref = prefScreen.getPreference(i);
             if (pref.isVisible()) {

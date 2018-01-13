@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright (C) 2012-2017 SlimRoms Project
+<!-- Copyright (C) 2012-2018 SlimRoms Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -38,16 +38,13 @@
                 <extra android:name="actionMode" android:value="0" />
                 <extra android:name="maxAllowedButtons" android:value="5" />
                 <extra android:name="disableDeleteLastEntry" android:value="true" />
-                <!--<extra android:name="fragment" android:value="com.android.settings.slim.fragments.NavbarButtonFragment" />-->
+                <extra android:name="fragment" android:value="com.slim.settings.fragments.NavbarButtonFragment" />
             </PreferenceScreen>
 
-            <PreferenceScreen
-                android:fragment="com.slim.settings.fragments.SlimPreferenceFragment"
-                android:key="nav_bar_button_style"
-                android:title="@string/nav_bar_button_style"
-                android:summary="@string/nav_bar_button_style_summary">
-                <extra android:name="preference_xml" android:value="navbar_button_style" />
-            </PreferenceScreen>
+            <slim.preference.SlimSwitchPreference
+                    android:key="navigation_bar_can_move"
+                    android:title="@string/navbar_can_move"
+                    android:summary="@string/navbar_can_move_summary" />
 
             <PreferenceScreen
                 android:key="navbar_style_dimen_settings"
@@ -60,7 +57,7 @@
         <PreferenceCategory
                 android:key="advanced_cat"
                 android:dependency="navigation_bar_show"
-                android:title="@string/advanced_settings">
+                android:title="@string/navigation_menu_options">
 
             <slim.preference.SlimListPreference
                     android:key="menu_visibility"
@@ -75,11 +72,6 @@
                     android:entryValues="@array/pref_navigation_menu_values"
                     android:title="@string/title_pref_menu_location"
                     android:summary="@string/summary_pref_menu_location" />
-
-            <slim.preference.SlimSwitchPreference
-                    android:key="navigation_bar_can_move"
-                    android:title="@string/navbar_can_move"
-                    android:summary="@string/navbar_can_move_summary" />
 
         </PreferenceCategory>
 
