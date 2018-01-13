@@ -90,16 +90,22 @@ public class DozeSettingsFragment extends SettingsPreferenceFragment implements
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        mConfig = new AmbientDisplayConfiguration(context);
+    }
 
-        final Activity activity = getActivity();
-        mConfig = new AmbientDisplayConfiguration(activity);
+    @Override
+    protected int getPreferenceScreenResId() {
+        return R.xml.doze_settings;
+    }
+
+    @Override
+    public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
+        super.onCreatePreferences(savedInstanceState, rootKey);
 
         PreferenceScreen prefSet = getPreferenceScreen();
         Resources res = getResources();
-
-        addPreferencesFromResource(R.xml.doze_settings);
 
         // Doze fade in seekbar for pickup
         mDozeFadeInPickup = (SlimSeekBarPreferencev2) findPreference(KEY_DOZE_FADE_IN_PICKUP);
@@ -147,7 +153,7 @@ public class DozeSettingsFragment extends SettingsPreferenceFragment implements
         } else {
             removePreference(KEY_DOZE_TRIGGER_TILT);
         }
-        if (isSigmotionSensorUsedByDefault(activity)) {
+        if (isSigmotionSensorUsedByDefault(getActivity())) {
             mDozeTriggerSigmotion = (SwitchPreference) findPreference(KEY_DOZE_TRIGGER_SIGMOTION);
             mDozeTriggerSigmotion.setOnPreferenceChangeListener(this);
         } else {

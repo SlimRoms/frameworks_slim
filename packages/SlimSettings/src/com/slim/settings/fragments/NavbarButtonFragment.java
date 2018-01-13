@@ -38,6 +38,11 @@ public class NavbarButtonFragment extends SettingsPreferenceFragment implements
     }
 
     @Override
+    protected int getPreferenceScreenResId() {
+        return R.xml.navbar_buttons;
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater,
             ViewGroup container, Bundle savedInstanceState) {
         final View view = super.onCreateView(inflater, container, savedInstanceState);

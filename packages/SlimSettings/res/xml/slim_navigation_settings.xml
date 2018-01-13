@@ -21,6 +21,7 @@
         android:fragment="com.slim.settings.fragments.SlimPreferenceFragment"
         android:title="@string/navigation_bar">
         <extra android:name="preference_xml" android:value="navbar_settings" />
+        <extra android:name="tile_limit" android:value="2" />
     </PreferenceScreen>
 
     <slim.preference.SlimPreference
