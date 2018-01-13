@@ -561,7 +561,7 @@ public class ActionListViewSettings extends ListFragment implements
                 getContext().getResources().getString(R.string.shortcut_action_reset))
                 .setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
         menu.add(0, MENU_ADD, 0, getContext().getResources().getString(R.string.shortcut_action_add))
-                .setIcon(getContext().getResources().getDrawable(R.drawable.ic_menu_add))
+                .setIcon(getContext().getResources().getDrawable(org.slim.preference.R.drawable.ic_menu_add))
                 .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
 
     }

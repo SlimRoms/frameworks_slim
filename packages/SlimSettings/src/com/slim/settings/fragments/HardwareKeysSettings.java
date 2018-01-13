@@ -98,6 +98,11 @@ public class HardwareKeysSettings extends SettingsPreferenceFragment implements
         setHasOptionsMenu(true);
     }
 
+    @Override
+    protected int getPreferenceScreenResId() {
+        return 0;
+    }
+
     private PreferenceScreen reloadSettings() {
         mCheckPreferences = false;
         PreferenceScreen prefs = getPreferenceScreen();

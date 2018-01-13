@@ -44,29 +44,9 @@
         </activity>
 
         <activity
-            android:name="com.slim.settings.activities.NavigationSettingsActivity"
-            android:label="@string/navigation_settings_title"
-            android:icon="@drawable/ic_settings_navigation"
-            android:theme="@style/Theme.Settings" >
-
-            <intent-filter android:priority="0">
-                <action android:name="com.slim.settings.action.SETTINGS" />
-            </intent-filter>
-
-            <meta-data
-                android:name="com.android.settings.category"
-                android:value="com.android.settings.category.ia.homepage" />
-
-            <meta-data
-                android:name="com.android.settings.summary"
-                android:value="@string/summary_empty" />
-
-        </activity>
-
-        <activity
             android:name="com.slim.settings.activities.DozeSettingsActivity"
             android:label="@string/doze_settings_title"
-            android:enabled="false"
+            android:enabled="true"
             android:theme="@style/Theme.Settings" >
 
             <intent-filter android:priority="-11">
