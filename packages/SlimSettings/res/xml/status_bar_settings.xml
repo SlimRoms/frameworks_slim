@@ -48,6 +48,7 @@
         <slim.preference.SlimListPreference
             android:key="status_bar_battery_style"
             android:title="@string/status_bar_battery_style_title"
+            android:summary="%s"
             android:dialogTitle="@string/status_bar_battery_style_title"
             android:entries="@array/status_bar_battery_style_entries"
             android:entryValues="@array/status_bar_battery_style_values"
@@ -57,6 +58,7 @@
         <slim.preference.SlimListPreference
             android:key="status_bar_battery_percent"
             android:title="@string/status_bar_battery_percentage_title"
+            android:summary="%s"
             android:dialogTitle="@string/status_bar_battery_percentage_dialog_title"
             android:entries="@array/status_bar_battery_percentage_entries"
             android:entryValues="@array/status_bar_battery_percentage_values"

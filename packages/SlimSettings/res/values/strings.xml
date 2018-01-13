@@ -344,6 +344,7 @@
     <string name="navigation_bar_size_40_dp">40 dp</string>
     <string name="navigation_bar_size_42_dp">42 dp</string>
     <string name="navigation_bar_size_0_dp">0 dp (off)</string>
+    <string name="navigation_menu_options">Menu button options</string>
     <string name="navigation_menu_right">Right</string>
     <string name="navigation_menu_left">Left</string>
     <string name="navigation_menu_both">Both</string>
@@ -405,6 +406,7 @@
     <string name="icon_color_mode_system_custom_icons">System and custom icons</string>
 
     <!-- Recent panel -->
+    <string name="recents_settings">Recents</string>
     <string name="recent_panel_category">Recent apps panel</string>
     <string name="use_slim_recents_title">Slim recents</string>
     <string name="show_running_tasks_title">Only show running apps</string>
@@ -508,4 +510,8 @@
     <string name="increasing_ring_volume_option_title">Increasing ring volume</string>
     <string name="increasing_ring_min_volume_title">Start volume</string>
     <string name="increasing_ring_ramp_up_time_title">Ramp-up time</string>
+
+     <!-- [CHAR_LIMIT=NONE] Format to put the middle items together in a series of 4 or more items in a list -->
+    <string name="join_many_items_middle"><xliff:g id="added_item">%1$s</xliff:g>, <xliff:g id="rest_of_items">%2$s</xliff:g></string>
+
 </resources>
