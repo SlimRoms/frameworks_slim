@@ -80,4 +80,11 @@
         <attr name="units" format="string|reference" />
     </declare-styleable>
 
+    <declare-styleable name="TouchscreenGesture">
+        <attr name="scancode" format="integer" />
+        <attr name="name" format="string" />
+        <attr name="path" format="string" />
+        <attr name="defaultAction" format="string" />
+    </declare-styleable>
+
 </resources>

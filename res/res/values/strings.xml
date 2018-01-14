@@ -200,4 +200,12 @@
     <string name="proximity_wake_title">Prevent accidental wake up</string>
     <string name="proximity_wake_summary">Check the proximity sensor prior to waking up screen</string>
 
+    <!-- Touchscreen Gestures -->
+    <string name="gesture_arrow_down_title">Arrow down</string>
+    <string name="gesture_arrow_left_title">Arrow left</string>
+    <string name="gesture_arrow_right_title">Arrow right</string>
+    <string name="gesture_arrow_up_title">Arrow up</string>
+    <string name="gesture_circle_title">Circle</string>
+    <string name="gesture_double_swipe_title">Double finger swipe down</string>
+
 </resources>
