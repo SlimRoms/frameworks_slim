@@ -63,6 +63,7 @@ import android.widget.LinearLayout;
 import com.android.systemui.R;
 import com.android.systemui.statusbar.phone.NavigationBarView;
 import com.android.systemui.statusbar.policy.DeadZone;
+import com.android.systemui.statusbar.slim.SlimKeyButtonDrawable;
 import com.android.systemui.statusbar.slim.SlimKeyButtonView;
 
 import java.util.ArrayList;
@@ -127,6 +128,8 @@ public class SlimNavigationBarView extends NavigationBarView {
     private List<Integer> mButtonIdList;
 
     private SlimKeyButtonView.LongClickCallback mCallback;
+
+    private SlimNavigationBarTransitions mSlimBarTransitions;
 
     // performs manual animation in sync with layout transitions
     private final SlimNavTransitionListener mTransitionListener = new SlimNavTransitionListener();
@@ -265,6 +268,8 @@ public class SlimNavigationBarView extends NavigationBarView {
         mButtonsConfig = ActionHelper.getNavBarConfig(mContext);
         mButtonIdList = new ArrayList<Integer>();
 
+        mSlimBarTransitions = new SlimNavigationBarTransitions(this);
+
         mPowerManager = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
         mIsPowerSaveMode = mPowerManager.isPowerSaveMode();
 
@@ -273,8 +278,13 @@ public class SlimNavigationBarView extends NavigationBarView {
     }
 
     @Override
-    public NavigationBarTransitions getBarTransitions() {
-        return mBarTransitions;
+    public BarTransitions getBarTransitions() {
+        return mSlimBarTransitions;
+    }
+
+    @Override
+    public LightBarTransitionsController getLightTransitionsController() {
+        return mSlimBarTransitions.getLightTransitionsController();
     }
 
     @Override
@@ -444,13 +454,22 @@ public class SlimNavigationBarView extends NavigationBarView {
 
         if (d != null) {
             d.mutate();
-            if (colorize && mNavBarButtonColorMode != 3) {
-                d = ImageHelper.getColoredDrawable(d, mNavBarButtonColor);
-            }
-            v.setImageBitmap(ImageHelper.drawableToBitmap(d));
+            //if (colorize && mNavBarButtonColorMode != 3) {
+            //    d = ImageHelper.getColoredDrawable(d, mNavBarButtonColor);
+            //}
+            v.setImageDrawable(SlimKeyButtonDrawable.create(d, null));
         }
         v.setRippleColor(mRippleColor);
         return v;
+    }
+
+    public void applyDarkIntensity(float intensity) {
+        for (int i = 0; i < getNavButtons().getChildCount(); i++) {
+            View view = getNavButtons().getChildAt(i);
+            if (view instanceof SlimKeyButtonView) {
+                ((SlimKeyButtonView) view).setDarkIntensity(intensity);
+            }
+        }
     }
 
     public void pressBackButton(boolean pressed) {
@@ -475,24 +494,24 @@ public class SlimNavigationBarView extends NavigationBarView {
             }
             v.setVisibility(View.INVISIBLE);
             v.setContentDescription(getResources().getString(R.string.accessibility_menu));
-            d = mContext.getResources().getDrawable(R.drawable.ic_sysbar_menu);
+            d = mContext.getDrawable(R.drawable.ic_sysbar_menu);
         } else if (keyId == KEY_IME_SWITCHER) {
             v.setClickAction(ActionConstants.ACTION_IME);
             v.setId(R.id.ime_switcher);
             v.setVisibility(View.GONE);
-            d = mContext.getResources().getDrawable(R.drawable.ic_ime_switcher_default);
+            d = mContext.getDrawable(R.drawable.ic_ime_switcher_default);
         }
 
         if (d != null) {
             d.mutate();
-            if (mNavBarButtonColorMode != 3) {
+            /*if (mNavBarButtonColorMode != 3) {
                 if (d instanceof VectorDrawable) {
                     d.setTint(mNavBarButtonColor);
                 } else {
                     d = ImageHelper.getColoredDrawable(d, mNavBarButtonColor);
                 }
-            }
-            v.setImageBitmap(ImageHelper.drawableToBitmap(d));
+            }*/
+            v.setImageDrawable(SlimKeyButtonDrawable.create(d, null));
         }
         v.setRippleColor(mRippleColor);
 
