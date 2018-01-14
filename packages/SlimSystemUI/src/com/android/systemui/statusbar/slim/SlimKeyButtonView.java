@@ -327,6 +327,18 @@ public class SlimKeyButtonView extends KeyButtonView {
         Action.processAction(mContext, mDoubleTapAction, true);
     }
 
+    public void setDarkIntensity(float darkIntensity) {
+        Drawable drawable = getDrawable();
+        if (drawable != null && (drawable instanceof SlimKeyButtonDrawable)) {
+            ((SlimKeyButtonDrawable) getDrawable()).setDarkIntensity(darkIntensity);
+
+            // Since we reuse the same drawable for multiple views, we need to invalidate the view
+            // manually.
+            invalidate();
+        }
+        //mRipple.setDarkIntensity(darkIntensity);
+    }
+
     public interface LongClickCallback {
         public boolean onLongClick(View v);
     }
