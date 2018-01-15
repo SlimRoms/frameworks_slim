@@ -37,6 +37,7 @@ import android.view.ViewConfiguration;
 import android.view.WindowManagerPolicy.WindowState;
 
 import java.util.Arrays;
+import java.util.HashMap;
 
 import slim.action.Action;
 import slim.action.ActionConstants;
@@ -48,44 +49,21 @@ public class HardwareKeyHandler {
 
     private static final String TAG = "HardwareKeyHandler";
 
-    /**
-     * Masks for checking presence of hardware keys.
-     * Must match values in core/res/res/values/config.xml
-     */
-    private static final int KEY_MASK_HOME = 0x01;
-    private static final int KEY_MASK_BACK = 0x02;
-    private static final int KEY_MASK_MENU = 0x04;
-    private static final int KEY_MASK_ASSIST = 0x08;
-    private static final int KEY_MASK_APP_SWITCH = 0x10;
-    private static final int KEY_MASK_CAMERA = 0x20;
-
     private static final int[] SUPPORTED_KEYS = {
-            KeyEvent.KEYCODE_HOME, KeyEvent.KEYCODE_MENU, KeyEvent.KEYCODE_BACK,
-            KeyEvent.KEYCODE_ASSIST, KeyEvent.KEYCODE_CAMERA, KeyEvent.KEYCODE_APP_SWITCH };
+            KeyEvent.KEYCODE_HOME,
+            KeyEvent.KEYCODE_MENU,
+            KeyEvent.KEYCODE_BACK,
+            KeyEvent.KEYCODE_ASSIST,
+            KeyEvent.KEYCODE_CAMERA,
+            KeyEvent.KEYCODE_APP_SWITCH
+    };
 
     private static final AudioAttributes VIBRATION_ATTRIBUTES = new AudioAttributes.Builder()
             .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
             .setUsage(AudioAttributes.USAGE_ASSISTANCE_SONIFICATION)
             .build();
 
-    boolean mHomePressed;
-    boolean mHomeConsumed;
-    boolean mHomeDoubleTapPending;
-    boolean mMenuPressed;
-    boolean mMenuConsumed;
-    boolean mMenuDoubleTapPending;
-    boolean mBackPressed;
-    boolean mBackConsumed;
-    boolean mBackDoubleTapPending;
-    boolean mAppSwitchPressed;
-    boolean mAppSwitchConsumed;
-    boolean mAppSwitchDoubleTapPending;
-    boolean mAssistPressed;
-    boolean mAssistConsumed;
-    boolean mAssistDoubleTapPending;
-    boolean mCameraPressed;
-    boolean mCameraConsumed;
-    boolean mCameraDoubleTapPending;
+    private HashMap<Integer, HardwareButton> mButtons = new HashMap<>();
 
     // Custom hardware key rebinding
     private int mDeviceHardwareKeys;
@@ -101,81 +79,7 @@ public class HardwareKeyHandler {
     private long[] mLongPressVibePattern;
     private long[] mVirtualKeyVibePattern;
 
-    // Tracks user-customisable behavior for certain key events
-    private String mPressOnHomeBehavior          = ActionConstants.ACTION_NULL;
-    private String mLongPressOnHomeBehavior      = ActionConstants.ACTION_NULL;
-    private String mDoubleTapOnHomeBehavior      = ActionConstants.ACTION_NULL;
-    private String mPressOnMenuBehavior          = ActionConstants.ACTION_NULL;
-    private String mLongPressOnMenuBehavior      = ActionConstants.ACTION_NULL;
-    private String mDoubleTapOnMenuBehavior      = ActionConstants.ACTION_NULL;
-    private String mPressOnBackBehavior          = ActionConstants.ACTION_NULL;
-    private String mLongPressOnBackBehavior      = ActionConstants.ACTION_NULL;
-    private String mDoubleTapOnBackBehavior      = ActionConstants.ACTION_NULL;
-    private String mPressOnAssistBehavior        = ActionConstants.ACTION_NULL;
-    private String mLongPressOnAssistBehavior    = ActionConstants.ACTION_NULL;
-    private String mDoubleTapOnAssistBehavior    = ActionConstants.ACTION_NULL;
-    private String mPressOnAppSwitchBehavior     = ActionConstants.ACTION_NULL;
-    private String mLongPressOnAppSwitchBehavior = ActionConstants.ACTION_NULL;
-    private String mDoubleTapOnAppSwitchBehavior = ActionConstants.ACTION_NULL;
-    private String mPressOnCameraBehavior        = ActionConstants.ACTION_NULL;
-    private String mLongPressOnCameraBehavior    = ActionConstants.ACTION_NULL;
-    private String mDoubleTapOnCameraBehavior    = ActionConstants.ACTION_NULL;
-
     private HwKeySettingsObserver mHwKeySettingsObserver;
-
-    private final Runnable mDoubleTapTimeoutRunnable = new Runnable() {
-        @Override
-        public void run() {
-            if (mHomeDoubleTapPending) {
-                mHomeDoubleTapPending = false;
-                if (!mPressOnHomeBehavior.equals(ActionConstants.ACTION_RECENTS)) {
-                    cancelPreloadRecentApps();
-                }
-                //mDisableVibration = maybeDisableVibration(mPressOnHomeBehavior);
-                Action.processAction(mContext, mPressOnHomeBehavior, false);
-            }
-            if (mMenuDoubleTapPending) {
-                mMenuDoubleTapPending = false;
-                if (!mPressOnMenuBehavior.equals(ActionConstants.ACTION_RECENTS)) {
-                    cancelPreloadRecentApps();
-                }
-                //mDisableVibration = maybeDisableVibration(mPressOnMenuBehavior);
-                Action.processAction(mContext, mPressOnMenuBehavior, false);
-            }
-            if (mBackDoubleTapPending) {
-                mBackDoubleTapPending = false;
-                if (!mPressOnBackBehavior.equals(ActionConstants.ACTION_RECENTS)) {
-                    cancelPreloadRecentApps();
-                }
-                //mDisableVibration = maybeDisableVibration(mPressOnBackBehavior);
-                Action.processAction(mContext, mPressOnBackBehavior, false);
-            }
-            if (mAppSwitchDoubleTapPending) {
-                mAppSwitchDoubleTapPending = false;
-                if (!mPressOnAppSwitchBehavior.equals(ActionConstants.ACTION_RECENTS)) {
-                    cancelPreloadRecentApps();
-                }
-                //mDisableVibration = maybeDisableVibration(mPressOnAppSwitchBehavior);
-                Action.processAction(mContext, mPressOnAppSwitchBehavior, false);
-            }
-            if (mAssistDoubleTapPending) {
-                mAssistDoubleTapPending = false;
-                if (!mPressOnAssistBehavior.equals(ActionConstants.ACTION_RECENTS)) {
-                    cancelPreloadRecentApps();
-                }
-                //mDisableVibration = maybeDisableVibration(mPressOnAssistBehavior);
-                Action.processAction(mContext, mPressOnAssistBehavior, false);
-            }
-            if (mCameraDoubleTapPending) {
-                mCameraDoubleTapPending = false;
-                if (!mPressOnCameraBehavior.equals(ActionConstants.ACTION_RECENTS)) {
-                    cancelPreloadRecentApps();
-                }
-                //mDisableVibration = maybeDisableVibration(mPressOnCameraBehavior);
-                Action.processAction(mContext, mPressOnCameraBehavior, false);
-            }
-        }
-    };
 
     private class HwKeySettingsObserver extends ContentObserver {
         HwKeySettingsObserver(Handler handler) {
@@ -183,71 +87,18 @@ public class HardwareKeyHandler {
         }
 
         void observe() {
-            // Observe all hw key users' changes
             ContentResolver resolver = mContext.getContentResolver();
-            resolver.registerContentObserver(SlimSettings.System.getUriFor(
-                    SlimSettings.System.DISABLE_HW_KEYS), false, this,
-                    UserHandle.USER_ALL);
-            resolver.registerContentObserver(SlimSettings.System.getUriFor(
-                    SlimSettings.System.KEY_HOME_ACTION), false, this,
-                    UserHandle.USER_ALL);
-            resolver.registerContentObserver(SlimSettings.System.getUriFor(
-                    SlimSettings.System.KEY_HOME_LONG_PRESS_ACTION), false, this,
-                    UserHandle.USER_ALL);
-            resolver.registerContentObserver(SlimSettings.System.getUriFor(
-                    SlimSettings.System.KEY_HOME_DOUBLE_TAP_ACTION), false, this,
-                    UserHandle.USER_ALL);
-            resolver.registerContentObserver(SlimSettings.System.getUriFor(
-                    SlimSettings.System.KEY_MENU_ACTION), false, this,
-                    UserHandle.USER_ALL);
-            resolver.registerContentObserver(SlimSettings.System.getUriFor(
-                    SlimSettings.System.KEY_MENU_LONG_PRESS_ACTION), false, this,
-                    UserHandle.USER_ALL);
-            resolver.registerContentObserver(SlimSettings.System.getUriFor(
-                    SlimSettings.System.KEY_MENU_DOUBLE_TAP_ACTION), false, this,
-                    UserHandle.USER_ALL);
-            resolver.registerContentObserver(SlimSettings.System.getUriFor(
-                    SlimSettings.System.KEY_ASSIST_ACTION), false, this,
-                    UserHandle.USER_ALL);
-            resolver.registerContentObserver(SlimSettings.System.getUriFor(
-                    SlimSettings.System.KEY_ASSIST_LONG_PRESS_ACTION), false, this,
-                    UserHandle.USER_ALL);
-            resolver.registerContentObserver(SlimSettings.System.getUriFor(
-                    SlimSettings.System.KEY_ASSIST_DOUBLE_TAP_ACTION), false, this,
-                    UserHandle.USER_ALL);
-            resolver.registerContentObserver(SlimSettings.System.getUriFor(
-                    SlimSettings.System.KEY_APP_SWITCH_ACTION), false, this,
-                    UserHandle.USER_ALL);
-            resolver.registerContentObserver(SlimSettings.System.getUriFor(
-                    SlimSettings.System.KEY_APP_SWITCH_LONG_PRESS_ACTION), false, this,
-                    UserHandle.USER_ALL);
-            resolver.registerContentObserver(SlimSettings.System.getUriFor(
-                    SlimSettings.System.KEY_APP_SWITCH_DOUBLE_TAP_ACTION), false, this,
-                    UserHandle.USER_ALL);
-            resolver.registerContentObserver(SlimSettings.System.getUriFor(
-                    SlimSettings.System.KEY_BACK_ACTION), false, this,
-                    UserHandle.USER_ALL);
-            resolver.registerContentObserver(SlimSettings.System.getUriFor(
-                    SlimSettings.System.KEY_BACK_LONG_PRESS_ACTION), false, this,
-                    UserHandle.USER_ALL);
-            resolver.registerContentObserver(SlimSettings.System.getUriFor(
-                    SlimSettings.System.KEY_BACK_DOUBLE_TAP_ACTION), false, this,
-                    UserHandle.USER_ALL);
-            resolver.registerContentObserver(SlimSettings.System.getUriFor(
-                    SlimSettings.System.KEY_CAMERA_ACTION), false, this,
-                    UserHandle.USER_ALL);
-            resolver.registerContentObserver(SlimSettings.System.getUriFor(
-                    SlimSettings.System.KEY_CAMERA_LONG_PRESS_ACTION), false, this,
-                    UserHandle.USER_ALL);
-            resolver.registerContentObserver(SlimSettings.System.getUriFor(
-                    SlimSettings.System.KEY_CAMERA_DOUBLE_TAP_ACTION), false, this,
-                    UserHandle.USER_ALL);
-            updateKeyAssignments();
+            for (HardwareButton button : mButtons.values()) {
+                button.observe(this, resolver);
+                button.updateAssignments();
+            }
         }
 
         @Override
         public void onChange(boolean selfChange) {
-            updateKeyAssignments();
+            for (HardwareButton button : mButtons.values()) {
+                button.updateAssignments();
+            }
         }
     }
 
@@ -265,6 +116,10 @@ public class HardwareKeyHandler {
 
         mVibrator = (Vibrator)context.getSystemService(Context.VIBRATOR_SERVICE);
 
+        for (int keyCode : SUPPORTED_KEYS) {
+            mButtons.put(keyCode, new HardwareButton(keyCode));
+        }
+
         mHwKeySettingsObserver = new HwKeySettingsObserver(mHandler);
         mHwKeySettingsObserver.observe();
     }
@@ -279,86 +134,6 @@ public class HardwareKeyHandler {
             out[i] = ar[i];
         }
         return out;
-    }
-
-    private void updateKeyAssignments() {
-        final boolean noMenu = (mDeviceHardwareKeys & KEY_MASK_MENU) == 0;
-        final boolean noBack = (mDeviceHardwareKeys & KEY_MASK_BACK) == 0;
-        final boolean noHome = (mDeviceHardwareKeys & KEY_MASK_HOME) == 0;
-        final boolean noAssist = (mDeviceHardwareKeys & KEY_MASK_ASSIST) == 0;
-        final boolean noAppSwitch = (mDeviceHardwareKeys & KEY_MASK_APP_SWITCH) == 0;
-        final boolean noCamera = (mDeviceHardwareKeys & KEY_MASK_CAMERA) == 0;
-
-        mKeysDisabled = SlimSettings.System.getIntForUser(
-                mContext.getContentResolver(),
-                SlimSettings.System.DISABLE_HW_KEYS, 0,
-                UserHandle.USER_CURRENT) == 1;
-
-        // Home button
-        mPressOnHomeBehavior =
-                HwKeyHelper.getPressOnHomeBehavior(
-                        mContext, noHome);
-        mLongPressOnHomeBehavior =
-                HwKeyHelper.getLongPressOnHomeBehavior(
-                        mContext, noHome);
-        mDoubleTapOnHomeBehavior =
-                HwKeyHelper.getDoubleTapOnHomeBehavior(
-                        mContext, noHome);
-
-        // Menu button
-        mPressOnMenuBehavior =
-                HwKeyHelper.getPressOnMenuBehavior(
-                        mContext, noMenu);
-        mLongPressOnMenuBehavior =
-                HwKeyHelper.getLongPressOnMenuBehavior(mContext,
-                        noMenu, noMenu || !noAssist);
-        mDoubleTapOnMenuBehavior =
-                HwKeyHelper.getDoubleTapOnMenuBehavior(
-                        mContext, noMenu);
-
-        // Back button
-        mPressOnBackBehavior =
-                HwKeyHelper.getPressOnBackBehavior(
-                        mContext, noBack);
-        mLongPressOnBackBehavior =
-                HwKeyHelper.getLongPressOnBackBehavior(
-                        mContext, noBack);
-        mDoubleTapOnBackBehavior =
-                HwKeyHelper.getDoubleTapOnBackBehavior(
-                        mContext, noBack);
-
-        // Assist button
-        mPressOnAssistBehavior =
-                HwKeyHelper.getPressOnAssistBehavior(
-                        mContext, noAssist);
-        mLongPressOnAssistBehavior =
-                HwKeyHelper.getLongPressOnAssistBehavior(
-                        mContext, noAssist);
-        mDoubleTapOnAssistBehavior =
-                HwKeyHelper.getDoubleTapOnAssistBehavior(
-                        mContext, noAssist);
-
-        // App switcher button
-        mPressOnAppSwitchBehavior =
-                HwKeyHelper.getPressOnAppSwitchBehavior(
-                        mContext, noAppSwitch);
-        mLongPressOnAppSwitchBehavior =
-                HwKeyHelper.getLongPressOnAppSwitchBehavior(
-                        mContext, noAppSwitch);
-        mDoubleTapOnAppSwitchBehavior =
-                HwKeyHelper.getDoubleTapOnAppSwitchBehavior(
-                        mContext, noAppSwitch);
-
-        // Camera button
-        mPressOnCameraBehavior =
-                HwKeyHelper.getPressOnCameraBehavior(
-                        mContext, noCamera);
-        mLongPressOnCameraBehavior =
-                HwKeyHelper.getLongPressOnCameraBehavior(
-                        mContext, noCamera);
-        mDoubleTapOnCameraBehavior =
-                HwKeyHelper.getDoubleTapOnCameraBehavior(
-                        mContext, noCamera);
     }
 
     public boolean isHwKeysDisabled() {
@@ -383,413 +158,10 @@ public class HardwareKeyHandler {
             return true;
         }
 
-        if (keyCode == KeyEvent.KEYCODE_HOME) {
-            if (!down && mHomePressed) {
-                mHomePressed = false;
-                if (mHomeConsumed) {
-                    mHomeConsumed = false;
-                    return true;
-                }
+        HardwareButton button = mButtons.get(keyCode);
+        if (button != null)
+            return button.handleKeyEvent(repeatCount, down, canceled, longpress, keyguardOn);
 
-                if (canceled) {
-                    Log.i(TAG, "Ignoring HOME, event canceled.");
-                    return true;
-                }
-
-                if (!mDoubleTapOnHomeBehavior.equals(ActionConstants.ACTION_NULL)) {
-                    mHandler.removeCallbacks(mDoubleTapTimeoutRunnable);
-                    mHomeDoubleTapPending = true;
-                    mHandler.postDelayed(mDoubleTapTimeoutRunnable,
-                            ViewConfiguration.getDoubleTapTimeout());
-                    return true;
-                }
-
-                if (mDreamManagerInternal != null && mDreamManagerInternal.isDreaming()) {
-                    mDreamManagerInternal.stopDream(false);
-                    return true;
-                }
-
-                if (!mPressOnHomeBehavior.equals(ActionConstants.ACTION_RECENTS)) {
-                    cancelPreloadRecentApps();
-                }
-                Action.processAction(mContext, mPressOnHomeBehavior, false);
-                return true;
-            }
-
-            if (down) {
-                if (!mPreloadedRecentApps &&
-                        (mLongPressOnHomeBehavior.equals(ActionConstants.ACTION_RECENTS)
-                        || mDoubleTapOnHomeBehavior.equals(ActionConstants.ACTION_RECENTS)
-                        || mPressOnHomeBehavior.equals(ActionConstants.ACTION_RECENTS))) {
-                    preloadRecentApps();
-                }
-                if (repeatCount == 0) {
-                    mHomePressed = true;
-                    if (mHomeDoubleTapPending) {
-                        mHomeDoubleTapPending = false;
-                        mDisableVibration = false;
-                        mHomeConsumed = true;
-                        mHandler.removeCallbacks(mDoubleTapTimeoutRunnable);
-                        if (!mDoubleTapOnHomeBehavior.equals(ActionConstants.ACTION_RECENTS)) {
-                            cancelPreloadRecentApps();
-                        }
-                        Action.processAction(mContext, mDoubleTapOnHomeBehavior, false);
-                    }
-                } else if (longpress) {
-                    if (!keyguardOn
-                            && !mLongPressOnHomeBehavior.equals(ActionConstants.ACTION_NULL)) {
-                        if (!mLongPressOnHomeBehavior.equals(ActionConstants.ACTION_RECENTS)) {
-                            cancelPreloadRecentApps();
-                        }
-                        mHomePressed = true;
-                        performHapticFeedback(null, HapticFeedbackConstants.LONG_PRESS, false);
-                        Action.processAction(mContext, mLongPressOnHomeBehavior, false);
-                        mHomeConsumed = true;
-                    }
-                }
-            }
-            return true;
-        } else if (keyCode == KeyEvent.KEYCODE_MENU) {
-            // If we have released the menu key, and didn't do anything else
-            // while it was pressed, then it is time to process the menu action!
-            if (!down && mMenuPressed) {
-                mMenuPressed = false;
-                if (mMenuConsumed) {
-                    mMenuConsumed = false;
-                    return true;
-                }
-
-                if (canceled) {
-                    Log.i(TAG, "Ignoring MENU, event canceled.");
-                    return true;
-                }
-
-                // Delay handling menu if a double-tap is possible.
-                if (!mDoubleTapOnMenuBehavior.equals(ActionConstants.ACTION_NULL)) {
-                    mHandler.removeCallbacks(mDoubleTapTimeoutRunnable); // just in case
-                    mDisableVibration = false; // just in case
-                    mMenuDoubleTapPending = true;
-                    mHandler.postDelayed(mDoubleTapTimeoutRunnable,
-                            ViewConfiguration.getDoubleTapTimeout());
-                    return true;
-                }
-
-                if (!mPressOnMenuBehavior.equals(ActionConstants.ACTION_RECENTS)) {
-                    cancelPreloadRecentApps();
-                }
-                //mDisableVibration = maybeDisableVibration(mPressOnMenuBehavior);
-                Action.processAction(mContext, mPressOnMenuBehavior, false);
-                return true;
-            }
-
-            if (down) {
-                // Remember that menu is pressed and handle special actions.
-                if (!mPreloadedRecentApps &&
-                        (mLongPressOnMenuBehavior.equals(ActionConstants.ACTION_RECENTS)
-                         || mDoubleTapOnMenuBehavior.equals(ActionConstants.ACTION_RECENTS)
-                         || mPressOnMenuBehavior.equals(ActionConstants.ACTION_RECENTS))) {
-                    preloadRecentApps();
-                }
-                if (repeatCount == 0) {
-                    mMenuPressed = true;
-                    if (mMenuDoubleTapPending) {
-                        mMenuDoubleTapPending = false;
-                        mDisableVibration = false;
-                        mMenuConsumed = true;
-                        mHandler.removeCallbacks(mDoubleTapTimeoutRunnable);
-                        if (!mDoubleTapOnMenuBehavior.equals(ActionConstants.ACTION_RECENTS)) {
-                            cancelPreloadRecentApps();
-                        }
-                        Action.processAction(mContext, mDoubleTapOnMenuBehavior, false);
-                        return true;
-                    }
-                } else if (longpress) {
-                    if (!keyguardOn
-                            && !mLongPressOnMenuBehavior.equals(ActionConstants.ACTION_NULL)) {
-                        if (!mLongPressOnMenuBehavior.equals(ActionConstants.ACTION_RECENTS)) {
-                            cancelPreloadRecentApps();
-                        }
-                        performHapticFeedback(null, HapticFeedbackConstants.LONG_PRESS, false);
-                        Action.processAction(mContext, mLongPressOnMenuBehavior, false);
-                        mMenuConsumed = true;
-                        return true;
-                    }
-                }
-            }
-            return true;
-        } else if (keyCode == KeyEvent.KEYCODE_BACK) {
-            // If we have released the back key, and didn't do anything else
-            // while it was pressed, then it is time to process the back action!
-            if (!down && mBackPressed) {
-                mBackPressed = false;
-                if (mBackConsumed) {
-                    mBackConsumed = false;
-                    return true;
-                }
-
-                if (canceled) {
-                    Log.i(TAG, "Ignoring BACK, event canceled.");
-                    return true;
-                }
-
-                // Delay handling back if a double-tap is possible.
-                if (!mDoubleTapOnBackBehavior.equals(ActionConstants.ACTION_NULL)) {
-                    mHandler.removeCallbacks(mDoubleTapTimeoutRunnable); // just in case
-                    mDisableVibration = false; // just in case
-                    mBackDoubleTapPending = true;
-                    mHandler.postDelayed(mDoubleTapTimeoutRunnable,
-                            ViewConfiguration.getDoubleTapTimeout());
-                    return true;
-                }
-
-                if (!mPressOnBackBehavior.equals(ActionConstants.ACTION_RECENTS)) {
-                    cancelPreloadRecentApps();
-                }
-                //mDisableVibration = maybeDisableVibration(mPressOnBackBehavior);
-                Action.processAction(mContext, mPressOnBackBehavior, false);
-                return true;
-            }
-
-            if (down) {
-                // Remember that back is pressed and handle special actions.
-                if (!mPreloadedRecentApps &&
-                        (mLongPressOnBackBehavior.equals(ActionConstants.ACTION_RECENTS)
-                         || mDoubleTapOnBackBehavior.equals(ActionConstants.ACTION_RECENTS)
-                         || mPressOnBackBehavior.equals(ActionConstants.ACTION_RECENTS))) {
-                    preloadRecentApps();
-                }
-                if (repeatCount == 0) {
-                    mBackPressed = true;
-                    if (mBackDoubleTapPending) {
-                        mBackDoubleTapPending = false;
-                        mDisableVibration = false;
-                        mBackConsumed = true;
-                        mHandler.removeCallbacks(mDoubleTapTimeoutRunnable);
-                        if (!mDoubleTapOnBackBehavior.equals(ActionConstants.ACTION_RECENTS)) {
-                            cancelPreloadRecentApps();
-                        }
-                        Action.processAction(mContext, mDoubleTapOnBackBehavior, false);
-                    }
-                } else if (longpress) {
-                    if (!keyguardOn
-                            && (!mLongPressOnBackBehavior.equals(ActionConstants.ACTION_NULL)
-                                    || isInLockTask())) {
-                        if (!mLongPressOnBackBehavior.equals(ActionConstants.ACTION_RECENTS)) {
-                            cancelPreloadRecentApps();
-                        }
-                        performHapticFeedback(null, HapticFeedbackConstants.LONG_PRESS, false);
-                        if (isInLockTask()) {
-                            finishLockTask();
-                        } else {
-                            Action.processAction(mContext, mLongPressOnBackBehavior, false);
-                        }
-                        mBackConsumed = true;
-                    }
-                }
-            }
-            return true;
-        } else if (keyCode == KeyEvent.KEYCODE_ASSIST) {
-            // If we have released the assistant key, and didn't do anything else
-            // while it was pressed, then it is time to process the assistant action!
-            if (!down && mAssistPressed) {
-                mAssistPressed = false;
-                if (mAssistConsumed) {
-                    mAssistConsumed = false;
-                    return true;
-                }
-
-                if (canceled) {
-                    Log.i(TAG, "Ignoring ASSIST, event canceled.");
-                    return true;
-                }
-
-                // Delay handling assistant if a double-tap is possible.
-                if (!mDoubleTapOnAssistBehavior.equals(ActionConstants.ACTION_NULL)) {
-                    mHandler.removeCallbacks(mDoubleTapTimeoutRunnable); // just in case
-                    mDisableVibration = false; // just in case
-                    mAssistDoubleTapPending = true;
-                    mHandler.postDelayed(mDoubleTapTimeoutRunnable,
-                            ViewConfiguration.getDoubleTapTimeout());
-                    return true;
-                }
-
-                if (!mPressOnAssistBehavior.equals(ActionConstants.ACTION_RECENTS)) {
-                    cancelPreloadRecentApps();
-                }
-                //mDisableVibration = maybeDisableVibration(mPressOnAssistBehavior);
-                Action.processAction(mContext, mPressOnAssistBehavior, false);
-                return true;
-            }
-
-            // Remember that assistant key is pressed and handle special actions.
-            if (down) {
-                if (!mPreloadedRecentApps &&
-                        (mLongPressOnAssistBehavior.equals(ActionConstants.ACTION_RECENTS)
-                         || mDoubleTapOnAssistBehavior.equals(ActionConstants.ACTION_RECENTS)
-                         || mPressOnAssistBehavior.equals(ActionConstants.ACTION_RECENTS))) {
-                    preloadRecentApps();
-                }
-                if (repeatCount == 0) {
-                    mAssistPressed = true;
-                    if (mAssistDoubleTapPending) {
-                        mAssistDoubleTapPending = false;
-                        mDisableVibration = false;
-                        mAssistConsumed = true;
-                        mHandler.removeCallbacks(mDoubleTapTimeoutRunnable);
-                        if (!mDoubleTapOnAssistBehavior.equals(ActionConstants.ACTION_RECENTS)) {
-                            cancelPreloadRecentApps();
-                        }
-                        Action.processAction(mContext, mDoubleTapOnAssistBehavior, false);
-                    }
-                } else if (longpress) {
-                    if (!keyguardOn
-                            && !mLongPressOnAssistBehavior.equals(ActionConstants.ACTION_NULL)) {
-                        if (!mLongPressOnAssistBehavior.equals(ActionConstants.ACTION_RECENTS)) {
-                            cancelPreloadRecentApps();
-                        }
-                        performHapticFeedback(null, HapticFeedbackConstants.LONG_PRESS, false);
-                        Action.processAction(mContext, mLongPressOnAssistBehavior, false);
-                        mAssistConsumed = true;
-                    }
-                }
-            }
-            return true;
-        } else if (keyCode == KeyEvent.KEYCODE_CAMERA) {
-            // If we have released the assistant key, and didn't do anything else
-            // while it was pressed, then it is time to process the assistant action!
-            if (!down && mCameraPressed) {
-                mCameraPressed = false;
-                if (mCameraConsumed) {
-                    mCameraConsumed = false;
-                    return true;
-                }
-
-                if (canceled) {
-                    Log.i(TAG, "Ignoring CAMERA, event canceled.");
-                    return true;
-                }
-
-                // Delay handling assistant if a double-tap is possible.
-                if (!mDoubleTapOnCameraBehavior.equals(ActionConstants.ACTION_NULL)) {
-                    mHandler.removeCallbacks(mDoubleTapTimeoutRunnable); // just in case
-                    mDisableVibration = false; // just in case
-                    mCameraDoubleTapPending = true;
-                    mHandler.postDelayed(mDoubleTapTimeoutRunnable,
-                            ViewConfiguration.getDoubleTapTimeout());
-                    return true;
-                }
-
-                if (!mPressOnCameraBehavior.equals(ActionConstants.ACTION_RECENTS)) {
-                    cancelPreloadRecentApps();
-                }
-                //mDisableVibration = maybeDisableVibration(mPressOnCameraBehavior);
-                Action.processAction(mContext, mPressOnCameraBehavior, false);
-                return true;
-            }
-
-            // Remember that camera key is pressed and handle special actions.
-            if (down) {
-                if (!mPreloadedRecentApps &&
-                        (mLongPressOnCameraBehavior.equals(ActionConstants.ACTION_RECENTS)
-                         || mDoubleTapOnCameraBehavior.equals(ActionConstants.ACTION_RECENTS)
-                         || mPressOnCameraBehavior.equals(ActionConstants.ACTION_RECENTS))) {
-                    preloadRecentApps();
-                }
-                if (repeatCount == 0) {
-                    mCameraPressed = true;
-                    if (mCameraDoubleTapPending) {
-                        mCameraDoubleTapPending = false;
-                        mDisableVibration = false;
-                        mCameraConsumed = true;
-                        mHandler.removeCallbacks(mDoubleTapTimeoutRunnable);
-                        if (!mDoubleTapOnCameraBehavior.equals(ActionConstants.ACTION_RECENTS)) {
-                            cancelPreloadRecentApps();
-                        }
-                        Action.processAction(mContext, mDoubleTapOnCameraBehavior, false);
-                    }
-                } else if (longpress) {
-                    if (!keyguardOn
-                            && !mLongPressOnCameraBehavior.equals(ActionConstants.ACTION_NULL)) {
-                        if (!mLongPressOnCameraBehavior.equals(ActionConstants.ACTION_RECENTS)) {
-                            cancelPreloadRecentApps();
-                        }
-                        performHapticFeedback(null, HapticFeedbackConstants.LONG_PRESS, false);
-                        Action.processAction(mContext, mLongPressOnCameraBehavior, false);
-                        mCameraConsumed = true;
-                    }
-                }
-            }
-            return true;
-        } else if (keyCode == KeyEvent.KEYCODE_APP_SWITCH) {
-            // If we have released the app switch key, and didn't do anything else
-            // while it was pressed, then it is time to process the app switch action!
-            if (!down && mAppSwitchPressed) {
-                mAppSwitchPressed = false;
-                if (mAppSwitchConsumed) {
-                    mAppSwitchConsumed = false;
-                    return true;
-                }
-
-                if (canceled) {
-                    Log.i(TAG, "Ignoring APPSWITCH, event canceled.");
-                    return true;
-                }
-
-                // Delay handling AppSwitch if a double-tap is possible.
-                if (!mDoubleTapOnAppSwitchBehavior.equals(ActionConstants.ACTION_NULL)) {
-                    mHandler.removeCallbacks(mDoubleTapTimeoutRunnable); // just in case
-                    mDisableVibration = false; // just in case
-                    mAppSwitchDoubleTapPending = true;
-                    mHandler.postDelayed(mDoubleTapTimeoutRunnable,
-                            ViewConfiguration.getDoubleTapTimeout());
-                    return true;
-                }
-
-                if (!mPressOnAppSwitchBehavior.equals(ActionConstants.ACTION_RECENTS)) {
-                    cancelPreloadRecentApps();
-                }
-                //mDisableVibration = maybeDisableVibration(mPressOnAppSwitchBehavior);
-                Action.processAction(mContext, mPressOnAppSwitchBehavior, false);
-                return true;
-            }
-
-            // Remember that AppSwitch is pressed and handle special actions.
-            if (down) {
-                if (!mPreloadedRecentApps &&
-                        (mLongPressOnAppSwitchBehavior.equals(ActionConstants.ACTION_RECENTS)
-                         || mDoubleTapOnAppSwitchBehavior.equals(ActionConstants.ACTION_RECENTS)
-                         || mPressOnAppSwitchBehavior.equals(ActionConstants.ACTION_RECENTS))) {
-                    preloadRecentApps();
-                }
-                if (repeatCount == 0) {
-                    mAppSwitchPressed = true;
-                    if (mAppSwitchDoubleTapPending) {
-                        mAppSwitchDoubleTapPending = false;
-                        mDisableVibration = false;
-                        mAppSwitchConsumed = true;
-                        mHandler.removeCallbacks(mDoubleTapTimeoutRunnable);
-                        if (!mDoubleTapOnAppSwitchBehavior.equals(
-                                ActionConstants.ACTION_RECENTS)) {
-                            cancelPreloadRecentApps();
-                        }
-                        Action.processAction(mContext, mDoubleTapOnAppSwitchBehavior, false);
-                    }
-                } else if (longpress) {
-                    if (!keyguardOn
-                            && !mLongPressOnAppSwitchBehavior.equals(
-                                    ActionConstants.ACTION_NULL)) {
-                        if (!mLongPressOnAppSwitchBehavior.equals(
-                                ActionConstants.ACTION_RECENTS)) {
-                            cancelPreloadRecentApps();
-                        }
-                        performHapticFeedback(null, HapticFeedbackConstants.LONG_PRESS, false);
-                        Action.processAction(mContext, mLongPressOnAppSwitchBehavior, false);
-                        mAppSwitchConsumed = true;
-                    }
-                }
-            }
-            return true;
-        }
         return false;
     }
 
@@ -871,5 +243,141 @@ public class HardwareKeyHandler {
                     VIBRATION_ATTRIBUTES);
         }
         return true;
+    }
+
+    private String getStringFromSettings(String key, String def) {
+        String val = SlimSettings.System.getStringForUser(
+                mContext.getContentResolver(), key, UserHandle.USER_CURRENT);
+        return (val == null) ? def : val;
+    }
+
+    private class HardwareButton {
+
+        private String mKey;
+        private int mKeyCode;
+
+        private boolean mButtonPressed;
+        private boolean mButtonConsumed;
+        private boolean mDoubleTapPending;
+
+        private String mTapAction;
+        private String mDoubleTapAction;
+        private String mLongPressAction;
+
+        private final Runnable mDoubleTapTimeoutRunnable = new Runnable() {
+            @Override
+            public void run() {
+                if (mDoubleTapPending) {
+                    mDoubleTapPending = false;
+                    if (!mTapAction.equals(ActionConstants.ACTION_RECENTS)) {
+                        cancelPreloadRecentApps();
+                    }
+                    //mDisableVibration = maybeDisableVibration(mPressOnHomeBehavior);
+                    Action.processAction(mContext, mTapAction, false);
+                }
+            }
+        };
+
+        private HardwareButton(int keyCode) {
+            mKeyCode = keyCode;
+            String key = KeyEvent.keyCodeToString(keyCode);
+            mKey = key.replace("KEYCODE_", "key_").toLowerCase();
+        }
+
+        private void observe(ContentObserver observer, ContentResolver resolver) {
+            resolver.registerContentObserver(SlimSettings.System.getUriFor(
+                    (mKey + "_action")), false, observer,
+                    UserHandle.USER_ALL);
+            resolver.registerContentObserver(SlimSettings.System.getUriFor(
+                    (mKey + "_long_press_action")), false, observer,
+                    UserHandle.USER_ALL);
+            resolver.registerContentObserver(SlimSettings.System.getUriFor(
+                    (mKey + "_double_tap_action")), false, observer,
+                    UserHandle.USER_ALL);
+        }
+
+        private void updateAssignments() {
+            mTapAction = getStringFromSettings((mKey + "_action"),
+                    HwKeyHelper.getDefaultTapActionForKeyCode(mContext, mKeyCode));
+            mDoubleTapAction = getStringFromSettings((mKey + "_double_tap_action"),
+                    HwKeyHelper.getDefaultDoubleTapActionForKeyCode(mContext, mKeyCode));
+            mLongPressAction = getStringFromSettings((mKey + "_long_press_action"),
+                    HwKeyHelper.getDefaultLongPressActionForKeyCode(mContext, mKeyCode));
+        }
+
+        public boolean handleKeyEvent(int repeatCount, boolean down,
+                boolean canceled, boolean longpress, boolean keyguardOn) {
+            // If we have released the assistant key, and didn't do anything else
+            // while it was pressed, then it is time to process the assistant action!
+            if (!down && mButtonPressed) {
+                mButtonPressed = false;
+                if (mButtonConsumed) {
+                    mButtonConsumed = false;
+                    return true;
+                }
+
+                if (canceled) {
+                    Log.i(TAG, "Ignoring " + mKey + ", event canceled.");
+                    return true;
+                }
+
+                // Delay handling assistant if a double-tap is possible.
+                if (!mDoubleTapAction.equals(ActionConstants.ACTION_NULL)) {
+                    mHandler.removeCallbacks(mDoubleTapTimeoutRunnable); // just in case
+                    mDisableVibration = false; // just in case
+                    mDoubleTapPending = true;
+                    mHandler.postDelayed(mDoubleTapTimeoutRunnable,
+                            ViewConfiguration.getDoubleTapTimeout());
+                    return true;
+                }
+
+                if (mKeyCode == KeyEvent.KEYCODE_HOME &&
+                        mDreamManagerInternal != null && mDreamManagerInternal.isDreaming()) {
+                    mDreamManagerInternal.stopDream(false);
+                    return true;
+                }
+
+                if (!mTapAction.equals(ActionConstants.ACTION_RECENTS)) {
+                    cancelPreloadRecentApps();
+                }
+                //mDisableVibration = maybeDisableVibration(mPressOnCameraBehavior);
+                Action.processAction(mContext, mTapAction, false);
+                return true;
+            }
+
+            // Remember that camera key is pressed and handle special actions.
+            if (down) {
+                if (!mPreloadedRecentApps &&
+                        (mLongPressAction.equals(ActionConstants.ACTION_RECENTS)
+                         || mDoubleTapAction.equals(ActionConstants.ACTION_RECENTS)
+                         || mTapAction.equals(ActionConstants.ACTION_RECENTS))) {
+                    preloadRecentApps();
+                }
+                if (repeatCount == 0) {
+                    mButtonPressed = true;
+                    if (mDoubleTapPending) {
+                        mDoubleTapPending = false;
+                        mDisableVibration = false;
+                        mButtonConsumed = true;
+                        mHandler.removeCallbacks(mDoubleTapTimeoutRunnable);
+                        if (!mDoubleTapAction.equals(ActionConstants.ACTION_RECENTS)) {
+                            cancelPreloadRecentApps();
+                        }
+                        Action.processAction(mContext, mDoubleTapAction, false);
+                    }
+                } else if (longpress) {
+                    if (!keyguardOn
+                            && !mLongPressAction.equals(ActionConstants.ACTION_NULL)) {
+                        if (!mLongPressAction.equals(ActionConstants.ACTION_RECENTS)) {
+                            cancelPreloadRecentApps();
+                        }
+                        performHapticFeedback(null, HapticFeedbackConstants.LONG_PRESS, false);
+                        Action.processAction(mContext, mLongPressAction, false);
+                        mButtonConsumed = true;
+                    }
+                }
+            }
+            return true;
+        }
     }
 }
