@@ -27,6 +27,7 @@ import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.preference.ListPreference;
 import android.support.v7.preference.Preference;
@@ -35,6 +36,7 @@ import android.support.v7.preference.Preference.OnPreferenceClickListener;
 import android.support.v7.preference.PreferenceCategory;
 import android.support.v7.preference.PreferenceScreen;
 import android.support.v14.preference.SwitchPreference;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -43,6 +45,7 @@ import slim.action.ActionsArray;
 import slim.action.ActionConstants;
 import slim.action.ActionHelper;
 import slim.utils.AppHelper;
+import slim.utils.ImageHelper;
 
 import java.io.File;
 
@@ -288,10 +291,25 @@ public class ScreenOffGesture extends SettingsPreferenceFragment implements
 
             setTitle(title);
             setKey(buildPreferenceKey(scanCode));
+
+            Log.d("TEST", "title - " + title);
+            String action = getPersistedString(defaultAction);
+            Log.d("TEST", "action - " + action);
+
+
             setEntries(mActionsArray.getEntries());
             setEntryValues(mActionsArray.getValues());
             setDefaultValue(defaultAction);
-            setSummary("%s");
+            Drawable d = ActionHelper.getActionIconImage(mContext, action, null);
+            d = d.getConstantState().newDrawable().mutate();
+            if (action.startsWith("**")) {
+                setSummary("%s");
+                d = ImageHelper.getColoredDrawable(d, 0xff000000);
+            } else {
+                setSummary(AppHelper.getFriendlyNameForUri(mContext, mContext.getPackageManager(),
+                        action));
+            }
+            setIcon(d);
             setDialogTitle(title);
         }
 
@@ -312,6 +330,11 @@ public class ScreenOffGesture extends SettingsPreferenceFragment implements
                 return defValue;
             }
             return mScreenOffGestureSharedPreferences.getString(getKey(), defValue);
+        }
+
+        @Override
+        protected boolean shouldPersist() {
+            return true;
         }
 
         @Override

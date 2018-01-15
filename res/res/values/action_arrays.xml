@@ -199,6 +199,23 @@
         <item>**null**</item>
     </string-array>
 
+    <string-array name="screen_off_actions_to_exclude" translatable="false">
+        <item>**back**</item>
+        <item>**home**</item>
+        <item>**recents**</item>
+        <item>**menu**</item>
+        <item>**kill**</item>
+        <item>**lastapp**</item>
+        <item>**ime**</item>
+        <item>**power**</item>
+        <item>**power_menu**</item>
+        <item>**notifications**</item>
+        <item>**settings_panel**</item>
+        <item>**screenshot**</item>
+        <item>**search**</item>
+        <item>**split_screen**</item>
+    </string-array>
+
     <!-- Icon color options -->
     <string-array name="icon_color_mode_entries">
         <item>@string/icon_color_mode_all_icons</item>

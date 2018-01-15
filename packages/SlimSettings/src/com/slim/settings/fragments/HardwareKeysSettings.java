@@ -27,6 +27,7 @@ import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.PowerManager;
 import android.support.v14.preference.SwitchPreference;
@@ -55,6 +56,7 @@ import slim.provider.SlimSettings;
 import slim.utils.AppHelper;
 import slim.utils.DeviceUtils;
 import slim.utils.HwKeyHelper;
+import slim.utils.ImageHelper;
 import slim.utils.ShortcutPickerHelper;
 
 import java.io.DataOutputStream;
@@ -393,13 +395,16 @@ public class HardwareKeysSettings extends SettingsPreferenceFragment implements
             return;
         }
 
+        Drawable d = ActionHelper.getActionIconImage(getActivity(), action, null);
+        d = d.getConstantState().newDrawable().mutate();
         if (action.startsWith("**")) {
             preference.setSummary(ActionHelper.getActionDescription(getActivity(), action));
+            d = ImageHelper.getColoredDrawable(d, 0xff000000);
         } else {
             preference.setSummary(AppHelper.getFriendlyNameForUri(
                     getActivity(), getActivity().getPackageManager(), action));
         }
-
+        preference.setIcon(d);
         preference.setOnPreferenceClickListener(this);
         mKeySettings.put(settingsKey, action);
     }

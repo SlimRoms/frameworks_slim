@@ -47,7 +47,7 @@ public class ImageHelper {
             d.setTint(color);
             return d;
         }
-        Bitmap colorBitmap = ((BitmapDrawable) d).getBitmap();
+        Bitmap colorBitmap = drawableToBitmap(d);
         Bitmap grayscaleBitmap = toGrayscale(colorBitmap);
         Paint pp = new Paint();
         pp.setAntiAlias(true);

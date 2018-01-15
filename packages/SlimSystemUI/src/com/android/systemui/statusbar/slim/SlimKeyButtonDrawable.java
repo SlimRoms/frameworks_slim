@@ -61,7 +61,6 @@ public class SlimKeyButtonDrawable extends LayerDrawable {
         if (!mHasDarkDrawable) {
             return;
         }
-        android.util.Log.d("TEST", "intensity - " + intensity);
         getDrawable(0).setAlpha((int) ((1 - intensity) * 255f));
         getDrawable(1).setAlpha((int) (intensity * 255f));
         invalidateSelf();
