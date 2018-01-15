@@ -42,12 +42,12 @@ import com.slim.settings.R;
 
 import slim.provider.SlimSettings;
 
-import static com.slim.settings.fragments.HardwareKeysSettings.KEY_MASK_HOME;
-import static com.slim.settings.fragments.HardwareKeysSettings.KEY_MASK_BACK;
-import static com.slim.settings.fragments.HardwareKeysSettings.KEY_MASK_MENU;
-import static com.slim.settings.fragments.HardwareKeysSettings.KEY_MASK_ASSIST;
-import static com.slim.settings.fragments.HardwareKeysSettings.KEY_MASK_APP_SWITCH;
-import static com.slim.settings.fragments.HardwareKeysSettings.KEY_MASK_CAMERA;
+import static slim.utils.HwKeyHelper.KEY_MASK_HOME;
+import static slim.utils.HwKeyHelper.KEY_MASK_BACK;
+import static slim.utils.HwKeyHelper.KEY_MASK_MENU;
+import static slim.utils.HwKeyHelper.KEY_MASK_ASSIST;
+import static slim.utils.HwKeyHelper.KEY_MASK_APP_SWITCH;
+import static slim.utils.HwKeyHelper.KEY_MASK_CAMERA;
 
 public class ButtonBacklightBrightness extends CustomDialogPreference<AlertDialog> implements
         SeekBar.OnSeekBarChangeListener {
