@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2017 SlimRoms Project
+ * Copyright (C) 2014-2018 SlimRoms Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,11 +19,23 @@ package slim.utils;
 import android.content.Context;
 import android.os.UserHandle;
 import android.provider.Settings;
+import android.view.KeyEvent;
 
 import slim.action.ActionConstants;
 import slim.provider.SlimSettings;
 
 public class HwKeyHelper {
+
+    /**
+     * Masks for checking presence of hardware keys.
+     * Must match values in core/res/res/values/config.xml
+     */
+    public static final int KEY_MASK_HOME = 0x01;
+    public static final int KEY_MASK_BACK = 0x02;
+    public static final int KEY_MASK_MENU = 0x04;
+    public static final int KEY_MASK_ASSIST = 0x08;
+    public static final int KEY_MASK_APP_SWITCH = 0x10;
+    public static final int KEY_MASK_CAMERA = 0x20;
 
     // These need to match the documentation/constant in
     // core/res/res/values/config.xml
@@ -34,242 +46,49 @@ public class HwKeyHelper {
     static final int DOUBLE_TAP_HOME_NOTHING = 0;
     static final int DOUBLE_TAP_HOME_RECENT_SYSTEM_UI = 1;
 
-    public static String getPressOnHomeBehavior(Context context, boolean getDefault) {
-        String defaultValue = ActionConstants.ACTION_HOME;
-        if (getDefault) {
-            return defaultValue;
+    public static String getDefaultTapActionForKeyCode(Context context, int keyCode) {
+        if (keyCode == KeyEvent.KEYCODE_HOME) {
+            return ActionConstants.ACTION_HOME;
+        } else if (keyCode == KeyEvent.KEYCODE_MENU) {
+            return ActionConstants.ACTION_MENU;
+        } else if (keyCode == KeyEvent.KEYCODE_BACK) {
+            return ActionConstants.ACTION_BACK;
+        } else if (keyCode == KeyEvent.KEYCODE_ASSIST) {
+            return ActionConstants.ACTION_SEARCH;
+        } else if (keyCode == KeyEvent.KEYCODE_APP_SWITCH) {
+            return ActionConstants.ACTION_RECENTS;
+        } else if (keyCode == KeyEvent.KEYCODE_CAMERA) {
+            return ActionConstants.ACTION_CAMERA;
         }
-        String value = SlimSettings.System.getStringForUser(
-                context.getContentResolver(),
-                SlimSettings.System.KEY_HOME_ACTION,
-                UserHandle.USER_CURRENT);
-        return value == null ? defaultValue : value;
+        return ActionConstants.ACTION_NULL;
     }
 
-    public static String getLongPressOnHomeBehavior(Context context, boolean getDefault) {
-        String defaultValue;
-        int longPressOnHome = context.getResources().getInteger(
-                com.android.internal.R.integer.config_longPressOnHomeBehavior);
-        if (longPressOnHome == LONG_PRESS_HOME_RECENT_SYSTEM_UI) {
-            defaultValue = ActionConstants.ACTION_RECENTS;
-        } else if (longPressOnHome == LONG_PRESS_HOME_ASSIST) {
-            defaultValue = ActionConstants.ACTION_SEARCH;
-        } else {
-            defaultValue = ActionConstants.ACTION_NULL;
+    public static String getDefaultLongPressActionForKeyCode(Context context, int keyCode) {
+        if (keyCode == KeyEvent.KEYCODE_HOME) {
+            int longPressOnHome = context.getResources().getInteger(
+                    com.android.internal.R.integer.config_longPressOnHomeBehavior);
+            if (longPressOnHome == LONG_PRESS_HOME_RECENT_SYSTEM_UI) {
+                return ActionConstants.ACTION_RECENTS;
+            } else if (longPressOnHome == LONG_PRESS_HOME_ASSIST) {
+                return ActionConstants.ACTION_SEARCH;
+            }
+        } else if (keyCode == KeyEvent.KEYCODE_MENU) {
+            return ActionConstants.ACTION_SEARCH;
+        } else if (keyCode == KeyEvent.KEYCODE_ASSIST) {
+            return ActionConstants.ACTION_VOICE_SEARCH;
         }
-        if (getDefault) {
-            return defaultValue;
-        }
-        String value = SlimSettings.System.getStringForUser(
-                context.getContentResolver(),
-                SlimSettings.System.KEY_HOME_LONG_PRESS_ACTION,
-                UserHandle.USER_CURRENT);
-        return value == null ? defaultValue : value;
+        return ActionConstants.ACTION_NULL;
     }
 
-    public static String getDoubleTapOnHomeBehavior(Context context, boolean getDefault) {
-        String defaultValue;
-        int doubleTapOnHome = context.getResources().getInteger(
-                com.android.internal.R.integer.config_doubleTapOnHomeBehavior);
-        if (doubleTapOnHome == DOUBLE_TAP_HOME_RECENT_SYSTEM_UI) {
-            defaultValue = ActionConstants.ACTION_RECENTS;
-        } else {
-            defaultValue = ActionConstants.ACTION_NULL;
+    public static String getDefaultDoubleTapActionForKeyCode(Context context, int keyCode) {
+        if (keyCode == KeyEvent.KEYCODE_HOME) {
+            int doubleTapOnHome = context.getResources().getInteger(
+                    com.android.internal.R.integer.config_doubleTapOnHomeBehavior);
+            if (doubleTapOnHome == DOUBLE_TAP_HOME_RECENT_SYSTEM_UI) {
+                return ActionConstants.ACTION_RECENTS;
+            }
         }
-        if (getDefault) {
-            return defaultValue;
-        }
-        String value = SlimSettings.System.getStringForUser(
-                context.getContentResolver(),
-                SlimSettings.System.KEY_HOME_DOUBLE_TAP_ACTION,
-                UserHandle.USER_CURRENT);
-        return value == null ? defaultValue : value;
-    }
-
-    public static String getPressOnMenuBehavior(Context context, boolean getDefault) {
-        String defaultValue = ActionConstants.ACTION_MENU;
-        if (getDefault) {
-            return defaultValue;
-        }
-        String value = SlimSettings.System.getStringForUser(
-                context.getContentResolver(),
-                SlimSettings.System.KEY_MENU_ACTION,
-                UserHandle.USER_CURRENT);
-        return value == null ? defaultValue : value;
-    }
-
-    public static String getLongPressOnMenuBehavior(Context context,
-                boolean getDefault, boolean hasAssistOrNoMenu) {
-        String defaultValue;
-        if (hasAssistOrNoMenu) {
-            defaultValue = ActionConstants.ACTION_NULL;
-        } else {
-            defaultValue = ActionConstants.ACTION_SEARCH;
-        }
-        if (getDefault) {
-            return defaultValue;
-        }
-        String value = SlimSettings.System.getStringForUser(
-                context.getContentResolver(),
-                SlimSettings.System.KEY_MENU_LONG_PRESS_ACTION,
-                UserHandle.USER_CURRENT);
-        return value == null ? defaultValue : value;
-    }
-
-    public static String getDoubleTapOnMenuBehavior(Context context, boolean getDefault) {
-        String defaultValue = ActionConstants.ACTION_NULL;
-        if (getDefault) {
-            return defaultValue;
-        }
-        String value = SlimSettings.System.getStringForUser(
-                context.getContentResolver(),
-                SlimSettings.System.KEY_MENU_DOUBLE_TAP_ACTION,
-                UserHandle.USER_CURRENT);
-        return value == null ? defaultValue : value;
-    }
-
-    public static String getPressOnBackBehavior(Context context, boolean getDefault) {
-        String defaultValue = ActionConstants.ACTION_BACK;
-        if (getDefault) {
-            return defaultValue;
-        }
-        String value = SlimSettings.System.getStringForUser(
-                context.getContentResolver(),
-                SlimSettings.System.KEY_BACK_ACTION,
-                UserHandle.USER_CURRENT);
-        return value == null ? defaultValue : value;
-    }
-
-    public static String getLongPressOnBackBehavior(Context context, boolean getDefault) {
-        String defaultValue = ActionConstants.ACTION_NULL;
-        if (getDefault) {
-            return defaultValue;
-        }
-        String value = SlimSettings.System.getStringForUser(
-                context.getContentResolver(),
-                SlimSettings.System.KEY_BACK_LONG_PRESS_ACTION,
-                UserHandle.USER_CURRENT);
-        return value == null ? defaultValue : value;
-    }
-
-    public static String getDoubleTapOnBackBehavior(Context context, boolean getDefault) {
-        String defaultValue = ActionConstants.ACTION_NULL;
-        if (getDefault) {
-            return defaultValue;
-        }
-        String value = SlimSettings.System.getStringForUser(
-                context.getContentResolver(),
-                SlimSettings.System.KEY_BACK_DOUBLE_TAP_ACTION,
-                UserHandle.USER_CURRENT);
-        return value == null ? defaultValue : value;
-    }
-
-    public static String getPressOnAssistBehavior(Context context, boolean getDefault) {
-        String defaultValue = ActionConstants.ACTION_SEARCH;
-        if (getDefault) {
-            return defaultValue;
-        }
-        String value = SlimSettings.System.getStringForUser(
-                context.getContentResolver(),
-                SlimSettings.System.KEY_ASSIST_ACTION,
-                UserHandle.USER_CURRENT);
-        return value == null ? defaultValue : value;
-    }
-
-    public static String getLongPressOnAssistBehavior(Context context, boolean getDefault) {
-        String defaultValue = ActionConstants.ACTION_VOICE_SEARCH;
-        if (getDefault) {
-            return defaultValue;
-        }
-        String value = SlimSettings.System.getStringForUser(
-                context.getContentResolver(),
-                SlimSettings.System.KEY_ASSIST_LONG_PRESS_ACTION,
-                UserHandle.USER_CURRENT);
-        return value == null ? defaultValue : value;
-    }
-
-    public static String getDoubleTapOnAssistBehavior(Context context, boolean getDefault) {
-        String defaultValue = ActionConstants.ACTION_NULL;
-        if (getDefault) {
-            return defaultValue;
-        }
-        String value = SlimSettings.System.getStringForUser(
-                context.getContentResolver(),
-                SlimSettings.System.KEY_ASSIST_DOUBLE_TAP_ACTION,
-                UserHandle.USER_CURRENT);
-        return value == null ? defaultValue : value;
-    }
-
-    public static String getPressOnAppSwitchBehavior(Context context, boolean getDefault) {
-        String defaultValue = ActionConstants.ACTION_RECENTS;
-        if (getDefault) {
-            return defaultValue;
-        }
-        String value = SlimSettings.System.getStringForUser(
-                context.getContentResolver(),
-                SlimSettings.System.KEY_APP_SWITCH_ACTION,
-                UserHandle.USER_CURRENT);
-        return value == null ? defaultValue : value;
-    }
-
-    public static String getLongPressOnAppSwitchBehavior(Context context, boolean getDefault) {
-        String defaultValue = ActionConstants.ACTION_NULL;
-        if (getDefault) {
-            return defaultValue;
-        }
-        String value = SlimSettings.System.getStringForUser(
-                context.getContentResolver(),
-                SlimSettings.System.KEY_APP_SWITCH_LONG_PRESS_ACTION,
-                UserHandle.USER_CURRENT);
-        return value == null ? defaultValue : value;
-    }
-
-    public static String getDoubleTapOnAppSwitchBehavior(Context context, boolean getDefault) {
-        String defaultValue = ActionConstants.ACTION_NULL;
-        if (getDefault) {
-            return defaultValue;
-        }
-        String value = SlimSettings.System.getStringForUser(
-                context.getContentResolver(),
-                SlimSettings.System.KEY_APP_SWITCH_DOUBLE_TAP_ACTION,
-                UserHandle.USER_CURRENT);
-        return value == null ? defaultValue : value;
-    }
-
-    public static String getPressOnCameraBehavior(Context context, boolean getDefault) {
-        String defaultValue = ActionConstants.ACTION_CAMERA;
-        if (getDefault) {
-            return defaultValue;
-        }
-        String value = SlimSettings.System.getStringForUser(
-                context.getContentResolver(),
-                SlimSettings.System.KEY_CAMERA_ACTION,
-                UserHandle.USER_CURRENT);
-        return value == null ? defaultValue : value;
-    }
-
-    public static String getLongPressOnCameraBehavior(Context context, boolean getDefault) {
-        String defaultValue = ActionConstants.ACTION_NULL;
-        if (getDefault) {
-            return defaultValue;
-        }
-        String value = SlimSettings.System.getStringForUser(
-                context.getContentResolver(),
-                SlimSettings.System.KEY_CAMERA_LONG_PRESS_ACTION,
-                UserHandle.USER_CURRENT);
-        return value == null ? defaultValue : value;
-    }
-
-    public static String getDoubleTapOnCameraBehavior(Context context, boolean getDefault) {
-        String defaultValue = ActionConstants.ACTION_NULL;
-        if (getDefault) {
-            return defaultValue;
-        }
-        String value = SlimSettings.System.getStringForUser(
-                context.getContentResolver(),
-                SlimSettings.System.KEY_CAMERA_DOUBLE_TAP_ACTION,
-                UserHandle.USER_CURRENT);
-        return value == null ? defaultValue : value;
+        return ActionConstants.ACTION_NULL;
     }
 }
 
