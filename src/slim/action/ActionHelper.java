@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2016-2017 SlimRoms Project
+* Copyright (C) 2016-2018 SlimRoms Project
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -155,82 +155,72 @@ public class ActionHelper {
     }
 
     private static int getActionSystemIcon(Resources resources, String clickAction) {
-        int resId = -1;
-
-        if (clickAction.equals(ActionConstants.ACTION_HOME)) {
-            resId = resources.getIdentifier(
+        switch (clickAction) {
+            case ActionConstants.ACTION_HOME:
+                return resources.getIdentifier(
                         SLIM_FRAMEWORK_METADATA_NAME + ":drawable/ic_sysbar_home", null, null);
-        } else if (clickAction.equals(ActionConstants.ACTION_BACK)) {
-            resId = resources.getIdentifier(
+            case ActionConstants.ACTION_BACK:
+                return resources.getIdentifier(
                         SLIM_FRAMEWORK_METADATA_NAME + ":drawable/ic_sysbar_back", null, null);
-        } else if (clickAction.equals(ActionConstants.ACTION_RECENTS)) {
-            resId = resources.getIdentifier(
+            case ActionConstants.ACTION_RECENTS:
+                return resources.getIdentifier(
                         SLIM_FRAMEWORK_METADATA_NAME + ":drawable/ic_sysbar_recent", null, null);
-        } else if (clickAction.equals(ActionConstants.ACTION_SEARCH)
-                || clickAction.equals(ActionConstants.ACTION_ASSIST)
-                || clickAction.equals(ActionConstants.ACTION_NOWONTAP)
-                || clickAction.equals(ActionConstants.ACTION_VOICE_SEARCH)
-                || clickAction.equals(ActionConstants.ACTION_KEYGUARD_SEARCH)) {
-            resId = resources.getIdentifier(
+            case ActionConstants.ACTION_SEARCH:
+            case ActionConstants.ACTION_ASSIST:
+            case ActionConstants.ACTION_NOWONTAP:
+            case ActionConstants.ACTION_VOICE_SEARCH:
+            case ActionConstants.ACTION_KEYGUARD_SEARCH:
+                return resources.getIdentifier(
                         SLIM_FRAMEWORK_METADATA_NAME + ":drawable/ic_sysbar_search", null, null);
-        } else if (clickAction.equals(ActionConstants.ACTION_MENU)) {
-            resId = resources.getIdentifier(
+            case ActionConstants.ACTION_MENU:
+                return resources.getIdentifier(
                         SLIM_FRAMEWORK_METADATA_NAME + ":drawable/ic_sysbar_menu_big", null, null);
-        } else if (clickAction.equals(ActionConstants.ACTION_IME)) {
-            resId = resources.getIdentifier(
-                        SLIM_FRAMEWORK_METADATA_NAME + ":drawable/ic_sysbar_ime_switcher", null, null);
-        } else if (clickAction.equals(ActionConstants.ACTION_POWER)) {
-            resId = resources.getIdentifier(
+            case ActionConstants.ACTION_IME:
+                return resources.getIdentifier(SLIM_FRAMEWORK_METADATA_NAME
+                        + ":drawable/ic_sysbar_ime_switcher", null, null);
+            case ActionConstants.ACTION_POWER:
+                return resources.getIdentifier(
                         SLIM_FRAMEWORK_METADATA_NAME + ":drawable/ic_sysbar_power", null, null);
-        } else if (clickAction.equals(ActionConstants.ACTION_POWER_MENU)) {
-            resId = resources.getIdentifier(
-                        SLIM_FRAMEWORK_METADATA_NAME + ":drawable/ic_sysbar_power_menu", null, null);
-        } else if (clickAction.equals(ActionConstants.ACTION_VIB)) {
-            resId = resources.getIdentifier(
+            case ActionConstants.ACTION_POWER_MENU:
+                return resources.getIdentifier(SLIM_FRAMEWORK_METADATA_NAME
+                        + ":drawable/ic_sysbar_power_menu", null, null);
+            case ActionConstants.ACTION_VIB:
+                return resources.getIdentifier(
                         SLIM_FRAMEWORK_METADATA_NAME + ":drawable/ic_sysbar_vib", null, null);
-        } else if (clickAction.equals(ActionConstants.ACTION_SILENT)) {
-            resId = resources.getIdentifier(
+            case ActionConstants.ACTION_SILENT:
+                return resources.getIdentifier(
                         SLIM_FRAMEWORK_METADATA_NAME + ":drawable/ic_sysbar_silent", null, null);
-        } else if (clickAction.equals(ActionConstants.ACTION_VIB_SILENT)) {
-            resId = resources.getIdentifier(
-                        SLIM_FRAMEWORK_METADATA_NAME + ":drawable/ic_sysbar_ring_vib_silent", null, null);
-        } else if (clickAction.equals(ActionConstants.ACTION_EXPANDED_DESKTOP)) {
-            resId = resources.getIdentifier(
-                        SLIM_FRAMEWORK_METADATA_NAME + ":drawable/ic_sysbar_expanded_desktop", null, null);
-        } else if (clickAction.equals(ActionConstants.ACTION_KILL)) {
-            resId = resources.getIdentifier(
+            case ActionConstants.ACTION_VIB_SILENT:
+                return resources.getIdentifier(SLIM_FRAMEWORK_METADATA_NAME
+                        + ":drawable/ic_sysbar_ring_vib_silent", null, null);
+            case ActionConstants.ACTION_EXPANDED_DESKTOP:
+                return resources.getIdentifier(SLIM_FRAMEWORK_METADATA_NAME
+                        + ":drawable/ic_sysbar_expanded_desktop", null, null);
+            case ActionConstants.ACTION_KILL:
+                return resources.getIdentifier(
                         SLIM_FRAMEWORK_METADATA_NAME + ":drawable/ic_sysbar_killtask", null, null);
-        } else if (clickAction.equals(ActionConstants.ACTION_LAST_APP)) {
-            resId = resources.getIdentifier(
+            case ActionConstants.ACTION_LAST_APP:
+                return resources.getIdentifier(
                         SLIM_FRAMEWORK_METADATA_NAME + ":drawable/ic_sysbar_lastapp", null, null);
-        } else if (clickAction.equals(ActionConstants.ACTION_NOTIFICATIONS)) {
-            resId = resources.getIdentifier(
-                        SLIM_FRAMEWORK_METADATA_NAME + ":drawable/ic_sysbar_notifications", null, null);
-        } else if (clickAction.equals(ActionConstants.ACTION_SETTINGS_PANEL)) {
-            resId = resources.getIdentifier(
+            case ActionConstants.ACTION_NOTIFICATIONS:
+                return resources.getIdentifier(SLIM_FRAMEWORK_METADATA_NAME
+                        + ":drawable/ic_sysbar_notifications", null, null);
+            case ActionConstants.ACTION_SETTINGS_PANEL:
+                return resources.getIdentifier(
                         SLIM_FRAMEWORK_METADATA_NAME + ":drawable/ic_sysbar_qs", null, null);
-        } else if (clickAction.equals(ActionConstants.ACTION_SCREENSHOT)) {
-            resId = resources.getIdentifier(
-                        SLIM_FRAMEWORK_METADATA_NAME + ":drawable/ic_sysbar_screenshot", null, null);
-        } else if (clickAction.equals(ActionConstants.ACTION_TORCH)) {
-            resId = resources.getIdentifier(
+            case ActionConstants.ACTION_SCREENSHOT:
+                return resources.getIdentifier(SLIM_FRAMEWORK_METADATA_NAME
+                        + ":drawable/ic_sysbar_screenshot", null, null);
+            case ActionConstants.ACTION_TORCH:
+                return resources.getIdentifier(
                         SLIM_FRAMEWORK_METADATA_NAME + ":drawable/ic_sysbar_torch", null, null);
-        } else if (clickAction.equals(ActionConstants.ACTION_CAMERA)) {
-            resId = resources.getIdentifier(
+            case ActionConstants.ACTION_CAMERA:
+                return resources.getIdentifier(
                         SLIM_FRAMEWORK_METADATA_NAME + ":drawable/ic_sysbar_camera", null, null);
-        }/* else if (clickAction.equals(ActionConstants.ACTION_POWER_OFF)) {
-            resId = com.android.internal.R.drawable.ic_lock_power_off_alpha;
-        } else if (clickAction.equals(ActionConstants.ACTION_REBOOT)) {
-            resId = com.android.internal.R.drawable.ic_lock_reboot_alpha;
-        } else if (clickAction.equals(ActionConstants.ACTION_AIRPLANE)) {
-            resId = com.android.internal.R.drawable.ic_lock_airplane_mode_off_am_alpha;
-        } else if (clickAction.equals(ActionConstants.ACTION_LOCKDOWN)) {
-            resId = com.android.internal.R.drawable.ic_lock_lock_alpha;
-        }*/ else {
-            resId = resources.getIdentifier(
+            default:
+                return resources.getIdentifier(
                         SLIM_FRAMEWORK_METADATA_NAME + ":drawable/ic_sysbar_null", null, null);
         }
-        return resId;
     }
 
     public static Drawable getPowerMenuIconImage(Context context,

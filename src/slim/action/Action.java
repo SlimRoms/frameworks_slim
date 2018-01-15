@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2016-2017 SlimRoms Project
+* Copyright (C) 2016-2018 SlimRoms Project
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -102,228 +102,224 @@ public class Action {
             }
 
             PowerManager pm = context.getSystemService(PowerManager.class);
+            AudioManager am = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
+
+            Intent intent;
 
             // process the actions
-            if (action.equals(ActionConstants.ACTION_HOME)) {
-                triggerVirtualKeypress(KeyEvent.KEYCODE_HOME, isLongpress);
-                return;
-            } else if (action.equals(ActionConstants.ACTION_BACK)) {
-                triggerVirtualKeypress(KeyEvent.KEYCODE_BACK, isLongpress);
-                return;
-            } else if (action.equals(ActionConstants.ACTION_SEARCH)) {
-                triggerVirtualKeypress(KeyEvent.KEYCODE_SEARCH, isLongpress);
-                return;
-            } else if (action.equals(ActionConstants.ACTION_NOTIFICATIONS)) {
-                if (isKeyguardShowing && isKeyguardSecure) {
+            switch (action) {
+                case ActionConstants.ACTION_HOME:
+                    triggerVirtualKeypress(KeyEvent.KEYCODE_HOME, isLongpress);
                     return;
-                }
-                try {
-                    barService.expandNotificationsPanel();
-                } catch (RemoteException e) {
-                }
-                return;
-            } else if (action.equals(ActionConstants.ACTION_SETTINGS_PANEL)) {
-                if (isKeyguardShowing && isKeyguardSecure) {
+                case ActionConstants.ACTION_BACK:
+                    triggerVirtualKeypress(KeyEvent.KEYCODE_BACK, isLongpress);
                     return;
-                }
-                try {
-                    barService.expandSettingsPanel(null);
-                } catch (RemoteException e) {}
-            } else if (action.equals(ActionConstants.ACTION_NOWONTAP)) {
-                actionsManager.startAssist(new Bundle());
-            } else if (action.equals(ActionConstants.ACTION_TORCH)) {
-                try {
-                    CameraManager cameraManager = (CameraManager)
-                            context.getSystemService(Context.CAMERA_SERVICE);
-                    for (final String cameraId : cameraManager.getCameraIdList()) {
-                        CameraCharacteristics characteristics =
-                            cameraManager.getCameraCharacteristics(cameraId);
-                        Boolean f = characteristics.get(CameraCharacteristics.FLASH_INFO_AVAILABLE);
-                        int orient = characteristics.get(CameraCharacteristics.LENS_FACING);
-                        if (f && orient == CameraCharacteristics.LENS_FACING_BACK) {
-                            cameraManager.setTorchMode(cameraId, !sTorchEnabled);
-                            sTorchEnabled = !sTorchEnabled;
-                            break;
+                case ActionConstants.ACTION_SEARCH:
+                    triggerVirtualKeypress(KeyEvent.KEYCODE_SEARCH, isLongpress);
+                    return;
+                case ActionConstants.ACTION_NOTIFICATIONS:
+                    if (isKeyguardShowing && isKeyguardSecure) {
+                        return;
+                    }
+                    try {
+                        barService.expandNotificationsPanel();
+                    } catch (RemoteException e) {}
+                    return;
+                case ActionConstants.ACTION_SETTINGS_PANEL:
+                    if (isKeyguardShowing && isKeyguardSecure) {
+                        return;
+                    }
+                    try {
+                        barService.expandSettingsPanel(null);
+                    } catch (RemoteException e) {}
+                    return;
+                case ActionConstants.ACTION_NOWONTAP:
+                    actionsManager.startAssist(new Bundle());
+                    return;
+                case ActionConstants.ACTION_TORCH:
+                    try {
+                        CameraManager cameraManager = (CameraManager)
+                                context.getSystemService(Context.CAMERA_SERVICE);
+                        for (final String cameraId : cameraManager.getCameraIdList()) {
+                            CameraCharacteristics characteristics =
+                                cameraManager.getCameraCharacteristics(cameraId);
+                            Boolean f =
+                                    characteristics.get(CameraCharacteristics.FLASH_INFO_AVAILABLE);
+                            int orient = characteristics.get(CameraCharacteristics.LENS_FACING);
+                            if (f && orient == CameraCharacteristics.LENS_FACING_BACK) {
+                                cameraManager.setTorchMode(cameraId, !sTorchEnabled);
+                                sTorchEnabled = !sTorchEnabled;
+                                break;
+                            }
+                        }
+                    } catch (CameraAccessException e) {}
+                    return;
+                case ActionConstants.ACTION_POWER_MENU:
+                    actionsManager.toggleGlobalMenu();
+                    return;
+                case ActionConstants.ACTION_MENU:
+                    triggerVirtualKeypress(KeyEvent.KEYCODE_MENU, isLongpress);
+                    return;
+                case ActionConstants.ACTION_IME_NAVIGATION_LEFT:
+                    triggerVirtualKeypress(KeyEvent.KEYCODE_DPAD_LEFT, isLongpress);
+                    return;
+                case ActionConstants.ACTION_IME_NAVIGATION_RIGHT:
+                    triggerVirtualKeypress(KeyEvent.KEYCODE_DPAD_RIGHT, isLongpress);
+                    return;
+                case ActionConstants.ACTION_IME_NAVIGATION_UP:
+                    triggerVirtualKeypress(KeyEvent.KEYCODE_DPAD_UP, isLongpress);
+                    return;
+                case ActionConstants.ACTION_IME_NAVIGATION_DOWN:
+                    triggerVirtualKeypress(KeyEvent.KEYCODE_DPAD_DOWN, isLongpress);
+                    return;
+                case ActionConstants.ACTION_POWER:
+                    pm.goToSleep(SystemClock.uptimeMillis());
+                    return;
+                case ActionConstants.ACTION_IME:
+                    if (isKeyguardShowing) {
+                        return;
+                    }
+                    context.sendBroadcastAsUser(
+                            new Intent("android.settings.SHOW_INPUT_METHOD_PICKER"),
+                            new UserHandle(UserHandle.USER_CURRENT));
+                    return;
+                case ActionConstants.ACTION_KILL:
+                    if (isKeyguardShowing) {
+                        return;
+                    }
+                    actionsManager.toggleKillApp();
+                    return;
+                case ActionConstants.ACTION_LAST_APP:
+                    if (isKeyguardShowing) {
+                        return;
+                    }
+                    actionsManager.toggleLastApp();
+                    return;
+                case ActionConstants.ACTION_SCREENSHOT:
+                    actionsManager.toggleScreenshot();
+                    return;
+                case ActionConstants.ACTION_SPLIT_SCREEN:
+                    actionsManager.toggleSplitScreen();
+                    return;
+                case ActionConstants.ACTION_RECENTS:
+                    if (isKeyguardShowing) {
+                        return;
+                    }
+                    actionsManager.toggleRecentApps();
+                    return;
+                case ActionConstants.ACTION_VOICE_SEARCH:
+                    // launch the search activity
+                    intent = new Intent(Intent.ACTION_SEARCH_LONG_PRESS);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    try {
+                        // TODO: This only stops the factory-installed search manager.
+                        // Need to formalize an API to handle others
+                        SearchManager searchManager =
+                                (SearchManager) context.getSystemService(Context.SEARCH_SERVICE);
+                        if (searchManager != null) {
+                            searchManager.stopSearch();
+                        }
+                        startActivity(context, intent, actionsManager, isKeyguardShowing, pm);
+                    } catch (ActivityNotFoundException e) {
+                        Log.e("Action:", "No activity to handle assist long press action.", e);
+                    }
+                    return;
+                case ActionConstants.ACTION_VIB:
+                    if (am != null && ActivityManagerNative.isSystemReady()) {
+                        if (am.getRingerMode() != AudioManager.RINGER_MODE_VIBRATE) {
+                            am.setRingerMode(AudioManager.RINGER_MODE_VIBRATE);
+                            Vibrator vib =
+                                    (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
+                            if (vib != null) {
+                                vib.vibrate(50);
+                            }
+                        } else {
+                            am.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
+                            ToneGenerator tg = new ToneGenerator(
+                                    AudioManager.STREAM_NOTIFICATION,
+                                    (int) (ToneGenerator.MAX_VOLUME * 0.85));
+                            if (tg != null) {
+                                tg.startTone(ToneGenerator.TONE_PROP_BEEP);
+                            }
                         }
                     }
-                } catch (CameraAccessException e) {
-                }
-                return;
-            } else if (action.equals(ActionConstants.ACTION_POWER_MENU)) {
-                actionsManager.toggleGlobalMenu();
-                return;
-            } else if (action.equals(ActionConstants.ACTION_MENU)) {
-                triggerVirtualKeypress(KeyEvent.KEYCODE_MENU, isLongpress);
-                return;
-            } else if (action.equals(ActionConstants.ACTION_IME_NAVIGATION_LEFT)) {
-                triggerVirtualKeypress(KeyEvent.KEYCODE_DPAD_LEFT, isLongpress);
-                return;
-            } else if (action.equals(ActionConstants.ACTION_IME_NAVIGATION_RIGHT)) {
-                triggerVirtualKeypress(KeyEvent.KEYCODE_DPAD_RIGHT, isLongpress);
-                return;
-            } else if (action.equals(ActionConstants.ACTION_IME_NAVIGATION_UP)) {
-                triggerVirtualKeypress(KeyEvent.KEYCODE_DPAD_UP, isLongpress);
-                return;
-            } else if (action.equals(ActionConstants.ACTION_IME_NAVIGATION_DOWN)) {
-                triggerVirtualKeypress(KeyEvent.KEYCODE_DPAD_DOWN, isLongpress);
-                return;
-            } else if (action.equals(ActionConstants.ACTION_POWER)) {
-                pm.goToSleep(SystemClock.uptimeMillis());
-                return;
-            } else if (action.equals(ActionConstants.ACTION_IME)) {
-                if (isKeyguardShowing) {
                     return;
-                }
-                context.sendBroadcastAsUser(
-                        new Intent("android.settings.SHOW_INPUT_METHOD_PICKER"),
-                        new UserHandle(UserHandle.USER_CURRENT));
-                return;
-            } else if (action.equals(ActionConstants.ACTION_KILL)) {
-                if (isKeyguardShowing) {
+                case ActionConstants.ACTION_SILENT:
+                    if (am != null && ActivityManagerNative.isSystemReady()) {
+                        if (am.getRingerMode() != AudioManager.RINGER_MODE_SILENT) {
+                            am.setRingerMode(AudioManager.RINGER_MODE_SILENT);
+                        } else {
+                            am.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
+                            ToneGenerator tg = new ToneGenerator(
+                                    AudioManager.STREAM_NOTIFICATION,
+                                    (int) (ToneGenerator.MAX_VOLUME * 0.85));
+                            if (tg != null) {
+                                tg.startTone(ToneGenerator.TONE_PROP_BEEP);
+                            }
+                        }
+                    }
                     return;
-                }
-                actionsManager.toggleKillApp();
-                return;
-            } else if (action.equals(ActionConstants.ACTION_LAST_APP)) {
-                if (isKeyguardShowing) {
+                case ActionConstants.ACTION_VIB_SILENT:
+                    if (am != null && ActivityManagerNative.isSystemReady()) {
+                        if (am.getRingerMode() == AudioManager.RINGER_MODE_NORMAL) {
+                            am.setRingerMode(AudioManager.RINGER_MODE_VIBRATE);
+                            Vibrator vib =
+                                    (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
+                            if (vib != null) {
+                                vib.vibrate(50);
+                            }
+                        } else if (am.getRingerMode() == AudioManager.RINGER_MODE_VIBRATE) {
+                            am.setRingerMode(AudioManager.RINGER_MODE_SILENT);
+                        } else {
+                            am.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
+                            ToneGenerator tg = new ToneGenerator(
+                                    AudioManager.STREAM_NOTIFICATION,
+                                    (int) (ToneGenerator.MAX_VOLUME * 0.85));
+                            if (tg != null) {
+                                tg.startTone(ToneGenerator.TONE_PROP_BEEP);
+                            }
+                        }
+                    }
                     return;
-                }
-                actionsManager.toggleLastApp();
-                return;
-            } else if (action.equals(ActionConstants.ACTION_SCREENSHOT)) {
-                actionsManager.toggleScreenshot();
-                return;
-            } else if (action.equals(ActionConstants.ACTION_SPLIT_SCREEN)) {
-                actionsManager.toggleSplitScreen();
-                return;
-            } else if (action.equals(ActionConstants.ACTION_RECENTS)) {
-                if (isKeyguardShowing) {
+                case ActionConstants.ACTION_CAMERA:
+                    if (isKeyguardSecure) {
+                        intent = new Intent(
+                                MediaStore.INTENT_ACTION_STILL_IMAGE_CAMERA_SECURE, null);
+                    } else {
+                        intent = new Intent(MediaStore.INTENT_ACTION_STILL_IMAGE_CAMERA, null);
+                    }
+                    startActivity(context, intent, actionsManager, false, pm);
                     return;
-                }
-                actionsManager.toggleRecentApps();
-                return;
-            } else if (action.equals(ActionConstants.ACTION_VOICE_SEARCH)) {
-                // launch the search activity
-                Intent intent = new Intent(Intent.ACTION_SEARCH_LONG_PRESS);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                try {
-                    // TODO: This only stops the factory-installed search manager.
-                    // Need to formalize an API to handle others
-                    SearchManager searchManager =
-                            (SearchManager) context.getSystemService(Context.SEARCH_SERVICE);
-                    if (searchManager != null) {
-                        searchManager.stopSearch();
+                case ActionConstants.ACTION_MEDIA_PREVIOUS:
+                    dispatchMediaKeyWithWakeLock(KeyEvent.KEYCODE_MEDIA_PREVIOUS, context);
+                    return;
+                case ActionConstants.ACTION_MEDIA_NEXT:
+                    dispatchMediaKeyWithWakeLock(KeyEvent.KEYCODE_MEDIA_NEXT, context);
+                    return;
+                case ActionConstants.ACTION_MEDIA_PLAY_PAUSE:
+                    dispatchMediaKeyWithWakeLock(KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE, context);
+                    return;
+                case ActionConstants.ACTION_WAKE_DEVICE:
+                    if (!pm.isInteractive()) {
+                        pm.wakeUp(SystemClock.uptimeMillis());
+                    }
+                    return;
+                case ActionConstants.ACTION_DOZE_PULSE:
+                    if (!pm.isScreenOn()) {
+                        context.sendBroadcast(new Intent("com.android.systemui.doze.pulse"));
+                    }
+                    return;
+                default:
+                    // we must have a custom uri
+                    try {
+                        intent = Intent.parseUri(action, 0);
+                    } catch (URISyntaxException e) {
+                        Log.e("Action:", "URISyntaxException: [" + action + "]");
+                        return;
                     }
                     startActivity(context, intent, actionsManager, isKeyguardShowing, pm);
-                } catch (ActivityNotFoundException e) {
-                    Log.e("Action:", "No activity to handle assist long press action.", e);
-                }
-                return;
-            } else if (action.equals(ActionConstants.ACTION_VIB)) {
-                AudioManager am = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
-                if(am != null && ActivityManagerNative.isSystemReady()) {
-                    if(am.getRingerMode() != AudioManager.RINGER_MODE_VIBRATE) {
-                        am.setRingerMode(AudioManager.RINGER_MODE_VIBRATE);
-                        Vibrator vib = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
-                        if(vib != null){
-                            vib.vibrate(50);
-                        }
-                    }else{
-                        am.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
-                        ToneGenerator tg = new ToneGenerator(
-                                AudioManager.STREAM_NOTIFICATION,
-                                (int)(ToneGenerator.MAX_VOLUME * 0.85));
-                        if(tg != null){
-                            tg.startTone(ToneGenerator.TONE_PROP_BEEP);
-                        }
-                    }
-                }
-                return;
-            } else if (action.equals(ActionConstants.ACTION_SILENT)) {
-                AudioManager am = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
-                if (am != null && ActivityManagerNative.isSystemReady()) {
-                    if (am.getRingerMode() != AudioManager.RINGER_MODE_SILENT) {
-                        am.setRingerMode(AudioManager.RINGER_MODE_SILENT);
-                    } else {
-                        am.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
-                        ToneGenerator tg = new ToneGenerator(
-                                AudioManager.STREAM_NOTIFICATION,
-                                (int)(ToneGenerator.MAX_VOLUME * 0.85));
-                        if (tg != null) {
-                            tg.startTone(ToneGenerator.TONE_PROP_BEEP);
-                        }
-                    }
-                }
-                return;
-            } else if (action.equals(ActionConstants.ACTION_VIB_SILENT)) {
-                AudioManager am = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
-                if (am != null && ActivityManagerNative.isSystemReady()) {
-                    if (am.getRingerMode() == AudioManager.RINGER_MODE_NORMAL) {
-                        am.setRingerMode(AudioManager.RINGER_MODE_VIBRATE);
-                        Vibrator vib = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
-                        if (vib != null) {
-                            vib.vibrate(50);
-                        }
-                    } else if (am.getRingerMode() == AudioManager.RINGER_MODE_VIBRATE) {
-                        am.setRingerMode(AudioManager.RINGER_MODE_SILENT);
-                    } else {
-                        am.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
-                        ToneGenerator tg = new ToneGenerator(
-                                AudioManager.STREAM_NOTIFICATION,
-                                (int)(ToneGenerator.MAX_VOLUME * 0.85));
-                        if (tg != null) {
-                            tg.startTone(ToneGenerator.TONE_PROP_BEEP);
-                        }
-                    }
-                }
-                return;
-            } else if (action.equals(ActionConstants.ACTION_CAMERA)) {
-                // ToDo: Send for secure keyguard secure camera intent.
-                // We need to add support for it first.
-                Intent intent;
-                if (isKeyguardSecure) {
-                    intent = new Intent(MediaStore.INTENT_ACTION_STILL_IMAGE_CAMERA_SECURE, null);
-                } else {
-                    intent = new Intent(MediaStore.INTENT_ACTION_STILL_IMAGE_CAMERA, null);
-                }
-                startActivity(context, intent, actionsManager, false, pm);
-                return;
-            } else if (action.equals(ActionConstants.ACTION_MEDIA_PREVIOUS)) {
-                dispatchMediaKeyWithWakeLock(KeyEvent.KEYCODE_MEDIA_PREVIOUS, context);
-                return;
-            } else if (action.equals(ActionConstants.ACTION_MEDIA_NEXT)) {
-                dispatchMediaKeyWithWakeLock(KeyEvent.KEYCODE_MEDIA_NEXT, context);
-                return;
-            } else if (action.equals(ActionConstants.ACTION_MEDIA_PLAY_PAUSE)) {
-                dispatchMediaKeyWithWakeLock(KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE, context);
-                return;
-            } else if (action.equals(ActionConstants.ACTION_WAKE_DEVICE)) {
-                PowerManager powerManager =
-                        (PowerManager) context.getSystemService(Context.POWER_SERVICE);
-                if (!powerManager.isInteractive()) {
-                    powerManager.wakeUp(SystemClock.uptimeMillis());
-                }
-                return;
-            } else if (action.equals(ActionConstants.ACTION_DOZE_PULSE)) {
-                PowerManager powerManager =
-                        (PowerManager) context.getSystemService(Context.POWER_SERVICE);
-                if (!powerManager.isScreenOn()) {
-                    context.sendBroadcast(new Intent("com.android.systemui.doze.pulse"));
-                }
-                return;
-            } else {
-                // we must have a custom uri
-                Intent intent = null;
-                try {
-                    intent = Intent.parseUri(action, 0);
-                } catch (URISyntaxException e) {
-                    Log.e("Action:", "URISyntaxException: [" + action + "]");
                     return;
-                }
-                startActivity(context, intent, actionsManager, isKeyguardShowing, pm);
-                return;
             }
-
     }
 
     public static boolean isActionKeyEvent(String action) {
