@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
 /*
- * Copyright (C) 2017 SlimRoms Project
+ * Copyright (C) 2018 SlimRoms Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -33,8 +33,8 @@
             android:icon="@drawable/ic_settings_interface"
             android:theme="@style/Theme.Settings" >
 
-            <intent-filter>
-                <action android:name="com.android.settings.action.EXTRA_SETTINGS" />
+            <intent-filter android:priority="1">
+                <action android:name="com.slim.settings.action.SETTINGS" />
             </intent-filter>
 
             <meta-data
@@ -49,8 +49,8 @@
             android:icon="@drawable/ic_settings_navigation"
             android:theme="@style/Theme.Settings" >
 
-            <intent-filter android:priority="3">
-                <action android:name="com.android.settings.action.EXTRA_SETTINGS" />
+            <intent-filter android:priority="0">
+                <action android:name="com.slim.settings.action.SETTINGS" />
             </intent-filter>
 
             <meta-data
@@ -69,8 +69,8 @@
             android:enabled="false"
             android:theme="@style/Theme.Settings" >
 
-            <intent-filter>
-                <action android:name="com.android.settings.action.EXTRA_SETTINGS" />
+            <intent-filter android:priority="-11">
+                <action android:name="com.slim.settings.action.SETTINGS" />
             </intent-filter>
 
             <meta-data
