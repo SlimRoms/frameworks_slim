@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2016-2017 SlimRoms Project
+# Copyright (C) 2016-2018 SlimRoms Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -48,6 +48,8 @@ LOCAL_AAPT_FLAGS := --auto-add-overlay \
     --extra-packages org.slim.preference:com.enrico.colorpicker
 
 LOCAL_CERTIFICATE := platform
+LOCAL_PRIVILEGED_MODULE := true
+LOCAL_MODULE_TAGS := optional
 LOCAL_PACKAGE_NAME := SlimSettings
 LOCAL_PROGUARD_ENABLED:= disabled
 
