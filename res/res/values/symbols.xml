@@ -195,4 +195,6 @@
     <java-symbol type="integer" name="config_buttonBrightnessSettingDefault" />
     <java-symbol type="integer" name="config_keyboardBrightnessSettingDefault" />
     <java-symbol type="bool" name="config_deviceHasVariableButtonBrightness" />
+
+    <java-symbol type="array" name="config_vendorPlatformSignatures" />
 </resources>
