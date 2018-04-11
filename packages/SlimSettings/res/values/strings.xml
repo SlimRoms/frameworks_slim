@@ -308,6 +308,7 @@
 
     <!-- Device specific settings -->
     <string name="screen_off_gesture_settings_title">Screen off gestures</string>
+    <string name="gesture_settings_title">Screen off and Squeeze gestures</string>
 
     <!-- Status bar -->
     <string name="status_bar_title">Statusbar</string>
