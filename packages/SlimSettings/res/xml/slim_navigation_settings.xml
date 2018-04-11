@@ -40,4 +40,14 @@
                 android:targetClass="com.slim.device.settings.ScreenOffGestureSettings" />
     </slim.preference.SlimPreference>
 
+    <!-- DeviceHandler device specific screen off gesture settings -->
+    <slim.preference.SlimPreference
+        android:key="gesture_settings"
+        android:title="@string/gesture_settings_title">
+            <intent
+                android:action="com.slim.action.LAUNCH_GESTURE_SETTINGS"
+                android:targetPackage="com.slim.device"
+                android:targetClass="com.slim.device.settings.GestureSettings" />
+    </slim.preference.SlimPreference>
+
 </PreferenceScreen>
