@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2016-2017 SlimRoms Project
+* Copyright (C) 2016-2018 SlimRoms Project
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -58,6 +58,7 @@ public class ActionConstants {
     public static final String ACTION_AIRPLANE             = "**airplane**";
     public static final String ACTION_LOCKDOWN             = "**lockdown**";
     public static final String ACTION_SOUND                = "**sound**";
+    public static final String ACTION_TOGGLE_SCREEN        = "**toggle_screen**";
     public static final String ACTION_USERS                = "**users**";
     public static final String ACTION_NOWONTAP             = "**nowontap**";
     public static final String ACTION_SPLIT_SCREEN         = "**split_screen**";

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-     Copyright (C) 2016-2017 SlimRoms Project
+     Copyright (C) 2016-2018 SlimRoms Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -149,6 +149,7 @@
         <item>@string/shortcut_action_screenshot</item>
         <item>@string/shortcut_action_camera</item>
         <item>@string/shortcut_action_torch</item>
+        <item>@string/shortcut_action_toggle_screen</item>
         <!--<item>@string/shortcut_action_theme_switch</item>-->
         <item>@string/shortcut_action_nowontap</item>
         <item>@string/shortcut_action_voice_search</item>
@@ -182,6 +183,7 @@
         <item>**screenshot**</item>
         <item>**camera**</item>
         <item>**torch**</item>
+        <item>**toggle_screen**</item>
         <!--<item>**theme_switch**</item>-->
         <item>**nowontap**</item>
         <item>**voice_search**</item>
