@@ -211,6 +211,9 @@ public class ActionHelper {
             case ActionConstants.ACTION_SCREENSHOT:
                 return resources.getIdentifier(SLIM_FRAMEWORK_METADATA_NAME
                         + ":drawable/ic_sysbar_screenshot", null, null);
+            case ActionConstants.ACTION_TOGGLE_SCREEN:
+                return resources.getIdentifier(
+                        SLIM_FRAMEWORK_METADATA_NAME + ":drawable/ic_sysbar_power", null, null);
             case ActionConstants.ACTION_TORCH:
                 return resources.getIdentifier(
                         SLIM_FRAMEWORK_METADATA_NAME + ":drawable/ic_sysbar_torch", null, null);
