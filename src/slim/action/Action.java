@@ -26,6 +26,7 @@ import android.content.Intent;
 import android.hardware.camera2.CameraManager;
 import android.hardware.camera2.CameraCharacteristics;
 import android.hardware.camera2.CameraAccessException;
+import android.hardware.display.DisplayManager;
 import android.hardware.input.InputManager;
 import android.media.AudioManager;
 import android.media.session.MediaSessionLegacyHelper;
@@ -41,6 +42,7 @@ import android.os.Vibrator;
 import android.provider.Settings;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.view.Display;
 import android.view.InputDevice;
 import android.view.IWindowManager;
 import android.view.KeyCharacterMap;
@@ -174,6 +176,16 @@ public class Action {
                     return;
                 case ActionConstants.ACTION_POWER:
                     pm.goToSleep(SystemClock.uptimeMillis());
+                    return;
+                case ActionConstants.ACTION_TOGGLE_SCREEN:
+                    DisplayManager dm = (DisplayManager) context.getSystemService(Context.DISPLAY_SERVICE);
+                    for (Display display : dm.getDisplays()) {
+                        if (display.getState() == Display.STATE_OFF) {
+                            pm.wakeUp(SystemClock.uptimeMillis());
+                        } else {
+                            pm.goToSleep(SystemClock.uptimeMillis());
+                        }
+                    }
                     return;
                 case ActionConstants.ACTION_IME:
                     if (isKeyguardShowing) {
