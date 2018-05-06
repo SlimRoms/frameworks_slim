@@ -391,7 +391,6 @@
   <string name="recent_panel_expanded_mode_title">Mode étendu</string>
   <string name="recent_panel_expanded_mode_summary">Mode d\'aperçu des applications récentes</string>
   <string name="recent_panel_expanded_mode_auto">Automatique (Par défaut)</string>
-  <string name="recent_panel_expanded_mode_always">Toujours</string>
   <string name="recent_panel_expanded_mode_never">Jamais</string>
   <string name="recent_panel_show_topmost_title">Afficher la tâche en cours</string>
   <string name="recent_panel_show_topmost_summary">Ne pas exclure la tâche au premier plan dans la vue récente</string>

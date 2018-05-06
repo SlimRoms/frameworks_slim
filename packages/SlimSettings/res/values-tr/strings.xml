@@ -391,7 +391,6 @@
   <string name="recent_panel_expanded_mode_title">Genişletilmiş mod</string>
   <string name="recent_panel_expanded_mode_summary">Son görevleri genişletilmiş önizleme modunda göster</string>
   <string name="recent_panel_expanded_mode_auto">Otomatik (varsayılan)</string>
-  <string name="recent_panel_expanded_mode_always">Her Zaman</string>
   <string name="recent_panel_expanded_mode_never">Asla</string>
   <string name="recent_panel_show_topmost_title">En üstteki görevi göster</string>
   <string name="recent_panel_show_topmost_summary">Son uygulamalar görünümünde en üstte ki görevi dışlama</string>

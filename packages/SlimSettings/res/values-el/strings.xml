@@ -391,7 +391,6 @@
   <string name="recent_panel_expanded_mode_title">Εκτεταμένη προβολή</string>
   <string name="recent_panel_expanded_mode_summary">Λειτουργία διευρυμένης προεπισκόπησης πρόσφατων εργασιών</string>
   <string name="recent_panel_expanded_mode_auto">Αυτόματο (προεπιλογή)</string>
-  <string name="recent_panel_expanded_mode_always">Πάντα</string>
   <string name="recent_panel_expanded_mode_never">Ποτέ</string>
   <string name="recent_panel_show_topmost_title">Εμφάνιση της ενεργούς εργασίας</string>
   <string name="recent_panel_show_topmost_summary">Να μην εξαιρούνται οι κορυφαίες εργασίες στην προβολή των πρόσφατων εφαρμογών</string>

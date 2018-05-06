@@ -391,7 +391,6 @@
   <string name="recent_panel_expanded_mode_title">Kiterjesztett mód</string>
   <string name="recent_panel_expanded_mode_summary">Kibővített előnézet a előzmények panelon</string>
   <string name="recent_panel_expanded_mode_auto">Automatikus (alapértelmezett)</string>
-  <string name="recent_panel_expanded_mode_always">Mindig</string>
   <string name="recent_panel_expanded_mode_never">Soha</string>
   <string name="recent_panel_show_topmost_title">Legmagasabb tevékenység megjelenítése</string>
   <string name="recent_panel_show_topmost_summary">Ne zárja ki a legmagasabb tevékenységet az előzmények nézetben</string>

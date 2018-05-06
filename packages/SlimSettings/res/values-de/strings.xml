@@ -391,7 +391,6 @@
   <string name="recent_panel_expanded_mode_title">Erweiterter Modus</string>
   <string name="recent_panel_expanded_mode_summary">Erweiterte Vorschau im Anwendungsverlauf</string>
   <string name="recent_panel_expanded_mode_auto">Auto (Standard)</string>
-  <string name="recent_panel_expanded_mode_always">Immer</string>
   <string name="recent_panel_expanded_mode_never">Nie</string>
   <string name="recent_panel_show_topmost_title">Laufende App anzeigen</string>
   <string name="recent_panel_show_topmost_summary">Aktuell verwendete App in den Verlauf einschließen</string>

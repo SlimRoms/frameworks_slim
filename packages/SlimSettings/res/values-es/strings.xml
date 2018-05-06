@@ -391,7 +391,6 @@
   <string name="recent_panel_expanded_mode_title">Modo expandido</string>
   <string name="recent_panel_expanded_mode_summary">Previsualizar los procesos recientes en modo expandido</string>
   <string name="recent_panel_expanded_mode_auto">Automático (por defecto)</string>
-  <string name="recent_panel_expanded_mode_always">Siempre</string>
   <string name="recent_panel_expanded_mode_never">Nunca</string>
   <string name="recent_panel_show_topmost_title">Mostrar tareas superiores</string>
   <string name="recent_panel_show_topmost_summary">No excluir tareas superiores en la vista de recientes</string>

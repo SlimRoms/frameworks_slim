@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2017 SlimRoms Project
+ * Copyright (C) 2014-2018 SlimRoms Project
  * Author: Lars Greiss - email: kufikugel@googlemail.com
  * Copyright (C) 2017 ABC rom
  *
@@ -33,6 +33,7 @@ import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.pm.ResolveInfo;
+import android.content.pm.UserInfo;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
@@ -50,6 +51,7 @@ import android.os.ParcelFileDescriptor;
 import android.os.Process;
 import android.os.RemoteException;
 import android.os.UserHandle;
+import android.os.UserManager;
 import android.provider.Settings;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -64,6 +66,8 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 
 import com.android.systemui.R;
+import com.android.systemui.recents.Recents;
+import com.android.systemui.recents.misc.SystemServicesProxy;
 import com.android.systemui.slimrecent.ExpandableCardAdapter.ExpandableCard;
 import com.android.systemui.slimrecent.ExpandableCardAdapter.OptionsItem;
 import com.android.systemui.stackdivider.WindowManagerProxy;
@@ -72,6 +76,7 @@ import java.io.IOException;
 import java.lang.ref.WeakReference;
 
 import java.util.ArrayList;
+import android.util.ArraySet;
 import java.util.List;
 import java.util.HashSet;
 import java.util.Set;
@@ -107,8 +112,6 @@ public class RecentPanelView {
     // mode_always not working well yet, thumbs refresh needs to be improved
     // private static final int EXPANDED_MODE_ALWAYS  = 2;
 
-    private static final int THUMB_INIT_LOAD = 5;
-
     //public static final String PLAYSTORE_REFERENCE = "com.android.vending";
     //public static final String AMAZON_REFERENCE    = "com.amazon.venezia";
 
@@ -141,8 +144,6 @@ public class RecentPanelView {
     //private static int mOneHandMode:
     private static int mCardColor = 0x0ffffff;
     private int mFirstExpandedItems = 2;
-    private int mThumbnailWidth;
-    private int mThumbnailHeight;
     private Resources mRes;
 
     private String mCurrentFavorites = "";
@@ -150,11 +151,11 @@ public class RecentPanelView {
 
     private Set<String> mBlacklist = new HashSet<String>();
 
+    private ArraySet<Integer> mCurrentQuietProfiles = new ArraySet<Integer>();
+
     private PackageManager mPm;
     private ActivityManager mAm;
     private IActivityManager mIam;
-
-    private String mLRUCacheKey;
 
     final static BitmapFactory.Options sBitmapOptions;
 
@@ -185,9 +186,6 @@ public class RecentPanelView {
 
             this.context = mContext;
             this.identifier = task.identifier;
-            this.scaleFactor = mScaleFactor;
-            this.thumbnailHeight = mThumbnailHeight;
-            this.thumbnailWidth = mThumbnailWidth;
 
             this.persistentTaskId = task.persistentTaskId;
             this.packageName = task.packageName;
@@ -211,6 +209,7 @@ public class RecentPanelView {
             this.expandListener = new ExpandableCardAdapter.ExpandListener() {
                 @Override
                 public void onExpanded(boolean expanded) {
+                    mController.onStartExpandAnimation();
                     final int oldState = task.getExpandedState();
                     int state;
                     if (expanded) {
@@ -229,14 +228,6 @@ public class RecentPanelView {
                 @Override
                 public void onClick(View v) {
                     mController.pinApp(task.persistentTaskId);
-                }
-            };
-
-
-            this.refreshListener = new ExpandableCardAdapter.RefreshListener() {
-                @Override
-                public void onRefresh(int index) {
-                    postnotifyItemChanged(mCardRecyclerView, RecentCard.this, false);
                 }
             };
 
@@ -333,8 +324,8 @@ public class RecentPanelView {
             boolean screenPinningEnabled = mIsScreenPinningEnabled;
             expanded = isExpanded;
             expandVisible = !isTopTask;
-            noIcon = mExpandedMode != EXPANDED_MODE_NEVER
-                    && isTopTask && !screenPinningEnabled;
+            /*noIcon = mExpandedMode != EXPANDED_MODE_NEVER
+                    && isTopTask && !screenPinningEnabled;*/
             pinAppIcon = isTopTask && screenPinningEnabled;
             custom = mContext.getDrawable(R.drawable.ic_slimrec_pin_app);
         }
@@ -402,12 +393,8 @@ public class RecentPanelView {
         mRes = context.getResources();
         mFirstExpandedItems =
                 mRes.getInteger(R.integer.expanded_items_default);
-        mThumbnailWidth = (int) (mRes.getDimensionPixelSize(
-                        R.dimen.recent_thumbnail_width));
-        mThumbnailHeight = (int) (mRes.getDimensionPixelSize(
-                        R.dimen.recent_thumbnail_height));
-
-        buildCardListAndAdapter();
+        
+	buildCardListAndAdapter();
 
         setupItemTouchHelper();
     }
@@ -638,11 +625,12 @@ public class RecentPanelView {
 
         td.setIsFavorite(!td.getIsFavorite());
 
-        RecentController.shouldHidePanel = false;
         SlimSettings.System.putStringForUser(
                 resolver, SlimSettings.System.RECENT_PANEL_FAVORITES,
                 entryToSave,
                 UserHandle.USER_CURRENT);
+
+         setCurrentFavorites(entryToSave);
     }
 
     /**
@@ -1017,7 +1005,6 @@ public class RecentPanelView {
             RecentCard, Boolean> {
 
         private int mCounter;
-        private int preloadedThumbNum = 0;
 
         public CardLoader() {
         }
@@ -1043,13 +1030,12 @@ public class RecentPanelView {
             int firstItems = 0;
             final ArrayList<TaskDescription> nonFavoriteTasks = new ArrayList<>();
 
+            SystemServicesProxy ssp = Recents.getSystemServices();
+            int currentUserId = ssp.getCurrentUser();
+            updateCurrentQuietProfilesCache(currentUserId);
             final List<ActivityManager.RecentTaskInfo> recentTasks =
-                    mAm.getRecentTasksForUser(ActivityManager.getMaxRecentTasksStatic(),
-                    ActivityManager.RECENT_IGNORE_HOME_AND_RECENTS_STACK_TASKS
-                    | ActivityManager.RECENT_INGORE_PINNED_STACK_TASKS
-                    | ActivityManager.RECENT_IGNORE_UNAVAILABLE
-                    | ActivityManager.RECENT_INCLUDE_PROFILES,
-                    UserHandle.CURRENT.getIdentifier());
+                    ssp.getRecentTasks(ActivityManager.getMaxRecentTasksStatic(),
+                    currentUserId, false/*includeFrontMostExcludedTask*/, mCurrentQuietProfiles);
 
             final int numTasks = recentTasks.size();
 
@@ -1117,7 +1103,7 @@ public class RecentPanelView {
                         oldState |= EXPANDED_STATE_TOPTASK;
                     }
                     item.setExpandedState(oldState);
-                    addCard(item, true);
+                    addCard(item, true, false);
                     mFirstTask = item;
                 } else {
                     // FirstExpandedItems value forces to show always the app screenshot
@@ -1139,7 +1125,7 @@ public class RecentPanelView {
                         }
                         item.setExpandedState(oldState);
                         // The first tasks are always added to the task list.
-                        addCard(item, false);
+                        addCard(item, false, true);
                     } else {
                         /*if (mExpandedMode == EXPANDED_MODE_ALWAYS) {
                             oldState |= EXPANDED_STATE_BY_SYSTEM;
@@ -1148,7 +1134,7 @@ public class RecentPanelView {
                         // Favorite tasks are added next. Non favorite
                         // we hold for a short time in an extra list.
                         if (item.getIsFavorite()) {
-                            addCard(item, false);
+                            addCard(item, false, false);
                         } else {
                             nonFavoriteTasks.add(item);
                         }
@@ -1166,13 +1152,13 @@ public class RecentPanelView {
                     mIsLoading = false;
                     break;
                 }
-                addCard(item, false);
+                addCard(item, false, false);
             }
 
             return true;
         }
 
-        private void addCard(final TaskDescription task, boolean topTask) {
+        private void addCard(final TaskDescription task, boolean topTask, boolean loadBitmap) {
             final RecentCard card = new RecentCard(task);
 
             final Drawable appIcon =
@@ -1180,46 +1166,28 @@ public class RecentPanelView {
                     .getBitmapFromMemCache(task.identifier);
             if (appIcon != null) {
                 card.appIcon = appIcon;
-                postnotifyItemChanged(mCardRecyclerView, card, false);
+                postnotifyItemChanged(mCardRecyclerView, card);
             } else {
                 AppIconLoader.getInstance(mContext).loadAppIcon(task.info,
                         task.identifier, new AppIconLoader.IconCallback() {
                             @Override
                             public void onDrawableLoaded(Drawable drawable) {
                                 card.appIcon = drawable;
-                                postnotifyItemChanged(mCardRecyclerView, card, false);
+                                postnotifyItemChanged(mCardRecyclerView, card);
                             }
                 }, mScaleFactor);
             }
             // skip thumbs loading process if fast mode enabled
-            if (mExpandedMode == EXPANDED_MODE_NEVER) {
-                card.needsThumbLoading = false;
-            } else if (!topTask && preloadedThumbNum < THUMB_INIT_LOAD) {
-                // we load only the first THUMB_INIT_LOAD thumbnails skipping the top task,
-                // to avoid huge work loading all thumbnails. The adapter will trigger the loading
-                // of other ones when showing cards in the panel
-                final Bitmap screenshot =
-                        ThumbnailsCacheController.getInstance(mContext)
-                        .getBitmapFromMemCache(task.identifier);
-                if (screenshot != null) {
-                    preloadedThumbNum++;
-                    card.screenshot = screenshot;
-                    postnotifyItemChanged(mCardRecyclerView, card, true);
-                } else {
-                    new BitmapDownloaderTask(mContext, mScaleFactor,
-                            mThumbnailHeight, mThumbnailWidth, task.identifier,
-                            new DownloaderCallback() {
-                        @Override
-                        public void onBitmapLoaded(Bitmap bitmap) {
-                            preloadedThumbNum++;
-                            card.screenshot = bitmap;
-                            postnotifyItemChanged(mCardRecyclerView, card, true);
-                        }
-                    }).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,
-                            task.persistentTaskId);
-                }
-            } else {
-                card.needsThumbLoading = true;
+            if (mExpandedMode != EXPANDED_MODE_NEVER && !topTask && loadBitmap) {
+                new BitmapDownloaderTask(mContext,
+                        new DownloaderCallback() {
+                    @Override
+                    public void onBitmapLoaded(Bitmap bitmap) {
+                        card.screenshot = bitmap;
+                        postnotifyItemChanged(mCardRecyclerView, card);
+                    }
+                }).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,
+                        task.persistentTaskId);
             }
             card.cardClickListener = new View.OnClickListener() {
                 @Override
@@ -1267,6 +1235,21 @@ public class RecentPanelView {
         }
     }
 
+    private void updateCurrentQuietProfilesCache(int currentUserId) {
+        mCurrentQuietProfiles.clear();
+
+        UserManager userManager = (UserManager) mContext.getSystemService(Context.USER_SERVICE);
+        List<UserInfo> profiles = userManager.getProfiles(currentUserId);
+        if (profiles != null) {
+            for (int i = 0; i < profiles.size(); i++) {
+                UserInfo user  = profiles.get(i);
+                if (user.isManagedProfile() && user.isQuietModeEnabled()) {
+                    mCurrentQuietProfiles.add(user.id);
+                }
+            }
+        }
+    }
+
     private CacheController.EvictionCallback mClearThumbOnEviction =
             new CacheController.EvictionCallback() {
         @Override
@@ -1278,18 +1261,15 @@ public class RecentPanelView {
     };
 
     private void postnotifyItemChanged(final RecyclerView recyclerView,
-            RecentCard card, boolean bitmapLoading) {
+            RecentCard card) {
         Handler handler = new Handler(Looper.getMainLooper());
         handler.post(new Runnable() {
             @Override
             public void run() {
                 if (!recyclerView.isComputingLayout()) {
                     mCardAdapter.notifyItemChanged(card.index);
-                    if (bitmapLoading) {
-                        card.needsThumbLoading = false;
-                    }
                 } else {
-                    postnotifyItemChanged(recyclerView, card, bitmapLoading);
+                    postnotifyItemChanged(recyclerView, card);
                 }
             }
         });
@@ -1357,46 +1337,12 @@ public class RecentPanelView {
         }
     }
 
-    public static void laterLoadTaskThumbnail(Context ctx,
-            ExpandableCard ec, String identifier,
-            float scaleFactor, int thumbnailWidth, int thumbnailHeight, int persistentTaskId) {
-        final Bitmap screenshot =
-                ThumbnailsCacheController.getInstance(ctx)
-                .getBitmapFromMemCache(identifier);
-        if (screenshot != null) {
-            ec.needsThumbLoading = false;
-            ec.screenshot = screenshot;
-            // notify data change only if the card is expanded, otherwise it will updated
-            // when the user tap on the expand button so no need to do it now
-            if (ec.expanded) {
-                ec.refreshThumb();
-            }
-        } else {
-            new BitmapDownloaderTask(ctx, scaleFactor,
-                    thumbnailHeight, thumbnailWidth, identifier,
-                    new DownloaderCallback() {
-                @Override
-                public void onBitmapLoaded(Bitmap bitmap) {
-                    ec.needsThumbLoading = false;
-                    ec.screenshot = bitmap;
-                    if (ec.expanded) {
-                        ec.refreshThumb();
-                    }
-                }
-            }).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,
-                    persistentTaskId);
-        }
-    }
-
     // Loads the actual task bitmap.
-    public static Bitmap loadThumbnail(int persistentTaskId, Context context,
-            float scaleFactor, int thumbnailHeight, int thumbnailWidth) {
+    public static Bitmap loadThumbnail(int persistentTaskId, Context context) {
         if (context == null) {
             return null;
         }
-        return getResizedBitmap(getThumbnail(
-                persistentTaskId, true, context), context,
-                scaleFactor, thumbnailHeight, thumbnailWidth);
+        return getThumbnail(persistentTaskId, true, context);
     }
 
     /**
@@ -1442,43 +1388,6 @@ public class RecentPanelView {
         }
     }
 
-    // Resize and crop the task bitmap to the overlay values.
-    public static Bitmap getResizedBitmap(Bitmap source,
-            Context context, float scaleFactor, int thumbnailHeight, int thumbnailWidth) {
-        if (source == null || (source != null && source.isRecycled())) {
-            return null;
-        }
-
-        thumbnailWidth *= scaleFactor;
-        thumbnailHeight *= scaleFactor;
-        int h = source.getHeight();
-        int w = source.getWidth();
-        // Compute the scaling factors to fit the new height and width, respectively.
-        // To cover the final image, the final scaling will be the bigger
-        // of these two.
-        final float xScale = (float) thumbnailWidth / w;
-        final float yScale = (float) thumbnailHeight / h;
-        final float scale = Math.max(xScale, yScale);
-        // Now get the size of the source bitmap when scaled
-        final float scaledWidth = scale * w;
-        final float scaledHeight = scale * h;
-        // Let's find out the left coordinates if the scaled bitmap
-        // should be centered in the new size given by the parameters
-        final float left = (thumbnailWidth - scaledWidth) / 2;
-
-        final Canvas canvas = new Canvas();
-        canvas.setHwBitmapsInSwModeEnabled(true);
-        canvas.setDrawFilter(new PaintFlagsDrawFilter(Paint.ANTI_ALIAS_FLAG,
-                        Paint.FILTER_BITMAP_FLAG));
-        final Bitmap bmp = Bitmap.createBitmap(thumbnailWidth, thumbnailHeight,
-                Config.ARGB_8888);
-        canvas.setBitmap(bmp);
-        final RectF targetRect = new RectF(left, 0.0f, left + scaledWidth, scaledHeight);
-        canvas.drawBitmap(source, null, targetRect, null);
-
-        return bmp;
-    }
-
     interface DownloaderCallback {
         void onBitmapLoaded(Bitmap bitmap);
     }
@@ -1489,21 +1398,12 @@ public class RecentPanelView {
 
         private boolean mLoaded;
         private final WeakReference<Context> rContext;
-        private float mScaleFactor;
-        private int mThumbnailHeight;
-        private int mThumbnailWidth;
-        private DownloaderCallback mCallback;
-        private String mLRUCacheKey;
 
-        public BitmapDownloaderTask(Context context,
-                float scaleFactor, int thumbnailHeight, int thumbnailWidth,
-                String identifier, DownloaderCallback callback) {
+        private DownloaderCallback mCallback;
+
+        public BitmapDownloaderTask(Context context, DownloaderCallback callback) {
             rContext = new WeakReference<Context>(context);
-            mScaleFactor = scaleFactor;
             mCallback = callback;
-            mThumbnailWidth = thumbnailWidth;
-            mThumbnailHeight = thumbnailHeight;
-            mLRUCacheKey = identifier;
         }
 
         @Override
@@ -1514,8 +1414,7 @@ public class RecentPanelView {
                 return null;
             }
             // Load and return bitmap
-            return loadThumbnail(params[0], rContext.get(),
-                    mScaleFactor, mThumbnailHeight, mThumbnailWidth);
+            return loadThumbnail(params[0], rContext.get());
         }
 
         @Override
@@ -1533,11 +1432,6 @@ public class RecentPanelView {
             mLoaded = true;
             if (mCallback != null) {
                 mCallback.onBitmapLoaded(bitmap);
-            }
-            if (bitmap != null && context != null) {
-                // Put our bitmap intu LRU cache for later use.
-                ThumbnailsCacheController.getInstance(context)
-                        .addBitmapToMemoryCache(mLRUCacheKey, bitmap);
             }
         }
 

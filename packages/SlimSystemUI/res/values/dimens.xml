@@ -21,9 +21,9 @@
     <dimen name="recent_width">230dp</dimen>
     <dimen name="slim_recents_elevation">20dp</dimen>
     <dimen name="recent_app_icon_size">48dp</dimen>
+    <dimen name="recent_expand_button_padding">5dp</dimen>
     <dimen name="recent_favorite_icon_size">18dp</dimen>
-    <dimen name="recent_thumbnail_width">190dp</dimen>
-    <dimen name="recent_thumbnail_height">140dp</dimen>
+    <integer name="recent_thumbnail_height_to_width_ratio_percent">65</integer>
     <dimen name="recent_header_width">120dp</dimen>
     <dimen name="recent_text_size">20dp</dimen>
     <dimen name="recent_thumbnail_bottom_padding">3dp</dimen>

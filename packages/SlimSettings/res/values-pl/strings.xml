@@ -391,7 +391,6 @@
   <string name="recent_panel_expanded_mode_title">Tryb rozszerzony</string>
   <string name="recent_panel_expanded_mode_summary">Tryb rozszerzonego podglądu panelu ostatnich aplikacji</string>
   <string name="recent_panel_expanded_mode_auto">Automatyczny (Domyślnie)</string>
-  <string name="recent_panel_expanded_mode_always">Zawsze</string>
   <string name="recent_panel_expanded_mode_never">Nigdy</string>
   <string name="recent_panel_show_topmost_title">Pokaż aktualnie używaną aplikację</string>
   <string name="recent_panel_show_topmost_summary">Nie wykluczaj aktualnie używanej aplikacji</string>

@@ -49,6 +49,7 @@ import android.os.Message;
 import android.os.RemoteException;
 import android.os.UserHandle;
 import android.provider.Settings;
+import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -107,6 +108,7 @@ public class RecentController implements RecentPanelView.OnExitListener,
     // Animation state.
     private int mAnimationState = ANIMATION_STATE_NONE;
 
+    private final RecyclerView mCardRecyclerView;
     private Configuration mConfiguration;
     private Context mContext;
     private ActivityManager mAm;
@@ -118,6 +120,8 @@ public class RecentController implements RecentPanelView.OnExitListener,
     private boolean mIsToggled;
     private boolean mIsPreloaded;
     private boolean mIsUserSetup;
+
+    private boolean mExpandAnimation = false;
 
     // The different views we need.
     private ViewGroup mParentView;
@@ -199,14 +203,11 @@ public class RecentController implements RecentPanelView.OnExitListener,
         mRecentWarningContent =
                 (LinearLayout) mRecentContainer.findViewById(R.id.recent_warning_content);
 
-        final RecyclerView cardRecyclerView =
+        mCardRecyclerView =
                 (RecyclerView) mRecentContainer.findViewById(R.id.recent_list);
 
-        cardRecyclerView.setHasFixedSize(true);
-        CacheMoreCardsLayoutManager llm =
-                new CacheMoreCardsLayoutManager(context, mWindowManager);
-        llm.setReverseLayout(true);
-        cardRecyclerView.setLayoutManager(llm);
+        mCardRecyclerView.setHasFixedSize(true);
+        mCardRecyclerView.setItemAnimator(mItemAnimator);
 
         mEmptyRecentView =
                 (ImageView) mRecentContainer.findViewById(R.id.empty_recent);
@@ -215,10 +216,10 @@ public class RecentController implements RecentPanelView.OnExitListener,
         final ScaleGestureDetector recentListGestureDetector =
                 new ScaleGestureDetector(mContext,
                         new RecentListOnScaleGestureListener(
-                                mRecentWarningContent, cardRecyclerView));
+                                mRecentWarningContent));
 
         // Prepare recents panel view and set the listeners
-        cardRecyclerView.setOnTouchListener(new View.OnTouchListener() {
+        mCardRecyclerView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 recentListGestureDetector.onTouchEvent(event);
@@ -227,7 +228,7 @@ public class RecentController implements RecentPanelView.OnExitListener,
         });
 
         mRecentPanelView = new RecentPanelView(mContext, this,
-                cardRecyclerView, mEmptyRecentView);
+                mCardRecyclerView, mEmptyRecentView);
         mRecentPanelView.setOnExitListener(this);
         mRecentPanelView.setOnTasksLoadedListener(this);
 
@@ -635,8 +636,6 @@ public class RecentController implements RecentPanelView.OnExitListener,
         }
     };
 
-    protected static boolean shouldHidePanel = true;
-
     /**
      * Settingsobserver to take care of the user settings.
      * Either gravity or scale factor of our recent panel can change.
@@ -665,9 +664,6 @@ public class RecentController implements RecentPanelView.OnExitListener,
             resolver.registerContentObserver(SlimSettings.System.getUriFor(
                     SlimSettings.System.RECENT_CARD_BG_COLOR),
                     false, this, UserHandle.USER_ALL);
-            resolver.registerContentObserver(SlimSettings.System.getUriFor(
-                    SlimSettings.System.RECENT_PANEL_FAVORITES),
-                    false, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.LOCK_TO_APP_ENABLED),
                     false, this, UserHandle.USER_ALL);
@@ -685,12 +681,18 @@ public class RecentController implements RecentPanelView.OnExitListener,
 
         @Override
         protected void update() {
-            // Close recent panel if opened, but don't close it if we're setting a new favorite app
-            //(see RecentPanelView handleFavoriteEntry)
-            if (shouldHidePanel) hideRecents(false);
-            shouldHidePanel = true;
+            hideRecents(false);
 
             ContentResolver resolver = mContext.getContentResolver();
+
+            int expandMode = Settings.System.getIntForUser(
+                        resolver, SlimSettings.System.RECENT_PANEL_EXPANDED_MODE,
+                        RecentPanelView.EXPANDED_MODE_NEVER,
+                        UserHandle.USER_CURRENT);
+            CacheMoreCardsLayoutManager llm =
+                    new CacheMoreCardsLayoutManager(mContext, mWindowManager, expandMode);
+            llm.setReverseLayout(true);
+            mCardRecyclerView.setLayoutManager(llm);
 
             // Get user gravity.
             mUserGravity = SlimSettings.System.getIntForUser(
@@ -723,7 +725,7 @@ public class RecentController implements RecentPanelView.OnExitListener,
                 mRecentPanelView.setScaleFactor(mScaleFactor);
                 mRecentPanelView.setExpandedMode(SlimSettings.System.getIntForUser(
                         resolver, SlimSettings.System.RECENT_PANEL_EXPANDED_MODE,
-                        mRecentPanelView.EXPANDED_MODE_NEVER,
+                        RecentPanelView.EXPANDED_MODE_NEVER,
                         UserHandle.USER_CURRENT));
                 mRecentPanelView.setCardColor(SlimSettings.System.getIntForUser(
                         resolver, SlimSettings.System.RECENT_CARD_BG_COLOR, 0x00ffffff,
@@ -784,12 +786,10 @@ public class RecentController implements RecentPanelView.OnExitListener,
 
         // Views we need and are passed trough the constructor.
         private LinearLayout mRecentWarningContent;
-        private RecyclerView mCardRecyclerView;
 
         RecentListOnScaleGestureListener(
-                LinearLayout recentWarningContent, RecyclerView cardRecyclerView) {
+                LinearLayout recentWarningContent) {
             mRecentWarningContent = recentWarningContent;
-            mCardRecyclerView = cardRecyclerView;
         }
 
         @Override
@@ -1057,26 +1057,40 @@ public class RecentController implements RecentPanelView.OnExitListener,
     private class CacheMoreCardsLayoutManager extends LinearLayoutManager {
         private Context context;
         private WindowManager mWindowManager;
+        private int mExpandMode;
 
         public CacheMoreCardsLayoutManager(Context context,
-                WindowManager windowManager) {
+                WindowManager windowManager, int expandMode) {
             super(context);
             this.context = context;
             this.mWindowManager = windowManager;
+            this.mExpandMode = expandMode;
         }
 
         @Override
         protected int getExtraLayoutSpace(RecyclerView.State state) {
-            return getScreenHeight();
+            int space = 300;
+            switch(mExpandMode) {
+                case RecentPanelView.EXPANDED_MODE_NEVER:
+                    space = 300;
+                    break;
+                case RecentPanelView.EXPANDED_MODE_AUTO:
+                    space = 600;
+                    break;
+                /*case RecentPanelView.EXPANDED_MODE_ALWAYS:
+                    space = getScreenHeight();
+                    break;*/
+            }
+            return space;
         }
 
-        private int getScreenHeight() {
+        /*private int getScreenHeight() {
             Display display = mWindowManager.getDefaultDisplay();
             Point size = new Point();
             display.getSize(size);
             int screenHeight = size.y;
             return screenHeight;
-        }
+        }*/
 
         /**
          * Disable predictive animations. There is a bug in RecyclerView which causes views that
@@ -1186,4 +1200,21 @@ public class RecentController implements RecentPanelView.OnExitListener,
         public void onConfigurationChanged(Configuration newConfig) {
         }
     }
+
+    public void onStartExpandAnimation() {
+        mExpandAnimation = true;
+    }
+
+    private DefaultItemAnimator mItemAnimator = new DefaultItemAnimator() {
+        @Override
+        public boolean canReuseUpdatedViewHolder(RecyclerView.ViewHolder viewHolder) {
+            // Similar to SimpleItemAnimator.setSupportsChangeAnimations(mExpandAnimation)
+            if (mExpandAnimation) {
+                mExpandAnimation = false;
+                return super.canReuseUpdatedViewHolder(viewHolder);
+            }
+            // Returning true means we don't support change animations here
+            return true;
+        }
+    };
 }

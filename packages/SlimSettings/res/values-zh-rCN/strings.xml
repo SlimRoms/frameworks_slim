@@ -391,7 +391,6 @@
   <string name="recent_panel_expanded_mode_title">扩展模式</string>
   <string name="recent_panel_expanded_mode_summary">在最近任务列表使用展开预览模式</string>
   <string name="recent_panel_expanded_mode_auto">自动 (默认)</string>
-  <string name="recent_panel_expanded_mode_always">始终</string>
   <string name="recent_panel_expanded_mode_never">从不</string>
   <string name="recent_panel_show_topmost_title">显示顶层任务</string>
   <string name="recent_panel_show_topmost_summary">最近任务视图中不排除顶层任务应用</string>
