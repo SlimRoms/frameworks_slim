@@ -391,7 +391,6 @@
   <string name="recent_panel_expanded_mode_title">Расширенный режим</string>
   <string name="recent_panel_expanded_mode_summary">Расширенный режим просмотра недавних приложений</string>
   <string name="recent_panel_expanded_mode_auto">Автоматически (по умолчанию)</string>
-  <string name="recent_panel_expanded_mode_always">Всегда</string>
   <string name="recent_panel_expanded_mode_never">Никогда</string>
   <string name="recent_panel_show_topmost_title">Показывать последнее приложение</string>
   <string name="recent_panel_show_topmost_summary">Показывать последнее приложение в списке недавних</string>

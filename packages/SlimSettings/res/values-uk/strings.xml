@@ -391,7 +391,6 @@
   <string name="recent_panel_expanded_mode_title">Розширений режим</string>
   <string name="recent_panel_expanded_mode_summary">Розширений перегляд недавніх програм</string>
   <string name="recent_panel_expanded_mode_auto">Авто (типово)</string>
-  <string name="recent_panel_expanded_mode_always">Завжди</string>
   <string name="recent_panel_expanded_mode_never">Ніколи</string>
   <string name="recent_panel_show_topmost_title">Показати найважливіші задачі</string>
   <string name="recent_panel_show_topmost_summary">Не виключати найважливіші задачі зі списку недавніх</string>

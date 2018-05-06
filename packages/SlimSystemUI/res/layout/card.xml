@@ -36,47 +36,48 @@
 
             <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="45dp">
+                android:layout_height="49dp">
                 <LinearLayout
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
-                    <RelativeLayout
+                    <FrameLayout
                         android:id="@+id/thumbnail"
-                        android:layout_weight="1"
                         android:layout_gravity="center_vertical"
-                        android:layout_width="0dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content" >
 
-                        <com.android.systemui.slimrecent.RecentImageView
+                        <com.android.systemui.slimrecent.AppIconImageView
                             android:id="@+id/app_icon"
                             android:padding="3dp"
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
 
                         <com.android.systemui.slimrecent.RecentImageView
                             android:id="@+id/favorite_icon"
                             android:src="@drawable/ic_recent_favorite"
-                            android:layout_toEndOf="@id/app_icon"
+                            android:layout_gravity="end|top"
                             style="@style/card_header_favorite_icon" />
 
-                    </RelativeLayout>
+                    </FrameLayout>
 
                     <TextView
                         android:id="@+id/app_name"
                         android:gravity="center_vertical"
-                        android:layout_weight="2"
+                        android:maxLines="2"
+                        android:padding="3dp"
+                        android:layout_weight="1"
                         android:layout_width="0dp"
                         android:layout_height="match_parent" />
 
                     <ImageView
                         android:id="@+id/expand"
                         android:src="@drawable/ic_expand"
-                        android:layout_weight="1"
                         android:layout_gravity="center_vertical"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content" />
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/recent_expand_button_padding" />
 
                 </LinearLayout>
                 <LinearLayout
@@ -87,13 +88,13 @@
                     android:layout_height="match_parent" />
             </FrameLayout>
 
-            <com.android.systemui.slimrecent.RecentImageView
+            <com.android.systemui.slimrecent.RecentThumbView
                 android:id="@+id/screenshot"
                 android:background="@android:color/transparent"
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:visibility="gone"
-                android:layout_margin="4dp"
-                android:layout_height="wrap_content" />
+                android:layout_margin="4dp" />
 
         </LinearLayout>
 

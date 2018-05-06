@@ -389,7 +389,6 @@
   <string name="recent_panel_expanded_mode_title">حالت گسترش یافته</string>
   <string name="recent_panel_expanded_mode_summary">حالت پیش نمایش گسترده وظایف اخیر</string>
   <string name="recent_panel_expanded_mode_auto">خودکار (پیش فرض)</string>
-  <string name="recent_panel_expanded_mode_always">همیشه</string>
   <string name="recent_panel_expanded_mode_never">هرگز</string>
   <string name="recent_panel_show_topmost_title">نمایش بالاترین وظیفه</string>
   <string name="recent_panel_show_topmost_summary">بالاترین وظیفه را از نمایش برنامه های اخیر حذف نکن</string>

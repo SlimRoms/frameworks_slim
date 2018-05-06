@@ -391,7 +391,6 @@
   <string name="recent_panel_expanded_mode_title">Разширен режим</string>
   <string name="recent_panel_expanded_mode_summary">Режим преглед на последните задачи</string>
   <string name="recent_panel_expanded_mode_auto">Автоматично (по подразбиране)</string>
-  <string name="recent_panel_expanded_mode_always">Винаги</string>
   <string name="recent_panel_expanded_mode_never">Никога</string>
   <string name="recent_panel_show_topmost_title">Покажи най-използванта задача</string>
   <string name="recent_panel_show_topmost_summary">Не изключвай най-използванта задача в прегледа</string>

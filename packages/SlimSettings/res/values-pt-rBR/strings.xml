@@ -391,7 +391,6 @@
   <string name="recent_panel_expanded_mode_title">Modo expandido</string>
   <string name="recent_panel_expanded_mode_summary">Modo de visualização expandida dos aplicativos recentes</string>
   <string name="recent_panel_expanded_mode_auto">Automático (padrão)</string>
-  <string name="recent_panel_expanded_mode_always">Sempre</string>
   <string name="recent_panel_expanded_mode_never">Nunca</string>
   <string name="recent_panel_show_topmost_title">Mostrar aplicativo em uso</string>
   <string name="recent_panel_show_topmost_summary">Incluir o aplicativo em uso na exibição de aplicativos recentes</string>
