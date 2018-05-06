@@ -391,7 +391,6 @@
   <string name="recent_panel_expanded_mode_title">延伸模式</string>
   <string name="recent_panel_expanded_mode_summary">總覽任務延伸的預覽模式</string>
   <string name="recent_panel_expanded_mode_auto">自動 (預設)</string>
-  <string name="recent_panel_expanded_mode_always">一律</string>
   <string name="recent_panel_expanded_mode_never">永不</string>
   <string name="recent_panel_show_topmost_title">顯示最上層的任務</string>
   <string name="recent_panel_show_topmost_summary">不要將最上層的應用程式排除在「總覽」畫面之外</string>

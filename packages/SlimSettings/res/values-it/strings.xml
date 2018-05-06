@@ -391,7 +391,6 @@
   <string name="recent_panel_expanded_mode_title">Modalità estesa</string>
   <string name="recent_panel_expanded_mode_summary">Modalità di anteprima estesa delle app recenti</string>
   <string name="recent_panel_expanded_mode_auto">Automatico (predefinito)</string>
-  <string name="recent_panel_expanded_mode_always">Sempre</string>
   <string name="recent_panel_expanded_mode_never">Mai</string>
   <string name="recent_panel_show_topmost_title">Mostra attività in primo piano</string>
   <string name="recent_panel_show_topmost_summary">Non escludere l\'app in primo piano nel pannello delle app recenti</string>

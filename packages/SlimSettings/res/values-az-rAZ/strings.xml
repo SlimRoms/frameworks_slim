@@ -191,7 +191,6 @@
   <!-- Navigation bar button style -->
   <!-- Icon color options -->
   <!-- Recent panel -->
-  <string name="recent_panel_expanded_mode_always">Hər zaman</string>
   <string name="recent_panel_expanded_mode_never">Heç vaxt</string>
   <!-- ATTENTION: RTL languages need to replace left with right -->
   <!-- Clock & Date options -->

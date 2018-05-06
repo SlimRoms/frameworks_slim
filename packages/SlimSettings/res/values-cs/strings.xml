@@ -391,7 +391,6 @@
   <string name="recent_panel_expanded_mode_title">Rozšířený režim</string>
   <string name="recent_panel_expanded_mode_summary">Režim rozšířeného náhledu nedávných aplikací</string>
   <string name="recent_panel_expanded_mode_auto">Automaticky (výchozí)</string>
-  <string name="recent_panel_expanded_mode_always">Vždy</string>
   <string name="recent_panel_expanded_mode_never">Nikdy</string>
   <string name="recent_panel_show_topmost_title">Zobrazit aktuální úlohu</string>
   <string name="recent_panel_show_topmost_summary">Nevylučovat aktuální v seznamu nedávných aplikací</string>
