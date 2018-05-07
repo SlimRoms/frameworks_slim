@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017 SlimRoms Project
+ * Copyright (C) 2017-2018 SlimRoms Project
  * Author: Lars Greiss - email: kufikugel@googlemail.com
  * Copyright (C) 2017 ABC rom
  *
@@ -81,11 +81,9 @@ public class ExpandableCardAdapter
 
         if (card.pinAppIcon) {
             holder.expandButton.setImageDrawable(card.custom);
-        } else /*if (mFastMode)*/ {
+        } else {
             holder.expandButton.setImageResource(R.drawable.ic_options);
-        }/* else if (card.expandVisible) {
-            holder.expandButton.setImageResource(R.drawable.ic_expand);
-        }*/
+        }
         holder.expandButton.setVisibility(card.noIcon ? View.INVISIBLE : View.VISIBLE);
 
         if (card.cardBackgroundColor != 0) {
@@ -206,20 +204,9 @@ public class ExpandableCardAdapter
                         if (expCard.pinAppListener != null) {
                             expCard.pinAppListener.onClick(v);
                         }
-                    } else /*if (mFastMode)*/ {
+                    } else {
                         showOptions();
-                    }/* else if (expCard.expandVisible) {
-                        expCard.expanded = !expCard.expanded;
-                        if (expCard.expandListener != null) {
-                            expCard.expandListener.onExpanded(expCard.expanded);
-                        }
-                        Fade trans = new Fade();
-                        trans.setDuration(150);
-                        TransitionManager.beginDelayedTransition(
-                                (ViewGroup) itemView.getParent(), trans);
-                        expandButton.animate().rotation(expCard.expanded ? -180 : 0);
-                        notifyItemChanged(getAdapterPosition());
-                    }*/
+                    }
                 }
             });
 

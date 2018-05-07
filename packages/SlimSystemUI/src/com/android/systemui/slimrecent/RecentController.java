@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2017 SlimRoms Project
+ * Copyright (C) 2014-2018 SlimRoms Project
  * Author: Lars Greiss - email: kufikugel@googlemail.com
  * Copyright (C) 2017 ABC rom
  *
@@ -1077,20 +1077,9 @@ public class RecentController implements RecentPanelView.OnExitListener,
                 case RecentPanelView.EXPANDED_MODE_AUTO:
                     space = 600;
                     break;
-                /*case RecentPanelView.EXPANDED_MODE_ALWAYS:
-                    space = getScreenHeight();
-                    break;*/
             }
             return space;
         }
-
-        /*private int getScreenHeight() {
-            Display display = mWindowManager.getDefaultDisplay();
-            Point size = new Point();
-            display.getSize(size);
-            int screenHeight = size.y;
-            return screenHeight;
-        }*/
 
         /**
          * Disable predictive animations. There is a bug in RecyclerView which causes views that
@@ -1137,31 +1126,6 @@ public class RecentController implements RecentPanelView.OnExitListener,
         }
         return killed;
     }
-
-    /*
-     * By default, if you open app A, then app B, then app A again (with double tap or
-     * from recents panel), pressing BACK button will go back from app A to app B
-     * because they will be in the same stack. So i've added the following code that will
-     * instead create a new empty activity at each app launch with HOME as background
-     * main activity of the stack, thus the BACK button will always go back to HOME.
-     * This needs some lines in SystemUI manifest. Btw, atm i'm debated on this, because
-     * we can still press the HOME button to go back to home. So let's hang on for now.
-    */
-    /*public static class ContainerActivity extends Activity {
-        @Override
-        public void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-        }
-    }
-
-    private static void startContainerActivity(Context context) {
-        Intent mainActivity = new Intent(context,
-                ContainerActivity.class);
-        mainActivity.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
-                | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED
-                | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
-        context.startActivity(mainActivity);
-    }*/
 
     private class ComponentCallback implements ComponentCallbacks2 {
         @Override

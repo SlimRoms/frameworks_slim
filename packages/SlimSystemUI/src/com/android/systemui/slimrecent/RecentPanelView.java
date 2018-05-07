@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2014-2017 SlimRoms Project
+ * Copyright (C) 2014-2018 SlimRoms Project
  * Author: Lars Greiss - email: kufikugel@googlemail.com
  * Copyright (C) 2017 ABC rom
  *
@@ -109,14 +109,6 @@ public class RecentPanelView {
 
     public static final int EXPANDED_MODE_AUTO    = 0;
     public static final int EXPANDED_MODE_NEVER = 1;
-    // mode_always not working well yet, thumbs refresh needs to be improved
-    // private static final int EXPANDED_MODE_ALWAYS  = 2;
-
-    //public static final String PLAYSTORE_REFERENCE = "com.android.vending";
-    //public static final String AMAZON_REFERENCE    = "com.amazon.venezia";
-
-    //public static final String PLAYSTORE_APP_URI_QUERY = "market://details?id=";
-    //public static final String AMAZON_APP_URI_QUERY    = "amzn://apps/android?p=";
 
     private final Context mContext;
     private final ImageView mEmptyRecentView;
@@ -141,7 +133,6 @@ public class RecentPanelView {
     private float mScaleFactor;
     private int mExpandedMode = EXPANDED_MODE_AUTO;
     private boolean mIsScreenPinningEnabled;
-    //private static int mOneHandMode:
     private static int mCardColor = 0x0ffffff;
     private int mFirstExpandedItems = 2;
     private Resources mRes;
@@ -246,8 +237,6 @@ public class RecentPanelView {
                     Intent intent = null;
                     if (id == OPTION_INFO) {
                         intent = getAppInfoIntent();
-                    /*} else if (id == OPTION_MARKET) {
-                        intent = getStoreIntent();*/
                     } else if (id == OPTION_MULTIWINDOW) {
                         int dockSide = WindowManagerProxy.getInstance()
                                 .getDockSide();
@@ -285,12 +274,6 @@ public class RecentPanelView {
             addOption(new OptionsItem(
                     mContext.getDrawable(R.drawable.ic_recent_app_info),
                     OPTION_INFO, listener));
-            /*if (checkAppInstaller(task.packageName, AMAZON_REFERENCE)
-                    || checkAppInstaller(task.packageName, PLAYSTORE_REFERENCE)) {
-                addOption(new OptionsItem(
-                        mContext.getDrawable(R.drawable.ic_shop), OPTION_MARKET,
-                        listener));
-            }*/
             addOption(new OptionsItem(
                     mContext.getDrawable(R.drawable.ic_multiwindow),
                     OPTION_MULTIWINDOW,
@@ -324,8 +307,6 @@ public class RecentPanelView {
             boolean screenPinningEnabled = mIsScreenPinningEnabled;
             expanded = isExpanded;
             expandVisible = !isTopTask;
-            /*noIcon = mExpandedMode != EXPANDED_MODE_NEVER
-                    && isTopTask && !screenPinningEnabled;*/
             pinAppIcon = isTopTask && screenPinningEnabled;
             custom = mContext.getDrawable(R.drawable.ic_slimrec_pin_app);
         }
@@ -334,21 +315,6 @@ public class RecentPanelView {
             return new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
                     Uri.fromParts("package", task.packageName, null));
         }
-
-        /*private Intent getStoreIntent() {
-            Intent intent = new Intent(Intent.ACTION_VIEW);
-            String reference;
-            if (checkAppInstaller(task.packageName, AMAZON_REFERENCE)) {
-                reference = AMAZON_REFERENCE;
-                intent.setData(Uri.parse(AMAZON_APP_URI_QUERY + task.packageName));
-            } else {
-                reference = PLAYSTORE_REFERENCE;
-                intent.setData(Uri.parse(PLAYSTORE_APP_URI_QUERY + task.packageName));
-            }
-            // Exclude from recents if the store is not in our task list.
-            intent.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
-            return intent;
-        }*/
     }
 
 
@@ -393,8 +359,8 @@ public class RecentPanelView {
         mRes = context.getResources();
         mFirstExpandedItems =
                 mRes.getInteger(R.integer.expanded_items_default);
-        
-	buildCardListAndAdapter();
+
+        buildCardListAndAdapter();
 
         setupItemTouchHelper();
     }
@@ -555,47 +521,6 @@ public class RecentPanelView {
     }
 
     /**
-     * Check if the requested app was installed by the reference store.
-     */
-    /*private boolean checkAppInstaller(String packageName, String reference) {
-        if (packageName == null) {
-            return false;
-        }
-        if (!isReferenceInstalled(reference, mPm)) {
-            return false;
-        }
-
-        String installer = mPm.getInstallerPackageName(packageName);
-        if (reference.equals(AMAZON_REFERENCE)) {
-            if (reference.equals(installer)) {
-                return true;
-            } else {
-                return false;
-            }
-        }
-        if (!packageName.equals("com.android.settings")
-                && !packageName.equals("com.android.systemui")) {
-            //we already checked if at least PlayStore is installed with isReferenceInstalled
-            //so we can safely return true and search the package in the Playstore, if it's not
-            // Settings or SystemUI (it'd be useless for those).
-            return true;
-        }
-        return false;
-    }*/
-
-    /**
-     * Check is store reference is installed.
-     */
-    /*private boolean isReferenceInstalled(String packagename, PackageManager pm) {
-        try {
-            pm.getPackageInfo(packagename, PackageManager.GET_ACTIVITIES);
-            return true;
-        } catch (NameNotFoundException e) {
-            return false;
-        }
-    }*/
-
-    /**
      * Handle favorite task entry (add or remove) if user longpressed on app icon.
      */
     private void handleFavoriteEntry(TaskDescription td) {
@@ -707,24 +632,6 @@ public class RecentPanelView {
         mController.startApplication(td);
         exit();
     }
-
-    /**
-     * Check if the requested store is in the task list to prevent it gets excluded.
-     */
-    /*private boolean storeIsInTaskList(String uriReference) {
-        if (mFirstTask != null && uriReference.equals(
-                mFirstTask.packageName)) {
-            return true;
-        }
-        int count = mCardAdapter.getItemCount();
-        for (int i = 0;  i < count; i++) {
-            RecentCard c = (RecentCard) mCardAdapter.getCard(i);
-            if (uriReference.equals(c.task.packageName)) {
-                return true;
-            }
-        }
-        return false;
-    }*/
 
     /**
      * Create a TaskDescription, returning null if the title or icon is null.
@@ -924,16 +831,6 @@ public class RecentPanelView {
         return false;
     }
 
-    /*protected void setOneHandMode(String str) {
-        if (str != null && str.contains("left")) {
-            mOneHandMode = 1;
-        } else if (str != null && str.contains("right")) {
-            mOneHandMode = 2;
-        } else {
-            mOneHandMode = 0;
-        }
-    }*/
-
     protected void setCardColor(int color) {
         mCardColor = color;
     }
@@ -1127,9 +1024,6 @@ public class RecentPanelView {
                         // The first tasks are always added to the task list.
                         addCard(item, false, true);
                     } else {
-                        /*if (mExpandedMode == EXPANDED_MODE_ALWAYS) {
-                            oldState |= EXPANDED_STATE_BY_SYSTEM;
-                        }*/
                         item.setExpandedState(oldState);
                         // Favorite tasks are added next. Non favorite
                         // we hold for a short time in an extra list.
