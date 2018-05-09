@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6493ed2b_120e655a",
+        "filename": "packages/SlimSystemUI/src/com/android/systemui/slimrecent/ExpandableCardAdapter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1000043
+      },
+      "writtenOn": "2018-05-09T14:12:38Z",
+      "side": 1,
+      "message": "2017-2018",
+      "range": {
+        "startLine": 2,
+        "startChar": 17,
+        "endLine": 2,
+        "endChar": 21
+      },
+      "revId": "28231410715f0b7ba2a4726eee249a7889da8179",
+      "serverId": "f8201d64-d729-4630-b91d-5f8be02869f0",
+      "unresolved": true
+    }
+  ]
+}
