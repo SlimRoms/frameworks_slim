@@ -51,15 +51,17 @@ public class SlimPreference extends Preference {
     }
 
     private void init(Context context, AttributeSet attrs) {
-        AttributeHelper a = new AttributeHelper(context, attrs,
-            slim.R.styleable.SlimPreference);
+        if (attrs != null) {
+            AttributeHelper a = new AttributeHelper(context, attrs,
+                    slim.R.styleable.SlimPreference);
 
-        boolean hidePreference =
-                a.getBoolean(slim.R.styleable.SlimPreference_hidePreference, false);
-        int hidePreferenceInt = a.getInt(slim.R.styleable.SlimPreference_hidePreferenceInt, -1);
-        int intDep = a.getInt(slim.R.styleable.SlimPreference_hidePreferenceIntDependency, 0);
-        if (hidePreference || hidePreferenceInt == intDep) {
-            setVisible(false);
+            boolean hidePreference =
+                    a.getBoolean(slim.R.styleable.SlimPreference_hidePreference, false);
+            int hidePreferenceInt = a.getInt(slim.R.styleable.SlimPreference_hidePreferenceInt, -1);
+            int intDep = a.getInt(slim.R.styleable.SlimPreference_hidePreferenceIntDependency, 0);
+            if (hidePreference || hidePreferenceInt == intDep) {
+                setVisible(false);
+            }
         }
     }
 

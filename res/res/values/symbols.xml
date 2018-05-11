@@ -197,4 +197,9 @@
     <java-symbol type="bool" name="config_deviceHasVariableButtonBrightness" />
 
     <java-symbol type="array" name="config_vendorPlatformSignatures" />
+
+    <java-symbol type="xml" name="available_keys" />
+
+    <java-symbol type="string" name="alert_slider_state_path" />
+    <java-symbol type="string" name="alert_slider_uevent_match_path" />
 </resources>

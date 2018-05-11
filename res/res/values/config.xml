@@ -33,6 +33,7 @@
 
     <string-array name="config_externalSlimServices">
         <item>org.slim.service.SlimActionsService</item>
+        <item>org.slim.service.SlimKeysService</item>
     </string-array>
 
     <!-- The duration (in milliseconds) of recent app screen animation. -->
@@ -55,4 +56,8 @@
          platform signatures, specifically for use on devices with a vendor partition. -->
     <string-array name="config_vendorPlatformSignatures">
     </string-array>
+
+    <!-- Alert slider nodes -->
+    <string name="alert_slider_state_path"></string>
+    <string name="alert_slider_uevent_match_path"></string>
 </resources>

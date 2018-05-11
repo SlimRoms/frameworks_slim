@@ -80,4 +80,13 @@
         <attr name="units" format="string|reference" />
     </declare-styleable>
 
+    <declare-styleable name="Key">
+        <attr name="scancode" format="integer" />
+        <attr name="name" format="string" />
+        <attr name="key" format="string" />
+        <attr name="path" format="string" />
+        <attr name="defaultAction" format="string" />
+        <attr name="screenOffGesture" format="boolean" />
+    </declare-styleable>
+
 </resources>

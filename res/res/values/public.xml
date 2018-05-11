@@ -57,6 +57,12 @@
   <public type="attr" name="maxValue" id="0x02010028" />
   <public type="attr" name="defValue" id="0x02010029" />
   <public type="attr" name="units" id="0x02010030" />
+  <public type="attr" name="scancode" id="0x02010031" />
+  <public type="attr" name="name" id="0x02010032" />
+  <public type="attr" name="key" id="0x02010033" />
+  <public type="attr" name="path" id="0x02010034" />
+  <public type="attr" name="defaultAction" id="0x02010035" />
+  <public type="attr" name="screenOffGesture" id="0x02010036" />
 
   <!-- id (start with 0x02020000)-->
   <!--SlimSeekBar ids -->
