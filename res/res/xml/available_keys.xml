@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<keys xmlns:slim="http://schemas.android.com/apk/res-auto">
+    <!--<key-category
+        slim:name="Touchscreen Gestures"
+        slim:key="touchscreen_gestures">
+        <key
+            slim:name="@string/gesture_arrow_down_title"
+            slim:path="/proc/touchpanel/down_arrow_enable"
+            slim:scancode="252"
+            slim:defaultAction="**ring_vib_silent**" />
+        <key
+            slim:name="@string/gesture_arrow_left_title"
+            slim:path="/proc/touchpanel/left_arrow_enable"
+            slim:scancode="253"
+            slim:defaultAction="**media_previous**" />
+        <key
+            slim:name="@string/gesture_arrow_right_title"
+            slim:path="/proc/touchpanel/right_arrow_enable"
+            slim:scancode="254"
+            slim:defaultAction="**media_next**" />
+        <key
+            slim:name="@string/gesture_arrow_up_title"
+            slim:path="/proc/touchpanel/up_arrow_enable"
+            slim:scancode="255"
+            slim:defaultAction="**torch**" />
+        <key
+            slim:name="@string/gesture_circle_title"
+            slim:path="/proc/touchpanel/letter_o_enable"
+            slim:scancode="250"
+            slim:defaultAction="**camera**" />
+        <key
+            slim:name="@string/gesture_double_swipe_title"
+            slim:path="/proc/touchpanel/double_swipe_enable"
+            slim:scancode="251"
+            slim:defaultAction="**media_play_pause**" />
+    </key-category>
+
+    <key-category
+        slim:name="Buttons"
+        slim:key="hardware_keys">
+        <key
+            slim:name="Home"
+            slim:scancode="10101"
+            slim:defaultAction="**home**" />
+    </key-category>-->
+</keys>

@@ -44,6 +44,26 @@
         </activity>
 
         <activity
+            android:name="com.slim.settings.activities.GestureSettingsActivity"
+            android:label="@string/gestures_title"
+            android:enabled="true"
+            android:theme="@style/Theme.Settings" >
+
+            <intent-filter android:priority="-1">
+                <action android:name="com.slim.settings.action.SETTINGS" />
+            </intent-filter>
+
+            <meta-data
+                android:name="com.android.settings.category"
+                android:value="com.android.settings.category.ia.system" />
+
+            <meta-data
+                android:name="com.android.settings.summary"
+                android:value="@string/summary_empty" />
+
+        </activity>
+
+        <activity
             android:name="com.slim.settings.activities.DozeSettingsActivity"
             android:label="@string/doze_settings_title"
             android:enabled="true"
@@ -97,6 +117,16 @@
             android:theme="@android:style/Theme.NoDisplay"
             android:excludeFromRecents="true"
             android:launchMode="singleInstance" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".activities.ShortcutPickerActivity"
+            android:theme="@android:style/Theme.Material.Dialog.NoActionBar"
+            android:excludeFromRecents="true"
+            android:configChanges="orientation|keyboardHidden|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
