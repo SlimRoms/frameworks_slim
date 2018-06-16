@@ -847,6 +847,17 @@ public final class SlimSettings {
         public static final Validator PROXIMITY_ON_WAKE_VALIDATOR = sBooleanValidator;
 
         /**
+         * Whether the button backlight is only lit when pressed (and not when screen is touched)
+         * The value is boolean (1 or 0).
+         */
+        public static final String BUTTON_BACKLIGHT_ONLY_WHEN_PRESSED =
+                "button_backlight_only_when_pressed";
+
+        /** @hide */
+        public static final Validator BUTTON_BACKLIGHT_ONLY_WHEN_PRESSED_VALIDATOR =
+                sBooleanValidator;
+
+        /**
          * These are all public system settings
          *
          * @hide
